@@ -1,0 +1,41 @@
+@import '../../constants/preCss';
+
+.cards-cont{
+    display: flex;
+    margin-inline: 80px;
+    flex-direction: row;
+}
+.cards-cont1{
+    display: flex;
+    margin-inline: 30px;
+    flex-direction: row;
+}
+.cards-img-s{
+    width: 300px;
+    height: 300px;
+    display: flex;
+    margin: -20px;
+    
+}
+.chart-1{
+    width: 600px;
+    margin-inline: -30px;
+    margin: -10px;
+    height: 300px;
+}
+
+.chart-others{
+    width: 300px;
+    margin: -10px;
+    margin-inline: -20px;
+    height: 300px;
+
+}
+.chart-others1{
+    width: 300px;
+    margin: -10px;
+    margin-inline: -20px;
+    height: 300px;
+    margin-left: -60px;
+
+}

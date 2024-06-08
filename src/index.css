@@ -1,0 +1,15 @@
+/* styles.css */
+@font-face {
+    font-family: 'MyCustomFont';
+    src: url('/Poppins-Medium.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  
+  
+:root  body,html {
+    font-family: 'MyCustomFont';
+    margin: 0 0;
+  }
+  

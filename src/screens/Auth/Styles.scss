@@ -1,0 +1,61 @@
+@import '../../constants/preCss';
+.container{
+display: flex;
+flex: 1;
+height: 97vh;
+
+background-color: $background1;
+align-items: center;
+justify-content: center;
+.container-sub{
+    background-color: $background2;
+margin:70px 50px ;    
+padding: 65px 20px ;
+}
+}
+.cont1{
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    display: flex;
+
+
+}
+.btn-cont{
+    margin:30px 20px;
+display: flex;
+flex-direction: column;
+align-items: center;
+flex:1;
+width: 400px;
+justify-content: center;
+
+}
+.btns{
+    background-color: $background1;
+    flex-direction: row;
+    margin-block: 8px;
+    display: flex;
+    align-items: center;
+    width: 90%;
+    justify-content: center;
+    padding-block: 6px;
+    border: 1px solid #EBF0ED;
+    border-radius: 7px;
+    
+    cursor: pointer;
+}
+.btns:hover{
+    background-color: rgba(128, 128, 128, 0.061);
+}
+.btn-text{
+    
+    font-weight: 500;
+    font-size: 12px;
+    margin-inline: 10px;
+}
+.btn-icon{
+    width: 20px;
+    height: 20px;
+    
+}

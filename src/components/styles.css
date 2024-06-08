@@ -1,0 +1,157 @@
+.custom-menu .ant-menu-item-selected::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 4px; 
+    background: linear-gradient(180deg, #0000FF 0%, #8F00FF 49.5%, #FF1494 100%);
+  }
+  
+  .custom-menu .ant-menu-item .ant-menu-item-icon img {
+    filter: invert(21%) sepia(75%) saturate(6184%) hue-rotate(268deg) brightness(100%) contrast(102%) !important;
+  }
+  .avtar-c {
+margin-top: 100px;
+margin-inline: 15px;
+
+align-items: center;
+justify-content: center;
+  }
+  .custom-menu{
+    font-size: 12px;
+  }
+  
+  .custom-menu .ant-menu-item-selected {
+    background-color: #F8EFFF !important;
+    color:#8F00FF !important;
+}
+
+.custom-menu .ant-menu-item {
+  width: 100% !important;
+  margin-inline: 0 !important;
+  border-radius: 0 !important;
+}
+   
+ 
+li .ant-menu-item{
+  width: 100% !important;
+  margin-inline: 0 !important;
+  border-radius: 0 !important;
+}
+  
+  .item-ims {
+    width: 15px;
+    height: 15px;
+  }
+  
+.carousel-wrapper {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 80px;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.card {
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 15px;
+  padding-block: 3px;
+
+  text-align: center;
+  background-color: white;
+  margin: 0 10px; 
+}
+
+.card-logo {
+  width: 30px;
+  
+  height: 30px;
+}
+
+.cent-logo {
+  width: 50px;
+  margin-left: 10px;
+  height: 50px;
+  margin-top: 10px;
+}
+
+.card-content {
+  margin-left: 15px;
+  font-size: 10.5px;
+  
+  width: 80px;
+}
+
+.slick-slider {
+  display: block;
+  box-sizing: border-box;
+}
+
+.slick-list {
+  overflow: hidden;
+  display: block;
+  margin: 0 -10px; 
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.slick-track {
+  position: relative;
+  top: 0;
+  left: 0;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  box-sizing: border-box;
+}
+
+.slick-slide {
+  overflow: hidden;
+  float: left;
+  height: 100%;
+  min-height: 1px;
+}
+
+.slick-slide img {
+  display: block;
+}
+
+.slick-initialized .slick-slide {
+  display: block;
+}
+
+.slick-arrow {
+  display: block;
+  z-index: 1;
+}
+
+.slick-prev, .slick-next {
+  width: 30px;
+  height: 30px;
+}
+
+.slick-prev {
+  left: -35px; 
+}
+
+.slick-next {
+  right: -35px; 
+}
+
+.slick-dots {
+  bottom: -30px;
+}
+.slick-prev:before, .slick-next:before {
+
+  opacity: 0 !important;
+  
+}
+
+.slick-prev.slick-disabled:before, .slick-next.slick-disabled:before {
+  opacity: 0 !important;
+}
+
