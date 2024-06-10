@@ -1,4 +1,4 @@
-// src/menuItems.js
+import { Link } from 'react-router-dom';
 import menu1 from '../assets/dashb/men1.svg';
 import menu2 from '../assets/dashb/men2.svg';
 import menu3 from '../assets/dashb/men3.svg';
@@ -32,7 +32,7 @@ const items = [
   },
   {
     key: '5',
-    label: 'Automation',
+    label: <Link to='/adidea'>Automation</Link>,
     icon: <img src={menu4} className='item-ims' style={{ width: 17, height: 17 }} />,
   },
   {
@@ -43,7 +43,7 @@ const items = [
   {
     key: '3',
     icon: <img src={menu7} className='item-ims' style={{ width: 17, height: 17 }} />,
-    label: 'Analytics',
+    label: <Link to="/analytics">Analytics</Link>,
   },
   {
     key: '4',

@@ -11,6 +11,13 @@ const Signup = () => {
   const handleSignup = () => {
     navigate("/home"); 
   };
+  function handleClick() {
+    window.location.href = 'http://localhost:4000/auth/google';
+  }
+
+  function handleClick1() {
+    window.location.href = 'http://localhost:4000/auth/linkedin';
+  }
   return (
     <div className="container">
       <div className="container-sub">
@@ -33,15 +40,15 @@ const Signup = () => {
             Improve business performance with LeadMaster{" "}
           </p>
           <div className="btn-cont">
-            <div className="btns" onClick={handleSignup}>
+            <div className="btns" onClick={handleClick} >
               <img src={google} className="btn-icon"/>
               <div className="btn-text">Sign In with Google</div>
             </div>
-            <div className="btns">
+            <div className="btns" onClick={handleClick1}>
               <img src={linkedin} className="btn-icon"/>
               <div className="btn-text">Sign in with Linked In</div>
             </div>
-            <div className="btns">
+            <div className="btns" onClick={handleSignup}>
               <img src={email} className="btn-icon"/>
               <div className="btn-text">Sign In with Work Email</div>
             </div>
