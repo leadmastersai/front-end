@@ -3,14 +3,14 @@ import react from '@vitejs/plugin-react'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react(),],
+  plugins: [react()],
   server: {
     port: 3000
+  },
+  build: {
+    outDir: 'dist',
+    rollupOptions: {
+      input: 'index.html' // Ensure this points to the correct entry file
+    }
   }
-  
 })
-// vite.config.js
-
-
-
-
