@@ -8,6 +8,9 @@ export default defineConfig({
     port: 3000
   },
   build: {
-    outDir: 'dist' // Ensure this matches the output directory in your GitHub Actions workflow
+    outDir: 'dist',
+    rollupOptions: {
+      input: '/index.html' // Ensure this points to the correct entry file
+    }
   }
 })
