@@ -6,6 +6,10 @@ import card4 from '../../assets/dashb/Profit.svg';
 import chart1 from '../../assets/dashb/Analytics.svg';
 import chart2 from '../../assets/dashb/charts4.svg';
 import chart3 from '../../assets/dashb/charts5.svg';
+import first from '../../assets/dashb/1st.svg';
+import second from '../../assets/dashb/2nd.svg';
+import third from '../../assets/dashb/3rd.svg';
+
 import './styles.scss';
 const Home = () => {
   const smallCards=[
@@ -34,6 +38,12 @@ const Home = () => {
           <img className="chart-others1" src={chart2} />
           <img className="chart-others" src={chart3} />
         </div>
+        <div className="cards-cont3">
+          <img className="chart-others2" src={first} />
+          <img className="chart-2" src={second} />
+          <img className="chart-others3" src={third} />
+        </div>
+        
     </div>
   );
 };

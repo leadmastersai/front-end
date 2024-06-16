@@ -53,6 +53,10 @@ li .ant-menu-item{
   padding: 20px;
   box-sizing: border-box;
 }
+.carousel-wrapper1 .slick-slide .card {
+  box-shadow: -1px -1px 10px hsla(240, 80%, 90%, 0.542) !important;
+}
+
 
 .card {
     border-radius: 20px; /* Rounded corners */
@@ -63,9 +67,9 @@ li .ant-menu-item{
   align-items: center;
   padding: 15px;
   padding-block: 3px;
-  filter: drop-shadow(0.6px 0.6px 1px rgba(51, 51, 255, 0.2)); /* Apply drop-shadow filter */
+  
 
-border: 1px transparent;
+
   text-align: center;
   background-color: white;
   margin: 0 10px; 

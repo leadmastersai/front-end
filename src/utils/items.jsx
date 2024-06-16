@@ -7,10 +7,17 @@ import menu5 from '../assets/dashb/men5.svg';
 import menu6 from '../assets/dashb/men6.svg';
 import menu7 from '../assets/dashb/men7.svg';
 import menu8 from '../assets/dashb/men8.svg';
+import menu9 from '../assets/dashb/getad.svg';
+
 
 const items = [
   {
     key: '1',
+    label: <Link to='/adidea'>Get Ad Idea</Link>,
+    icon: <img src={menu9} className='item-ims' style={{ width: 17, height: 17 }} />,
+  },
+  {
+    key: '2',
     icon: <img src={menu1} className='item-ims' style={{ width: 17, height: 17 }} />,
     label: 'Dashboard',
     children: [
@@ -26,37 +33,37 @@ const items = [
     ],
   },
   {
-    key: '6',
-    label: 'Campaigns',
+    key: '3',
+    label: <Link to='/createad'>Campaign</Link>,
     icon: <img src={menu6} className='item-ims' style={{ width: 17, height: 17 }} />,
   },
   {
-    key: '5',
-    label: <Link to='/adidea'>Automation</Link>,
+    key: '4',
+    label: <Link to='/automation'>Automation</Link>,
     icon: <img src={menu4} className='item-ims' style={{ width: 17, height: 17 }} />,
   },
   {
-    key: '2',
+    key: '5',
     icon: <img src={menu2} className='item-ims' style={{ width: 17, height: 17 }} />,
     label: 'Network',
   },
   {
-    key: '3',
+    key: '6',
     icon: <img src={menu7} className='item-ims' style={{ width: 17, height: 17 }} />,
     label: <Link to="/analytics">Analytics</Link>,
   },
   {
-    key: '4',
+    key: '7',
     label: 'Intgrations',
     icon: <img src={menu3} className='item-ims' style={{ width: 17, height: 17 }} />,
   },
   {
-    key: '7',
+    key: '8',
     label: 'Settings',
     icon: <img src={menu8} className='item-ims' style={{ width: 17, height: 17 }} />,
   },
   {
-    key: '8',
+    key: '9',
     label: 'Support',
     icon: <img src={menu5} className='item-ims' style={{ width: 17, height: 17 }} />,
   },
