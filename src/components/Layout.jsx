@@ -9,19 +9,21 @@ import avtar from '../assets/dashb/Avatars.svg';
 const Layout = () => {
   const [collapsed, setCollapsed] = useState(false);
 
-  const handleMouseEnter = () => {
-    setCollapsed(false);
-  };
+  // const handleMouseEnter = () => {
+  //   setCollapsed(false);
+  // };
 
-  const handleMouseLeave = () => {
-    setCollapsed(true);
+  // const handleMouseLeave = () => {
+  //   setCollapsed(true);
+  // };
+  const handleToggle = () => {
+    setCollapsed(!collapsed);
   };
-
   return (
     <div style={{ display: 'flex' }}>
       <div
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
+        // onMouseEnter={handleMouseEnter}
+        // onMouseLeave={handleMouseLeave}
         style={{
           position: 'fixed', 
           left: 0, 
@@ -38,14 +40,16 @@ const Layout = () => {
           style={{
             marginInline: 7,
             padding: '10px',
+            cursor:'pointer'
           }}
+          onClick={handleToggle}
         >
           <img src={Icon} style={{ width: 40, height: 40 }} alt="App Icon" />
         </div>
         <Menu
           defaultSelectedKeys={['1']}
           defaultOpenKeys={['1-1']}
-          mode="vertical"
+          mode="inline"
           theme="light"
           inlineCollapsed={collapsed}
           items={items}

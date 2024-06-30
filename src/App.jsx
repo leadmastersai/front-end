@@ -4,15 +4,18 @@ import Home from './screens/Home/Home';
 import Layout from './components/Layout';
 import Analytics from './screens/Analytics/index';
 import './index.css';
+
 import AdIdea from './screens/adIdea';
 import Automation from './screens/automation';
 import CreateAd from './screens/createAd';
+import Landing from './screens/landing';
 
 function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Signup />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/" element={<Landing />} />
         <Route element={<Layout />}>
           <Route path="/home" element={<Home />} />
           <Route path="/analytics" element={<Analytics />} />
