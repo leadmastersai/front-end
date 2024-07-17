@@ -12,11 +12,11 @@ const Signup = () => {
     navigate("/home"); 
   };
   function handleClick() {
-    window.location.href = 'http://localhost:4000/auth/google';
+    window.location.href = 'http://leadmasters.site/auth/google';
   }
 
   function handleClick1() {
-    window.location.href = 'http://localhost:4000/auth/linkedin';
+    window.location.href = 'http://leadmasters.site/auth/linkedin';
   }
   return (
     <div className="container">
