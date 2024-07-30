@@ -5,9 +5,12 @@ import email from "../../assets/auth/mail.svg";
 import linkedin from "../../assets/auth/linkedin.svg";
 import Icon from "../../assets/auth/appIcon.svg";
 import { useNavigate } from "react-router-dom";
+
 const Signup = () => {
   const navigate = useNavigate(); 
 
+
+  
   const handleSignup = () => {
     navigate("/home"); 
   };

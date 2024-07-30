@@ -9,6 +9,8 @@ import AdIdea from './screens/adIdea';
 import Automation from './screens/automation';
 import CreateAd from './screens/createAd';
 import Landing from './screens/landing';
+import PostIdea from './screens/postIdea';
+import Drafts from './screens/drafts';
 
 function App() {
   return (
@@ -18,8 +20,10 @@ function App() {
         <Route path="/" element={<Landing />} />
         <Route element={<Layout />}>
           <Route path="/home" element={<Home />} />
+          <Route path="/postidea" element={<PostIdea />} />
           <Route path="/analytics" element={<Analytics />} />
           <Route path="/automation" element={<Automation />} />
+          <Route path="/drafts" element={<Drafts />} />
           <Route path="/adidea" element={<AdIdea />} />
           <Route path="/createad" element={<CreateAd />} />
         </Route>

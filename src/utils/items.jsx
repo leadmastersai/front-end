@@ -67,6 +67,16 @@ const items = [
     label: 'Support',
     icon: <img src={menu5} className='item-ims' style={{ width: 17, height: 17 }} />,
   },
+  {
+    key: '10',
+    label: <Link to="/postidea">post Idea</Link>,
+    icon: <img src={menu5} className='item-ims' style={{ width: 17, height: 17 }} />,
+  },
+  {
+    key: '11',
+    label: <Link to="/drafts">Drafts</Link>,
+    icon: <img src={menu5} className='item-ims' style={{ width: 17, height: 17 }} />,
+  },
 ];
 
 export default items;
