@@ -2,7 +2,7 @@
 
 
 const apiURLs={
-    base_url:"http://leadmasters.site/",
+    base_url:"https://leadmasters.site/",
     postCreate:"api/posts/create-post",
     getfb:"api/posts/facebook",
     getg:"api/posts/google",
@@ -10,7 +10,8 @@ const apiURLs={
     gett:"api/posts/twitter",
     draftCreate:"api/draft",
      draftfb:"api/draft/facebook",
-     publishlinkedin:"api/linkedin/linkedin/post"
+     publishlinkedin:"api/linkedin/linkedin/post",
+     getUsers:"api/user"
 
 }
  export default apiURLs;

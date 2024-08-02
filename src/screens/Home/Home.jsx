@@ -10,47 +10,72 @@ import first from '../../assets/dashb/1st.svg';
 import second from '../../assets/dashb/2nd.svg';
 import third from '../../assets/dashb/3rd.svg';
 
+
 import './styles.scss';
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { postService } from "../../../services/postServices";
+import { useDispatch, useSelector } from "react-redux";
+import { saveUserDetail } from "../../redux/authSlice";
+
+
+
 
 const Home = () => {
+const dispatch=useDispatch();
+
   const smallCards=[
     {image:card1},
     {image:card2},
     {image:card3},
     {image:card4}
   ]
-  function getCookie(name) {
-    const nameEQ = `${name}=`;
-    const ca = document.cookie.split(';');
-    for(let i = 0; i < ca.length; i++) {
-        let c = ca[i];
-        while (c.charAt(0) === ' ') c = c.substring(1);
-        if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+  
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const token = urlParams.get('token'); // Changed from encryptedToken to token
+
+    console.log('Received Token:', token); // Log the received token
+
+    if (token) {
+        // Store the token securely
+        localStorage.setItem('oauthToken', token);
+
+        // Remove the token from URL parameters
+        urlParams.delete('token');
+        const newUrl = `${window.location.pathname}?${urlParams.toString()}`;
+        window.history.replaceState({}, document.title, newUrl);
+
+        // Optional: Redirect the user to another page
+
+    } else {
+        console.error('Token is null or undefined');
     }
-    return null;
-}
+}, []);
+
 
 useEffect(() => {
-  console.log("Component Mounted");
-
-  // Fetch the token from cookies
-  const token = getCookie('auth_token');
-  console.log('Auth Token:', token);
-
-  // Store the token in local storage if it exists
+  const token = localStorage.getItem('oauthToken');
   if (token) {
-    localStorage.setItem('auth_token', token);
-    console.log('Token saved to local storage');
+      console.log('Token in Home:', token);
   } else {
-    console.log('No token found in cookies');
+      console.error('Token is null or undefined in Home');
   }
 }, []);
 
-console.log("hiiiiii");
+useEffect(()=>{
+const getUserDetails=async()=>{
+  const response=await postService.getUser();
+  console.log(response.data,"+++");
+ dispatch(saveUserDetail(response.data));
+  
+}
+getUserDetails()
+},[])
 
-const token = getCookie('auth_token');
-console.log('Auth Token:', token);
+const {userBasics}  = useSelector((state) => state.auth);
+
+console.log(userBasics,"this is user");
+
 
   return (
     <div style={{ backgroundColor:'#f3edf8'}}>

@@ -1,14 +1,29 @@
-import { Outlet } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { Menu } from 'antd';
 import './styles.css';
 import Icon from '../assets/auth/appIcon.svg'
 import items from '../utils/items';
 import avtar from '../assets/dashb/Avatars.svg';
+import { useSelector } from 'react-redux';
 
 const Layout = () => {
+  const navigate=useNavigate();
   const [collapsed, setCollapsed] = useState(false);
+  const {userBasics}  = useSelector((state) => state.auth);
+  const profilepic=userBasics.picture;
+ 
+  const handleLogout = () => {
+    // Clear the local storage
+    localStorage.removeItem('oauthtoken');
+    
+    // Optionally, you might want to clear the Redux state or perform other actions
+    // e.g., dispatch(logoutAction());
 
+    // Redirect to the login page or home page
+    navigate('/signup'); // Adjust the path as needed
+  };
+  
   // const handleMouseEnter = () => {
   //   setCollapsed(false);
   // };
@@ -58,7 +73,14 @@ const Layout = () => {
          
         />
         <div className='avtar-c'>
-        <img src={avtar} />
+        <img
+            src={profilepic ? profilepic : avtar}
+            alt="Avatar"
+            className={profilepic ? 'profile-pic' : ''}
+          />
+      </div>
+      <div className='logout-btn' onClick={handleLogout}>
+        logout
       </div>
       </div>
       
