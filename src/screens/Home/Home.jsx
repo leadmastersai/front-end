@@ -55,7 +55,7 @@ const dispatch=useDispatch();
 
 useEffect(() => {
   const token = localStorage.getItem('oauthToken');
-  const token = localStorage.getItem('oauthToken');
+
   if (token) {
       console.log('Token in Home:', token);
       console.log('Token in Home:', token);
