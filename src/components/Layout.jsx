@@ -15,7 +15,7 @@ const Layout = () => {
  
   const handleLogout = () => {
     // Clear the local storage
-    localStorage.removeItem('oauthtoken');
+    localStorage.removeItem('oauthToken');
     
     // Optionally, you might want to clear the Redux state or perform other actions
     // e.g., dispatch(logoutAction());
