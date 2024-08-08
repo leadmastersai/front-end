@@ -1,0 +1,236 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.7rem 2rem;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    overflow-x: hidden !important;
+
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+  }
+  
+  .navbar-brand {
+    display: flex;
+    align-items: center;
+  }
+  
+  .navbar-brand .logo {
+    height: 35px;
+    margin-right: 1rem;
+  }
+  
+  .navbar-menu {
+    display: flex;
+    list-style: none;
+    font-size: 14px;
+  }
+  
+  .navbar-menu li {
+    margin: 0 2rem;
+  }
+  
+  .navbar-menu li a {
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+  }
+  .navbar-menu li :hover{
+    
+    color: purple;
+    transition: 1s;
+    cursor: pointer;
+  }
+  .navbar-actions {
+    display: flex;
+    margin-right:5vw;
+    align-items: center;
+  }
+  
+  .login-btn, .signup-btn {
+    margin-left: 1rem;
+    padding: 0.5rem 1rem;
+    border: none;
+    cursor: pointer;
+  }
+  .biggest-text1{
+    font-size: 40px;
+    font-weight: 500;
+    margin-bottom: 0;
+    margin-top: 0;
+    margin-left: 2vh;
+    
+    
+  }
+  .container-section99 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20vh;
+  }
+  
+  .biggest-text9 {
+    text-align: center;
+    margin: 0;
+    width: 90vw;
+    font-size: 40px;
+    font-weight:500;
+    
+  }
+  
+  .smaller {
+    width: 70vw;
+    color: #BC66FF;
+  }
+  .image-container {
+    position: relative;
+    margin-top: 5vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: auto; /* Adjust height as needed */
+  }
+  
+  .bg-img-sect55 {
+    position: absolute;
+    top: 0;
+    margin-top: 10vh;
+    left: 0;
+    width: 100%;
+    height: auto; /* Maintain aspect ratio */
+    z-index: 1;
+  }
+  .team-member {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 20px;
+}
+
+
+.content {
+    margin-left: 20px; /* Adjust as needed */
+    z-index: 3;
+}
+
+.content h2 {
+    font-size: 2em;
+    margin: 0;
+}
+
+.content h3 {
+    font-size: 1.5em;
+    margin: 5px 0;
+    color: gray;
+}
+.profile-img {
+    margin-right: 50px;
+    z-index: 2;
+    width: 30vw; /* Adjust as needed */
+    padding: 15vh;
+}
+
+.content p {
+    font-size: 1.4em;
+    color:#595959;
+    width: 35vw;
+}
+.our-values {
+align-items: center;
+justify-content: center;
+display: flex;
+flex-direction: column;
+    margin-top: -10vh;
+    padding: 20px;
+}
+
+.values-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.value-card {
+    background-color: #f7f7f7; /* Adjust as necessary */
+    border-radius: 15px;
+    padding: 20px;
+    justify-content: flex-start;
+    display: flex;
+    flex-direction: column;
+    max-width: 300px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.value-card img {
+    width: 50px; /* Adjust as necessary */
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.value-card h2 {
+    font-size: 20px;
+    margin:  0;
+}
+
+.value-card p {
+    font-size: 16px;
+    color: #555;
+}
+
+  
+  .bg-img-sect77 {
+    position: relative;
+    width: 80%;
+    height: auto; /* Maintain aspect ratio */
+    z-index: 2;
+  }
+  
+
+  .purple-text {
+    color: #BC66FF;
+  }
+  .smallest {
+    width: 60vw;
+  }
+  
+  .container-section4{
+    display: flex;
+    margin-block: 14vh;
+    flex-direction: column;
+    justify-content: center; /* Centers the section horizontally */
+    align-items: center;     /* Centers the section vertically (if needed) */
+    position: relative;
+  }
+  .signup-btn {
+    background: linear-gradient(90deg, #0000FF 0%, #8F00FF 48.99%, #FF1494 99.99%);
+    color: white;
+    border-radius: 6px;
+    padding: 11px;
+    width: 100px;
+  }
+  .cta-button8 {
+    background: linear-gradient(90deg, #0000FF 0%, #8F00FF 48.99%, #FF1494 99.99%);
+    color: white;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    padding: 11px;
+    width: 150px;
+  }
+  
+  
+
+  .login-btn {
+    background-color: transparent;
+    color: black;
+    border: 0.6px solid black;
+    border-radius: 6px;
+    padding: 10px;
+    width: 100px;
+  }

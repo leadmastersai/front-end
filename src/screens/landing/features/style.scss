@@ -1,0 +1,82 @@
+.container-section44{
+    display: flex;
+    margin-top: 18vh;
+    flex-direction: column;
+    justify-content: center; /* Centers the section horizontally */
+    align-items: center;     /* Centers the section vertically (if needed) */
+    position: relative;
+  }
+  .biggest-text1{
+    font-size: 40px;
+    font-weight: 500;
+    margin-bottom: 0;
+    margin-top: 0;
+    margin-left: 2vh;
+    
+    
+  }
+  .profile-img0 {
+  margin-left: -10vw;
+    z-index: 100;
+    width: 40vw; /* Adjust as needed */
+    
+    padding: 15vh;
+}
+  .team-member {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 20px;
+}
+
+.cont-center-first{
+  margin-top: -10vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.cards-three{
+  width: 70vw;
+  margin-block: 5vh;
+}
+.content101 {
+    margin-left: -50px; /* Adjust as needed */
+    z-index: 3;
+    width: 30%;
+}
+  .bg-img-sect55 {
+    position: absolute;
+    top: 0;
+    margin-top: 5vh;
+    left: 0;
+    width: 100%;
+    height: auto; /* Maintain aspect ratio */
+    z-index: 1;
+  }
+  .image-container {
+    position: relative;
+    margin-top: 1vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: auto; /* Adjust height as needed */
+  }
+  .ai-lead-gen-container {
+    background-color: #f3f4f6;
+    padding: 40px;
+    border-radius: 8px;
+  }
+  
+  .ai-lead-gen-container h2 {
+    color: #333;
+  }
+  
+  .ai-lead-gen-container img {
+    width: 100%;
+    height: auto;
+    margin-top: 20px;
+  }
+  

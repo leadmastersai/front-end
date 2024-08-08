@@ -34,7 +34,7 @@ import loc from '../../assets/landing/Location.svg';
 import time from '../../assets/landing/Message.svg';
 import mess from '../../assets/landing/Calling.svg';
 import call from '../../assets/landing/Time.svg';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 
 
@@ -84,7 +84,7 @@ const Landing = () => {
           <h2>${price.amount}</h2>
           <span>{price.period}</span>
         </div>
-        <p className='small-p-rng'>{features}</p>
+        <p className='small-p-rng' >{features}</p>
         <p className="annual-price">● ${price.annual} When Paid Annually</p>
         <a href={buttonLink} className="cta-button">
           {buttonText}
@@ -95,23 +95,7 @@ const Landing = () => {
 
   return (
     <div>
-    <nav className="navbar">
-      <div className="navbar-brand">
-        <img src={Icon} alt="Logo" className="logo" />
-        <h2 style={{fontWeight:'300'}}>LeadMasters.ai</h2>
-      </div>
-      <ul className="navbar-menu">
-        <li><a href="#product" onClick={() => scrollToSection('product')}>Product</a></li>
-        <li><a href="#about" onClick={() => scrollToSection('about')}>About Us</a></li>
-        <li><a href="#features" onClick={() => scrollToSection('features')}>Features</a></li>
-        <li><a href="#blog" onClick={() => scrollToSection('blog')}>Blog</a></li>
-        <li><a href="#pricing" onClick={() => scrollToSection('pricing')}>Pricing</a></li>
-      </ul>
-      <div className="navbar-actions">
-        <button onClick={()=>navigate('/signup')}  className="login-btn">Login</button>
-        <button onClick={()=>navigate('/signup')}  className="signup-btn">Sign Up</button>
-      </div>
-    </nav>
+ 
     <section id="product" className="main-section" style={{ marginTop: '8rem' }}>
         <h1 className='biggest-text'>Maximize Your Marketing Potential with AI</h1>
         <p>Automate, Optimize, and Grow with LeadMasters.ai</p>
@@ -232,14 +216,14 @@ const Landing = () => {
         <img src={loc} alt="Location Icon" className="contact-icon" />
         <div className="contact-details">
           <p>Address:</p>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,</p>
+          <p>#81/16, Haralukunte, HSR Layout, Bangalore, 560102</p>
         </div>
       </div>
       <div className="contact-item">
         <img src={mess} alt="Phone Icon" className="contact-icon" />
         <div className="contact-details">
           <p>Tel:</p>
-          <p>+9229341037</p>
+          <p>8147808161</p>
         </div>
       </div>
       <div className="contact-item">
@@ -253,7 +237,7 @@ const Landing = () => {
         <img src={time} alt="Email Icon" className="contact-icon" />
         <div className="contact-details">
           <p>Email:</p>
-          <p>info@onlearn.com</p>
+          <p>support@leadmasters.ai</p>
         </div>
       </div>
       </div>
