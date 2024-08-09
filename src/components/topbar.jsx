@@ -14,7 +14,7 @@ const Topbar = () => {
 
 </Link>
 <ul className="navbar-menu">
-  <li><a href="#product" onClick={() => scrollToSection('product')}>Product</a></li>
+  <li><a href="/" >Product</a></li>
   <li><Link to="/aboutus"><a>About Us</a></Link></li>
   <li><Link to="/features"><a >Features</a></Link></li>
   <li><Link to="/blog"><a >Blog</a></Link></li>

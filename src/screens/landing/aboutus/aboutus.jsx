@@ -80,7 +80,7 @@ const Aboutus = () => {
           <input type="email" placeholder="Enter your email id" />
           
         </div>
-        <button className="cta-button90">Get Started Free</button>
+        <button className="cta-button90" onClick={()=>navigate("/signup")}>Get Started Free</button>
       </div>
       <div className="newsletter-image">
         <img src={seo} alt="Newsletter" />

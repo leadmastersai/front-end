@@ -19,7 +19,9 @@ import call from '../../../assets/landing/Time.svg';
 
 import caro from '../../../assets/blog/caro.svg'
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 const Blog = () => {
+  const navigate=useNavigate();
   const [currentSlide, setCurrentSlide] = useState(0);
   const slides = [
     {
@@ -171,7 +173,7 @@ const Blog = () => {
           <input type="email" placeholder="Enter your email id" />
           
         </div>
-        <button className="cta-button90">Get Started Free</button>
+        <button className="cta-button90" onClick={()=>navigate("/signup")}>Get Started Free</button>
       </div>
       <div className="newsletter-image">
         <img src={seo} alt="Newsletter" />

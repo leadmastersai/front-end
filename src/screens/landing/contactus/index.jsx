@@ -12,8 +12,10 @@ import soc2 from '../../../assets/landing/social2.svg';
 import soc3 from '../../../assets/landing/social3.svg';
 import soc4 from '../../../assets/landing/social4.svg';
 import soc5 from '../../../assets/landing/social5.svg';
+import { useNavigate } from 'react-router-dom';
 
 const ContactUs = () => {
+  const navigate=useNavigate();
   return (
     <>
     <div className='whole-cont'>
@@ -89,6 +91,7 @@ const ContactUs = () => {
      
   </div>
   <div className='girl-container1'>
+  <button className="cta-button93" onClick={()=>navigate("/signup")}>Get Started Free</button>
   <img src={girl} alt="ss" className='girl-cont'/>
   </div>
   <footer className="footer9" style={{marginTop:'5vh'}}>

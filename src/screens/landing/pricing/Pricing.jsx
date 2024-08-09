@@ -26,7 +26,7 @@ const Pricing = () => {
           price: { amount: '$49', period: '/Per Month', annual: '450' },
           features: ['AI-Powered Lead Generation', 'Basic Analytics', 'Email Support.'],
           buttonText: 'Choose your Plan',
-          buttonLink: '#'
+          buttonLink: '/signup'
         },
         {
           name: 'Pro Plan',
@@ -34,7 +34,7 @@ const Pricing = () => {
           price: { amount: '$99', period: '/Per Month', annual: '450' },
           features: ['All Basic Plan features', 'Multi-Channel Ad Optimization', 'Advanced Analytics & Priority Support'],
           buttonText: 'Choose your Plan',
-          buttonLink: '#'
+          buttonLink: 'signup'
         },
         {
           name: 'Enterprise Plan',
@@ -42,7 +42,7 @@ const Pricing = () => {
           price: {},
           features: ['All Professional Plan features', 'Custom Integrations', 'Dedicated Account Manager',' Enterprise Support'],
           buttonText: 'Customize Pricing',
-          buttonLink: '#'
+          buttonLink: 'signup'
         }
       ];
 
@@ -101,13 +101,13 @@ const Pricing = () => {
 {/* <p style={{width:'40vw',textAlign:'center',marginBottom:'5vh'}}>Connect and network with other professionals on the platform, share insights, and collaborate on projects.</p> */}
 <img className='features-section77' src={sect9}  />
 <div style={{justifyContent:'center',textAlign:'center',marginBlock:'5vh',alignSelf:'center'}}> 
-<a  className="cta-button" style={{marginInline:0}}>
+<a  className="cta-button" style={{marginInline:0}} href='signup'>
               Choose Your Plan
             </a>
             </div>
       </section>
       <section className='container-section4' style={{marginTop:'-20vh'}}>
- 
+      <button className="cta-button96" onClick={()=>navigate("/signup")}>Get Started Free</button>
 <img className='bg-img-sect5' src={backgr} />
 <img className='cards-img-sect6' src={sect10} />
       </section>

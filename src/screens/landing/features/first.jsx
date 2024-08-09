@@ -16,7 +16,9 @@ import mess from '../../../assets/landing/Calling.svg';
 import call from '../../../assets/landing/Time.svg';
 
 import './style.scss';
+import { useNavigate } from 'react-router-dom';
 const First = () => {
+  const navigate=useNavigate();
   const [currentSlide, setCurrentSlide] = useState(0);
   const slides = [
     {
@@ -76,7 +78,7 @@ const First = () => {
       </div>
     </div>
     <section className='container-section4' style={{marginTop:'-20vh'}}>
- 
+    <button className="cta-button96" onClick={()=>navigate("/signup")}>Get Started Free</button>
  <img className='bg-img-sect5' src={backgr} />
  <img className='cards-img-sect6' src={sect10} />
        </section>

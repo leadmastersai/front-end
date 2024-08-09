@@ -86,7 +86,7 @@ const Landing = () => {
         </div>
         <p className='small-p-rng' >{features}</p>
         <p className="annual-price">● ${price.annual} When Paid Annually</p>
-        <a href={buttonLink} className="cta-button">
+        <a className="cta-button" onClick={()=>navigate("/signup")}>
           {buttonText}
         </a>
       </div>
@@ -99,7 +99,7 @@ const Landing = () => {
     <section id="product" className="main-section" style={{ marginTop: '8rem' }}>
         <h1 className='biggest-text'>Maximize Your Marketing Potential with AI</h1>
         <p>Automate, Optimize, and Grow with LeadMasters.ai</p>
-        <button className="cta-button8">Get Started Free</button>
+        <button className="cta-button8" onClick={()=>navigate("/signup")}>Get Started Free</button>
         <img className='biggest-img' src={First} />
         <img className='left-img' src={left} />
         <img className='right-img' src={right} />
@@ -149,7 +149,7 @@ const Landing = () => {
       </section>
       <section className='container-section1' style={{marginTop:'-15vh'}}>
       <img src={sect6} className='features-section6'/>
-      <button className="cta-button9">Get Started Free</button>
+      <button className="cta-button9" onClick={()=>navigate("/signup")}>Get Started Free</button>
 
       </section>
       <section className='container-section4'>
@@ -188,7 +188,7 @@ const Landing = () => {
       </div>
       </section>
       <section className='container-section4' style={{marginTop:'-20vh'}}>
- 
+ <button className="cta-button96" onClick={()=>navigate("/signup")}>Get Started Free</button>
 <img className='bg-img-sect5' src={backgr} />
 <img className='cards-img-sect6' src={sect10} />
       </section>

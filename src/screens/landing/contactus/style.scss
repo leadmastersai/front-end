@@ -145,7 +145,19 @@
     
     
   }
-
+  .cta-button93 {
+    background: linear-gradient(90deg, #0000FF 0%, #8F00FF 48.99%, #FF1494 99.99%);
+    color: white;
+    border-radius: 6px;
+    position: absolute;
+  margin-top:24vh;
+  z-index: 100;
+  margin-right: 57vw;
+    border: none;
+    cursor: pointer;
+    padding: 12.5px;
+    width: 150px;
+  }
   .girl-container1{
     display: flex;
     justify-content: center;
