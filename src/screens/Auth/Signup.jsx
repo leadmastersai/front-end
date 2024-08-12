@@ -30,7 +30,7 @@ const Signup = () => {
   }
 
   function handleClick1() {
-    window.location.href = 'https://leadmasters.site/auth/linkedin';
+    window.location.href = 'https://localhost:4000/auth/linkedin';
   }
   return (
     <div className="container">

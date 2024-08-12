@@ -50,7 +50,7 @@ const publishLinkedin=async (payload)=>{
     return request({
         method: 'get',
         url: `${apiUrls.getUsers}`,
-        secure: false
+        secure: true
     });
 };
 // Creating an object with the service functions
