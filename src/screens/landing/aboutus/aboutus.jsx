@@ -35,12 +35,12 @@ const [success, setSuccess] = useState(false); // state for showing success mess
     const featuresRef5 = useRef(null);
     const featuresRef6 = useRef(null);
 
-    const featuresInView = useInView(featuresRef, { once: true, threshold: 0.1 });
-    const featuresInView2 = useInView(featuresRef2, { once: true, threshold: 0.1 });
-    const featuresInView3 = useInView(featuresRef3, { once: true, threshold: 0.1 });
-    const featuresInView4 = useInView(featuresRef4, { once: true, threshold: 0.1 });
-    const featuresInView5 = useInView(featuresRef5, { once: true, threshold: 0.1 });
-    const featuresInView6 = useInView(featuresRef6, { once: true, threshold: 0.1 });
+    const featuresInView = useInView(featuresRef, { once: false, threshold: 0.1 });
+    const featuresInView2 = useInView(featuresRef2, { once: false, threshold: 0.1 });
+    const featuresInView3 = useInView(featuresRef3, { once: false, threshold: 0.1 });
+    const featuresInView4 = useInView(featuresRef4, { once: false, threshold: 0.1 });
+    const featuresInView5 = useInView(featuresRef5, { once: false, threshold: 0.1 });
+    const featuresInView6 = useInView(featuresRef6, { once: false, threshold: 0.1 });
 
     const textVariants = {
         hidden: { opacity: 0, y: 100, x: -200 },

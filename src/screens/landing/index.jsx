@@ -36,7 +36,7 @@ import mess from '../../assets/landing/Calling.svg';
 import call from '../../assets/landing/Time.svg';
 import { Link, useNavigate } from 'react-router-dom';
 import { motion, useInView } from 'framer-motion';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 
 
 
@@ -89,19 +89,19 @@ const Landing = () => {
   const featuresRef11 = useRef(null);
   const featuresRef12 = useRef(null);
   // Checking if sections are in view
-  const productInView = useInView(productRef, { once: true, threshold: 0.1 });
-  const featuresInView = useInView(featuresRef, { once: true, threshold: 0.1 });
-  const featuresInView2 = useInView(featuresRef2, { once: true, threshold: 0.1 });
-  const featuresInView3 = useInView(featuresRef3, { once: true, threshold: 0.1 });
-  const featuresInView4= useInView(featuresRef4, { once: true, threshold: 0.1 });
-  const featuresInView5= useInView(featuresRef5, { once: true, threshold: 0.1 });
-  const featuresInView6 = useInView(featuresRef6, { once: true, threshold: 0.1 });
-  const featuresInView7 = useInView(featuresRef7, { once: true, threshold: 0.1 });
-  const featuresInView8 = useInView(featuresRef8, { once: true, threshold: 0.1 });
-  const featuresInView9= useInView(featuresRef9, { once: true, threshold: 0.1 });
-  const featuresInView10= useInView(featuresRef10, { once: true, threshold: 0.1 });
-  const featuresInView11= useInView(featuresRef11, { once: true, threshold: 0.1 });
-  const featuresInView12= useInView(featuresRef12, { once: true, threshold: 0.1 });
+  const productInView = useInView(productRef, { once: false, threshold: 0.1 });
+  const featuresInView = useInView(featuresRef, { once: false, threshold: 0.1 });
+  const featuresInView2 = useInView(featuresRef2, { once: false, threshold: 0.1 });
+  const featuresInView3 = useInView(featuresRef3, { once: false, threshold: 0.1 });
+  const featuresInView4= useInView(featuresRef4, { once: false, threshold: 0.1 });
+  const featuresInView5= useInView(featuresRef5, { once: false, threshold: 0.1 });
+  const featuresInView6 = useInView(featuresRef6, { once: false, threshold: 0.1 });
+  const featuresInView7 = useInView(featuresRef7, { once: false, threshold: 0.1 });
+  const featuresInView8 = useInView(featuresRef8, { once: false, threshold: 0.1 });
+  const featuresInView9= useInView(featuresRef9, { once: false, threshold: 0.1 });
+  const featuresInView10= useInView(featuresRef10, { once: false, threshold: 0.1 });
+  const featuresInView11= useInView(featuresRef11, { once: false, threshold: 0.1 });
+  const featuresInView12= useInView(featuresRef12, { once: false, threshold: 0.1 });
   
   // Variants for text animation
   const textVariants = {
@@ -146,6 +146,22 @@ const Landing = () => {
       </motion.div>
     );
   };
+
+  const [imagesLoaded, setImagesLoaded] = useState({
+    section1: false,
+    section2: false,
+    // add more sections as needed
+  });
+
+  const handleImageLoad = (section) => {
+    setImagesLoaded((prev) => ({
+      ...prev,
+      [section]: true,
+    }));
+  };
+
+  // Example for section1
+  const isSection1Ready = imagesLoaded.section1;
 
   return (
     <div>
@@ -192,7 +208,7 @@ const Landing = () => {
       <motion.section
         ref={featuresRef}
         initial="hidden"
-        animate={featuresInView ? 'visible' : 'hidden'}
+        animate={featuresInView && isSection1Ready ? 'visible' : 'hidden'}
         id="features"
         className="features-section"
         
@@ -201,10 +217,10 @@ const Landing = () => {
           <motion.h3 className='biggest-text1' variants={textVariants}>
             Why LeadMasters.ai?
           </motion.h3>
-          <motion.img src={slides} className='half-img' variants={imageVariants} />
-          <motion.img src={analytics} className='anthr-img' variants={imageVariants} />
-          <motion.img src={chart1} className='anthr-img1' variants={imageVariants} />
-          <motion.img src={social} className='anthr-img2' variants={imageVariants} />
+          <motion.img src={slides} className='half-img' variants={imageVariants} onLoad={() => handleImageLoad('section1')} />
+          <motion.img src={analytics} className='anthr-img' variants={imageVariants} onLoad={() => handleImageLoad('section1')} />
+          <motion.img src={chart1} className='anthr-img1' variants={imageVariants}onLoad={() => handleImageLoad('section1')} />
+          <motion.img src={social} className='anthr-img2' variants={imageVariants}  onLoad={() => handleImageLoad('section1')}/>
         </div>
       </motion.section>
       <motion.section className='container-section1'  ref={featuresRef2}
