@@ -7,14 +7,59 @@ import time from '../../../assets/landing/Message.svg';
 import mess from '../../../assets/landing/Calling.svg';
 import call from '../../../assets/landing/Time.svg';
 import girl from '../../../assets/blog/girl3.svg';
+import seo from '../../../assets/blog/seo.svg';
 import soc1 from '../../../assets/landing/social1.svg';
 import soc2 from '../../../assets/landing/social2.svg';
 import soc3 from '../../../assets/landing/social3.svg';
 import soc4 from '../../../assets/landing/social4.svg';
 import soc5 from '../../../assets/landing/social5.svg';
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { postService } from '../../../../services/postServices';
+import { Alert ,Spin} from 'antd';
 
 const ContactUs = () => {
+const [fname,setFName]=useState('');
+const [lname,setLName]=useState('');
+const [loading,setLoading]=useState(false);
+const [email,setEmail]=useState('');
+const [phone,setPhone]=useState('');
+const [message,setMessage]=useState('');
+const [success, setSuccess] = useState(false); // state for showing success message
+  const [error, setError] = useState(false);
+
+const handleSubmit=async(e)=>{
+  e.preventDefault();
+
+  const payload={
+    firstName:fname,
+    lastName:lname,
+    email:email,
+    phone:phone,
+    message:message
+  }
+  try{
+    setLoading(true)
+const response=await postService.postContactInfo(payload);
+console.log(response.data,"sueccss");
+setFName('');
+setLName('');
+setEmail('');
+setPhone('');
+setSuccess(true);
+setError(false);
+setMessage('');
+setLoading(false)
+setTimeout(() => setSuccess(false), 3000); // Hide after 3 seconds
+} catch (error) {
+  console.log(error, 'error');
+  setError(true);
+  setSuccess(false);
+  setLoading(false);
+  setTimeout(() => setError(false), 3000);
+}
+  
+}
   const navigate=useNavigate();
   return (
     <>
@@ -29,19 +74,25 @@ const ContactUs = () => {
       </div>
 
       <div className="contact-form">
-        <form>
+        <form onSubmit={handleSubmit}>
+     
           <div className="form-group">
-            <input type="text" placeholder="First Name*" required />
-            <input type="text" placeholder="Last name*" required />
+            <input type="text" placeholder="First Name*" required value={fname} onChange={(e) => setFName(e.target.value)}/>
+            <input type="text" placeholder="Last name*" required value={lname} onChange={(e) => setLName(e.target.value)} />
           </div>
           <div className="form-group">
-            <input type="email" placeholder="Email id*" required />
-            <input type="tel" placeholder="Phone No" />
+            <input type="email" placeholder="Email id*" required value={email} onChange={(e) => setEmail(e.target.value)}/>
+            <input type="tel" placeholder="Phone No"value={phone} onChange={(e) => setPhone(e.target.value)} />
           </div>
+          
           <div className="form-group">
-            <textarea placeholder="Message" required></textarea>
+            <textarea placeholder="Message" required value={message} onChange={(e) => setMessage(e.target.value)}></textarea>
           </div>
-          <button type="submit" className="submit-button">Submit</button>
+          {success && <Alert style={{marginBlock:5}} message="Submitted successfully!" type="success" showIcon />}
+          {error && <Alert style={{marginBlock:5}} message="There was an error sending your message." type="error" showIcon />}
+          <button type="submit" className="submit-button" >
+          {loading ? <Spin size="small" /> : "Submit"}
+          </button>
         </form>
       </div>
  
@@ -70,7 +121,7 @@ const ContactUs = () => {
         <img src={mess} alt="Phone Icon" className="contact-icon" />
         <div className="contact-details">
         
-          <p>8147808161</p>
+          <p>+91-8147808161</p>
         </div>
       </div>
       {/* <div className="contact-item">
@@ -90,10 +141,18 @@ const ContactUs = () => {
       </div>
      
   </div>
-  <div className='girl-container1'>
-  <button className="cta-button93" onClick={()=>navigate("/signup")}>Get Started Free</button>
-  <img src={girl} alt="ss" className='girl-cont'/>
-  </div>
+  <div className="newsletter-container">
+      <div className="newsletter-content">
+        <h1 className='biggest-text9' style={{textAlign:'left',width:'130%'
+        }}>Be a Part of Innovation</h1>
+        <p>Join our dynamic team and help shape the future of AI-driven lead generation and digital marketing</p>
+     
+        <button className="cta-button90" onClick={()=>navigate("/signup")}>Join Us</button>
+      </div>
+      <div className="newsletter-image101">
+        <img src={seo} alt="Newsletter" />
+      </div>
+    </div>
   <footer className="footer9" style={{marginTop:'5vh'}}>
       <div className="footer-section">
       <div className="navbar-brand">
@@ -125,14 +184,14 @@ const ContactUs = () => {
         <img src={mess} alt="Phone Icon" className="contact-icon" />
         <div className="contact-details">
           <p>Tel:</p>
-          <p>8147808161</p>
+          <p>+91-8147808161</p>
         </div>
       </div>
       <div className="contact-item">
         <img src={call} alt="Clock Icon" className="contact-icon" />
         <div className="contact-details">
           <p>Response hours:</p>
-          <p>8 to 20</p>
+          <p>2 to 4</p>
         </div>
       </div>
       <div className="contact-item">

@@ -15,14 +15,20 @@ import loc from '../../../assets/landing/Location.svg';
 import time from '../../../assets/landing/Message.svg';
 import mess from '../../../assets/landing/Calling.svg';
 import call from '../../../assets/landing/Time.svg';
-
+import {postService} from '../../../../services/postServices';
 
 import caro from '../../../assets/blog/caro.svg'
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Alert, Spin } from 'antd';
 const Blog = () => {
   const navigate=useNavigate();
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [loading,setLoading]=useState(false);
+const [email,setEmail]=useState('');
+
+const [success, setSuccess] = useState(false); // state for showing success message
+  const [error, setError] = useState(false);
   const slides = [
     {
       text:"Retail Client Increases ROI by 25%",
@@ -44,6 +50,37 @@ const Blog = () => {
   const prevSlide = () => {
     setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
   };
+
+  const handleSubmit=async(e)=>{
+    e.preventDefault();
+  
+    const payload={
+     
+      email:email,
+    
+    }
+    try{
+      setLoading(true)
+  const response=await postService.postContactInfo(payload);
+  console.log(response.data,"sueccss");
+  
+  setEmail('');
+  
+  setSuccess(true);
+  setError(false);
+  
+  setLoading(false)
+  setTimeout(() => setSuccess(false), 3000); // Hide after 3 seconds
+  } catch (error) {
+    console.log(error, 'error');
+    setError(true);
+    setSuccess(false);
+    setLoading(false);
+    setTimeout(() => setError(false), 3000);
+  }
+    
+  }
+
   const cardData = [
     {
       image: sky,
@@ -170,10 +207,12 @@ const Blog = () => {
         <h1 className='biggest-text9' style={{textAlign:'left',width:'130%'
         }}>Subscribe to our newsletter for the latest updates</h1>
         <div className="newsletter-input">
-          <input type="email" placeholder="Enter your email id" />
+          <input type="email" placeholder="Enter your email id" value={email} onChange={(e) => setEmail(e.target.value)} />
           
         </div>
-        <button className="cta-button90" onClick={()=>navigate("/signup")}>Get Started Free</button>
+        <button className="cta-button90" onClick={handleSubmit}>{loading ? <Spin size="small" /> : "Submit"}</button>
+        {success && <Alert style={{marginBlock:5}} message="Submitted successfully!" type="success" showIcon />}
+        {error && <Alert style={{marginBlock:5}} message="There was an error sending your message." type="error" showIcon />}
       </div>
       <div className="newsletter-image">
         <img src={seo} alt="Newsletter" />
@@ -210,14 +249,14 @@ const Blog = () => {
         <img src={mess} alt="Phone Icon" className="contact-icon" />
         <div className="contact-details">
           <p>Tel:</p>
-          <p>8147808161</p>
+          <p>+91-8147808161</p>
         </div>
       </div>
       <div className="contact-item">
         <img src={call} alt="Clock Icon" className="contact-icon" />
         <div className="contact-details">
           <p>Response hours:</p>
-          <p>8 to 20</p>
+          <p>2 to 4</p>
         </div>
       </div>
       <div className="contact-item">

@@ -1,0 +1,22 @@
+.inte-cont{
+    display: flex;
+    width:60%;
+    flex-direction: column;
+  padding: 5vh;
+  margin-inline: 10vh;
+  margin-block: 2vh;
+    border-radius: 20px;
+    
+    box-shadow: (-2px -2px 15px hsla(240, 80%, 90%, 0.542));
+}
+.heading{
+  display: flex;
+  
+  margin-inline: 10vh;
+  align-items: center;
+}
+.str{
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}

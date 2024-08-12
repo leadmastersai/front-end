@@ -18,6 +18,7 @@ import LayoutWithTopbar from './components/layoutwith';
 import Blog from './screens/landing/blog';
 import ContactUs from './screens/landing/contactus';
 import Features from './screens/landing/features';
+import Integrations from './screens/integrations';
 
 function App() {
   return (
@@ -40,7 +41,8 @@ function App() {
           <Route path="/drafts" element={<Drafts />} />
           <Route path="/adidea" element={<AdIdea />} />
           <Route path="/createad" element={<CreateAd />} />
-          <Route path="/aboutus" element={<Aboutus />} />
+          <Route path="/integrations" element={<Integrations />} />
+          
      
         </Route>
       </Routes>

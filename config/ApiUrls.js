@@ -11,7 +11,8 @@ const apiURLs={
     draftCreate:"api/draft",
      draftfb:"api/draft/facebook",
      publishlinkedin:"api/linkedin/linkedin/post",
-     getUsers:"api/user"
+     getUsers:"api/user",
+     postContact:"api/contact"
 
 }
  export default apiURLs;

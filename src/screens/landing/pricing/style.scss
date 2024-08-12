@@ -393,6 +393,10 @@ margin-top: 90vh;
 }
 .jumpa {
   text-decoration: none !important;
+  cursor: pointer;
+}
+.jumpa:hover{
+  color: #8F00FF;
 }
 .footer-section {
   flex: 1;

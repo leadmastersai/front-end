@@ -12,6 +12,11 @@ import menu9 from '../assets/dashb/getad.svg';
 
 const items = [
   {
+    key: '10',
+    label: <Link to="/postidea">post Idea</Link>,
+    icon: <img src={menu5} className='item-ims' style={{ width: 17, height: 17 }} />,
+  },
+  {
     key: '1',
     label: <Link to='/adidea'>Get Ad Idea</Link>,
     icon: <img src={menu9} className='item-ims' style={{ width: 17, height: 17 }} />,
@@ -42,11 +47,11 @@ const items = [
     label: <Link to='/automation'>Automation</Link>,
     icon: <img src={menu4} className='item-ims' style={{ width: 17, height: 17 }} />,
   },
-  {
-    key: '5',
-    icon: <img src={menu2} className='item-ims' style={{ width: 17, height: 17 }} />,
-    label: 'Network',
-  },
+  // {
+  //   key: '5',
+  //   icon: <img src={menu2} className='item-ims' style={{ width: 17, height: 17 }} />,
+  //   label: 'Network',
+  // },
   {
     key: '6',
     icon: <img src={menu7} className='item-ims' style={{ width: 17, height: 17 }} />,
@@ -54,24 +59,20 @@ const items = [
   },
   {
     key: '7',
-    label: 'Intgrations',
+    label: <Link to='/integrations' >Integrations</Link>,
     icon: <img src={menu3} className='item-ims' style={{ width: 17, height: 17 }} />,
   },
-  {
-    key: '8',
-    label: 'Settings',
-    icon: <img src={menu8} className='item-ims' style={{ width: 17, height: 17 }} />,
-  },
-  {
-    key: '9',
-    label: 'Support',
-    icon: <img src={menu5} className='item-ims' style={{ width: 17, height: 17 }} />,
-  },
-  {
-    key: '10',
-    label: <Link to="/postidea">post Idea</Link>,
-    icon: <img src={menu5} className='item-ims' style={{ width: 17, height: 17 }} />,
-  },
+  // {
+  //   key: '8',
+  //   label: 'Settings',
+  //   icon: <img src={menu8} className='item-ims' style={{ width: 17, height: 17 }} />,
+  // },
+  // {
+  //   key: '9',
+  //   label: 'Support',
+  //   icon: <img src={menu5} className='item-ims' style={{ width: 17, height: 17 }} />,
+  // },
+  
   {
     key: '11',
     label: <Link to="/drafts">Drafts</Link>,

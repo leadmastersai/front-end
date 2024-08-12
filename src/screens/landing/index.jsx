@@ -35,6 +35,8 @@ import time from '../../assets/landing/Message.svg';
 import mess from '../../assets/landing/Calling.svg';
 import call from '../../assets/landing/Time.svg';
 import { Link, useNavigate } from 'react-router-dom';
+import { motion, useInView } from 'framer-motion';
+import { useRef } from 'react';
 
 
 
@@ -42,9 +44,8 @@ import { Link, useNavigate } from 'react-router-dom';
 
 const Landing = () => {
   const navigate = useNavigate();
-  const scrollToSection = (id) => {
-    document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
-  };
+
+
 
   const plans = [
     {
@@ -73,11 +74,64 @@ const Landing = () => {
     }
   ];
 
+  const productRef = useRef(null);
+  const featuresRef = useRef(null);
+  const featuresRef2 = useRef(null);
+  const featuresRef3 = useRef(null);
+  const featuresRef4 = useRef(null);
+  const featuresRef5 = useRef(null);
+
+  const featuresRef6 = useRef(null);
+  const featuresRef7 = useRef(null);
+  const featuresRef8 = useRef(null);
+  const featuresRef9 = useRef(null);
+  const featuresRef10 = useRef(null);
+  const featuresRef11 = useRef(null);
+  const featuresRef12 = useRef(null);
+  // Checking if sections are in view
+  const productInView = useInView(productRef, { once: true, threshold: 0.1 });
+  const featuresInView = useInView(featuresRef, { once: true, threshold: 0.1 });
+  const featuresInView2 = useInView(featuresRef2, { once: true, threshold: 0.1 });
+  const featuresInView3 = useInView(featuresRef3, { once: true, threshold: 0.1 });
+  const featuresInView4= useInView(featuresRef4, { once: true, threshold: 0.1 });
+  const featuresInView5= useInView(featuresRef5, { once: true, threshold: 0.1 });
+  const featuresInView6 = useInView(featuresRef6, { once: true, threshold: 0.1 });
+  const featuresInView7 = useInView(featuresRef7, { once: true, threshold: 0.1 });
+  const featuresInView8 = useInView(featuresRef8, { once: true, threshold: 0.1 });
+  const featuresInView9= useInView(featuresRef9, { once: true, threshold: 0.1 });
+  const featuresInView10= useInView(featuresRef10, { once: true, threshold: 0.1 });
+  const featuresInView11= useInView(featuresRef11, { once: true, threshold: 0.1 });
+  const featuresInView12= useInView(featuresRef12, { once: true, threshold: 0.1 });
+  
+  // Variants for text animation
+  const textVariants = {
+    hidden: { opacity: 0, y: 100, x: -200 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      x: 0,
+      transition: { duration: 2, ease: 'easeOut' },
+    },
+  };
+
+  // Variants for image animation
+  const imageVariants = {
+    hidden: { scale: 0.5, opacity: 0 },
+    visible: {
+      scale: 1,
+      opacity: 1,
+      transition: { duration: 2, ease: 'easeOut' },
+    },
+  };
+  
+
+
+  
   const PricingCard = ({ plan, price, features, buttonText, buttonLink }) => {
     return (
-      <div className="pricing-card">
+      <motion.div className="pricing-card" variants={imageVariants}>
         <div className="pricing-header">
-          <img src={plan.icon} alt={`${plan.name} icon`} className="plan-icon" />
+          <motion.img  src={plan.icon} alt={`${plan.name} icon`} className="plan-icon" />
           <h3 style={{marginLeft:'1vw'}}>{plan.name}</h3>
         </div>
         <div className="pricing-price">
@@ -89,91 +143,143 @@ const Landing = () => {
         <a className="cta-button" onClick={()=>navigate("/signup")}>
           {buttonText}
         </a>
-      </div>
+      </motion.div>
     );
   };
 
   return (
     <div>
  
-    <section id="product" className="main-section" style={{ marginTop: '8rem' }}>
-        <h1 className='biggest-text'>Maximize Your Marketing Potential with AI</h1>
-        <p>Automate, Optimize, and Grow with LeadMasters.ai</p>
-        <button className="cta-button8" onClick={()=>navigate("/signup")}>Get Started Free</button>
-        <img className='biggest-img' src={First} />
-        <img className='left-img' src={left} />
-        <img className='right-img' src={right} />
-      </section>
-      <section id="features" className="features-section">
+ <motion.section
+        ref={productRef}
+        id="product"
+        className="main-section"
+        style={{ marginTop: '8rem' }}
+        initial="hidden"
+        animate={productInView ? 'visible' : 'hidden'}
+      >
+        <motion.h1 className='biggest-text' variants={textVariants}>
+          Maximize Your Marketing Potential with AI
+        </motion.h1>
+        <motion.p variants={textVariants}>
+          Automate, Optimize, and Grow with LeadMasters.ai
+        </motion.p>
+        <motion.button
+          className="cta-button8"
+          onClick={() => navigate("/signup")}
+          variants={textVariants}
+        >
+          Get Started Free
+        </motion.button>
+        <motion.img
+          className='biggest-img'
+          src={First}
+          variants={imageVariants}
+        />
+        <motion.img
+          className='left-img'
+          src={left}
+          variants={imageVariants}
+        />
+        <motion.img
+          className='right-img'
+          src={right}
+          variants={imageVariants}
+        />
+      </motion.section>
+
+      {/* Features Section */}
+      <motion.section
+        ref={featuresRef}
+        initial="hidden"
+        animate={featuresInView ? 'visible' : 'hidden'}
+        id="features"
+        className="features-section"
         
+      >
         <div className="features-content">
-        <h3 className='biggest-text1'>Why LeadMasters.ai?</h3>
-         <img src={slides} className='half-img'/> 
-<img src={analytics} className='anthr-img'/>
-<img src={chart1} className='anthr-img1'/>
-<img src={social} className='anthr-img2'/>
-
-          
-          <div className="features-graphics">
-            {/* <img src="path-to-graphic1.png" alt="Graphic 1" className="feature-graphic" />
-            <img src="path-to-graphic2.png" alt="Graphic 2" className="feature-graphic" />
-            <img src="path-to-graphic3.png" alt="Graphic 3" className="feature-graphic" /> */}
-          </div>
+          <motion.h3 className='biggest-text1' variants={textVariants}>
+            Why LeadMasters.ai?
+          </motion.h3>
+          <motion.img src={slides} className='half-img' variants={imageVariants} />
+          <motion.img src={analytics} className='anthr-img' variants={imageVariants} />
+          <motion.img src={chart1} className='anthr-img1' variants={imageVariants} />
+          <motion.img src={social} className='anthr-img2' variants={imageVariants} />
         </div>
-      </section>
-      <section className='container-section1'>
-      <img src={section1} className='features-section1' />
+      </motion.section>
+      <motion.section className='container-section1'  ref={featuresRef2}
+        initial="hidden"
+        animate={featuresInView2 ? 'visible' : 'hidden'}>
+      <motion.img src={section1} className='features-section1' variants={imageVariants}/>
 
-      </section>
-      <section className='container-section2'>
-      <img src={section2} className='features-section2' />
-      </section>
-      <section className='container-section3'>
-      <img src={section3} className='features-section1' />
-      </section>
-      <section className='container-section4'>
-      <h3 className='biggest-text1'>Analytics Dashboard</h3>
-<p style={{width:'50vw',textAlign:'center',marginBottom:'5vh'}}>Comprehensive insights into your marketing performance with metrics like impressions, engagement rate, and new followers.</p>
+      </motion.section>
+      <motion.section className='container-section2' ref={featuresRef3}
+        initial="hidden"
+        animate={featuresInView3 ? 'visible' : 'hidden'}>
+      <motion.img src={section2} className='features-section2' variants={imageVariants} />
+      </motion.section>
+      <motion.section className='container-section3' ref={featuresRef4}
+        initial="hidden"
+        animate={featuresInView4 ? 'visible' : 'hidden'}>
+      <motion.img src={section3} className='features-section1'  variants={imageVariants} />
+      </motion.section>
+      <motion.section className='container-section4' ref={featuresRef5}
+        initial="hidden"
+        animate={featuresInView5 ? 'visible' : 'hidden'}>
+      <motion.h3 className='biggest-text1' variants={textVariants}>Analytics Dashboard</motion.h3>
+<motion.p style={{width:'50vw',textAlign:'center',marginBottom:'5vh'}} variants={textVariants}>Comprehensive insights into your marketing performance with metrics like impressions, engagement rate, and new followers.</motion.p>
 <div style={{marginInline:'auto'}}>
-<img src={num1} className='img-cont-sect4'/>
-<img src={num2} className='img1-cont-sect4' />
-<img src={num3} className='img2-cont-sect4'/>
-<img src={num4} className='img3-cont-sect4'/>
+<motion.img src={num1} className='img-cont-sect4' variants={imageVariants}/>
+<motion.img src={num2} className='img1-cont-sect4' variants={imageVariants}/>
+<motion.img src={num3} className='img2-cont-sect4'variants={imageVariants}/>
+<motion.img src={num4} className='img3-cont-sect4'variants={imageVariants}/>
 </div>
-      </section>
-      <section className='container-section4'>
-      <h3 className='biggest-text1'>Automation Tools</h3>
-<p style={{width:'50vw',textAlign:'center',marginBottom:'5vh'}}>Automate your marketing activities with features like scheduled reposts, delay threads, and autopilot for social posts.</p>
-<img className='bg-img-sect5' src={backgr} />
-<img className='cards-img-sect5' src={cards} />
-      </section>
-      <section className='container-section1' style={{marginTop:'-15vh'}}>
-      <img src={sect6} className='features-section6'/>
-      <button className="cta-button9" onClick={()=>navigate("/signup")}>Get Started Free</button>
+      </motion.section>
+      <motion.section className='container-section4' ref={featuresRef6}
+        initial="hidden"
+        animate={featuresInView6 ? 'visible' : 'hidden'}>
+      <motion.h3 className='biggest-text1' variants={textVariants}>Automation Tools</motion.h3>
+<motion.p variants={textVariants} style={{width:'50vw',textAlign:'center',marginBottom:'5vh'}}>Automate your marketing activities with features like scheduled reposts, delay threads, and autopilot for social posts.</motion.p>
+<motion.img className='bg-img-sect5' src={backgr} variants={imageVariants}/>
+<motion.img className='cards-img-sect5' src={cards} variants={imageVariants}/>
+      </motion.section>
+      <motion.section className='container-section1' style={{marginTop:'-15vh'}} ref={featuresRef7}
+        initial="hidden"
+        animate={featuresInView7 ? 'visible' : 'hidden'}>
+      <motion.img src={sect6} className='features-section6' variants={imageVariants}/>
+      <motion.button variants={imageVariants} className="cta-button9" onClick={()=>navigate("/signup")}>Get Started Free</motion.button>
 
-      </section>
-      <section className='container-section4'>
-      <h3 className='biggest-text1'>Team Collaboration</h3>
-<p style={{width:'40vw',textAlign:'center',marginBottom:'5vh'}}>Invite and manage team members, assign roles, and collaborate on ad campaigns.</p>
-<img className='features-section6' src={sect7} />
+      </motion.section>
+      <motion.section className='container-section4' ref={featuresRef8}
+        initial="hidden"
+        animate={featuresInView8 ? 'visible' : 'hidden'}>
+      <motion.h3 className='biggest-text1' variants={textVariants}>Team Collaboration</motion.h3>
+<motion.p  variants={textVariants} style={{width:'40vw',textAlign:'center',marginBottom:'5vh'}}>Invite and manage team members, assign roles, and collaborate on ad campaigns.</motion.p>
+<motion.img className='features-section6' src={sect7} variants={imageVariants} />
 
-      </section>
-      <section className='container-section4'>
-      <h3 className='biggest-text1'>AI Personalization</h3>
-<p style={{width:'40vw',textAlign:'center',marginBottom:'5vh'}}>Personalize your ads by providing information about yourself and your company to tailor ad suggestions.</p>
-<img className='bg-img-sect5' src={backgr} />
-<img className='cards-img-sect5' src={sect8} />
+      </motion.section>
+      <motion.section className='container-section4' ref={featuresRef9}
+        initial="hidden"
+        animate={featuresInView9 ? 'visible' : 'hidden'}>
+      <motion.h3 className='biggest-text1' variants={textVariants}>AI Personalization</motion.h3>
+<motion.p variants={textVariants} style={{width:'40vw',textAlign:'center',marginBottom:'5vh'}}>Personalize your ads by providing information about yourself and your company to tailor ad suggestions.</motion.p>
+<motion.img className='bg-img-sect5' src={backgr} variants={imageVariants} />
+<motion.img className='cards-img-sect5' src={sect8}  variants={imageVariants}/>
 
-      </section>
-      <section className='container-section4' style={{marginTop:'-20vh'}}>
-      <h3 className='biggest-text1'>Professional Networking</h3>
-<p style={{width:'40vw',textAlign:'center',marginBottom:'5vh'}}>Connect and network with other professionals on the platform, share insights, and collaborate on projects.</p>
-<img className='features-section7' src={sect9} />
+      </motion.section>
+      <motion.section className='container-section4' style={{marginTop:'-20vh'}} ref={featuresRef10}
+        initial="hidden"
+        animate={featuresInView10 ? 'visible' : 'hidden'}>
+      <motion.h3 className='biggest-text1' variants={textVariants}>Professional Networking</motion.h3>
+<motion.p variants={textVariants} style={{width:'40vw',textAlign:'center',marginBottom:'5vh'}}>Connect and network with other professionals on the platform, share insights, and collaborate on projects.</motion.p>
+<motion.img className='features-section7' src={sect9} variants={imageVariants} />
 
-      </section>
-      <section className='container-section4' >
-      <h3 className='biggest-text1'>Choose Your Plan</h3>
-<p style={{width:'40vw',textAlign:'center',marginBottom:'5vh'}}>Connect and network with other professionals on the platform, share insights, and collaborate on projects.</p>
+      </motion.section>
+      <motion.section className='container-section4' ref={featuresRef11}
+        initial="hidden"
+        animate={featuresInView11 ? 'visible' : 'hidden'} >
+      <motion.h3 variants={textVariants} className='biggest-text1'>Choose Your Plan</motion.h3>
+<motion.p variants={textVariants} style={{width:'40vw',textAlign:'center',marginBottom:'5vh'}}>Connect and network with other professionals on the platform, share insights, and collaborate on projects.</motion.p>
       <div className="pricing-cards">
         {plans.map((plan, index) => (
           <PricingCard
@@ -186,12 +292,14 @@ const Landing = () => {
           />
         ))}
       </div>
-      </section>
-      <section className='container-section4' style={{marginTop:'-20vh'}}>
- <button className="cta-button96" onClick={()=>navigate("/signup")}>Get Started Free</button>
-<img className='bg-img-sect5' src={backgr} />
-<img className='cards-img-sect6' src={sect10} />
-      </section>
+      </motion.section>
+      <motion.section className='container-section4' style={{marginTop:'-20vh'}} ref={featuresRef12}
+        initial="hidden"
+        animate={featuresInView12 ? 'visible' : 'hidden'} >
+ <motion.button variants={textVariants} className="cta-button96" onClick={()=>navigate("/signup")}>Get Started Free</motion.button>
+<motion.img className='bg-img-sect5' src={backgr} variants={imageVariants}/>
+<motion.img className='cards-img-sect6' src={sect10} variants={imageVariants}/>
+      </motion.section>
       <footer className="footer">
       <div className="footer-section">
       <div className="navbar-brand">
@@ -223,14 +331,14 @@ const Landing = () => {
         <img src={mess} alt="Phone Icon" className="contact-icon" />
         <div className="contact-details">
           <p>Tel:</p>
-          <p>8147808161</p>
+          <p>+91-8147808161</p>
         </div>
       </div>
       <div className="contact-item">
         <img src={call} alt="Clock Icon" className="contact-icon" />
         <div className="contact-details">
           <p>Response hours:</p>
-          <p>8 to 20</p>
+          <p>2 to 4</p>
         </div>
       </div>
       <div className="contact-item">

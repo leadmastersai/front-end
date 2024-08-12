@@ -1,9 +1,16 @@
 
 import './styles.css';
 import Icon from '../assets/auth/appIcon.svg';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 const Topbar = () => {
     const navigate = useNavigate();
+    const location = useLocation();
+
+    // Scroll to top whenever location changes
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [location]);
   return (
     <div>
       <nav className="navbar">
@@ -22,8 +29,8 @@ const Topbar = () => {
   <li><Link to="/contactus"><a>Contact Us</a></Link></li>
 </ul>
 <div className="navbar-actions">
-  <button onClick={()=>navigate('/signup')}  className="login-btn">Login</button>
-  <button onClick={()=>navigate('/signup')}  className="signup-btn">Sign Up</button>
+ 
+  <button onClick={()=>navigate('/signup')}  className="signup-btn">Login</button>
 </div>
 </nav>
     </div>

@@ -113,14 +113,14 @@ const Second = () => {
          <img src={mess} alt="Phone Icon" className="contact-icon" />
          <div className="contact-details">
            <p>Tel:</p>
-           <p>8147808161</p>
+           <p>+91-8147808161</p>
          </div>
        </div>
        <div className="contact-item">
          <img src={call} alt="Clock Icon" className="contact-icon" />
          <div className="contact-details">
            <p>Response hours:</p>
-           <p>8 to 20</p>
+           <p>2 to 4</p>
          </div>
        </div>
        <div className="contact-item">

@@ -37,16 +37,25 @@ const publishLinkedin=async (payload)=>{
     })
  }
 
+ const postContactInfo=async(payload)=>{
+    return request({
+        method:'post',
+        url:`${apiUrls.postContact}`,
+        data:payload,
+        secure:true
+    })
+ }
+
  const getUser = async () => {
     return request({
         method: 'get',
         url: `${apiUrls.getUsers}`,
-        secure: true
+        secure: false
     });
 };
 // Creating an object with the service functions
 const postService = {
-    facebookGet,saveToDraft,facebookDraft,publishLinkedin,getUser
+    facebookGet,saveToDraft,facebookDraft,publishLinkedin,getUser,postContactInfo
 };
 
 // Exporting postService object for use in other modules

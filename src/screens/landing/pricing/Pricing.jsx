@@ -16,14 +16,26 @@ import mess from '../../../assets/landing/Calling.svg';
 import call from '../../../assets/landing/Time.svg';
 import sect9 from '../../../assets/pricing/table.svg';
 import { Link, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import ComingSoonModal from '../../../modals/comingSoon';
 
 const Pricing = () => {
     const navigate = useNavigate();
+    const [isModalVisible, setIsModalVisible] = useState(false);
+
+  const showModal = () => {
+    setIsModalVisible(true);
+  };
+
+  const handleClose = () => {
+    setIsModalVisible(false);
+  };
+
     const plans = [
         {
           name: 'Free Plan',
           icon: free,
-          price: { amount: '$49', period: '/Per Month', annual: '450' },
+          price: { amount: '$0', period: '/Per Month', annual: '450' },
           features: ['AI-Powered Lead Generation', 'Basic Analytics', 'Email Support.'],
           buttonText: 'Choose your Plan',
           buttonLink: '/signup'
@@ -46,38 +58,45 @@ const Pricing = () => {
         }
       ];
 
-      const PricingCard = ({ plan, price, features, buttonText, buttonLink }) => {
+      const PricingCard = ({ plan, price, features, buttonText, buttonLink, showModal }) => {
+        const handleClick = () => {
+          if (plan.name === 'Enterprise Plan' || plan.name === 'Pro Plan') {
+            showModal();
+          } else {
+            window.location.href = buttonLink;
+          }
+        };
+      
         return (
           <div className="pricing-card">
             <div className="pricing-header">
               <img src={plan.icon} alt={`${plan.name} icon`} className="plan-icon" />
-              <h3 style={{marginLeft:'1vw'}}>{plan.name}</h3>
+              <h3 style={{ marginLeft: '1vw' }}>{plan.name}</h3>
             </div>
-            <span style={{textAlign:'left',justifyContent:'flex-start',marginLeft:'-30vh'}}>Features</span>
+            <span style={{ textAlign: 'left', justifyContent: 'flex-start', marginLeft: '-30vh' }}>Features</span>
             <ul className="features-list">
-            {features.map((feature, index) => (
-          <li className='small-p-rngs' key={index}>{feature}</li>
-        ))}
-        </ul>
-   
-          <div className="pricing-price" >
-            <h2>{price.amount}</h2>
-            <span>{price.period}</span>
-          </div>
-        
-
-  
-            <p className="small-p-rngs1" style={{width:300,marginLeft:'2%'}}>Ideal For: Small businesses looking to get started with AI-driven marketing.</p>
-            <a href={buttonLink} className="cta-button">
+              {features.map((feature, index) => (
+                <li className="small-p-rngs" key={index}>{feature}</li>
+              ))}
+            </ul>
+      
+            <div className="pricing-price">
+              <h2>{price.amount}</h2>
+              <span>{price.period}</span>
+            </div>
+      
+            <p className="small-p-rngs1" style={{ width: 300, marginLeft: '2%' }}>Ideal For: Small businesses looking to get started with AI-driven marketing.</p>
+            <a className="cta-button" onClick={handleClick}>
               {buttonText}
             </a>
           </div>
         );
       };
+      
     
   return (
     <div>
-  
+    <ComingSoonModal isVisible={isModalVisible} onClose={handleClose} />
       <section className='container-section4' >
       <h3 className='biggest-text1' style={{textAlign:'center',width:'68vw',marginTop:'4vh'}}>Flexible and competitive pricing plans designed
       to meet your business needs.</h3>
@@ -91,6 +110,7 @@ const Pricing = () => {
             price={plan.price}
             features={plan.features}
             buttonText={plan.buttonText}
+            showModal={showModal}
             buttonLink={plan.buttonLink}
           />
         ))}
@@ -142,14 +162,14 @@ const Pricing = () => {
         <img src={mess} alt="Phone Icon" className="contact-icon" />
         <div className="contact-details">
           <p>Tel:</p>
-          <p>8147808161</p>
+          <p>+91-8147808161</p>
         </div>
       </div>
       <div className="contact-item">
         <img src={call} alt="Clock Icon" className="contact-icon" />
         <div className="contact-details">
           <p>Response hours:</p>
-          <p>8 to 20</p>
+          <p>2 to 4</p>
         </div>
       </div>
       <div className="contact-item">
