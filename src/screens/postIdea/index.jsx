@@ -9,8 +9,9 @@ import write from '../../assets/getIdea/write.svg';
 import stars from '../../assets/getIdea/stars.svg';
 import Carousel1 from '../adIdea/carousel1';
 import { useEffect, useState } from 'react';
-import { postService } from '../../../services/postServices';
+import { postSubService } from '../../../services/postSubService';
 import { Spin } from "antd";
+import { postService } from '../../../services/postServices';
 
 const PostIdea = () => {
   const [data, setData] = useState([]);
@@ -19,7 +20,7 @@ const PostIdea = () => {
   useEffect(() => {
     const getFPosts = async () => {
       try {
-        const response = await postService.facebookGet();
+        const response = await postSubService.postsubGet();
         console.log(response.data, "VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV");
         setData(response.data);
       } catch (error) {
@@ -34,7 +35,8 @@ const PostIdea = () => {
     const payload = {
       title: item?.title,
       content: item?.content,
-      platform: item?.platform
+      platform: item?.platform,
+      hashtags:item?.hashtags
     };
     try {
       const response = await postService.saveToDraft(payload);
@@ -73,6 +75,13 @@ const PostIdea = () => {
           </div>
           <h5>{item?.title}</h5>
           <p className='para'>{item?.content}</p>
+          <div className='hashtags'>
+            {item.hashtags?.map((hashtag, idx) => (
+              <span key={idx} className='hashtag'>
+                {hashtag}
+              </span>
+            ))}
+          </div>
           <div className='small-cont'><span>Learn more</span> <img style={{ width: 12, height: 12, objectFit: 'contain', marginLeft: 5 }} src={down} /></div>
           <div className='bottom-cont'>
             <img src={like} className='btm-img' />

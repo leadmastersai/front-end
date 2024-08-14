@@ -29,9 +29,16 @@ const Drafts = () => {
 
   const handleLinkedin = async (item) => {
     setLoading(true); // Show spinner when starting to publish
-    const payload = {
-      text: item?.content
-    };
+    const hashtagsString = item?.hashtags?.length
+    ? item.hashtags.map(hashtag => `#${hashtag}`).join(' ')
+    : '';
+
+  // Combine content and hashtags
+  const text = `${item?.content} ${hashtagsString}`.trim(); // Trim to remove any extra spaces
+
+  const payload = {
+    text
+  };
     try {
       const response = await postService.publishLinkedin(payload);
       console.log(response.data);
@@ -64,6 +71,13 @@ const Drafts = () => {
           </div>
           <h5>{item?.title}</h5>
           <p className='para'>{item?.content}</p>
+          <div className='hashtags'>
+            {item.hashtags?.map((hashtag, idx) => (
+              <span key={idx} className='hashtag'>
+                {hashtag}
+              </span>
+            ))}
+          </div>
           <div className='small-cont'>
             <span>Learn more</span> 
             <img style={{ width: 12, height: 12, objectFit: 'contain', marginLeft: 5 }} src={down} />
