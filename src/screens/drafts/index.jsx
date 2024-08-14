@@ -9,8 +9,10 @@ import write from '../../assets/getIdea/write.svg';
 import { useEffect, useState } from 'react';
 import { postService } from '../../../services/postServices';
 import { Spin } from "antd";
+import { useSelector } from 'react-redux';
 
 const Drafts = () => {
+  const {userBasics}  = useSelector((state) => state.auth);
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false); // Add loading state
 
@@ -62,10 +64,10 @@ const Drafts = () => {
             <img src={avtar} className='avtar' />
             <div className='profile-subcont'>
               <h4 className='name'>
-                Max Alter John
+                {userBasics?.fullName}
               </h4>
               <p className='email'>
-                @Max-Alter gmail.com
+{userBasics?.email}
               </p>
             </div>
           </div>
