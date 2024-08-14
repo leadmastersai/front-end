@@ -18,10 +18,48 @@ import sect9 from '../../../assets/pricing/table.svg';
 import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import ComingSoonModal from '../../../modals/comingSoon';
+import { Alert, Spin } from 'antd';
+import { postService } from '../../../../services/postServices';
 
 const Pricing = () => {
     const navigate = useNavigate();
     const [isModalVisible, setIsModalVisible] = useState(false);
+    
+  const [loading,setLoading]=useState(false);
+  const [email,setEmail]=useState('');
+  
+  const [success, setSuccess] = useState(false); // state for showing success message
+    const [error, setError] = useState(false);
+
+    const handleSubmit=async(e)=>{
+      e.preventDefault();
+    
+      const payload={
+       
+        email:email,
+      
+      }
+      try{
+        setLoading(true)
+    const response=await postService.postContactInfo(payload);
+    console.log(response.data,"sueccss");
+    
+    setEmail('');
+    
+    setSuccess(true);
+    setError(false);
+    
+    setLoading(false)
+    setTimeout(() => setSuccess(false), 3000); // Hide after 3 seconds
+    } catch (error) {
+      console.log(error, 'error');
+      setError(true);
+      setSuccess(false);
+      setLoading(false);
+      setTimeout(() => setError(false), 3000);
+    }
+      
+    }
 
   const showModal = () => {
     setIsModalVisible(true);
@@ -142,11 +180,11 @@ const Pricing = () => {
       <div className="footer-section">
         <h3>Quick links</h3>
         <ul >
-          <li><a className='jumpa' href="#">About Us</a></li>
-          <li><a className='jumpa' href="#">Contact</a></li>
-          <li><a className='jumpa' href="#">Blog</a></li>
-          <li><a className='jumpa' href="#">Terms of Service</a></li>
-          <li><a className='jumpa' href="#">Privacy Policy</a></li>
+        <li><a className='jumpa' href="/aboutus">About Us</a></li>
+           <li><a className='jumpa' href="/contactus">Contact</a></li>
+           <li><a className='jumpa' href="/blog">Blog</a></li>
+           <li><a className='jumpa' href="#">Terms of Service</a></li>
+           <li><a className='jumpa' href="#">Privacy Policy</a></li>
         </ul>
       </div>
       <div className="footer-section">
@@ -184,10 +222,12 @@ const Pricing = () => {
 
       <div className="footer-section">
         <h3>Stay up to date with the latest courses</h3>
-        <form className="subscribe-form">
-          <input type="email" placeholder="Email" />
-          <button type="submit">Send</button>
+        <form className="subscribe-form" onSubmit={handleSubmit}>
+          <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
+          <button type="submit">{loading ? <Spin size="small" /> : "Send"}</button>
         </form>
+        {success && <Alert style={{marginBlock:5}} message="Submitted successfully!" type="success" showIcon />}
+        {error && <Alert style={{marginBlock:5}} message="There was an error sending your message." type="error" showIcon />}
       </div>
       <div className="footer-section follow-us">
         <h3>Follow us on</h3>

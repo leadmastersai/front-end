@@ -21,22 +21,7 @@ const items = [
     label: <Link to='/adidea'>Get Ad Idea</Link>,
     icon: <img src={menu9} className='item-ims' style={{ width: 17, height: 17 }} />,
   },
-  {
-    key: '2',
-    icon: <img src={menu1} className='item-ims' style={{ width: 17, height: 17 }} />,
-    label: 'Dashboard',
-    children: [
-      {
-        key: '1-1',
-        label: 'Item 1',
-        type: 'group',
-        children: [
-          { key: '1', label: 'Option 1' },
-          { key: '2', label: 'Option 2' },
-        ],
-      },
-    ],
-  },
+
   {
     key: '3',
     label: <Link to='/createad'>Campaign</Link>,

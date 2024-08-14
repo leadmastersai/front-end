@@ -30,8 +30,10 @@ const Signup = () => {
   }
 
   function handleClick1() {
-    window.location.href = 'https://leadmasters.site/auth/linkedin';
-  }
+    const flow = "presignup";
+    window.location.href = `https://leadmasters.site/auth/linkedin?flow=${flow}`;
+}
+
   return (
     <div className="container">
       <div className="container-sub">

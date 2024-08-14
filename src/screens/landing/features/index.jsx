@@ -9,19 +9,30 @@ import './style.scss';
 const Features = () => {
   const tabs = ['AI-Powered Lead Generation', 'Multi-Channel Ad Optimization', 'Advanced Analytics', 'Integration Capabilities'];
   const [activeTab, setActiveTab] = useState(0);
-  const [fade, setFade] = useState(true); // State for controlling opacity
+  const [fade, setFade] = useState(true);
+  const [pause, setPause] = useState(false); // State to control pausing
 
   useEffect(() => {
-    const intervalId = setInterval(() => {
-      setFade(false);
-      setTimeout(() => {
-        setActiveTab(prevTab => (prevTab + 1) % tabs.length);
-        setFade(true);
-      }, 1000); // Wait 1 second before switching tabs
-    }, 5000); // Switch every 5 seconds
+    if (!pause) {
+      const intervalId = setInterval(() => {
+        setFade(false);
+        setTimeout(() => {
+          setActiveTab(prevTab => (prevTab + 1) % tabs.length);
+          setFade(true);
+        }, 1000); // Wait 1 second before switching tabs
+      }, 5000); // Switch every 5 seconds
 
-    return () => clearInterval(intervalId);
-  }, [tabs.length]);
+      return () => clearInterval(intervalId);
+    }
+  }, [tabs.length, pause]);
+
+  const handleTabClick = (index) => {
+    setActiveTab(index);
+    setPause(true); // Pause the cycling
+    setTimeout(() => {
+      setPause(false); // Resume cycling after 5 seconds
+    }, 5000);
+  };
 
   const renderContent = () => {
     switch (activeTab) {
@@ -67,7 +78,7 @@ const Features = () => {
               transition: 'background-color 1s, color 2s ease-in-out',
               borderRadius: 10,
             }}
-            onClick={() => setActiveTab(index)}
+            onClick={() => handleTabClick(index)}
           >
             {tab}
           </div>
@@ -77,7 +88,7 @@ const Features = () => {
         style={{
           marginTop: '20px',
           opacity: fade ? 1 : 0,
-          transition: 'opacity 1s ease-in-out', // Control fade-in effect
+          transition: 'opacity 1s ease-in-out',
         }}
       >
         {renderContent()}

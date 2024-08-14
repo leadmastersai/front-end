@@ -1,17 +1,22 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './style.scss';
 import insta from '../../assets/integrations/ig.svg';
 import stars from '../../assets/getIdea/stars.svg';
 import face from '../../assets/integrations/fb.svg';
 import twi from '../../assets/integrations/tw.svg';
 import link from '../../assets/integrations/ln.svg';
+import { postService } from '../../../services/postServices';
+import { useDispatch, useSelector } from 'react-redux';
+import { saveUserDetail } from "../../redux/authSlice";
 const SocialMediaIntegration = ({ platform, isConnected }) => {
   const [connected, setConnected] = useState(isConnected);
-
-  const handleConnect = () => {
-    setConnected(!connected);
-  };
-
+  const token = localStorage.getItem('oauthToken');
+  function handleClick() {
+    const state =  `postsignup|token=${token}`;
+    const encodedState = encodeURIComponent(state);
+    const linkedinAuthUrl = `https//leadmasters.site/auth/linkedin?state=${encodedState}`;
+    window.location.href = linkedinAuthUrl;
+    }
   return (
     <div style={styles.container}>
       <div style={styles.platformName}>
@@ -32,7 +37,7 @@ const SocialMediaIntegration = ({ platform, isConnected }) => {
         ) : (
           <button 
             style={styles.integrateButton}
-            onClick={handleConnect}
+            onClick={handleClick}
           >
             Integrate
           </button>
@@ -43,11 +48,26 @@ const SocialMediaIntegration = ({ platform, isConnected }) => {
 };
 
 const Integrations = () => {
+  const dispatch=useDispatch();
+  const token = localStorage.getItem('oauthToken');
+const {userBasics}  = useSelector((state) => state.auth);
+  
+
+  useEffect(()=>{
+    const getUserDetails=async()=>{
+      const response=await postService.getUser();
+      console.log(response.data,"+++");
+     dispatch(saveUserDetail(response.data));
+      
+    }
+    getUserDetails()
+    },[]);
+
   const platforms = [
     {
       name: 'LinkedIn Profile',
       icon: link,
-      isConnected: true,
+      isConnected: userBasics.isLinkedInConnected,
     },
     {
       name: 'Instagram Profile',

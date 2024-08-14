@@ -37,6 +37,8 @@ import call from '../../assets/landing/Time.svg';
 import { Link, useNavigate } from 'react-router-dom';
 import { motion, useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
+import { Alert, Spin } from 'antd';
+import { postService } from '../../../services/postServices';
 
 
 
@@ -45,6 +47,11 @@ import { useRef, useState } from 'react';
 const Landing = () => {
   const navigate = useNavigate();
 
+  const [loading,setLoading]=useState(false);
+  const [email,setEmail]=useState('');
+  
+  const [success, setSuccess] = useState(false); // state for showing success message
+    const [error, setError] = useState(false);
 
 
   const plans = [
@@ -127,7 +134,7 @@ const Landing = () => {
 
 
   
-  const PricingCard = ({ plan, price, features, buttonText, buttonLink }) => {
+  const PricingCard = ({ plan, price, features, buttonText, buttonLink ,index}) => {
     return (
       <motion.div className="pricing-card" variants={imageVariants}>
         <div className="pricing-header">
@@ -139,7 +146,7 @@ const Landing = () => {
           <span>{price.period}</span>
         </div>
         <p className='small-p-rng' >{features}</p>
-        <p className="annual-price">● ${price.annual} When Paid Annually</p>
+        <p className="annual-price"   style={{ opacity: index === 0 ? 0 : 1 }} >● ${price.annual} When Paid Annually</p>
         <a className="cta-button" onClick={()=>navigate("/signup")}>
           {buttonText}
         </a>
@@ -160,75 +167,100 @@ const Landing = () => {
     }));
   };
 
+  const handleSubmit=async(e)=>{
+    e.preventDefault();
+  
+    const payload={
+     
+      email:email,
+    
+    }
+    try{
+      setLoading(true)
+  const response=await postService.postContactInfo(payload);
+  console.log(response.data,"sueccss");
+  
+  setEmail('');
+  
+  setSuccess(true);
+  setError(false);
+  
+  setLoading(false)
+  setTimeout(() => setSuccess(false), 3000); // Hide after 3 seconds
+  } catch (error) {
+    console.log(error, 'error');
+    setError(true);
+    setSuccess(false);
+    setLoading(false);
+    setTimeout(() => setError(false), 3000);
+  }
+    
+  }
+
   // Example for section1
   const isSection1Ready = imagesLoaded.section1;
 
   return (
     <div>
  
- <motion.section
-        ref={productRef}
+ <section
+       
         id="product"
         className="main-section"
         style={{ marginTop: '8rem' }}
-        initial="hidden"
-        animate={productInView ? 'visible' : 'hidden'}
+      
       >
-        <motion.h1 className='biggest-text' variants={textVariants}>
+        <h1 className='biggest-text'>
           Maximize Your Marketing Potential with AI
-        </motion.h1>
-        <motion.p variants={textVariants}>
+        </h1>
+      <p >
           Automate, Optimize, and Grow with LeadMasters.ai
-        </motion.p>
-        <motion.button
+        </p>
+        <button
           className="cta-button8"
           onClick={() => navigate("/signup")}
-          variants={textVariants}
+        
         >
           Get Started Free
-        </motion.button>
-        <motion.img
+        </button>
+        <img
           className='biggest-img'
           src={First}
-          variants={imageVariants}
+         
         />
-        <motion.img
+        <img
           className='left-img'
           src={left}
-          variants={imageVariants}
+         
         />
-        <motion.img
+        <img
           className='right-img'
           src={right}
-          variants={imageVariants}
+         
         />
-      </motion.section>
+      </section>
 
       {/* Features Section */}
-      <motion.section
-        ref={featuresRef}
-        initial="hidden"
-        animate={featuresInView && isSection1Ready ? 'visible' : 'hidden'}
+      <section
+       
         id="features"
         className="features-section"
         
       >
         <div className="features-content">
-          <motion.h3 className='biggest-text1' variants={textVariants}>
+          <h3 className='biggest-text1' >
             Why LeadMasters.ai?
-          </motion.h3>
-          <motion.img src={slides} className='half-img' variants={imageVariants} onLoad={() => handleImageLoad('section1')} />
-          <motion.img src={analytics} className='anthr-img' variants={imageVariants} onLoad={() => handleImageLoad('section1')} />
-          <motion.img src={chart1} className='anthr-img1' variants={imageVariants}onLoad={() => handleImageLoad('section1')} />
-          <motion.img src={social} className='anthr-img2' variants={imageVariants}  onLoad={() => handleImageLoad('section1')}/>
+          </h3>
+          <img src={slides} className='half-img'  />
+          <img src={analytics} className='anthr-img' />
+          <img src={chart1} className='anthr-img1' />
+          <img src={social} className='anthr-img2' />
         </div>
-      </motion.section>
-      <motion.section className='container-section1'  ref={featuresRef2}
-        initial="hidden"
-        animate={featuresInView2 ? 'visible' : 'hidden'}>
-      <motion.img src={section1} className='features-section1' variants={imageVariants}/>
+      </section>
+      <section className='container-section1'  >
+      <img src={section1} className='features-section1'/>
 
-      </motion.section>
+      </section>
       <motion.section className='container-section2' ref={featuresRef3}
         initial="hidden"
         animate={featuresInView3 ? 'visible' : 'hidden'}>
@@ -301,6 +333,7 @@ const Landing = () => {
           <PricingCard
             key={index}
             plan={plan}
+            index={index}
             price={plan.price}
             features={plan.features}
             buttonText={plan.buttonText}
@@ -309,13 +342,11 @@ const Landing = () => {
         ))}
       </div>
       </motion.section>
-      <motion.section className='container-section4' style={{marginTop:'-20vh'}} ref={featuresRef12}
-        initial="hidden"
-        animate={featuresInView12 ? 'visible' : 'hidden'} >
- <motion.button variants={textVariants} className="cta-button96" onClick={()=>navigate("/signup")}>Get Started Free</motion.button>
-<motion.img className='bg-img-sect5' src={backgr} variants={imageVariants}/>
-<motion.img className='cards-img-sect6' src={sect10} variants={imageVariants}/>
-      </motion.section>
+      <section className='container-section4' style={{marginTop:'-20vh'}}  >
+ <button  className="cta-button96" onClick={()=>navigate("/signup")}>Get Started Free</button>
+<img className='bg-img-sect5' src={backgr}/>
+<img className='cards-img-sect6' src={sect10}/>
+      </section>
       <footer className="footer">
       <div className="footer-section">
       <div className="navbar-brand">
@@ -327,11 +358,11 @@ const Landing = () => {
       <div className="footer-section">
         <h3>Quick links</h3>
         <ul >
-          <li><a className='jumpa' href="#">About Us</a></li>
-          <li><a className='jumpa' href="#">Contact</a></li>
-          <li><a className='jumpa' href="#">Blog</a></li>
-          <li><a className='jumpa' href="#">Terms of Service</a></li>
-          <li><a className='jumpa' href="#">Privacy Policy</a></li>
+        <li><a className='jumpa' href="/aboutus">About Us</a></li>
+           <li><a className='jumpa' href="/contactus">Contact</a></li>
+           <li><a className='jumpa' href="/blog">Blog</a></li>
+           <li><a className='jumpa' href="#">Terms of Service</a></li>
+           <li><a className='jumpa' href="#">Privacy Policy</a></li>
         </ul>
       </div>
       <div className="footer-section">
@@ -369,10 +400,12 @@ const Landing = () => {
 
       <div className="footer-section">
         <h3>Stay up to date with the latest courses</h3>
-        <form className="subscribe-form">
-          <input type="email" placeholder="Email" />
-          <button type="submit">Send</button>
+        <form className="subscribe-form" onSubmit={handleSubmit}>
+          <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
+          <button type="submit">{loading ? <Spin size="small" /> : "Send"}</button>
         </form>
+        {success && <Alert style={{marginBlock:5}} message="Submitted successfully!" type="success" showIcon />}
+        {error && <Alert style={{marginBlock:5}} message="There was an error sending your message." type="error" showIcon />}
       </div>
       <div className="footer-section follow-us">
         <h3>Follow us on</h3>
