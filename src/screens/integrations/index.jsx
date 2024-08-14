@@ -14,7 +14,7 @@ const SocialMediaIntegration = ({ platform, isConnected }) => {
   function handleClick() {
     const state =  `postsignup|token=${token}`;
     const encodedState = encodeURIComponent(state);
-    const linkedinAuthUrl = `https//leadmasters.site/auth/linkedin?state=${encodedState}`;
+    const linkedinAuthUrl = `https://leadmasters.site/auth/linkedin?state=${encodedState}`;
     window.location.href = linkedinAuthUrl;
     }
   return (
