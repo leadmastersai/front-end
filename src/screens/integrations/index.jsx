@@ -24,7 +24,7 @@ const SocialMediaIntegration = ({ platform, isConnected }) => {
         <span>{platform.name}</span>
       </div>
       <div style={styles.actions}>
-        {connected ? (
+        {isConnected ? (
           <>
             <span style={styles.connectedText}>Connected</span>
             <button 
