@@ -35,7 +35,7 @@ const PostIdea = () => {
     const payload = {
       title: item?.title,
       content: item?.content,
-      platform: item?.platform,
+      platform: "facebook",
       hashtags:item?.hashtags
     };
     try {
