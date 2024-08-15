@@ -59,4 +59,4 @@ jobs:
           app-name: 'leadmasters-deploy'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_8407AD9E30E94C848C5635071A107DA9 }}
-          package: .
+          package: ./dist
