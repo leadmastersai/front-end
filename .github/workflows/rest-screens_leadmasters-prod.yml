@@ -8,7 +8,7 @@ on:
 
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v4
@@ -18,17 +18,21 @@ jobs:
         with:
           node-version: '18.x'
 
-      - name: npm install, build, and test
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build project
+        run: npm run build --if-present
+
+      - name: Copy files to dist
         run: |
-          npm install
-          npm run build --if-present
-          npm run test --if-present
+          npm run postbuild
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
         with:
-          name: node-app  # This is just a label for the artifact
-          path: dist  # This is the folder being uploaded
+          name: node-app
+          path: dist  # Ensure this points to your built files
 
   deploy:
     runs-on: ubuntu-latest
@@ -41,13 +45,13 @@ jobs:
       - name: Download artifact from build job
         uses: actions/download-artifact@v3
         with:
-          name: node-app  # This matches the name from the upload step
+          name: node-app
 
-      - name: 'Deploy to Azure Web App'
+      - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v2
         id: deploy-to-webapp
         with:
           app-name: 'leadmasters-prod'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_9E86DA93AF3E4CB092C253C04BA333E3 }}
-          package: node-app  # This deploys the contents of the dist folder
+          package: ./dist  # Ensure this matches the folder structure
