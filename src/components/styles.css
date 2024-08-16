@@ -187,6 +187,14 @@ li .ant-menu-item{
   text-decoration: none;
 
 }
+/* styles.css */
+
+.navbar-menu li.active a {
+  color: purple; /* Change color to your preferred active color */
+* Make it bold */
+
+}
+
 .navbar-brand h2{
   color: black;
   

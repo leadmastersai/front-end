@@ -187,7 +187,7 @@ const [success, setSuccess] = useState(false); // state for showing success mess
        
       </div>
     </div>
-    <div className="container-section99">
+    {/* <div className="container-section99">
     <h1 className="biggest-text9">User Guide</h1>
     <div className="app79">
   
@@ -201,7 +201,7 @@ const [success, setSuccess] = useState(false); // state for showing success mess
         />
       ))}
     </div>
-    </div>
+    </div> */}
     <div className="newsletter-container">
       <div className="newsletter-content">
         <h1 className='biggest-text9' style={{textAlign:'left',width:'130%'

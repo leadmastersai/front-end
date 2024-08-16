@@ -147,7 +147,7 @@ setTimeout(() => setSuccess(false), 3000); // Hide after 3 seconds
         }}>Be a Part of Innovation</h1>
         <p>Join our dynamic team and help shape the future of AI-driven lead generation and digital marketing</p>
      
-        <button className="cta-button90" onClick={()=>navigate("/signup")}>Join Us</button>
+        <button className="cta-button90" onClick={()=>navigate("/contactus")}>Join Us</button>
       </div>
       <div className="newsletter-image101">
         <img src={seo} alt="Newsletter" />
