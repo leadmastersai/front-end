@@ -8,7 +8,7 @@ export default defineConfig({
     port: 3000
   },
   build: {
-    outDir: 'dist',
+    outDir: './dist',
     historyApiFallback: true, 
     rollupOptions: {
       input: 'index.html' // Ensure this points to the correct entry file
