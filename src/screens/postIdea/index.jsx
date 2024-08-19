@@ -16,6 +16,7 @@ import { useSelector } from 'react-redux';
 
 const PostIdea = () => {
   const {userBasics}  = useSelector((state) => state.auth);
+  const profilepic=userBasics.picture;
   
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false); // Add loading state
@@ -66,7 +67,7 @@ const PostIdea = () => {
       {data?.map((item, index) => (
         <div className='card-cont' key={index} >
           <div className='profile-cont'>
-            <img src={avtar} className='avtar' />
+            <img src={profilepic ?profilepic: avtar} className={profilepic ? 'avtar-usr':'avtar'} />
             <div className='profile-subcont'>
               <h4 className='name'>
                 {userBasics?.fullName}

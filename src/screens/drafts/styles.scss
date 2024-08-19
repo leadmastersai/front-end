@@ -1,15 +1,32 @@
-.main-cont{
-    margin-inline: 10%;
+.main-cont55{
+    margin-inline: 3.5%;
     margin-top: 2%;
+    width: 80vw;
 }
+.hashtags88 {
+    font-size: 12px;
+    width: 250px; /* Ensures a fixed width */
+    display: flex;
+    flex-wrap: wrap; /* Allows wrapping of content */
+    gap: 5px; /* Optional: Adds space between the hashtags */
+    overflow-wrap: break-word; /* Ensures long words break to fit the container */
+  }
+  
+  .hashtag-span {
+   /* Optional: Add a background color */
+ 
+   
+   
+  }
+  
 
-.card-cont{
+.card-cont3{
 border: 1px solid #EAEAEA;
 background: linear-gradient(to right,#0000ff11,75%,#ff149513);
-padding: 3%;
-width: 650px;
+padding: 5%;
+width: 350px;
 margin-top: 2%;
-margin-inline: 3%;
+gap:20px;
 border-radius: 10px;
 }
 .profile-cont{
@@ -45,12 +62,20 @@ border-radius: 10px;
     font-size: 12px;
 }
 
-.para{
+.para23{
     color: #595959;
     font-size: 12px;
-    width: 85%;
+    width: 100%;
+    height: 150px;
+    display: -webkit-box;
+    -webkit-line-clamp: 4; /* Limit to 5 lines */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.5; /* Adjust this according to your line height */
+    max-height: calc(1.5em * 4); 
 }
-.bottom-cont{
+.bottom-cont44{
     display: flex;
     align-items: center;
     margin-top: 3%;
@@ -59,17 +84,23 @@ border-radius: 10px;
     border-radius: 10px;
     padding: 2%;
 }
-.btm-img{
+.btm-img44{
     width: 18px;
     cursor: pointer;
     height: 18px;
     object-fit: contain;
-    margin-left: 1%;
+
 }
-.para1{
+.card-containr{
+display: grid;
+grid-template-columns: repeat(3, 1fr); /* 3 columns */
+gap: 10px; /* Gap between cards */
+padding: 5px;
+}
+.para44{
     color: #BC66FF;
-    font-size: 12px;
-    
+    font-size: 10px;
+    cursor: pointer;
 }
 .button{
      background: linear-gradient(90deg, #0000FF 0%, #8F00FF 48.99%, #FF1494 99.99%);

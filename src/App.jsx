@@ -19,6 +19,13 @@ import Blog from './screens/landing/blog';
 import ContactUs from './screens/landing/contactus';
 import Features from './screens/landing/features';
 import Integrations from './screens/integrations';
+import CreatePosts from './screens/createPosts';
+import Maximize from './screens/landing/blog/blogsDetails/first';
+import Future from './screens/landing/blog/blogsDetails/second';
+import Driven from './screens/landing/blog/blogsDetails/third';
+import Click from './screens/landing/blog/blogsDetails/fourth';
+import Ultimate from './screens/landing/blog/blogsDetails/fifth';
+import Scoring from './screens/landing/blog/blogsDetails/sixth';
 
 function App() {
   return (
@@ -32,6 +39,12 @@ function App() {
         <Route path="/blog" element={<Blog />} />
         <Route path="/contactus" element={<ContactUs />} />
         <Route path="/features" element={<Features />} />
+        <Route path="/blog/maximize" element={<Maximize />} />
+        <Route path="/blog/future" element={<Future />} />
+        <Route path="/blog/driven" element={<Driven />} />
+        <Route path="/blog/click" element={<Click />} />
+        <Route path="/blog/ultimate" element={<Ultimate />} />
+        <Route path="/blog/scoring" element={<Scoring />} />
         </Route>
         <Route element={<Layout />}>
           <Route path="/home" element={<Home />} />
@@ -41,6 +54,7 @@ function App() {
           <Route path="/drafts" element={<Drafts />} />
           <Route path="/adidea" element={<AdIdea />} />
           <Route path="/createad" element={<CreateAd />} />
+          <Route path="/createposts" element={<CreatePosts />} />
           <Route path="/integrations" element={<Integrations />} />
           
      

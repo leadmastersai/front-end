@@ -12,16 +12,55 @@ import menu9 from '../assets/dashb/getad.svg';
 
 const items = [
   {
+    key: '1',
+    label: <Link to='/adidea'>Get Ad Idea</Link>,
+    icon: <img src={menu9} className='item-ims' style={{ width: 17, height: 17 }} />,
+  },
+  {
+    key: '2',
+    label: 'Launch Ads',
+    icon: <img src={menu9} className='item-ims' style={{ width: 17, height: 17 }} />,
+    children: [
+      {
+        key: '2-1',
+        label: <Link to='/ads-drafts'>Ads Drafts</Link>,
+      },
+      {
+        key: '2-2',
+        label: <Link to='/publish-ads'>Publish Ads</Link>,
+      },
+      {
+        key: '2-3',
+        label: <Link to='/rejected'>Rejected</Link>,
+      },
+    ],
+  },
+  {
     key: '10',
     label: <Link to="/postidea">post Idea</Link>,
     icon: <img src={menu5} className='item-ims' style={{ width: 17, height: 17 }} />,
   },
   {
-    key: '1',
-    label: <Link to='/adidea'>Get Ad Idea</Link>,
+    key: '4',
+    label: 'Launch Posts',
+    icon: <img src={menu9} className='item-ims' style={{ width: 17, height: 17 }} />,
+    children: [
+      {
+        key: '2-1',
+        label: <Link to='/drafts'>Post Drafts</Link>,
+      },
+      {
+        key: '2-2',
+        label: <Link to='/publish-ads'>Publish Post</Link>,
+      },
+    
+    ],
+  },
+  {
+    key: '5',
+    label: <Link to='/home'>Dashboard</Link>,
     icon: <img src={menu9} className='item-ims' style={{ width: 17, height: 17 }} />,
   },
-
   {
     key: '3',
     label: <Link to='/createad'>Campaign</Link>,
@@ -58,11 +97,7 @@ const items = [
   //   icon: <img src={menu5} className='item-ims' style={{ width: 17, height: 17 }} />,
   // },
   
-  {
-    key: '11',
-    label: <Link to="/drafts">Drafts</Link>,
-    icon: <img src={menu5} className='item-ims' style={{ width: 17, height: 17 }} />,
-  },
+  
 ];
 
 export default items;

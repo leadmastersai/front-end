@@ -31,6 +31,18 @@ justify-content: center;
     object-fit: contain;
   }
   
+.cta-button-side {
+  background: linear-gradient(90deg, #0000FF 0%, #8F00FF 48.99%, #FF1494 99.99%);
+  color: white;
+  border-radius: 6px;
+
+
+  border: none;
+  cursor: pointer;
+  padding: 11px;
+  width: 150px;
+}
+  
   .custom-menu{
     font-size: 12px;
   }

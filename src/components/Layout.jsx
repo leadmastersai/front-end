@@ -2,89 +2,98 @@ import { Outlet, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { Menu } from 'antd';
 import './styles.css';
-import Icon from '../assets/auth/appIcon.svg'
+import Icon from '../assets/auth/appIcon.svg';
 import items from '../utils/items';
 import avtar from '../assets/dashb/Avatars.svg';
 import { useSelector } from 'react-redux';
 
 const Layout = () => {
-  const navigate=useNavigate();
+  const navigate = useNavigate();
   const [collapsed, setCollapsed] = useState(false);
-  const {userBasics}  = useSelector((state) => state.auth);
-  const profilepic=userBasics.picture;
- 
+  const { userBasics } = useSelector((state) => state.auth);
+  const profilepic = userBasics.picture;
+
   const handleLogout = () => {
-    // Clear the local storage
     localStorage.removeItem('oauthToken');
-    
-    // Optionally, you might want to clear the Redux state or perform other actions
-    // e.g., dispatch(logoutAction());
-
-    // Redirect to the login page or home page
-    navigate('/signup'); // Adjust the path as needed
+    navigate('/');
   };
-  
-  // const handleMouseEnter = () => {
-  //   setCollapsed(false);
-  // };
 
-  // const handleMouseLeave = () => {
-  //   setCollapsed(true);
-  // };
   const handleToggle = () => {
     setCollapsed(!collapsed);
   };
+
+  const updatedItems = [
+    {
+      key: 'generate-ads',
+      label: (
+        <button className="cta-button-side" style={{ width: '100%' }} onClick={()=>navigate('/createad')}>
+          {collapsed ?"":"Generate Ads"}
+        </button>
+      ),
+    },
+    ...items.slice(0, 2), // Adjust index as per the requirement, these will be the first two items
+    {
+      key: 'generate-posts',
+      label: (
+        <button className="cta-button-side" style={{ width: '100%' }} onClick={()=>navigate('/createposts')}>
+          {collapsed ?"":"Generate Posts"}
+        </button>
+      ),
+    },
+    ...items.slice(2), // The rest of the items will follow
+  ];
+
   return (
     <div style={{ display: 'flex' }}>
       <div
-        // onMouseEnter={handleMouseEnter}
-        // onMouseLeave={handleMouseLeave}
         style={{
-          position: 'fixed', 
-          left: 0, 
-          top: 0, 
-          zIndex: 1000, 
-          width: collapsed ? 80 : 230, 
-     
+          position: 'fixed',
+          left: 0,
+          top: 0,
+          zIndex: 1000,
+          width: collapsed ? 80 : 230,
           height: '100%',
-          transition: ' 0.05s', 
-          borderRight: '1px solid #e8e8e8', 
+          transition: '0.05s',
+          borderRight: '1px solid #e8e8e8',
+          overflowY: 'auto',
+          scrollbarWidth: 'none', // For Firefox
+          msOverflowStyle: 'none', 
         }}
       >
         <div
           style={{
             marginInline: 7,
             padding: '10px',
-            cursor:'pointer'
+            cursor: 'pointer',
           }}
           onClick={handleToggle}
         >
           <img src={Icon} style={{ width: 40, height: 40 }} alt="App Icon" />
         </div>
+        {/* <button className="cta-button-side">Generate Ads</button> */}
         <Menu
           defaultSelectedKeys={['1']}
           defaultOpenKeys={['1-1']}
           mode="inline"
           theme="light"
           inlineCollapsed={collapsed}
-          items={items}
-          className='custom-menu'
-          style={{ flex: 1,fontFamily:'MyCustomFont'}}
-         
+          items={updatedItems}
+          className="custom-menu"
+          style={{ flex: 1, fontFamily: 'MyCustomFont' }}
         />
-        <div className='avtar-c'>
-        <img
+        <div className="avtar-c">
+          <img
             src={profilepic ? profilepic : avtar}
             alt="Avatar"
             className={profilepic ? 'profile-pic' : ''}
           />
+        </div>
+        <div className="logout-btn" onClick={handleLogout}>
+          Logout
+        </div>
       </div>
-      <div className='logout-btn' onClick={handleLogout}>
-        logout
-      </div>
-      </div>
-      
-      <div style={{ marginLeft:collapsed ? 60:210 , flex: 1, paddingLeft: 20 }}>
+
+      <div style={{ marginLeft: collapsed ? 60 : 210, flex: 1, paddingLeft: 20 }}>
         <Outlet />
       </div>
     </div>

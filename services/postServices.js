@@ -53,9 +53,18 @@ const publishLinkedin=async (payload)=>{
         secure: true
     });
 };
+
+const draftDelete=async(id)=>{
+    return request({
+        method:'delete',
+        url:`${apiUrls.draftCreate}/${id}`,
+    
+        secure:true
+    })
+}
 // Creating an object with the service functions
 const postService = {
-    facebookGet,saveToDraft,facebookDraft,publishLinkedin,getUser,postContactInfo
+    facebookGet,saveToDraft,facebookDraft,publishLinkedin,getUser,postContactInfo,draftDelete
 };
 
 // Exporting postService object for use in other modules

@@ -54,12 +54,12 @@ li .ant-menu-item{
   box-sizing: border-box;
 }
 .carousel-wrapper1 .slick-slide .card {
-  box-shadow: -1px -1px 10px hsla(240, 80%, 90%, 0.542) !important;
+  box-shadow: 0px 0px 7px hsla(240, 80%, 90%, 0.542) !important;
 }
 
 
 .card {
-    border-radius: 20px; /* Rounded corners */
+  border-radius: 50px; /* Rounded corners */
   cursor: pointer;
   transition: box-shadow 0.3s ease-in-out;
   display: flex;
@@ -67,13 +67,28 @@ li .ant-menu-item{
   align-items: center;
   padding: 15px;
   padding-block: 3px;
-  
-
-
+  border: 1px solid hsla(240, 80%, 90%, 0.542);
   text-align: center;
   background-color: white;
   margin: 0 10px; 
+  position: relative;
+  z-index: 1;
 }
+
+.card.active {
+  border-radius: 50px; /* Rounded corners */
+  border: 1px solid transparent; /* Transparent border */
+  background: linear-gradient(white, white) padding-box, /* Card background */
+  linear-gradient(90deg, #0000FF 0%, #8F00FF 53.99%, #FF1494 99.98%) border-box;
+            
+
+
+
+ /* 
+              Gradient border */
+  background-origin: border-box;
+}
+
 
 .card-logo1 {
   width: 20px;
@@ -91,7 +106,7 @@ li .ant-menu-item{
 .card-content1 {
   margin-left: 15px;
   font-size: 10.5px;
-  
+   
   width: 80px;
 }
 
@@ -163,6 +178,7 @@ li .ant-menu-item{
 .slick-prev.slick-disabled:before, .slick-next.slick-disabled:before {
   opacity: 0 !important;
 }
+
 
 /* .card.active {
     border: 1px solid transparent;
