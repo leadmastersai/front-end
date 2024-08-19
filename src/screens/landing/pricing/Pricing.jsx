@@ -16,14 +16,19 @@ import mess from '../../../assets/landing/Calling.svg';
 import call from '../../../assets/landing/Time.svg';
 import sect9 from '../../../assets/pricing/table.svg';
 import { Link, useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import ComingSoonModal from '../../../modals/comingSoon';
 import { Alert, Spin } from 'antd';
 import { postService } from '../../../../services/postServices';
 
 const Pricing = () => {
+  const plansRef = useRef(null);
     const navigate = useNavigate();
     const [isModalVisible, setIsModalVisible] = useState(false);
+
+    const scrollToPlans = () => {
+      plansRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
     
   const [loading,setLoading]=useState(false);
   const [email,setEmail]=useState('');
@@ -75,7 +80,7 @@ const Pricing = () => {
           icon: free,
           price: { amount: '$0', period: '/Per Month', annual: '450' },
           features: ['AI-Powered Lead Generation', 'Basic Analytics', 'Email Support.'],
-          buttonText: 'Choose your Plan',
+          buttonText: 'Subscribe for Free',
           buttonLink: '/signup'
         },
         {
@@ -91,7 +96,7 @@ const Pricing = () => {
           icon: enter,
           price: {},
           features: ['All Professional Plan features', 'Custom Integrations', 'Dedicated Account Manager',' Enterprise Support'],
-          buttonText: 'Customize Pricing',
+          buttonText: 'Contact Our Team',
           buttonLink: 'signup'
         }
       ];
@@ -135,7 +140,7 @@ const Pricing = () => {
   return (
     <div>
     <ComingSoonModal isVisible={isModalVisible} onClose={handleClose} />
-      <section className='container-section4' >
+      <section className='container-section4'ref={plansRef} >
       <h3 className='biggest-text1' style={{textAlign:'center',width:'68vw',marginTop:'4vh'}}>Flexible and competitive pricing plans designed
       to meet your business needs.</h3>
 {/* <p style={{wi<img className='bg-img-sect5' src={backgr} />dth:'40vw',textAlign:'center',marginBottom:'5vh'}}>Connect and network with other professionals on the platform, share insights, and collaborate on projects.</p> */}
@@ -159,7 +164,7 @@ const Pricing = () => {
 {/* <p style={{width:'40vw',textAlign:'center',marginBottom:'5vh'}}>Connect and network with other professionals on the platform, share insights, and collaborate on projects.</p> */}
 <img className='features-section77' src={sect9}  />
 <div style={{justifyContent:'center',textAlign:'center',marginBlock:'5vh',alignSelf:'center'}}> 
-<a  className="cta-button" style={{marginInline:0}} href='signup'>
+<a  className="cta-button" style={{marginInline:0}}  onClick={scrollToPlans}>
               Choose Your Plan
             </a>
             </div>
@@ -188,36 +193,36 @@ const Pricing = () => {
         </ul>
       </div>
       <div className="footer-section">
-        <h3>Contact details</h3>
-        <div className="contact-item">
-        <img src={loc} alt="Location Icon" className="contact-icon" />
-        <div className="contact-details">
-          <p>Address:</p>
-          <p>#81/16, Haralukunte, HSR Layout, Bangalore, 560102</p>
-        </div>
-      </div>
-      <div className="contact-item">
-        <img src={mess} alt="Phone Icon" className="contact-icon" />
-        <div className="contact-details">
-          <p>Tel:</p>
-          <p>+91-8147808161</p>
-        </div>
-      </div>
-      <div className="contact-item">
-        <img src={call} alt="Clock Icon" className="contact-icon" />
-        <div className="contact-details">
-          <p>Response hours:</p>
-          <p>2 to 4</p>
-        </div>
-      </div>
-      <div className="contact-item">
-        <img src={time} alt="Email Icon" className="contact-icon" />
-        <div className="contact-details">
-          <p>Email:</p>
-          <p>support@leadmasters.ai</p>
-        </div>
-      </div>
-      </div>
+                    <h3>Contact details</h3>
+                    <div className="contact-item">
+                        <img src={loc} alt="Location Icon" className="contact-icon" />
+                        <div className="contact-details">
+                         
+                            <p>Address: #81/16, Haralukunte, HSR Layout, Bangalore, 560102</p>
+                        </div>
+                    </div>
+                    <div className="contact-item">
+                        <img src={mess} alt="Phone Icon" className="contact-icon" />
+                        <div className="contact-details">
+                           
+                            <p>Tel: +91-8147808161</p>
+                        </div>
+                    </div>
+                    <div className="contact-item">
+                        <img src={call} alt="Clock Icon" className="contact-icon" />
+                        <div className="contact-details">
+                          
+                            <p>Response hours: 2 to 4</p>
+                        </div>
+                    </div>
+                    <div className="contact-item">
+                        <img src={time} alt="Email Icon" className="contact-icon" />
+                        <div className="contact-details">
+                        
+                            <p>Email: support@leadmasters.ai</p>
+                        </div>
+                    </div>
+                </div>
       <div style={{display:'flex',flexDirection:'column',width:'25vw'}}>
 
       <div className="footer-section">

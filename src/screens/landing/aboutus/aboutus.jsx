@@ -24,7 +24,12 @@ import { Alert, Spin } from 'antd';
 const Aboutus = () => {
     const navigate = useNavigate();
 const [loading,setLoading]=useState(false);
+const [sloading,setsLoading]=useState(false);
+
 const [email,setEmail]=useState('');
+const [semail,setsEmail]=useState('');
+const [ssuccess, setsSuccess] = useState(false); // state for showing success message
+  const [serror, setsError] = useState(false);
 
 const [success, setSuccess] = useState(false); // state for showing success message
   const [error, setError] = useState(false);
@@ -61,6 +66,36 @@ const [success, setSuccess] = useState(false); // state for showing success mess
         },
     };
 
+    const handlesSubmit=async(e)=>{
+        e.preventDefault();
+      
+        const payload={
+         
+          email:semail,
+        
+        }
+        try{
+          setsLoading(true)
+      const response=await postService.postContactInfo(payload);
+      console.log(response.data,"sueccss");
+      
+     
+      setsEmail('')
+      setsSuccess(true);
+      setsError(false);
+      
+      setsLoading(false)
+      setTimeout(() => setsSuccess(false), 3000); // Hide after 3 seconds
+      } catch (error) {
+        console.log(error, 'error');
+        setsError(true);
+        setsSuccess(false);
+        setsLoading(false);
+        setTimeout(() => setsError(false), 3000);
+      }
+        
+      }
+
     const handleSubmit=async(e)=>{
         e.preventDefault();
       
@@ -75,7 +110,7 @@ const [success, setSuccess] = useState(false); // state for showing success mess
       console.log(response.data,"sueccss");
       
       setEmail('');
-      
+      setsEmail('')
       setSuccess(true);
       setError(false);
       
@@ -168,11 +203,11 @@ const [success, setSuccess] = useState(false); // state for showing success mess
                         Subscribe to our newsletter for the latest updates
                     </h1>
                     <div className="newsletter-input">
-                        <input type="email" placeholder="Enter your email id" value={email} onChange={(e) => setEmail(e.target.value)}/>
+                        <input type="email" placeholder="Enter your email id" value={semail} onChange={(e) => setsEmail(e.target.value)}/>
                     </div>
-                    <button className="cta-button90" onClick={handleSubmit}>{loading ? <Spin size="small" /> : "Submit"}</button>
-                    {success && <Alert style={{marginBlock:5}} message="Submitted successfully!" type="success" showIcon />}
-                {error && <Alert style={{marginBlock:5}} message="There was an error sending your message." type="error" showIcon />}
+                    <button className="cta-button90" onClick={handlesSubmit}>{sloading ? <Spin size="small" /> : "Submit"}</button>
+                    {ssuccess && <Alert style={{marginBlock:5}} message="Submitted successfully!" type="success" showIcon />}
+                {serror && <Alert style={{marginBlock:5}} message="There was an error sending your message." type="error" showIcon />}
                 </div>
                 
                 <div className="newsletter-image">
@@ -202,29 +237,29 @@ const [success, setSuccess] = useState(false); // state for showing success mess
                     <div className="contact-item">
                         <img src={loc} alt="Location Icon" className="contact-icon" />
                         <div className="contact-details">
-                            <p>Address:</p>
-                            <p>#81/16, Haralukunte, HSR Layout, Bangalore, 560102</p>
+                         
+                            <p>Address: #81/16, Haralukunte, HSR Layout, Bangalore, 560102</p>
                         </div>
                     </div>
                     <div className="contact-item">
                         <img src={mess} alt="Phone Icon" className="contact-icon" />
                         <div className="contact-details">
-                            <p>Tel:</p>
-                            <p>+91-8147808161</p>
+                           
+                            <p>Tel: +91-8147808161</p>
                         </div>
                     </div>
                     <div className="contact-item">
                         <img src={call} alt="Clock Icon" className="contact-icon" />
                         <div className="contact-details">
-                            <p>Response hours:</p>
-                            <p>2 to 4</p>
+                          
+                            <p>Response hours: 2 to 4</p>
                         </div>
                     </div>
                     <div className="contact-item">
                         <img src={time} alt="Email Icon" className="contact-icon" />
                         <div className="contact-details">
-                            <p>Email:</p>
-                            <p>support@leadmasters.ai</p>
+                        
+                            <p>Email: support@leadmasters.ai</p>
                         </div>
                     </div>
                 </div>

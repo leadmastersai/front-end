@@ -101,36 +101,36 @@ const Three = () => {
          </ul>
        </div>
        <div className="footer-section">
-         <h3>Contact details</h3>
-         <div className="contact-item">
-         <img src={loc} alt="Location Icon" className="contact-icon" />
-         <div className="contact-details">
-           <p>Address:</p>
-           <p>#81/16, Haralukunte, HSR Layout, Bangalore, 560102</p>
-         </div>
-       </div>
-       <div className="contact-item">
-         <img src={mess} alt="Phone Icon" className="contact-icon" />
-         <div className="contact-details">
-           <p>Tel:</p>
-           <p>+91-8147808161</p>
-         </div>
-       </div>
-       <div className="contact-item">
-         <img src={call} alt="Clock Icon" className="contact-icon" />
-         <div className="contact-details">
-           <p>Response hours:</p>
-           <p>2 to 4</p>
-         </div>
-       </div>
-       <div className="contact-item">
-         <img src={time} alt="Email Icon" className="contact-icon" />
-         <div className="contact-details">
-           <p>Email:</p>
-           <p>support@leadmasters.ai</p>
-         </div>
-       </div>
-       </div>
+                    <h3>Contact details</h3>
+                    <div className="contact-item">
+                        <img src={loc} alt="Location Icon" className="contact-icon" />
+                        <div className="contact-details">
+                         
+                            <p>Address: #81/16, Haralukunte, HSR Layout, Bangalore, 560102</p>
+                        </div>
+                    </div>
+                    <div className="contact-item">
+                        <img src={mess} alt="Phone Icon" className="contact-icon" />
+                        <div className="contact-details">
+                           
+                            <p>Tel: +91-8147808161</p>
+                        </div>
+                    </div>
+                    <div className="contact-item">
+                        <img src={call} alt="Clock Icon" className="contact-icon" />
+                        <div className="contact-details">
+                          
+                            <p>Response hours: 2 to 4</p>
+                        </div>
+                    </div>
+                    <div className="contact-item">
+                        <img src={time} alt="Email Icon" className="contact-icon" />
+                        <div className="contact-details">
+                        
+                            <p>Email: support@leadmasters.ai</p>
+                        </div>
+                    </div>
+                </div>
        <div style={{display:'flex',flexDirection:'column',width:'25vw'}}>
  
        <div className="footer-section">
