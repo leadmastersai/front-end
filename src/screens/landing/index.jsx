@@ -203,41 +203,10 @@ const Landing = () => {
   return (
     <div>
  
- <section
-       
-        id="product"
-        className="main-section"
-        style={{ marginTop: '8rem' }}
-      
-      >
-        <h1 className='biggest-text'>
-          Maximize Your Marketing Potential with AI
-        </h1>
-      <p >
-          Automate, Optimize, and Grow with LeadMasters.ai
-        </p>
-        <button
-          className="cta-button8"
-          onClick={() => navigate("/signup")}
-        
-        >
-          Get Started Free
-        </button>
-        <img
-          className='biggest-img'
-          src={First}
-         
-        />
-        <img
-          className='left-img'
-          src={left}
-         
-        />
-        <img
-          className='right-img'
-          src={right}
-         
-        />
+ <section className='container-section1' style={{marginBlock:'20vh'}} >
+      <img src={sect6} className='features-section6' />
+      <button className="cta-button9" onClick={()=>navigate("/signup")}>Get Started Free</button>
+
       </section>
 
       {/* Features Section */}
@@ -291,13 +260,7 @@ const Landing = () => {
 <motion.img className='bg-img-sect5' src={backgr} variants={imageVariants}/>
 <motion.img className='cards-img-sect5' src={cards} variants={imageVariants}/>
       </motion.section>
-      <motion.section className='container-section1' style={{marginTop:'-15vh'}} ref={featuresRef7}
-        initial="hidden"
-        animate={featuresInView7 ? 'visible' : 'hidden'}>
-      <motion.img src={sect6} className='features-section6' variants={imageVariants}/>
-      <motion.button variants={imageVariants} className="cta-button9" onClick={()=>navigate("/signup")}>Get Started Free</motion.button>
 
-      </motion.section>
       <motion.section className='container-section4' ref={featuresRef8}
         initial="hidden"
         animate={featuresInView8 ? 'visible' : 'hidden'}>

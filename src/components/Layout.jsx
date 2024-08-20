@@ -29,11 +29,7 @@ const Layout = () => {
   };
 
   const updatedItems = [
-    {
-      key: '5',
-      label: <Link to='/home'>Dashboard</Link>,
-      icon: <img src={menu9} className='item-ims' style={{ width: 17, height: 17 }} />,
-    },
+
     {
       key: 'generate-ads',
       label: (
@@ -89,7 +85,7 @@ const Layout = () => {
           inlineCollapsed={collapsed}
           items={updatedItems}
           className="custom-menu"
-          style={{ flex: 1, fontFamily: 'MyCustomFont' }}
+          style={{ flex: 1, fontFamily: 'MyCustomFont',marginBottom:'200px' }}
         />
         <div className="avtar-c" onClick={handleProfileClick}>
           <img
