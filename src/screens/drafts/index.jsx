@@ -94,7 +94,7 @@ const Drafts = () => {
     </div>
     <Carousel1  />
     {(!data || data.length === 0) && (
-  <h2 className='message-for-draft'>Select from Template Posts from Post Idea or can generate Post Idea !!</h2>
+  <h2 className='message-for-draft'>You can Select a Template Post from Post Idea or can generate Post Idea !!</h2>
 )}
 
     </div>
