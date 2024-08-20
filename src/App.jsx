@@ -51,7 +51,7 @@ function App() {
         <Route path="/blog/scoring" element={<Scoring />} />
         </Route>
         <Route element={<Layout />}>
-          <Route path="/home" element={<Home />} />
+          {/* <Route path="/home" element={<Home />} /> */}
           <Route path="/postidea" element={<PostIdea />} />
           <Route path="/analytics" element={<Analytics />} />
           <Route path="/automation" element={<Automation />} />
@@ -61,7 +61,7 @@ function App() {
           <Route path="/rejected" element={<Rejected />} />
           <Route path="/published-posts" element={<PublishPosts />} />
           <Route path="/adidea" element={<AdIdea />} />
-          <Route path="/createad" element={<CreateAd />} />
+          <Route path="/home" element={<CreateAd />} />
           <Route path="/createposts" element={<CreatePosts />} />
           <Route path="/integrations" element={<Integrations />} />
           
