@@ -1,0 +1,98 @@
+.coming-soon-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: white;
+  }
+  
+  .coming-soon-box {
+    text-align: center;
+    padding: 50px;
+    border-radius: 10px;
+    background: linear-gradient(90deg, #0000FF 0%, #8F00FF 48.99%, #FF1494 99.99%);
+    color: white;
+    position: relative;
+    animation: bounce 2s infinite;
+  }
+  
+  .countdown-container {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #ffebef;
+    border-radius: 10px;
+    display: inline-block;
+  }
+  
+  .countdown-timer {
+    display: flex;
+    justify-content: space-around;
+    font-size: 24px;
+    color: #000;
+  }
+  
+  .subscribe-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: white;
+    color: black;
+    cursor: pointer;
+    animation: fade-in 3s ease-in-out infinite alternate;
+  }
+  
+  .animate-box {
+    animation: pulse 2s infinite;
+  }
+  
+  .animate-text {
+    animation: slide-in 1s ease-out forwards;
+  }
+  
+  .animate-button {
+    animation: bounce 1.5s infinite;
+  }
+  
+  @keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+      transform: translateY(0);
+    }
+    40% {
+      transform: translateY(-10px);
+    }
+    60% {
+      transform: translateY(-5px);
+    }
+  }
+  
+  @keyframes pulse {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.05);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  
+  @keyframes slide-in {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+  
+  @keyframes fade-in {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  

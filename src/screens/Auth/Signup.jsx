@@ -5,19 +5,35 @@ import email from "../../assets/auth/mail.svg";
 import linkedin from "../../assets/auth/linkedin.svg";
 import Icon from "../../assets/auth/appIcon.svg";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import LoginModal from "../../modals/loginModal.jsx";
+
 const Signup = () => {
   const navigate = useNavigate(); 
+  const [isModalVisible, setIsModalVisible] = useState(false);
 
+  const showModal = () => {
+    setIsModalVisible(true);
+  };
+
+  const handleClose = () => {
+    setIsModalVisible(false);
+  };
+
+
+  
   const handleSignup = () => {
-    navigate("/home"); 
+    
   };
   function handleClick() {
-    window.location.href = 'http://leadmasters.site/auth/google';
+    window.location.href = 'https://leadmasters.site/auth/google';
   }
 
   function handleClick1() {
-    window.location.href = 'http://leadmasters.site/auth/linkedin';
-  }
+    const flow = "presignup";
+    window.location.href = `https://leadmasters.site/auth/linkedin?flow=${flow}`;
+}
+
   return (
     <div className="container">
       <div className="container-sub">
@@ -48,7 +64,7 @@ const Signup = () => {
               <img src={linkedin} className="btn-icon"/>
               <div className="btn-text">Sign in with Linked In</div>
             </div>
-            <div className="btns" onClick={handleSignup}>
+            <div className="btns" onClick={showModal}>
               <img src={email} className="btn-icon"/>
               <div className="btn-text">Sign In with Work Email</div>
             </div>
@@ -67,12 +83,14 @@ const Signup = () => {
                 cursor:'pointer'
 
               }}
+              onClick={showModal}
             >
               Login
             </span>
           </p>
         </div>
       </div>
+      <LoginModal isVisible={isModalVisible} onClose={handleClose} />
     </div>
   );
 };
