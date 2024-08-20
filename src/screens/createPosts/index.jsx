@@ -13,7 +13,7 @@ import send from '../../assets/createAd/send-one.svg';
 const CreatePosts = () => {
   return (
     <>
-    <div className='main-cont'>
+    <div className='main-cont' style={{marginInline:'240px'}}>
     <div className='heading'>
     <h3>Create new Posts </h3>
     <img src={stars} className='str'/>

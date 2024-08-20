@@ -3,7 +3,7 @@ import './styles.scss';
 
 const PublishAds = () => {
   const calculateTimeLeft = () => {
-    const difference = +new Date("2025-02-20") - +new Date();
+    const difference = +new Date("2024-10-20") - +new Date();
     let timeLeft = {};
 
     if (difference > 0) {

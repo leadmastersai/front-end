@@ -53,17 +53,19 @@ const PostIdea = () => {
   };
 
   return (
-    <div className='main-cont'>
+    <div className='main-cont' style={{marginInline:'240px'}}>
       {loading && (
         <div className='overlay'>
           <Spin size="large" />
         </div>
       )}
+         <div >
       <div className='heading'>
         <h3>Get Post Ideas</h3>
         <img src={stars} className='str' />
       </div>
       <Carousel1 />
+      </div>
       {data?.map((item, index) => (
         <div className='card-cont' key={index} >
           <div className='profile-cont'>

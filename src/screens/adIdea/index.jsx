@@ -10,7 +10,7 @@ import stars from '../../assets/getIdea/stars.svg';
 import Carousel1 from './carousel1';
 const AdIdea = () => {
   return (
-    <div className='main-cont'>
+    <div className='main-cont' style={{marginInline:'240px'}}>
     <div className='heading'>
     <h3>Get Ad Ideas</h3>
     <img src={stars} className='str'/>

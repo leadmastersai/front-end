@@ -29,20 +29,8 @@ const PublishPosts = () => {
   });
 
   return (
-    <div className="coming-soon-container">
-      <div className="coming-soon-box animate-box">
-        <h1 className="animate-text">Coming Soon!</h1>
-        <p className="animate-text">STAY TUNED</p>
-        <div className="countdown-container">
-          <div className="countdown-timer">
-            <div>{timeLeft.days || '00'} Days -</div>
-            <div>{timeLeft.hours || '00'} Hours -</div>
-            <div>{timeLeft.minutes || '00'} Mins -</div>
-            <div>{timeLeft.seconds || '00'} Secs</div>
-          </div>
-        </div>
- 
-      </div>
+    <div >
+<h2 style={{fontWeight:'300',margin:'5%'}}>No Live Social Media Post from your Account Yet !!</h2>
     </div>
   );
 };

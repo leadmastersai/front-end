@@ -7,7 +7,7 @@ import items from '../utils/items';
 import avtar from '../assets/dashb/Avatars.svg';
 import menu9 from '../assets/dashb/getad.svg';
 import { useSelector } from 'react-redux';
-
+import { BsLayoutTextSidebar } from "react-icons/bs";
 const Layout = () => {
   const navigate = useNavigate();
   const [collapsed, setCollapsed] = useState(false);
@@ -98,7 +98,7 @@ const Layout = () => {
             className={profilepic ? 'profile-pic' : ''}
           />
         </div>
-  
+        <BsLayoutTextSidebar style={{marginInline:collapsed?'35%':'13%',cursor:'pointer'}} onClick={handleToggle}/>
       </div>
 
       <div style={{ marginLeft: collapsed ? 60 : 210, flex: 1, paddingLeft: 20 }}>
