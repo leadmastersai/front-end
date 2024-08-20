@@ -26,6 +26,10 @@ import Driven from './screens/landing/blog/blogsDetails/third';
 import Click from './screens/landing/blog/blogsDetails/fourth';
 import Ultimate from './screens/landing/blog/blogsDetails/fifth';
 import Scoring from './screens/landing/blog/blogsDetails/sixth';
+import AdsDrafts from './screens/AdsDrafts';
+import PublishAds from './screens/publishads';
+import Rejected from './screens/rejected';
+import PublishPosts from './screens/publishPosts';
 
 function App() {
   return (
@@ -52,6 +56,10 @@ function App() {
           <Route path="/analytics" element={<Analytics />} />
           <Route path="/automation" element={<Automation />} />
           <Route path="/drafts" element={<Drafts />} />
+          <Route path="/adsdrafts" element={<AdsDrafts />} />
+          <Route path="/publishads" element={<PublishAds />} />
+          <Route path="/rejected" element={<Rejected />} />
+          <Route path="/published-posts" element={<PublishPosts />} />
           <Route path="/adidea" element={<AdIdea />} />
           <Route path="/createad" element={<CreateAd />} />
           <Route path="/createposts" element={<CreatePosts />} />

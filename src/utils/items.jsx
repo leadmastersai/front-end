@@ -12,6 +12,11 @@ import menu9 from '../assets/dashb/getad.svg';
 
 const items = [
   {
+    key: '5',
+    label: <Link to='/home'>Dashboard</Link>,
+    icon: <img src={menu9} className='item-ims' style={{ width: 17, height: 17 }} />,
+  },
+  {
     key: '1',
     label: <Link to='/adidea'>Get Ad Idea</Link>,
     icon: <img src={menu9} className='item-ims' style={{ width: 17, height: 17 }} />,
@@ -23,11 +28,11 @@ const items = [
     children: [
       {
         key: '2-1',
-        label: <Link to='/ads-drafts'>Ads Drafts</Link>,
+        label: <Link to='/adsdrafts'>Ads Drafts</Link>,
       },
       {
         key: '2-2',
-        label: <Link to='/publish-ads'>Publish Ads</Link>,
+        label: <Link to='/publishads'>Publish Ads</Link>,
       },
       {
         key: '2-3',
@@ -51,16 +56,12 @@ const items = [
       },
       {
         key: '2-2',
-        label: <Link to='/publish-ads'>Publish Post</Link>,
+        label: <Link to='/published-posts'>Publish Post</Link>,
       },
     
     ],
   },
-  {
-    key: '5',
-    label: <Link to='/home'>Dashboard</Link>,
-    icon: <img src={menu9} className='item-ims' style={{ width: 17, height: 17 }} />,
-  },
+
   {
     key: '3',
     label: <Link to='/createad'>Campaign</Link>,

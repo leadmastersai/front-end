@@ -85,14 +85,19 @@ const Drafts = () => {
 
   return (
     <div className='main-cont55' style={{}}>
-       
-    <div className='heading'>
+       <div style={{marginLeft:'70px'}}>
+    <div className='heading' >
     <h3>Post Drafts</h3>
     <img src={stars} className='str'/>
     {success && <Alert style={{marginLeft:'40vw'}} message="deleted successfully!" type="success" showIcon />}
     {error && <Alert style={{marginLeft:'40vw'}} message="Something went Wrong." type="error" showIcon />}
     </div>
-    <Carousel1 />
+    <Carousel1  />
+    {(!data || data.length === 0) && (
+  <h2 className='message-for-draft'>Select from Template Posts from Post Idea or can generate Post Idea !!</h2>
+)}
+
+    </div>
       {loading && (
         <div className='overlay'>
           <Spin size="large" />

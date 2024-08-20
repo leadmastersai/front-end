@@ -8,9 +8,13 @@ import soc1 from '../../../assets/landing/social1.svg';
 import soc2 from '../../../assets/landing/social2.svg';
 import soc3 from '../../../assets/landing/social3.svg';
 import soc4 from '../../../assets/landing/social4.svg';
+import image3 from '../../../assets/blogdetails/eight.webp';
+import image4 from '../../../assets/blogdetails/fourth.webp';
 import soc5 from '../../../assets/landing/social5.svg';
 import image1 from '../../../assets/blogdetails/n1.webp';
+import image2 from '../../../assets/blogdetails/second.webp';
 import loc from '../../../assets/landing/Location.svg';
+import image5 from '../../../assets/blogdetails/s3.webp';
 import time from '../../../assets/landing/Message.svg';
 import mess from '../../../assets/landing/Calling.svg';
 import call from '../../../assets/landing/Time.svg';
@@ -19,6 +23,7 @@ import leftArrow from '../../../assets/carousel/left.svg';
 import { postService } from '../../../../services/postServices';
 
 import caro from '../../../assets/blog/caro.svg'
+import caro1 from '../../../assets/blog/caro1.webp'
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Alert, Spin } from 'antd';
@@ -39,9 +44,9 @@ const Blog = () => {
       imageUrl: caro
     },
     {
-      text: "Retail Client Increases ROI by 25%",
-      desc: "A comprehensive look at how a retail client used LeadMasters AI to optimize their ad campaigns and significantly boost their return on investment.",
-      imageUrl: caro
+      text: "Real Estate Agency Boosts Lead Conversion by 30%",
+      desc: "Discover how a real estate agency leveraged LeadMasters AI's smart lead generation and automated social media posts to increase lead engagement.",
+      imageUrl: caro1
     },
     // Add more slides as needed
   ];
@@ -111,19 +116,19 @@ const Blog = () => {
 
   const cardData = [
     {
-      image: sky,
+      image: image2,
       title: 'Maximizing ROI: How AI-Driven Lead Generation Transforms Digital Marketing Campaigns',
       description: 'In todays fast-paced digital landscape, businesses are constantly...',
       link: 'blog/maximize'
     },
     {
-      image: sky,
+      image: image3,
       title: 'The Future of Advertising: How AI is Revolutionizing Social Media Ad Campaigns',
       description: 'In the rapidly evolving landscape of digital marketing, social media platforms have become indispensable...',
       link: 'blog/future'
     },
     {
-      image: sky,
+      image: image4,
       title: 'Data-Driven Decisions: The Power of Analytics in Modern Lead Generation',
       description: 'In today’s competitive business environment, making informed decisions is crucial for success...',
       link: 'blog/driven'
@@ -141,7 +146,7 @@ const Blog = () => {
       link: 'blog/ultimate'
     },
     {
-      image: sky,
+      image: image5,
       title: 'AI-Powered Lead Scoring: How to Prioritize High-Quality Prospects and Boost Conversion Rates',
       description: 'In the competitive world of digital marketing, not all leads are created equal. Some prospects are ...',
       link: 'blog/scoring'
@@ -151,8 +156,11 @@ const Blog = () => {
 
 
   const Card = ({ image, title, description, link }) => {
+    const handleLink=()=>{
+      navigate(`/${link}`);
+    }
     return (
-      <div className="card77">
+      <div className="card77" onClick={handleLink}>
         <img src={image} alt={title} className="card-image79" />
         <div className="card-content79">
           <h3 className="card-title79">{title}</h3>
@@ -231,7 +239,7 @@ const handlePrevCards = () => {
                 ))}
               </div>
             </div>
-            <div className="image69">
+            <div className={currentSlide === 1 ? "image69-alt" : "image69"}>
               <img src={slides[currentSlide].imageUrl} alt="Slide image" />
             </div>
           </div>

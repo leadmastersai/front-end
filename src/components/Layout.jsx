@@ -1,10 +1,11 @@
-import { Outlet, useNavigate } from 'react-router-dom';
+import { Link, Outlet, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { Menu } from 'antd';
 import './styles.css';
 import Icon from '../assets/auth/appIcon.svg';
 import items from '../utils/items';
-import avtar from '../assets/dashb/Avatars.svg';
+import avtar from '../assets/dashb/Avatars.svg'
+import menu9 from '../assets/dashb/getad.svg';;
 import { useSelector } from 'react-redux';
 
 const Layout = () => {
@@ -24,6 +25,11 @@ const Layout = () => {
 
   const updatedItems = [
     {
+      key: '5',
+      label: <Link to='/home'>Dashboard</Link>,
+      icon: <img src={menu9} className='item-ims' style={{ width: 17, height: 17 }} />,
+    },
+    {
       key: 'generate-ads',
       label: (
         <button className="cta-button-side" style={{ width: '100%' }} onClick={()=>navigate('/createad')}>
@@ -31,7 +37,7 @@ const Layout = () => {
         </button>
       ),
     },
-    ...items.slice(0, 2), // Adjust index as per the requirement, these will be the first two items
+    ...items.slice(1, 3), // Adjust index as per the requirement, these will be the first two items
     {
       key: 'generate-posts',
       label: (
@@ -40,7 +46,7 @@ const Layout = () => {
         </button>
       ),
     },
-    ...items.slice(2), // The rest of the items will follow
+    ...items.slice(3), // The rest of the items will follow
   ];
 
   return (
