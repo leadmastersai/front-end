@@ -9,7 +9,7 @@ import soc2 from '../../../assets/landing/social2.svg';
 import soc3 from '../../../assets/landing/social3.svg';
 import soc4 from '../../../assets/landing/social4.svg';
 import soc5 from '../../../assets/landing/social5.svg';
-
+import image1 from '../../../assets/blogdetails/n1.webp';
 import loc from '../../../assets/landing/Location.svg';
 import time from '../../../assets/landing/Message.svg';
 import mess from '../../../assets/landing/Calling.svg';
@@ -135,7 +135,7 @@ const Blog = () => {
       link: 'blog/click'
     },
     {
-      image: sky,
+      image: image1,
       title: 'The Ultimate Guide to Automating Your Lead Generation with LeadMasters: Tools, Tips, and Best Practices ',
       description: 'In today’s fast-paced digital marketing world, businesses need to constantly...',
       link: 'blog/ultimate'
