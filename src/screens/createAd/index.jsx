@@ -9,8 +9,60 @@ import post from '../../assets/getIdea/post.svg';
 import schedule from '../../assets/getIdea/schedule.svg';
 import expand from '../../assets/createAd/expand.svg';
 import send from '../../assets/createAd/send-one.svg';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { postService } from '../../../services/postServices';
+import { saveUserDetail } from '../../redux/authSlice';
 
 const CreateAd = () => {
+  const dispatch=useDispatch();
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const token = urlParams.get('token'); // Changed from encryptedToken to token
+
+    console.log('Received Token:', token); // Log the received token
+
+    if (token) {
+        // Store the token securely
+        localStorage.setItem('oauthToken', token);
+
+        // Remove the token from URL parameters
+        urlParams.delete('token');
+        const newUrl = `${window.location.pathname}?${urlParams.toString()}`;
+        window.history.replaceState({}, document.title, newUrl);
+
+        // Optional: Redirect the user to another page
+
+    } else {
+        console.error('Token is null or undefined');
+    }
+}, []);
+
+
+useEffect(() => {
+  const token = localStorage.getItem('oauthToken');
+
+  if (token) {
+      console.log('Token in Home:', token);
+      console.log('Token in Home:', token);
+  } else {
+      console.error('Token is null or undefined in Home');
+  }
+}, []);
+
+useEffect(()=>{
+const getUserDetails=async()=>{
+  const response=await postService.getUser();
+  console.log(response.data,"+++");
+ dispatch(saveUserDetail(response.data));
+  
+}
+getUserDetails()
+},[])
+
+const {userBasics}  = useSelector((state) => state.auth);
+
+console.log(userBasics,"this is user");
   return (
     <>
     <div className='main-cont' style={{marginInline:'240px'}}>
