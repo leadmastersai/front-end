@@ -3,7 +3,7 @@ import Topbar from './topbar';
 
 const LayoutWithTopbar = () => {
   return (
-    <div>
+    <div style={{position:'relative'}}>
       <Topbar />
       <Outlet />
     </div>

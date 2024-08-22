@@ -78,7 +78,7 @@ li .ant-menu-item{
 .card.active {
   border-radius: 50px; /* Rounded corners */
   border: 1px solid transparent; /* Transparent border */
-  background: linear-gradient(white, white) padding-box, /* Card background */
+  background: linear-gradient(#F8EFFF,#F8EFFF) padding-box, /* Card background */
   linear-gradient(90deg, #0000FF 0%, #8F00FF 53.99%, #FF1494 99.98%) border-box;
             
 

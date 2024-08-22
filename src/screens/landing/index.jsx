@@ -230,81 +230,76 @@ const Landing = () => {
       <img src={section1} className='features-section1'/>
 
       </section>
-      <motion.section className='container-section2' ref={featuresRef3}
-        initial="hidden"
-        animate={featuresInView3 ? 'visible' : 'hidden'}>
-      <motion.img src={section2} className='features-section2' variants={imageVariants} />
-      </motion.section>
-      <motion.section className='container-section3' ref={featuresRef4}
-        initial="hidden"
-        animate={featuresInView4 ? 'visible' : 'hidden'}>
-      <motion.img src={section3} className='features-section1'  variants={imageVariants} />
-      </motion.section>
-      <motion.section className='container-section4' ref={featuresRef5}
-        initial="hidden"
-        animate={featuresInView5 ? 'visible' : 'hidden'}>
-      <motion.h3 className='biggest-text1' variants={textVariants}>Analytics Dashboard</motion.h3>
-<motion.p style={{width:'50vw',textAlign:'center',marginBottom:'5vh'}} variants={textVariants}>Comprehensive insights into your marketing performance with metrics like impressions, engagement rate, and new followers.</motion.p>
+      <section className='container-section2' >
+      <img src={section2} className='features-section2'/>
+      </section>
+      <section className='container-section3' >
+      <img src={section3} className='features-section1' />
+      </section>
+      <section className='container-section4' >
+      <h3 className='biggest-text1' >Analytics Dashboard</h3>
+<p style={{width:'50vw',textAlign:'center',marginBottom:'5vh'}}>Comprehensive insights into your marketing performance with metrics like impressions, engagement rate, and new followers.</p>
 <div style={{marginInline:'auto'}}>
-<motion.img src={num1} className='img-cont-sect4' variants={imageVariants}/>
-<motion.img src={num2} className='img1-cont-sect4' variants={imageVariants}/>
-<motion.img src={num3} className='img2-cont-sect4'variants={imageVariants}/>
-<motion.img src={num4} className='img3-cont-sect4'variants={imageVariants}/>
+<img src={num1} className='img-cont-sect4' />
+<img src={num2} className='img1-cont-sect4' />
+<img src={num3} className='img2-cont-sect4'/>
+<img src={num4} className='img3-cont-sect4'/>
 </div>
-      </motion.section>
-      <motion.section className='container-section4' ref={featuresRef6}
-        initial="hidden"
-        animate={featuresInView6 ? 'visible' : 'hidden'}>
-      <motion.h3 className='biggest-text1' variants={textVariants}>Automation Tools</motion.h3>
-<motion.p variants={textVariants} style={{width:'50vw',textAlign:'center',marginBottom:'5vh'}}>Automate your marketing activities with features like scheduled reposts, delay threads, and autopilot for social posts.</motion.p>
-<motion.img className='bg-img-sect5' src={backgr} variants={imageVariants}/>
-<motion.img className='cards-img-sect5' src={cards} variants={imageVariants}/>
-      </motion.section>
+      </section>
+      <section className='container-section4'>
+  <h3 className='biggest-text1'>Automation Tools</h3>
+  <p style={{ width: '50vw', textAlign: 'center', marginBottom: '5vh' }}>
+    Automate your marketing activities with features like scheduled reposts, delay threads, and autopilot for social posts.
+  </p>
+  <img className='bg-img-sect5' src={backgr} />
+  <img className='cards-img-sect5' src={cards} />
+</section>
 
-      <motion.section className='container-section4' ref={featuresRef8}
-        initial="hidden"
-        animate={featuresInView8 ? 'visible' : 'hidden'}>
-      <motion.h3 className='biggest-text1' variants={textVariants}>Team Collaboration</motion.h3>
-<motion.p  variants={textVariants} style={{width:'40vw',textAlign:'center',marginBottom:'5vh'}}>Invite and manage team members, assign roles, and collaborate on ad campaigns.</motion.p>
-<motion.img className='features-section6' src={sect7} variants={imageVariants} />
+<section className='container-section4'>
+  <h3 className='biggest-text1'>Team Collaboration</h3>
+  <p style={{ width: '40vw', textAlign: 'center', marginBottom: '5vh' }}>
+    Invite and manage team members, assign roles, and collaborate on ad campaigns.
+  </p>
+  <img className='features-section6' src={sect7} />
+</section>
 
-      </motion.section>
-      <motion.section className='container-section4' ref={featuresRef9}
-        initial="hidden"
-        animate={featuresInView9 ? 'visible' : 'hidden'}>
-      <motion.h3 className='biggest-text1' variants={textVariants}>AI Personalization</motion.h3>
-<motion.p variants={textVariants} style={{width:'40vw',textAlign:'center',marginBottom:'5vh'}}>Personalize your ads by providing information about yourself and your company to tailor ad suggestions.</motion.p>
-<motion.img className='bg-img-sect5' src={backgr} variants={imageVariants} />
-<motion.img className='cards-img-sect5' src={sect8}  variants={imageVariants}/>
+<section className='container-section4'>
+  <h3 className='biggest-text1'>AI Personalization</h3>
+  <p style={{ width: '40vw', textAlign: 'center', marginBottom: '5vh' }}>
+    Personalize your ads by providing information about yourself and your company to tailor ad suggestions.
+  </p>
+  <img className='bg-img-sect5' src={backgr} />
+  <img className='cards-img-sect5' src={sect8} />
+</section>
 
-      </motion.section>
-      <motion.section className='container-section4' style={{marginTop:'-20vh'}} ref={featuresRef10}
-        initial="hidden"
-        animate={featuresInView10 ? 'visible' : 'hidden'}>
-      <motion.h3 className='biggest-text1' variants={textVariants}>Professional Networking</motion.h3>
-<motion.p variants={textVariants} style={{width:'40vw',textAlign:'center',marginBottom:'5vh'}}>Connect and network with other professionals on the platform, share insights, and collaborate on projects.</motion.p>
-<motion.img className='features-section7' src={sect9} variants={imageVariants} />
+<section className='container-section4' style={{ marginTop: '-20vh' }}>
+  <h3 className='biggest-text1'>Professional Networking</h3>
+  <p style={{ width: '40vw', textAlign: 'center', marginBottom: '5vh' }}>
+    Connect and network with other professionals on the platform, share insights, and collaborate on projects.
+  </p>
+  <img className='features-section7' src={sect9} />
+</section>
 
-      </motion.section>
-      <motion.section className='container-section4' ref={featuresRef11}
-        initial="hidden"
-        animate={featuresInView11 ? 'visible' : 'hidden'} >
-      <motion.h3 variants={textVariants} className='biggest-text1'>Choose Your Plan</motion.h3>
-<motion.p variants={textVariants} style={{width:'40vw',textAlign:'center',marginBottom:'5vh'}}>Connect and network with other professionals on the platform, share insights, and collaborate on projects.</motion.p>
-      <div className="pricing-cards">
-        {plans.map((plan, index) => (
-          <PricingCard
-            key={index}
-            plan={plan}
-            index={index}
-            price={plan.price}
-            features={plan.features}
-            buttonText={plan.buttonText}
-            buttonLink={plan.buttonLink}
-          />
-        ))}
-      </div>
-      </motion.section>
+<section className='container-section4'>
+  <h3 className='biggest-text1'>Choose Your Plan</h3>
+  <p style={{ width: '40vw', textAlign: 'center', marginBottom: '5vh' }}>
+    Connect and network with other professionals on the platform, share insights, and collaborate on projects.
+  </p>
+  <div className="pricing-cards">
+    {plans.map((plan, index) => (
+      <PricingCard
+        key={index}
+        plan={plan}
+        index={index}
+        price={plan.price}
+        features={plan.features}
+        buttonText={plan.buttonText}
+        buttonLink={plan.buttonLink}
+      />
+    ))}
+  </div>
+</section>
+
       <section className='container-section4' style={{marginTop:'-20vh'}}  >
  <button  className="cta-button96" onClick={()=>navigate("/signup")}>Get Started Free</button>
 <img className='bg-img-sect5' src={backgr}/>

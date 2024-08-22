@@ -24,7 +24,7 @@ const Carousel1 = () => {
 
   const Card = ({ logo, title, cent ,index}) => {
     return (
-        <div       className={`card ${index === activeIndex ? 'active' : ''}`}
+        <div       className={`card ${index === activeIndex ? 'active munjal' : ''}`}
         onClick={() => setActiveIndex(index)}>
         <img src={logo} alt={`${title} logo`} className="card-logo1" />
         <h3 className="card-content1">{title}</h3>

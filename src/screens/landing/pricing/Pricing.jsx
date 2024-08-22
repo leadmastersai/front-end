@@ -140,12 +140,12 @@ const Pricing = () => {
   return (
     <div>
     <ComingSoonModal isVisible={isModalVisible} onClose={handleClose} />
-      <section className='container-section4'ref={plansRef} >
-      <h3 className='biggest-text1' style={{textAlign:'center',width:'68vw',marginTop:'4vh'}}>Flexible and competitive pricing plans designed
+      <section className='container-section4'>
+      <h3 className='biggest-text1 support-css biggest-text91' >Flexible and competitive pricing plans designed
       to meet your business needs.</h3>
 {/* <p style={{wi<img className='bg-img-sect5' src={backgr} />dth:'40vw',textAlign:'center',marginBottom:'5vh'}}>Connect and network with other professionals on the platform, share insights, and collaborate on projects.</p> */}
 <img className='bg-img-sect5' src={backgr} />
-      <div className="pricing-cards" style={{marginTop:'-80vh'}}>
+      <div className="pricing-cards sup-cards">
         {plans.map((plan, index) => (
           <PricingCard
             key={index}
@@ -160,7 +160,7 @@ const Pricing = () => {
       </div>
       </section>
       <section className='container-section4' >
-      <h3 className='biggest-text1'>Comparison Table</h3>
+      <h1 className='biggest-text91'>Comparison Table</h1>
 {/* <p style={{width:'40vw',textAlign:'center',marginBottom:'5vh'}}>Connect and network with other professionals on the platform, share insights, and collaborate on projects.</p> */}
 <img className='features-section77' src={sect9}  />
 <div style={{justifyContent:'center',textAlign:'center',marginBlock:'5vh',alignSelf:'center'}}> 
@@ -174,11 +174,11 @@ const Pricing = () => {
 <img className='bg-img-sect5' src={backgr} />
 <img className='cards-img-sect6' src={sect10} />
       </section>
-      <footer className="footer">
+      <footer className="footer9" style={{marginTop:'5vh'}}>
       <div className="footer-section">
       <div className="navbar-brand">
         <img src={Icon} alt="Logo" className="logo" />
-        <h4>LeadMasters.ai</h4>
+        <h4 className='item-9'>LeadMasters.ai</h4>
         </div>
         <p>Connect and network with other professionals on the platform, share insights, and collaborate on projects.</p>
       </div>
@@ -192,7 +192,7 @@ const Pricing = () => {
            <li><a className='jumpa' href="#">Privacy Policy</a></li>
         </ul>
       </div>
-      <div className="footer-section">
+      <div className="footer-section karuna1">
                     <h3>Contact details</h3>
                     <div className="contact-item">
                         <img src={loc} alt="Location Icon" className="contact-icon" />
@@ -225,16 +225,15 @@ const Pricing = () => {
                 </div>
       <div style={{display:'flex',flexDirection:'column',width:'25vw'}}>
 
-      <div className="footer-section">
+      <div className="footer-section3 karuna">
         <h3>Stay up to date with the latest courses</h3>
-        <form className="subscribe-form" onSubmit={handleSubmit}>
+        <form className="subscribe-form2" onSubmit={handleSubmit}>
           <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
           <button type="submit">{loading ? <Spin size="small" /> : "Send"}</button>
         </form>
         {success && <Alert style={{marginBlock:5}} message="Submitted successfully!" type="success" showIcon />}
         {error && <Alert style={{marginBlock:5}} message="There was an error sending your message." type="error" showIcon />}
-      </div>
-      <div className="footer-section follow-us">
+        <div className="follow-us">
         <h3>Follow us on</h3>
         <div className="social-icons">
           <a href="#"><img src={soc5} alt="Facebook" className='soc-img-sec' /></a>
@@ -244,6 +243,8 @@ const Pricing = () => {
           <a href="#"><img src={soc1} alt="Instagram" className='soc-img-sec' /></a>
         </div>
       </div>
+      </div>
+     
       </div>
    
     </footer>

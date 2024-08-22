@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../publishads/styles.scss';
+import Carousel1 from '../adIdea/carousel1';
+import stars from '../../assets/getIdea/stars.svg';
 
 const PublishPosts = () => {
   const calculateTimeLeft = () => {
@@ -30,8 +32,20 @@ const PublishPosts = () => {
 
   return (
     <div >
+      <div className='main-cont55' style={{}}>
+       <div style={{marginInline:'180px'}}>
+    <div className='heading' >
+    <h3>Published Posts</h3>
+    <img src={stars} className='str'/>
+
+    </div>
+    <Carousel1  />
 <h2 style={{fontWeight:'300',margin:'5%'}}>No Live Social Media Post from your Account Yet !!</h2>
     </div>
+    </div>
+    </div>
+
+
   );
 };
 

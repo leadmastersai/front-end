@@ -47,12 +47,12 @@ const items = [
   },
   {
     key: '4',
-    label: 'Launch Posts',
+    label: 'Posts',
     icon: <img src={menu9} className='item-ims' style={{ width: 17, height: 17 }} />,
     children: [
       {
         key: '2-1',
-        label: <Link to='/drafts'>Post Drafts</Link>,
+        label: <Link to='/drafts'>Saved</Link>,
       },
       {
         key: '2-2',
@@ -64,7 +64,7 @@ const items = [
 
   {
     key: '3',
-    label: <Link to='/createad'>Campaign</Link>,
+    label: <Link to='/home'>Campaign</Link>,
     icon: <img src={menu6} className='item-ims' style={{ width: 17, height: 17 }} />,
   },
   {

@@ -234,12 +234,12 @@ li .ant-menu-item{
   justify-content: space-between;
   align-items: center;
   padding: 0.7rem 2rem;
-  position: fixed;
+  position: relative ;
   top: 0;
   width: 100%;
   background-color: white;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  z-index: 1000;
+  z-index: 500;
 }
 
 .navbar-brand {
@@ -249,11 +249,68 @@ li .ant-menu-item{
   text-decoration: none;
 
 }
+/* Mobile styles */
+.menu-toggle {
+  display: none;
+  font-size: 24px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+/* Adjust the navbar-menu for mobile screens */
+@media (max-width: 768px) {
+  .navbar {
+    position:relative;
+    width: 90vw !important;
+  }
+  .navbar-menu {
+    display: none !important;
+    flex-direction: column;
+    width: 100%;
+    position: absolute;
+    top: 100%; /* Position below the navbar */
+    left: 0;
+    
+    
+    padding: 0;
+    margin: 0;
+    
+    z-index: 1000;
+     /* Ensure the menu appears above other content */
+  }
+
+  .navbar-menu.open {
+    display: flex !important; /* Show the menu when open */
+  
+  }
+
+  .navbar-menu li {
+    width: 100%; /* Ensure full-width clickable areas */
+    padding: 10px 0;
+    text-align: center;
+  }
+
+  .navbar-menu li a {
+    color: white; /* Ensure the menu items are visible */
+  }
+
+  .navbar-actions {
+    display: none !important;
+  }
+
+  .menu-toggle {
+    display: block ;  /* Ensure it's visible */
+    z-index: 2000;               /* Ensure it's above other elements */
+    position: relative;
+  }
+}
+
+
 /* styles.css */
 
 .navbar-menu li.active a {
   color: purple; /* Change color to your preferred active color */
-* Make it bold */
+
 
 }
 
@@ -288,6 +345,7 @@ li .ant-menu-item{
   transition: 1s;
   cursor: pointer;
 }
+
 .navbar-actions {
   display: flex;
   margin-right:5vw;
@@ -327,4 +385,22 @@ li .ant-menu-item{
   border-radius: 6px;
   padding: 10px;
   width: 100px;
+}
+/* Hide the button inside the navbar-menu on larger screens */
+.navbar-actions-mobile {
+  display: none;
+}
+
+/* Show the button inside the navbar-menu on small screens */
+@media (max-width: 768px) {
+  .navbar-brand h2{
+    display: none;
+    
+  }
+
+  .navbar-actions-mobile {
+      display: block;
+      text-align: center; /* Center the login button within the menu */
+      margin-top: 10px; /* Space above the login button inside the menu */
+  }
 }

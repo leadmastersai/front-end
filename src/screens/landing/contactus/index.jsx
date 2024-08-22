@@ -70,7 +70,7 @@ setTimeout(() => setSuccess(false), 15000); // Hide after 3 seconds
     
       <div className="contact-text">
         <h1 className='biggest-text91' style={{textAlign:'left'}}>Contact Our Friendly Support Team Today</h1>
-        <p>Our support team is available Monday to Friday, 9 AM to 6 PM (GMT+4).</p>
+        <p style={{marginRight:'10%'}}>Our support team is available Monday to Friday, 9 AM to 6 PM (GMT+4).</p>
       </div>
 
       <div className="contact-form">
@@ -103,23 +103,23 @@ setTimeout(() => setSuccess(false), 15000); // Hide after 3 seconds
 </div>
 
     </div>
-    <div className='contact-info-container57'>
+    <div className='contact-info-container57 '>
     <div className="image-container57">
       <img src={cont} alt="Contact Us" />
     </div>
-    <div className="footer-section">
-        <h1 style={{fontSize:40,fontWeight:'500'}}>For inquiries,
+    <div className="footer-section101">
+        <h1 className='biggest-text91 kuma'>For inquiries,
         please contact us via</h1>
         <div className="contact-item" style={{marginBlock:5}}>
         <img src={loc} alt="Location Icon" className="contact-icon" />
-        <div className="contact-details">
+        <div className="contact-details4">
          
           <p >#81/16, Haralukunte, HSR Layout, Bangalore, 560102</p>
         </div>
       </div>
       <div className="contact-item" style={{marginBlock:5}}>
         <img src={mess} alt="Phone Icon" className="contact-icon" />
-        <div className="contact-details">
+        <div className="contact-details4">
         
           <p>+91-8147808161</p>
         </div>
@@ -133,7 +133,7 @@ setTimeout(() => setSuccess(false), 15000); // Hide after 3 seconds
       </div> */}
       <div className="contact-item" style={{marginBlock:5}}>
         <img src={time} alt="Email Icon" className="contact-icon" />
-        <div className="contact-details">
+        <div className="contact-details4">
           {/* <p>Email:</p> */}
           <p>support@leadmasters.ai</p>
         </div>
@@ -143,8 +143,7 @@ setTimeout(() => setSuccess(false), 15000); // Hide after 3 seconds
   </div>
   <div className="newsletter-container">
       <div className="newsletter-content">
-        <h1 className='biggest-text9' style={{textAlign:'left',width:'130%'
-        }}>Be a Part of Innovation</h1>
+        <h1 className='biggest-text91 closs' style={{textAlign:'left',width:'130%'}}>Be a Part of Innovation</h1>
         <p>Join our dynamic team and help shape the future of AI-driven lead generation and digital marketing</p>
      
         <button className="cta-button90" onClick={()=>navigate("/contactus")}>Join Us</button>
@@ -157,7 +156,7 @@ setTimeout(() => setSuccess(false), 15000); // Hide after 3 seconds
       <div className="footer-section">
       <div className="navbar-brand">
         <img src={Icon} alt="Logo" className="logo" />
-        <h4>LeadMasters.ai</h4>
+        <h4 className='item-9'>LeadMasters.ai</h4>
         </div>
         <p>Connect and network with other professionals on the platform, share insights, and collaborate on projects.</p>
       </div>
@@ -171,7 +170,7 @@ setTimeout(() => setSuccess(false), 15000); // Hide after 3 seconds
            <li><a className='jumpa' href="#">Privacy Policy</a></li>
         </ul>
       </div>
-      <div className="footer-section">
+      <div className="footer-section karuna1">
                     <h3>Contact details</h3>
                     <div className="contact-item">
                         <img src={loc} alt="Location Icon" className="contact-icon" />
@@ -204,16 +203,15 @@ setTimeout(() => setSuccess(false), 15000); // Hide after 3 seconds
                 </div>
       <div style={{display:'flex',flexDirection:'column',width:'25vw'}}>
 
-      <div className="footer-section">
+      <div className="footer-section3 karuna">
         <h3>Stay up to date with the latest courses</h3>
-        <form className="subscribe-form" onSubmit={handleSubmit}>
+        <form className="subscribe-form2" onSubmit={handleSubmit}>
           <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
           <button type="submit">{loading ? <Spin size="small" /> : "Send"}</button>
         </form>
         {success && <Alert style={{marginBlock:5}} message="Submitted successfully!" type="success" showIcon />}
         {error && <Alert style={{marginBlock:5}} message="There was an error sending your message." type="error" showIcon />}
-      </div>
-      <div className="footer-section follow-us">
+        <div className="follow-us">
         <h3>Follow us on</h3>
         <div className="social-icons">
           <a href="#"><img src={soc5} alt="Facebook" className='soc-img-sec' /></a>
@@ -223,6 +221,8 @@ setTimeout(() => setSuccess(false), 15000); // Hide after 3 seconds
           <a href="#"><img src={soc1} alt="Instagram" className='soc-img-sec' /></a>
         </div>
       </div>
+      </div>
+     
       </div>
    
     </footer>

@@ -31,6 +31,9 @@ import PublishAds from './screens/publishads';
 import Rejected from './screens/rejected';
 import PublishPosts from './screens/publishPosts';
 
+
+
+
 function App() {
   return (
     <Router>
@@ -65,7 +68,7 @@ function App() {
           <Route path="/createposts" element={<CreatePosts />} />
           <Route path="/integrations" element={<Integrations />} />
           
-     
+    
         </Route>
       </Routes>
     </Router>

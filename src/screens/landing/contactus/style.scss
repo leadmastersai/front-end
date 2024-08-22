@@ -27,6 +27,7 @@
   .footer9 {
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
     padding: 40px;
     margin-top: -5vh;
     
@@ -48,6 +49,14 @@
     color: #8F00FF;
   }
   .footer-section {
+    flex: 1 1 20%;
+    margin: 0 20px;
+  }
+  .footer-section3{
+    flex: 1 1 20%;
+    margin: 0 20px;
+  }
+  .footer-section101 {
     flex: 1;
     margin: 0 20px;
   }
@@ -72,10 +81,22 @@
     color: #555;
     text-decoration: none;
   }
-  
+  .newsletter-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-block: 10vh;
+    padding: 2px;
+    padding-bottom: 1px;
+    background: linear-gradient(90deg, rgba(245, 233, 255, 1) 0%, rgba(255, 249, 250, 1) 100%);
+    border-radius: 10px;
+    max-width: 90%;
+    margin-inline: auto;
+  }
   .footer-section a:hover {
     text-decoration: underline;
   }
+  
   
   .cta-button90 {
     z-index: 999;
@@ -134,6 +155,7 @@
   
   .image-container57 {
     max-width: 40%;
+  
     padding: 10vh;
   }
   
@@ -236,6 +258,204 @@
     padding: 11px;
     width: 150px;
   }
+  .kuma{
+   text-align: start;
+    width: 100%;
+  }
+  .subscribe-form2 {
+    display: flex;
+    align-items: center;
+    width: 90%;
+    box-shadow: (-2px -2px 15px hsla(240, 80%, 90%, 0.542));
+  }
+  
+  .subscribe-form2 input {
+    padding: 10px;
+    border: none;
+    border-radius: 10px 0 0 10px;
+  
+    flex: 1;
+  }
+  
+  .subscribe-form2 button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    background-color: #000;
+    color: #fff;
+    cursor: pointer;
+  }
   
 
+  @media (max-width: 768px) {
+    .contact-item{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+    }
+    
+   
+   .contact-form-container {
+        flex-direction: column;
+        align-items: center !important;
+        display: flex;
+        margin-inline: auto;
+        justify-content: center;
+        padding-inline:0 !important;
+               margin-top: -10vh;
+        width: 100%;
+    }
+    .footer-section101 {
+    
+     
+      padding-inline: 50px !important;
+    
+    }
   
+    .contact-item {
+      text-align: start;
+     
+    }
+  
+    .contact-details4 {
+      width: 100%;
+    }
+
+    .contact-text{
+      margin-top: 1px;
+      max-width: 80%;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      margin-inline: auto;
+    }
+
+    .biggest-text91 {
+      font-size: 24px;
+      text-align: center;
+      width: 90%;
+    }
+
+  .contact-text p ,.contact-details4 p {
+      font-size: 1em;
+       margin-right: 0; /* Remove right margin for mobile */
+    }
+
+    .contact-form {
+        width: 80%;
+        text-align: center; /* Adjust form width on mobile */
+    }
+    .newsletter-container{
+      margin-block:2vh;
+      text-align: center;
+      flex-direction: column;
+    }
+    .newsletter-content{
+      max-width: 100%;
+      padding: 2vh;
+ text-align: center;
+    }
+    .newsletter-image101{
+text-align: center;
+    }
+
+    .form-group {
+        flex-direction: column;
+        gap: 15px;
+    }
+    .kuma{
+      margin-top: -5vh;
+      width: 100%;
+      text-align: center !important;
+      margin-inline: auto;
+      justify-content: center;
+      flex: 1;
+     
+    }
+    
+ .footer9{
+  padding: 0 !important;
+ }
+      .footer-section{
+        
+   width:35%;
+   margin-inline: 5vh;
+
+   
+    
+      
+        }
+        .footer-section3{
+        
+          width:250%;
+          margin-inline: 2vh;
+
+            flex-direction: column; /* Stack elements vertically on mobile */
+          
+            padding-inline: 60px;
+                 
+             
+               }
+        .karuna{
+     
+          padding-inline: auto !important;
+          text-align: center;
+          display: flex;
+        
+          align-items: center;
+          justify-content: center;
+          flex-direction: column;
+         
+
+        }
+        .karuna1{
+          width: 200% !important;
+          text-align: center;
+
+        }
+        .contact-info-container57{
+          display: flex;
+        flex:1;
+          align-items: center;
+          justify-content: center;
+          padding: 0;
+          margin-inline: auto;
+          width: 100% !important;
+          text-align: center;
+          flex-direction: column;
+          margin-top: 15vh;
+        }
+      
+        .enquiry{
+          font-size: 24px;
+          font-weight: 400;
+          text-align: center;
+          
+      }
+      .image-container57 {
+        display: flex;
+        padding-inline: 0 !important;
+        margin-inline: auto;
+        min-width: 80%;
+        
+        align-items: center;
+        justify-content: center;
+      }
+      .submit-button{
+        text-align: center;
+      }
+      .subscribe-form2{
+        margin-inline: auto;
+        width: 80%;
+        margin-right: 50vh;
+        text-align: center;
+      }
+      .closs{
+        width: 100% !important;
+        text-align: center;
+        margin-inline:auto !important 
+      }
+    }

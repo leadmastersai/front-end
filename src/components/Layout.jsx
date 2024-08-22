@@ -33,12 +33,12 @@ const Layout = () => {
     {
       key: 'generate-ads',
       label: (
-        <button className="cta-button-side" style={{ width: '100%' }} onClick={() => navigate('/createad')}>
+        <button className="cta-button-side" style={{ width: '100%' }} onClick={() => navigate('/home')}>
           {collapsed ? "" : "Generate Ads"}
         </button>
       ),
     },
-    ...items.slice(1, 3), // Adjust index as per the requirement, these will be the first two items
+    
     {
       key: 'generate-posts',
       label: (
@@ -47,7 +47,7 @@ const Layout = () => {
         </button>
       ),
     },
-    ...items.slice(3), // The rest of the items will follow
+    ...items.slice(1), // The rest of the items will follow
   ];
 
   return (
