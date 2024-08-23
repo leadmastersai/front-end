@@ -5,9 +5,11 @@ import './styles.css';
 import Icon from '../assets/auth/appIcon.svg';
 import items from '../utils/items';
 import avtar from '../assets/dashb/Avatars.svg';
+import { FaArrowRight } from "react-icons/fa6";
 import menu9 from '../assets/dashb/getad.svg';
 import { useSelector } from 'react-redux';
 import { BsLayoutTextSidebar } from "react-icons/bs";
+import { FaArrowLeft } from "react-icons/fa6";
 const Layout = () => {
   const navigate = useNavigate();
   const [collapsed, setCollapsed] = useState(false);
@@ -72,11 +74,14 @@ const Layout = () => {
             marginInline: 7,
             padding: '10px',
             cursor: 'pointer',
+            display:"flex"
           }}
-          onClick={handleToggle}
+          onClick={()=>navigate("/home")}
         >
           <img src={Icon} style={{ width: 40, height: 40 }} alt="App Icon" />
+        
         </div>
+        {collapsed ? <FaArrowRight style={{display:'flex',alignItems:'flex-end',marginLeft:'4vw',marginTop:'-5vh',cursor:'pointer',marginBottom:'5vh'}} size={18} onClick={handleToggle} color='gray' /> : <FaArrowLeft onClick={handleToggle} style={{cursor:'pointer',display:'flex',alignItems:'flex-end',marginLeft:'13vw',marginTop:'-5vh',marginBottom:'5vh'}} size={18} color='gray' /> }  
         <Menu
           defaultSelectedKeys={['1']}
           defaultOpenKeys={['1-1']}
@@ -94,7 +99,7 @@ const Layout = () => {
             className={profilepic ? 'profile-pic' : ''}
           />
         </div>
-        <BsLayoutTextSidebar style={{marginInline:collapsed?'35%':'13%',cursor:'pointer'}} onClick={handleToggle}/>
+       
       </div>
 
       <div style={{ marginLeft: collapsed ? 60 : 210, flex: 1, paddingLeft: 20 }}>

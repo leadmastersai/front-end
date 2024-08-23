@@ -131,13 +131,13 @@ const [success, setSuccess] = useState(false); // state for showing success mess
             <motion.div className="container-section99" ref={featuresRef}
                 initial="hidden"
                 animate={featuresInView ? 'visible' : 'hidden'}>
-                <motion.h1 variants={textVariants} className="biggest-text9">
+                <motion.h1 variants={textVariants} className="biggest-text91">
                     LeadMasters AI is dedicated to <span className="purple-text">revolutionizing</span>
                 </motion.h1>
-                <motion.h1 variants={textVariants} className="biggest-text9 smaller">
+                <motion.h1 variants={textVariants} className="biggest-text91 smaller">
                     marketing through cutting-edge
                 </motion.h1>
-                <motion.h1 variants={textVariants} className="biggest-text9 smallest">
+                <motion.h1 variants={textVariants} className="biggest-text91 smallest">
                     AI technology.
                 </motion.h1>
             </motion.div>
@@ -150,11 +150,11 @@ const [success, setSuccess] = useState(false); // state for showing success mess
             <motion.section className='container-section4' ref={featuresRef3}
                 initial="hidden"
                 animate={featuresInView3 ? 'visible' : 'hidden'}>
-                <motion.h3 variants={textVariants} className='biggest-text1'>Our Story</motion.h3>
-                <motion.p variants={textVariants} style={{ width: '50vw', textAlign: 'center', marginBottom: '5vh' }}>
+                <motion.h3 variants={textVariants} className='biggest-text91'>Our Story</motion.h3>
+                <motion.p variants={textVariants} className='size-p'>
                     “Seamlessly integrate LeadMasters AI with your existing tools and platforms to create a unified marketing ecosystem. Our integration capabilities ensure that data flows smoothly between systems, enhancing workflow efficiency and data accuracy.”
                 </motion.p>
-                <div className="image-container">
+                <div className="image-container hide">
                     <motion.img className='bg-img-sect55' variants={imageVariants} src={backgr} />
                     <motion.img className='bg-img-sect77' variants={imageVariants} src={two} />
                 </div>
@@ -165,8 +165,8 @@ const [success, setSuccess] = useState(false); // state for showing success mess
                         <motion.img src={found} alt="Abdullah Khan" className="profile-img" variants={imageVariants} />
                     </div>
                     <div className="content">
-                        <motion.h2 variants={textVariants}>Abdullah Khan</motion.h2>
-                        <motion.h3 variants={textVariants}>- CEO & Founder</motion.h3>
+                        <motion.h1 variants={textVariants} className='biggest-text91 right'>Abdullah Khan</motion.h1>
+                        <motion.h3 variants={textVariants} className='biggest-text92'>- CEO & Founder</motion.h3>
                         <motion.p variants={textVariants}>
                             With a robust 16-year career spanning corporate training, software development, and cutting-edge digital marketing, Abdullah Khan leads LeadMasters with a visionary approach to AI-driven lead generation and ad optimization. His expertise and forward-thinking leadership position LeadMasters as a trailblazer in revolutionizing digital advertising strategies, ensuring clients achieve unparalleled results in a competitive landscape.
                         </motion.p>
@@ -176,7 +176,7 @@ const [success, setSuccess] = useState(false); // state for showing success mess
             <motion.div className="our-values" ref={featuresRef5}
                 initial="hidden"
                 animate={featuresInView5 ? 'visible' : 'hidden'}>
-                <motion.h1 variants={textVariants} className='biggest-text1' style={{ alignItems: 'center', marginBottom: '3vh' }}>
+                <motion.h1 variants={textVariants} className='biggest-text91 co' style={{ alignItems: 'center', marginBottom: '3vh' }}>
                     Our Values
                 </motion.h1>
                 <div className="values-container">
@@ -197,9 +197,9 @@ const [success, setSuccess] = useState(false); // state for showing success mess
                     </motion.div>
                 </div>
             </motion.div>
-            <div className="newsletter-container">
+            <div className="newsletter-container newsletter-container6">
                 <div className="newsletter-content">
-                    <h1 className='biggest-text9' style={{ textAlign: 'left', width: '130%' }}>
+                    <h1 className='biggest-text91 closs' style={{ textAlign: 'left', width: '130%' }}>
                         Subscribe to our newsletter for the latest updates
                     </h1>
                     <div className="newsletter-input">
@@ -214,25 +214,25 @@ const [success, setSuccess] = useState(false); // state for showing success mess
                     <img src={seo} alt="Newsletter" />
                 </div>
             </div>
-            <footer className="footer9">
-                <div className="footer-section">
-                    <div className="navbar-brand">
-                        <img src={Icon} alt="Logo" className="logo" />
-                        <h4>LeadMasters.ai</h4>
-                    </div>
-                    <p>Connect and network with other professionals on the platform, share insights, and collaborate on projects.</p>
-                </div>
-                <div className="footer-section">
-                    <h3>Quick links</h3>
-                    <ul>
-                    <li><a className='jumpa' href="/aboutus">About Us</a></li>
+            <footer className="footer9 top" >
+      <div className="footer-section">
+      <div className="navbar-brand">
+        <img src={Icon} alt="Logo" className="logo" />
+        <h4 className='item-9'>LeadMasters.ai</h4>
+        </div>
+        <p className='bora'>Connect and network with other professionals on the platform, share insights, and collaborate on projects.</p>
+      </div>
+      <div className="footer-section">
+        <h3>Quick links</h3>
+        <ul >
+        <li><a className='jumpa' href="/aboutus">About Us</a></li>
            <li><a className='jumpa' href="/contactus">Contact</a></li>
            <li><a className='jumpa' href="/blog">Blog</a></li>
            <li><a className='jumpa' href="#">Terms of Service</a></li>
            <li><a className='jumpa' href="#">Privacy Policy</a></li>
-                    </ul>
-                </div>
-                <div className="footer-section">
+        </ul>
+      </div>
+      <div className="footer-section">
                     <h3>Contact details</h3>
                     <div className="contact-item">
                         <img src={loc} alt="Location Icon" className="contact-icon" />
@@ -263,29 +263,32 @@ const [success, setSuccess] = useState(false); // state for showing success mess
                         </div>
                     </div>
                 </div>
-                <div style={{ display: 'flex', flexDirection: 'column', width: '25vw' }}>
-                    <div className="footer-section">
-                        <h3>Stay up to date with the latest courses</h3>
-                        <form className="subscribe-form" onSubmit={handleSubmit}>
+      <div style={{display:'flex',flexDirection:'column',width:'25vw'}}>
+
+      <div className="footer-section3 karuna">
+        <h3>Stay up to date with the latest courses</h3>
+        <form className="subscribe-form2" onSubmit={handleSubmit}>
           <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
           <button type="submit">{loading ? <Spin size="small" /> : "Send"}</button>
         </form>
         {success && <Alert style={{marginBlock:5}} message="Submitted successfully!" type="success" showIcon />}
         {error && <Alert style={{marginBlock:5}} message="There was an error sending your message." type="error" showIcon />}
-                    </div>
-                    <div className="footer-section follow-us">
-                        <h3>Follow us on</h3>
-                        <div className="social-icons">
-                            <a href="#"><img src={soc5} alt="Facebook" className='soc-img-sec' /></a>
-                            <a href="#"><img src={soc4} alt="Twitter" className='soc-img-sec' /></a>
-                            <a href="#"><img src={soc3} alt="LinkedIn" className='soc-img-sec' /></a>
-                            <a href="#"><img src={soc2} alt="Instagram" className='soc-img-sec' /></a>
-                            <a href="#"><img src={soc1} alt="Instagram" className='soc-img-sec' /></a>
-                        </div>
-                    </div>
-                </div>
-            </footer>
-            <p className='last-line'>© 2024 | Powered by LeadMaster.AI</p>
+        <div className="follow-us">
+        <h3>Follow us on</h3>
+        <div className="social-icons">
+          <a href="#"><img src={soc5} alt="Facebook" className='soc-img-sec' /></a>
+          <a href="#"><img src={soc4} alt="Twitter" className='soc-img-sec' /></a>
+          <a href="#"><img src={soc3} alt="LinkedIn" className='soc-img-sec' /></a>
+          <a href="#"><img src={soc2} alt="Instagram" className='soc-img-sec' /></a>
+          <a href="#"><img src={soc1} alt="Instagram" className='soc-img-sec' /></a>
+        </div>
+      </div>
+      </div>
+     
+      </div>
+   
+    </footer>
+    <p className='last-line'>© 2024 | Powered by LeadMaster.AI</p>
         </div>
     );
 }

@@ -56,6 +56,7 @@
     border: none;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     max-width: 300px;
+    min-width: 200px;
     margin: 10px;
    cursor: pointer;
     display: flex;
@@ -302,4 +303,283 @@
     max-width: 70%;
     border-radius: 10px;
   }
+  @media (max-width: 768px) {
+    .contact-item{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+    }
+    .newsletter-image img{
+      width: 70vw;
+      position: relative;
+      bottom:50px
+     
+    }
+    .top{
+      margin-top: 5vh !important;
+    }
+    .size-p{
+      width: 90%;
+    }
+    .right{
+      text-align: center !important;
+    }
+    .co{
+      margin-block: 5vh !important;
+    }
+   .image-container{
+    display: none ;
+   }
+   
+   .contact-form-container {
+        flex-direction: column;
+        align-items: center !important;
+        display: flex;
+        margin-inline: auto;
+        justify-content: center;
+        padding-inline:0 !important;
+               margin-top: -10vh;
+        width: 100%;
+    }
+    .footer-section101 {
+    
+     
+      padding-inline: 50px !important;
+    
+    }
   
+    .contact-item {
+      text-align: start;
+     
+    }
+  
+    .contact-details4 {
+      width: 100%;
+    }
+
+    .contact-text{
+      margin-top: 1px;
+      max-width: 80%;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      margin-inline: auto;
+    }
+
+    .biggest-text91 {
+      font-size: 24px;
+      text-align: center;
+      width: 90%;
+    }
+    .biggest-text92 {
+      font-size: 15px !important;
+      text-align: center;
+     
+    }
+   
+  .contact-text p ,.contact-details4 p {
+      font-size: 1em;
+       margin-right: 0; /* Remove right margin for mobile */
+    }
+
+    .contact-form {
+        width: 80%;
+        text-align: center; /* Adjust form width on mobile */
+    }
+    .newsletter-container6{
+      margin-block:2vh;
+      text-align: center;
+      flex-direction: column;
+      height: 50vh;
+    }
+    .hide{
+      display: none !important;
+    }
+    .newsletter-content{
+      max-width: 100%;
+      padding: 2vh;
+ text-align: center;
+    }
+    .newsletter-image101{
+text-align: center;
+    }
+
+    .form-group {
+        flex-direction: column;
+        gap: 15px;
+    }
+    .kuma{
+      margin-top: -5vh;
+      width: 100%;
+      text-align: center !important;
+      margin-inline: auto;
+      justify-content: center;
+      flex: 1;
+     
+    }
+    
+ .footer9{
+  grid-template-columns: repeat(1, 1fr); /* 3 cards per row */
+
+ }
+      .footer-section{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+  width: 85%;
+  
+
+   
+    
+      
+        }
+        .jumpa {
+          text-align: center;
+        }
+        .bora{
+          display: none;
+        }
+        .footer-section3{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        
+          margin-inline: 2vh;
+
+            flex-direction: column; /* Stack elements vertically on mobile */
+          
+          
+                 
+             
+               }
+        .karuna{
+     
+          padding-inline: auto !important;
+          text-align: center;
+          display: flex;
+        
+          align-items: center;
+          justify-content: center;
+          flex-direction: column;
+         
+
+        }
+        .karuna1{
+          width: 200% !important;
+          text-align: center;
+
+        }
+        .contact-info-container57{
+          display: flex;
+        flex:1;
+          align-items: center;
+          justify-content: center;
+          padding: 0;
+          margin-inline: auto;
+          width: 100% !important;
+          text-align: center;
+          flex-direction: column;
+          margin-top: 15vh;
+        }
+      
+        .enquiry{
+          font-size: 24px;
+          font-weight: 400;
+          text-align: center;
+          
+      }
+      .image-container57 {
+        display: flex;
+        padding-inline: 0 !important;
+        margin-inline: auto;
+        min-width: 80%;
+        
+        align-items: center;
+        justify-content: center;
+      }
+      .footer-section ul{
+        
+          align-items: center;
+          justify-content: center;
+          display: flex;
+          flex-direction: column;
+      
+      }
+      .submit-button{
+        text-align: center;
+      }
+      .subscribe-form2{
+        
+      
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+      }
+      .closs{
+        width: 100% !important;
+        text-align: center;
+        margin-inline:auto !important 
+      }
+      .team-member{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-inline: auto;
+        width: cover;
+        flex-direction: column;
+      }
+      .content{
+        width:100% !important;
+      }
+      .content p{
+        width: 98%;
+      }
+      .profile-img {
+        margin-right: 0 !important;
+        z-index: 2;
+        width: 50vw; /* Adjust as needed */
+     
+        padding: 0 !important;
+    }
+    .values-container{
+      display: grid;
+      grid-template-columns: 1fr;
+    }
+    .container-section99 {
+    margin-top: 10vh !important;
+    }
+    .card77{
+      margin-inline: auto;
+    }
+    .slide69{
+      display: flex;
+      flex-direction: column;
+    }
+    .content69{
+      max-width: 100% !important;
+    }
+    .image69 ,.image69-alt{
+      width: 100%;
+
+    }
+    .image69 img,.image69-alt img{
+      position: relative;
+      left: 20vw;
+      height: 15vh;
+      object-fit: contain;
+      bottom: 5vh;
+      width: 50vw;
+    }
+    .app69{
+      padding: 2vh !important;
+    }
+    .read-more69{
+      margin-top: 0 !important;
+      
+    }
+  }

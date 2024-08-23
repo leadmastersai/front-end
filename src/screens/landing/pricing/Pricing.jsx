@@ -2,6 +2,7 @@ import enter from '../../../assets/landing/enter.svg';
 import pro from '../../../assets/landing/pro.svg';
 import free from '../../../assets/landing/free.svg';
 import './style.scss';
+import Pguy from '../../../assets/blog/pointingguy.svg';
 import soc1 from '../../../assets/landing/social1.svg';
 import soc2 from '../../../assets/landing/social2.svg';
 import soc3 from '../../../assets/landing/social3.svg';
@@ -169,10 +170,20 @@ const Pricing = () => {
             </a>
             </div>
       </section>
-      <section className='container-section4' style={{marginTop:'-20vh'}}>
-      <button className="cta-button96" onClick={()=>navigate("/signup")}>Get Started Free</button>
-<img className='bg-img-sect5' src={backgr} />
-<img className='cards-img-sect6' src={sect10} />
+      <section className='container-section4' style={{marginTop:'-20v'}}>
+   
+<img className='bg-img-sect5 maya' src={backgr}  />
+<div className="newsletter-container" style={{marginTop:'-70vh',height:'50vh'}}>
+      <div className="newsletter-content">
+        <h1 className='biggest-text91 closs' style={{textAlign:'left',width:'130%'}}>Ready to transform your marketing?</h1>
+        <p>Sign up now or request a demo to experience the power of LeadMasters AI.</p>
+     
+        <button className="cta-button90" onClick={()=>navigate("/signup")}>Get Started Free</button>
+      </div>
+      <div className="newsletter-image101 kira" >
+        <img src={Pguy} alt="Newsletter" />
+      </div>
+    </div>
       </section>
       <footer className="footer9" style={{marginTop:'5vh'}}>
       <div className="footer-section">
@@ -180,7 +191,7 @@ const Pricing = () => {
         <img src={Icon} alt="Logo" className="logo" />
         <h4 className='item-9'>LeadMasters.ai</h4>
         </div>
-        <p>Connect and network with other professionals on the platform, share insights, and collaborate on projects.</p>
+        <p className='bora'>Connect and network with other professionals on the platform, share insights, and collaborate on projects.</p>
       </div>
       <div className="footer-section">
         <h3>Quick links</h3>
@@ -192,7 +203,7 @@ const Pricing = () => {
            <li><a className='jumpa' href="#">Privacy Policy</a></li>
         </ul>
       </div>
-      <div className="footer-section karuna1">
+      <div className="footer-section ">
                     <h3>Contact details</h3>
                     <div className="contact-item">
                         <img src={loc} alt="Location Icon" className="contact-icon" />

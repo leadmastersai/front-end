@@ -158,7 +158,7 @@ setTimeout(() => setSuccess(false), 15000); // Hide after 3 seconds
         <img src={Icon} alt="Logo" className="logo" />
         <h4 className='item-9'>LeadMasters.ai</h4>
         </div>
-        <p>Connect and network with other professionals on the platform, share insights, and collaborate on projects.</p>
+        <p className='bora'>Connect and network with other professionals on the platform, share insights, and collaborate on projects.</p>
       </div>
       <div className="footer-section">
         <h3>Quick links</h3>
@@ -170,7 +170,7 @@ setTimeout(() => setSuccess(false), 15000); // Hide after 3 seconds
            <li><a className='jumpa' href="#">Privacy Policy</a></li>
         </ul>
       </div>
-      <div className="footer-section karuna1">
+      <div className="footer-section">
                     <h3>Contact details</h3>
                     <div className="contact-item">
                         <img src={loc} alt="Location Icon" className="contact-icon" />

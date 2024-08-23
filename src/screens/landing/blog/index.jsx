@@ -57,8 +57,8 @@ const Blog = () => {
         className="custom-arrow custom-prev-arrow"
         style={{
           position: 'absolute',
-          left: '200px',
-          top: '135%',
+          left: '130px',
+          top: '31.5%',
           transform: 'translateY(-5%)',
           cursor: 'pointer',
         }}
@@ -75,8 +75,8 @@ const Blog = () => {
         className="custom-arrow custom-next-arrow"
         style={{
           position: 'absolute',
-          right: '200px',
-          top: '135%',
+          right: '130px',
+          top: '31.5%',
           transform: 'translateY(-5%)',
           cursor: 'pointer',
         }}
@@ -193,7 +193,7 @@ const handlePrevCards = () => {
   return (
     <div>
       <div className="container-section99">
-        <h1 className="biggest-text9">Blog/Resources</h1>
+        <h1 className="biggest-text91">Blog/Resources</h1>
       </div>
       <div className="image-container">
         <img className='bg-img-sect55' src={backgr} />
@@ -201,7 +201,7 @@ const handlePrevCards = () => {
       </div>
 
       <div className="container-section99">
-        <h1 className="biggest-text9">Latest Blogs</h1>
+        <h1 className="biggest-text91">Latest Blogs</h1>
         <CustomPrevArrow onClick={handlePrevCards} />
 
         <div className="carousel-container79">
@@ -222,7 +222,7 @@ const handlePrevCards = () => {
       </div>
 
       <div className="app69">
-        <h1 className="biggest-text9" style={{ marginBottom: 20 }}>Case Studies</h1>
+        <h1 className="biggest-text91" style={{ marginBottom: 20 }}>Case Studies</h1>
         <div className="carousel69-container">
           <div className="slide69">
             <div className="content69">
@@ -246,9 +246,9 @@ const handlePrevCards = () => {
         </div>
       </div>
 
-      <div className="newsletter-container">
+      <div className="newsletter-container newsletter-container6">
         <div className="newsletter-content">
-          <h1 className='biggest-text9' style={{ textAlign: 'left', width: '130%' }}>Subscribe to our newsletter for the latest updates</h1>
+          <h1 className='biggest-text91 closs' style={{ textAlign: 'left', width: '130%' }}>Subscribe to our newsletter for the latest updates</h1>
           <div className="newsletter-input">
             <input type="email" placeholder="Enter your email id" value={email} onChange={(e) => setEmail(e.target.value)} />
           </div>
@@ -261,25 +261,25 @@ const handlePrevCards = () => {
         </div>
       </div>
 
-      <footer className="footer9">
-        <div className="footer-section">
-          <div className="navbar-brand">
-            <img src={Icon} alt="Logo" className="logo" />
-            <h4>LeadMasters.ai</h4>
-          </div>
-          <p>Connect and network with other professionals on the platform, share insights, and collaborate on projects.</p>
+      <footer className="footer9 top" >
+      <div className="footer-section">
+      <div className="navbar-brand">
+        <img src={Icon} alt="Logo" className="logo" />
+        <h4 className='item-9'>LeadMasters.ai</h4>
         </div>
-        <div className="footer-section">
-          <h3>Quick links</h3>
-          <ul>
-            <li><a className='jumpa' href="/aboutus">About Us</a></li>
-            <li><a className='jumpa' href="/contactus">Contact</a></li>
-            <li><a className='jumpa' href="/blog">Blog</a></li>
-            <li><a className='jumpa' href="#">Terms of Service</a></li>
-            <li><a className='jumpa' href="#">Privacy Policy</a></li>
-          </ul>
-        </div>
-        <div className="footer-section">
+        <p className='bora'>Connect and network with other professionals on the platform, share insights, and collaborate on projects.</p>
+      </div>
+      <div className="footer-section">
+        <h3>Quick links</h3>
+        <ul >
+        <li><a className='jumpa' href="/aboutus">About Us</a></li>
+           <li><a className='jumpa' href="/contactus">Contact</a></li>
+           <li><a className='jumpa' href="/blog">Blog</a></li>
+           <li><a className='jumpa' href="#">Terms of Service</a></li>
+           <li><a className='jumpa' href="#">Privacy Policy</a></li>
+        </ul>
+      </div>
+      <div className="footer-section">
                     <h3>Contact details</h3>
                     <div className="contact-item">
                         <img src={loc} alt="Location Icon" className="contact-icon" />
@@ -310,29 +310,32 @@ const handlePrevCards = () => {
                         </div>
                     </div>
                 </div>
-        <div style={{ display: 'flex', flexDirection: 'column', width: '25vw' }}>
-          <div className="footer-section">
-            <h3>Stay up to date with the latest courses</h3>
-            <form className="subscribe-form" onSubmit={handleSubmit}>
-              <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
-              <button type="submit">{loading ? <Spin size="small" /> : "Send"}</button>
-            </form>
-            {success && <Alert style={{ marginBlock: 5 }} message="Submitted successfully!" type="success" showIcon />}
-            {error && <Alert style={{ marginBlock: 5 }} message="There was an error sending your message." type="error" showIcon />}
-          </div>
-          <div className="footer-section follow-us">
-            <h3>Follow us on</h3>
-            <div className="social-icons">
-              <a href="#"><img src={soc5} alt="Facebook" className='soc-img-sec' /></a>
-              <a href="#"><img src={soc4} alt="Twitter" className='soc-img-sec' /></a>
-              <a href="#"><img src={soc3} alt="LinkedIn" className='soc-img-sec' /></a>
-              <a href="#"><img src={soc2} alt="Instagram" className='soc-img-sec' /></a>
-              <a href="#"><img src={soc1} alt="Instagram" className='soc-img-sec' /></a>
-            </div>
-          </div>
+      <div style={{display:'flex',flexDirection:'column',width:'25vw'}}>
+
+      <div className="footer-section3 karuna">
+        <h3>Stay up to date with the latest courses</h3>
+        <form className="subscribe-form2" onSubmit={handleSubmit}>
+          <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
+          <button type="submit">{loading ? <Spin size="small" /> : "Send"}</button>
+        </form>
+        {success && <Alert style={{marginBlock:5}} message="Submitted successfully!" type="success" showIcon />}
+        {error && <Alert style={{marginBlock:5}} message="There was an error sending your message." type="error" showIcon />}
+        <div className="follow-us">
+        <h3>Follow us on</h3>
+        <div className="social-icons">
+          <a href="#"><img src={soc5} alt="Facebook" className='soc-img-sec' /></a>
+          <a href="#"><img src={soc4} alt="Twitter" className='soc-img-sec' /></a>
+          <a href="#"><img src={soc3} alt="LinkedIn" className='soc-img-sec' /></a>
+          <a href="#"><img src={soc2} alt="Instagram" className='soc-img-sec' /></a>
+          <a href="#"><img src={soc1} alt="Instagram" className='soc-img-sec' /></a>
         </div>
-      </footer>
-      <p className='last-line'>© 2024 | Powered by LeadMaster.AI</p>
+      </div>
+      </div>
+     
+      </div>
+   
+    </footer>
+    <p className='last-line'>© 2024 | Powered by LeadMaster.AI</p>
     </div>
   )
 }
