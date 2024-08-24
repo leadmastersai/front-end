@@ -14,7 +14,9 @@ import loc from '../../../assets/landing/Location.svg';
 import time from '../../../assets/landing/Message.svg';
 import mess from '../../../assets/landing/Calling.svg';
 import call from '../../../assets/landing/Time.svg';
-
+import card1 from '../../../assets/features/c4.svg';
+import card2 from '../../../assets/features/c5.svg';
+import card3 from '../../../assets/features/c6.svg';
 import './style.scss';
 import { useNavigate } from 'react-router-dom';
 import { Alert, Spin } from 'antd';
@@ -72,23 +74,36 @@ const Second = () => {
     // Add more slides as needed
   ];
 
+  const features = [
+    { image: card1 },
+    { image: card2 },
+    { image: card3 },
+  ];
+
+
   return (
-    <div>
+    <div style={{marginTop:'-25vh'}}>
      <div className="team-member">
     <div >
       
-        <img src={left} alt="Abdullah Khan" className="profile-img0"/>
+        <img src={left} alt="Abdullah Khan" className="profile-img0 canta"/>
     </div>
-    <div className="content101">
-        <h1 className='biggest-text1' style={{textAlign:'left'}}>Multi-Channel Ad Optimization</h1>
+    <div className="content101 power">
+        <h1 className='biggest-text91 closs power' style={{textAlign:'left'}}>Multi-Channel Ad Optimization</h1>
       
         <p>Maximize your advertising ROI with our multi-channel ad optimization feature. Seamlessly manage and optimize ad campaigns across various platforms, including Google Ads, Facebook Ads, LinkedIn Ads, Twitter Ads, and Instagram Ads</p>
     </div>
 </div>
 
 <div className='cont-center-first'>
-<h1 className='biggest-text1'> Key Features</h1>
-<img src={cards} alt="iam" className='cards-three' />
+<h1 className='biggest-text91'> Key Features</h1>
+<div className="features-container-cards">
+        {features.map((feature, index) => (
+          <div key={index} className="feature-card-img">
+            <img src={feature.image} alt={`Feature ${index + 1}`} className="feature-image1" />
+          </div>
+        ))}
+      </div>
 </div>
 <div className="app69" style={{backgroundColor:'white',marginTop:-10}}>
    
@@ -115,85 +130,7 @@ const Second = () => {
        
       </div>
     </div>
-    <section className='container-section4' style={{marginTop:'-20vh'}}>
-    <button className="cta-button96" onClick={()=>navigate("/signup")}>Get Started Free</button>
- <img className='bg-img-sect5' src={backgr} />
- <img className='cards-img-sect6' src={sect10} />
-       </section>
-       <footer className="footer">
-       <div className="footer-section">
-       <div className="navbar-brand">
-         <img src={Icon} alt="Logo" className="logo" />
-         <h4>LeadMasters.ai</h4>
-         </div>
-         <p>Connect and network with other professionals on the platform, share insights, and collaborate on projects.</p>
-       </div>
-       <div className="footer-section">
-         <h3>Quick links</h3>
-         <ul >
-         <li><a className='jumpa' href="/aboutus">About Us</a></li>
-           <li><a className='jumpa' href="/contactus">Contact</a></li>
-           <li><a className='jumpa' href="/blog">Blog</a></li>
-           <li><a className='jumpa' href="#">Terms of Service</a></li>
-           <li><a className='jumpa' href="#">Privacy Policy</a></li>
-         </ul>
-       </div>
-       <div className="footer-section">
-                    <h3>Contact details</h3>
-                    <div className="contact-item">
-                        <img src={loc} alt="Location Icon" className="contact-icon" />
-                        <div className="contact-details">
-                         
-                            <p>Address: #81/16, Haralukunte, HSR Layout, Bangalore, 560102</p>
-                        </div>
-                    </div>
-                    <div className="contact-item">
-                        <img src={mess} alt="Phone Icon" className="contact-icon" />
-                        <div className="contact-details">
-                           
-                            <p>Tel: +91-8147808161</p>
-                        </div>
-                    </div>
-                    <div className="contact-item">
-                        <img src={call} alt="Clock Icon" className="contact-icon" />
-                        <div className="contact-details">
-                          
-                            <p>Response hours: 2 to 4</p>
-                        </div>
-                    </div>
-                    <div className="contact-item">
-                        <img src={time} alt="Email Icon" className="contact-icon" />
-                        <div className="contact-details">
-                        
-                            <p>Email: support@leadmasters.ai</p>
-                        </div>
-                    </div>
-                </div>
-       <div style={{display:'flex',flexDirection:'column',width:'25vw'}}>
  
-       <div className="footer-section">
-         <h3>Stay up to date with the latest courses</h3>
-         <form className="subscribe-form" onSubmit={handleSubmit}>
-          <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
-          <button type="submit">{loading ? <Spin size="small" /> : "Send"}</button>
-        </form>
-        {success && <Alert style={{marginBlock:5}} message="Submitted successfully!" type="success" showIcon />}
-        {error && <Alert style={{marginBlock:5}} message="There was an error sending your message." type="error" showIcon />}
-       </div>
-       <div className="footer-section follow-us">
-         <h3>Follow us on</h3>
-         <div className="social-icons">
-           <a href="#"><img src={soc5} alt="Facebook" className='soc-img-sec' /></a>
-           <a href="#"><img src={soc4} alt="Twitter" className='soc-img-sec' /></a>
-           <a href="#"><img src={soc3} alt="LinkedIn" className='soc-img-sec' /></a>
-           <a href="#"><img src={soc2} alt="Instagram" className='soc-img-sec' /></a>
-           <a href="#"><img src={soc1} alt="Instagram" className='soc-img-sec' /></a>
-         </div>
-       </div>
-       </div>
-    
-     </footer>
-     <p className='last-line'>© 2024 | Powered by LeadMaster.AI</p>
   
     </div>
   )
