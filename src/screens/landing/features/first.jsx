@@ -23,6 +23,9 @@ import './style.scss';
 import { useNavigate } from 'react-router-dom';
 import { Alert, Spin } from 'antd';
 import { postService } from '../../../../services/postServices';
+import Second from './second';
+import Three from './three';
+import Four from './four';
 const First = () => {
   const navigate=useNavigate();
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -97,7 +100,7 @@ const First = () => {
 </div>
 
 <div className='cont-center-first'>
-<h1 className='biggest-text91'> Key Features</h1>
+<h1 className='biggest-text91 m-bottom'> Key Features</h1>
 <div className="features-container-cards">
         {features.map((feature, index) => (
           <div key={index} className="feature-card-img">
@@ -133,7 +136,17 @@ const First = () => {
       </div>
     </div>
  
-  
+  <div  className='display-block displayN'>
+    <div className='m-top' >
+<Second className='display-block displayN' />
+</div>
+<div className='m-top' >
+<Three className='display-block displayN' />
+</div>
+<div className='m-top' >
+<Four  />
+</div>
+  </div>
     </div>
   )
 }

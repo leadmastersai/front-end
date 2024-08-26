@@ -96,7 +96,7 @@ const Second = () => {
 </div>
 
 <div className='cont-center-first'>
-<h1 className='biggest-text91'> Key Features</h1>
+<h1 className='biggest-text91 m-bottom'> Key Features</h1>
 <div className="features-container-cards">
         {features.map((feature, index) => (
           <div key={index} className="feature-card-img">

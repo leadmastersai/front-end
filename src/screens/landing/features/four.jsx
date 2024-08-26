@@ -84,7 +84,7 @@ const Four = () => {
 </div>
 
 <div className='cont-center-first'>
-<h1 className='biggest-text91'>Supported Integrations</h1>
+<h1 className='biggest-text91 m-bottom'>Supported Integrations</h1>
 <div className="features-container-cards">
         {features.map((feature, index) => (
           <div key={index} className="feature-card-img">
