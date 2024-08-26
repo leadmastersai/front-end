@@ -14,7 +14,7 @@
     height: auto; /* Maintain aspect ratio */
     z-index: 1;
   }
-  .image-container {
+  .image-container999 {
     position: relative;
     margin-top: 5vh;
     width: 100%;
@@ -298,6 +298,14 @@
   .newsletter-input button {
  
   }
+  .biggest-text91 {
+    text-align: center;
+    margin: 0;
+   width: 80%;
+    font-size: 40px;
+    font-weight:500;
+    
+  }
   
   .newsletter-image img {
     max-width: 70%;
@@ -331,6 +339,28 @@
    .image-container{
     display: none ;
    }
+   .carousel-container79 {
+    display: none;
+  }
+
+  .single-card-container {
+    display: block !important;
+  }
+
+  .pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 5vh;
+
+    .page {
+      margin: 0 5px;
+      cursor: pointer;
+
+      &.active {
+        font-weight: bold;
+      }
+    }
+  }
    
    .contact-form-container {
         flex-direction: column;

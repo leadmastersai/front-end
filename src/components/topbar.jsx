@@ -19,7 +19,7 @@ const Topbar = () => {
     return (
         <nav className="navbar">
             <Link to="/" className="navbar-brand">
-                <img src={Icon} alt="Logo" className="logo" />
+                <img src={Icon} alt="Logo" className="logo go" />
                 <h2 style={{ fontWeight: '300' }}>LeadMasters.ai</h2>
             </Link>
             <div>

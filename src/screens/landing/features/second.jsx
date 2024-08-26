@@ -105,7 +105,7 @@ const Second = () => {
         ))}
       </div>
 </div>
-<div className="app69" style={{backgroundColor:'white',marginTop:-10}}>
+<div className="app69 hide" style={{backgroundColor:'white',marginTop:-10}}>
    
       <div className="carousel69-container">
         <div className="slide69">

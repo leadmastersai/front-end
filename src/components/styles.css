@@ -267,15 +267,18 @@ li .ant-menu-item{
     display: none !important;
     flex-direction: column;
     width: 100%;
-    position: absolute;
-    top: 100%; /* Position below the navbar */
+   
+    top: 7.46%; /* Position below the navbar */
     left: 0;
-    
-    
+    position: fixed;
+    background-color: white;
+
     padding: 0;
     margin: 0;
-    
-    z-index: 1000;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+    z-index: 20000;
+    overflow-y: auto; /* Add scroll if content overflows */
+    max-height: calc(100vh - 60px); 
      /* Ensure the menu appears above other content */
   }
 
@@ -283,11 +286,18 @@ li .ant-menu-item{
     display: flex !important; /* Show the menu when open */
   
   }
+  .go{
+    margin-left: -4vw ;
+  }
+  .signup-btn{
+    margin-left: 0 !important;
+  }
 
   .navbar-menu li {
-    width: 100%; /* Ensure full-width clickable areas */
+   
     padding: 10px 0;
     text-align: center;
+    
   }
 
   .navbar-menu li a {
@@ -300,7 +310,8 @@ li .ant-menu-item{
 
   .menu-toggle {
     display: block ;  /* Ensure it's visible */
-    z-index: 2000;               /* Ensure it's above other elements */
+    z-index: 2000;
+    margin-right: 3vw;               /* Ensure it's above other elements */
     position: relative;
   }
 }

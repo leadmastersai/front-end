@@ -53,7 +53,7 @@ const PostIdea = () => {
   };
 
   return (
-    <div className='main-cont' style={{marginInline:'240px'}}>
+    <div className='main-cont' style={{marginInline:'100px'}}>
       {loading && (
         <div className='overlay'>
           <Spin size="large" />

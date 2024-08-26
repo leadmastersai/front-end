@@ -33,7 +33,7 @@ const PublishPosts = () => {
   return (
     <div >
       <div className='main-cont55' style={{}}>
-       <div style={{marginInline:'180px'}}>
+       <div style={{marginInline:'50px'}}>
     <div className='heading' >
     <h3>Published Posts</h3>
     <img src={stars} className='str'/>

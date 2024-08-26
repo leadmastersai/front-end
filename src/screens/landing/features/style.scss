@@ -113,6 +113,9 @@
     .feature-card-img{
       width: 80vw !important;
     }
+    .features-container-cards .feature-card-img:last-child {
+      display: none;
+    }
     .content101{
       width: 90% !important;
       display: flex;
@@ -133,10 +136,22 @@
         margin-top: 10vh !important;
 
       }
+      .minus-m-top{
+        margin-top: 2vh !important;
+      }
+      .mobile-width{
+        width: 95vw !important;
+      }
+      
       .m-bottom{
         margin-bottom: -7vh !important;
       }
-    
+      .m-bottom1{
+        margin-bottom: -25vh !important;
+      }
+      .add-m-top{
+        margin-top: 5vh !important;
+      }
     .power{
       text-align: center !important;
     }

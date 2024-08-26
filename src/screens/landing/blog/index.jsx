@@ -35,7 +35,15 @@ const Blog = () => {
   const [email, setEmail] = useState('');
   const [success, setSuccess] = useState(false); // State for showing success message
   const [error, setError] = useState(false);
-  const [cardIndex, setCardIndex] = useState(0); // Track the current set of visible cards
+  const [cardIndex, setCardIndex] = useState(0); // Trac
+  const [currentCard, setCurrentCard] = useState(0);
+  const handleNextPage = () => {
+    setCurrentCard((prev) => (prev + 1) % cardData.length);
+  };
+
+  const handlePrevPage = () => {
+    setCurrentCard((prev) => (prev - 1 + cardData.length) % cardData.length);
+  };
 
   const slides = [
     {
@@ -54,7 +62,7 @@ const Blog = () => {
   const CustomPrevArrow = ({ onClick }) => {
     return (
       <div
-        className="custom-arrow custom-prev-arrow"
+        className="custom-arrow custom-prev-arrow hide"
         style={{
           position: 'absolute',
           left: '130px',
@@ -72,7 +80,7 @@ const Blog = () => {
   const CustomNextArrow = ({ onClick }) => {
     return (
       <div
-        className="custom-arrow custom-next-arrow"
+        className="custom-arrow custom-next-arrow hide "
         style={{
           position: 'absolute',
           right: '130px',
@@ -195,7 +203,7 @@ const handlePrevCards = () => {
       <div className="container-section99">
         <h1 className="biggest-text91">Blog/Resources</h1>
       </div>
-      <div className="image-container">
+      <div className="image-container999">
         <img className='bg-img-sect55' src={backgr} />
         <img className='bg-img-sect77' src={Back} />
       </div>
@@ -203,7 +211,19 @@ const handlePrevCards = () => {
       <div className="container-section99">
         <h1 className="biggest-text91">Latest Blogs</h1>
         <CustomPrevArrow onClick={handlePrevCards} />
-
+        <div className="single-card-container" style={{ display: 'none' }}>
+        <Card
+          image={cardData[currentCard].image}
+          title={cardData[currentCard].title}
+          description={cardData[currentCard].description}
+          link={cardData[currentCard].link}
+        />
+        <div className="pagination">
+          <span className="page" onClick={handlePrevPage}>Prev</span>
+          <span className="page active">{currentCard + 1}</span>
+          <span className="page" onClick={handleNextPage}>Next</span>
+        </div>
+      </div>
         <div className="carousel-container79">
           <div className="cards-row79">
             {cardData.slice(cardIndex, cardIndex + 3).map((card, index) => (
@@ -217,8 +237,9 @@ const handlePrevCards = () => {
             ))}
           </div>
    
+   
         </div>
-        <CustomNextArrow onClick={handleNextCards} />
+        <CustomNextArrow  onClick={handleNextCards} />
       </div>
 
       <div className="app69">

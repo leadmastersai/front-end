@@ -1,4 +1,4 @@
-
+import Pguy from '../../assets/blog/pointingguy.svg';
 import './styles.scss';
 import Icon from '../../assets/auth/appIcon.svg'
 import First from '../../assets/landing/first.svg';
@@ -237,8 +237,8 @@ const Landing = () => {
       <img src={section3} className='features-section1' />
       </section>
       <section className='container-section4' >
-      <h3 className='biggest-text1' >Analytics Dashboard</h3>
-<p style={{width:'50vw',textAlign:'center',marginBottom:'5vh'}}>Comprehensive insights into your marketing performance with metrics like impressions, engagement rate, and new followers.</p>
+      <h3 className='biggest-text91 closs1 ' >Analytics Dashboard</h3>
+<p className='closs closs1' style={{width:'50vw',textAlign:'center',marginBottom:'5vh'}}>Comprehensive insights into your marketing performance with metrics like impressions, engagement rate, and new followers.</p>
 <div style={{marginInline:'auto'}}>
 <img src={num1} className='img-cont-sect4' />
 <img src={num2} className='img1-cont-sect4' />
@@ -247,8 +247,8 @@ const Landing = () => {
 </div>
       </section>
       <section className='container-section4'>
-  <h3 className='biggest-text1'>Automation Tools</h3>
-  <p style={{ width: '50vw', textAlign: 'center', marginBottom: '5vh' }}>
+  <h3 className='biggest-text91 closs1'>Automation Tools</h3>
+  <p className='closs closs1' style={{ width: '50vw', textAlign: 'center', marginBottom: '5vh' }}>
     Automate your marketing activities with features like scheduled reposts, delay threads, and autopilot for social posts.
   </p>
   <img className='bg-img-sect5' src={backgr} />
@@ -256,33 +256,33 @@ const Landing = () => {
 </section>
 
 <section className='container-section4'>
-  <h3 className='biggest-text1'>Team Collaboration</h3>
-  <p style={{ width: '40vw', textAlign: 'center', marginBottom: '5vh' }}>
+  <h3 className='biggest-text91 closs1'>Team Collaboration</h3>
+  <p className='closs closs1' style={{ width: '40vw', textAlign: 'center', marginBottom: '5vh' }}>
     Invite and manage team members, assign roles, and collaborate on ad campaigns.
   </p>
-  <img className='features-section6' src={sect7} />
+  <img className='features-section6 mobile-width' src={sect7} />
 </section>
 
 <section className='container-section4'>
-  <h3 className='biggest-text1'>AI Personalization</h3>
-  <p style={{ width: '40vw', textAlign: 'center', marginBottom: '5vh' }}>
+  <h3 className='biggest-text91 closs1 add-m-top'>AI Personalization</h3>
+  <p className='closs closs1'  style={{ width: '40vw', textAlign: 'center', marginBottom: '5vh' }}>
     Personalize your ads by providing information about yourself and your company to tailor ad suggestions.
   </p>
-  <img className='bg-img-sect5' src={backgr} />
-  <img className='cards-img-sect5' src={sect8} />
+  <img className='bg-img-sect5 m-top' src={backgr} />
+  <img className='cards-img-sect5 m-bottom mobile-width ' src={sect8} />
 </section>
 
 <section className='container-section4' style={{ marginTop: '-20vh' }}>
-  <h3 className='biggest-text1'>Professional Networking</h3>
-  <p style={{ width: '40vw', textAlign: 'center', marginBottom: '5vh' }}>
+  <h3 className='biggest-text91 closs1'>Professional Networking</h3>
+  <p className='closs closs1' style={{ width: '40vw', textAlign: 'center', marginBottom: '5vh' }}>
     Connect and network with other professionals on the platform, share insights, and collaborate on projects.
   </p>
-  <img className='features-section7' src={sect9} />
+  <img className='features-section7 add-m-bottom' src={sect9} />
 </section>
 
 <section className='container-section4'>
-  <h3 className='biggest-text1'>Choose Your Plan</h3>
-  <p style={{ width: '40vw', textAlign: 'center', marginBottom: '5vh' }}>
+  <h3 className='biggest-text91 closs1'>Choose Your Plan</h3>
+  <p className='closs1 closs' style={{ width: '40vw', textAlign: 'center', marginBottom: '5vh' }}>
     Connect and network with other professionals on the platform, share insights, and collaborate on projects.
   </p>
   <div className="pricing-cards">
@@ -299,86 +299,96 @@ const Landing = () => {
     ))}
   </div>
 </section>
-
-      <section className='container-section4' style={{marginTop:'-20vh'}}  >
- <button  className="cta-button96" onClick={()=>navigate("/signup")}>Get Started Free</button>
-<img className='bg-img-sect5' src={backgr}/>
-<img className='cards-img-sect6' src={sect10}/>
-      </section>
-      <footer className="footer">
-      <div className="footer-section">
-      <div className="navbar-brand">
-        <img src={Icon} alt="Logo" className="logo" />
-        <h4>LeadMasters.ai</h4>
-        </div>
-        <p>Connect and network with other professionals on the platform, share insights, and collaborate on projects.</p>
-      </div>
-      <div className="footer-section">
-        <h3>Quick links</h3>
-        <ul >
-        <li><a className='jumpa' href="/aboutus">About Us</a></li>
-           <li><a className='jumpa' href="/contactus">Contact</a></li>
-           <li><a className='jumpa' href="/blog">Blog</a></li>
-           <li><a className='jumpa' href="#">Terms of Service</a></li>
-           <li><a className='jumpa' href="#">Privacy Policy</a></li>
-        </ul>
-      </div>
-      <div className="footer-section">
-                    <h3>Contact details</h3>
-                    <div className="contact-item">
-                        <img src={loc} alt="Location Icon" className="contact-icon" />
-                        <div className="contact-details">
-                         
-                            <p>Address: #81/16, Haralukunte, HSR Layout, Bangalore, 560102</p>
-                        </div>
-                    </div>
-                    <div className="contact-item">
-                        <img src={mess} alt="Phone Icon" className="contact-icon" />
-                        <div className="contact-details">
-                           
-                            <p>Tel: +91-8147808161</p>
-                        </div>
-                    </div>
-                    <div className="contact-item">
-                        <img src={call} alt="Clock Icon" className="contact-icon" />
-                        <div className="contact-details">
-                          
-                            <p>Response hours: 2 to 4</p>
-                        </div>
-                    </div>
-                    <div className="contact-item">
-                        <img src={time} alt="Email Icon" className="contact-icon" />
-                        <div className="contact-details">
-                        
-                            <p>Email: support@leadmasters.ai</p>
-                        </div>
-                    </div>
-                </div>
-      <div style={{display:'flex',flexDirection:'column',width:'25vw'}}>
-
-      <div className="footer-section">
-        <h3>Stay up to date with the latest courses</h3>
-        <form className="subscribe-form" onSubmit={handleSubmit}>
-          <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
-          <button type="submit">{loading ? <Spin size="small" /> : "Send"}</button>
-        </form>
-        {success && <Alert style={{marginBlock:5}} message="Submitted successfully!" type="success" showIcon />}
-        {error && <Alert style={{marginBlock:5}} message="There was an error sending your message." type="error" showIcon />}
-      </div>
-      <div className="footer-section follow-us">
-        <h3>Follow us on</h3>
-        <div className="social-icons">
-          <a href="#"><img src={soc5} alt="Facebook" className='soc-img-sec' /></a>
-          <a href="#"><img src={soc4} alt="Twitter" className='soc-img-sec' /></a>
-          <a href="#"><img src={soc3} alt="LinkedIn" className='soc-img-sec' /></a>
-          <a href="#"><img src={soc2} alt="Instagram" className='soc-img-sec' /></a>
-          <a href="#"><img src={soc1} alt="Instagram" className='soc-img-sec' /></a>
-        </div>
-      </div>
-      </div>
+<section className='container-section4' style={{marginTop:'-20v'}}>
    
-    </footer>
-    <p className='last-line'>© 2024 | Powered by LeadMaster.AI</p>
+   <img className='bg-img-sect5 maya' src={backgr}  />
+   <div className="newsletter-container" style={{marginTop:'-70vh',height:'50vh'}}>
+         <div className="newsletter-content">
+           <h1 className='biggest-text91 closs' style={{textAlign:'left',width:'130%'}}>Ready to transform your marketing?</h1>
+           <p>Sign up now or request a demo to experience the power of LeadMasters AI.</p>
+        
+           <button className="cta-button90" onClick={()=>navigate("/signup")}>Get Started Free</button>
+         </div>
+         <div className="newsletter-image101 kira" >
+           <img src={Pguy} alt="Newsletter" />
+         </div>
+       </div>
+         </section>
+         <footer className="footer9" style={{marginTop:'5vh'}}>
+         <div className="footer-section">
+         <div className="navbar-brand">
+           <img src={Icon} alt="Logo" className="logo" />
+           <h4 className='item-9'>LeadMasters.ai</h4>
+           </div>
+           <p className='bora'>Connect and network with other professionals on the platform, share insights, and collaborate on projects.</p>
+         </div>
+         <div className="footer-section">
+           <h3>Quick links</h3>
+           <ul >
+           <li><a className='jumpa' href="/aboutus">About Us</a></li>
+              <li><a className='jumpa' href="/contactus">Contact</a></li>
+              <li><a className='jumpa' href="/blog">Blog</a></li>
+              <li><a className='jumpa' href="#">Terms of Service</a></li>
+              <li><a className='jumpa' href="#">Privacy Policy</a></li>
+           </ul>
+         </div>
+         <div className="footer-section ">
+                       <h3>Contact details</h3>
+                       <div className="contact-item">
+                           <img src={loc} alt="Location Icon" className="contact-icon" />
+                           <div className="contact-details">
+                            
+                               <p>Address: #81/16, Haralukunte, HSR Layout, Bangalore, 560102</p>
+                           </div>
+                       </div>
+                       <div className="contact-item">
+                           <img src={mess} alt="Phone Icon" className="contact-icon" />
+                           <div className="contact-details">
+                              
+                               <p>Tel: +91-8147808161</p>
+                           </div>
+                       </div>
+                       <div className="contact-item">
+                           <img src={call} alt="Clock Icon" className="contact-icon" />
+                           <div className="contact-details">
+                             
+                               <p>Response hours: 2 to 4</p>
+                           </div>
+                       </div>
+                       <div className="contact-item">
+                           <img src={time} alt="Email Icon" className="contact-icon" />
+                           <div className="contact-details">
+                           
+                               <p>Email: support@leadmasters.ai</p>
+                           </div>
+                       </div>
+                   </div>
+         <div style={{display:'flex',flexDirection:'column',width:'25vw'}}>
+   
+         <div className="footer-section3 karuna">
+           <h3>Stay up to date with the latest courses</h3>
+           <form className="subscribe-form2" onSubmit={handleSubmit}>
+             <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
+             <button type="submit">{loading ? <Spin size="small" /> : "Send"}</button>
+           </form>
+           {success && <Alert style={{marginBlock:5}} message="Submitted successfully!" type="success" showIcon />}
+           {error && <Alert style={{marginBlock:5}} message="There was an error sending your message." type="error" showIcon />}
+           <div className="follow-us">
+           <h3>Follow us on</h3>
+           <div className="social-icons">
+             <a href="#"><img src={soc5} alt="Facebook" className='soc-img-sec' /></a>
+             <a href="#"><img src={soc4} alt="Twitter" className='soc-img-sec' /></a>
+             <a href="#"><img src={soc3} alt="LinkedIn" className='soc-img-sec' /></a>
+             <a href="#"><img src={soc2} alt="Instagram" className='soc-img-sec' /></a>
+             <a href="#"><img src={soc1} alt="Instagram" className='soc-img-sec' /></a>
+           </div>
+         </div>
+         </div>
+        
+         </div>
+      
+       </footer>
+       <p className='last-line'>© 2024 | Powered by LeadMaster.AI</p>
     </div>
   );
 };

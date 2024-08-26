@@ -65,7 +65,7 @@ const {userBasics}  = useSelector((state) => state.auth);
 console.log(userBasics,"this is user");
   return (
     <>
-    <div className='main-cont' style={{marginInline:'240px'}}>
+    <div className='main-cont' style={{marginInline:'100px'}}>
     <div className='heading'>
     <h3>Create new Ad </h3>
     <img src={stars} className='str'/>

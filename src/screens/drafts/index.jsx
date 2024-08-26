@@ -85,7 +85,7 @@ const Drafts = () => {
 
   return (
     <div className='main-cont55' style={{}}>
-       <div style={{marginInline:'180px'}}>
+       <div style={{marginInline:'50px'}}>
     <div className='heading' >
     <h3>Post Drafts</h3>
     <img src={stars} className='str'/>

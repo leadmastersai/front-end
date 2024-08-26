@@ -1,92 +1,165 @@
-import React from 'react';
+import React, { useState } from 'react';
 import image1 from '../../../../assets/blogdetails/first.webp';
 import image2 from '../../../../assets/blogdetails/second.webp';
 import image3 from '../../../../assets/blogdetails/third.webp';
 import image4 from '../../../../assets/blogdetails/fourth.webp';
 import image5 from '../../../../assets/blogdetails/fifth.webp';
 import './styles.scss';
+import MainContent from './content';
+import Header from './header';
+import Sidebar from './sidebar';
+import Pguy from '../../../../assets/blog/pointingguy.svg';
+import backgr from '../../../../assets/landing/backgr.svg';
+
+import soc1 from '../../../../assets/landing/social1.svg';
+import soc2 from '../../../../assets/landing/social2.svg';
+import soc3 from '../../../../assets/landing/social3.svg';
+import soc4 from '../../../../assets/landing/social4.svg';
+import soc5 from '../../../../assets/landing/social5.svg';
+import loc from '../../../../assets/landing/Location.svg';
+import time from '../../../../assets/landing/Message.svg';
+import mess from '../../../../assets/landing/Calling.svg';
+import call from '../../../../assets/landing/Time.svg';
+import { useNavigate } from "react-router-dom";
+import { postService } from "../../../../../services/postServices";
+import Icon from '../../../../assets/auth/appIcon.svg'
+import { Alert, Spin } from "antd";
 
 const Maximize = () => {
-  return (
-    <div className="blog-detail-container">
-      <h1>Maximizing ROI: How AI-Driven Lead Generation Transforms Digital Marketing Campaigns</h1>
+  const navigate = useNavigate();
+
+  const [loading,setLoading]=useState(false);
+  const [email,setEmail]=useState('');
+  
+  const [success, setSuccess] = useState(false); // state for showing success message
+    const [error, setError] = useState(false);
+
+    const handleSubmit=async(e)=>{
+      e.preventDefault();
+    
+      const payload={
+       
+        email:email,
       
-      <div className="blog-section">
-        <div className="blog-text">
-          <p>In today's fast-paced digital landscape, businesses are constantly seeking ways to maximize their return on investment (ROI) from marketing efforts. Traditional methods of lead generation, while still effective, often fall short in a world where data is abundant, and consumer behavior is ever-evolving. Enter AI-driven lead generation – a game-changer for digital marketing campaigns. In this blog, we’ll explore how AI-powered platforms like LeadMasters can significantly boost ROI by optimizing ad spend, targeting the right audience, and automating the lead generation process.</p>
-        </div>
+      }
+      try{
+        setLoading(true)
+    const response=await postService.postContactInfo(payload);
+    console.log(response.data,"sueccss");
+    
+    setEmail('');
+    
+    setSuccess(true);
+    setError(false);
+    
+    setLoading(false)
+    setTimeout(() => setSuccess(false), 3000); // Hide after 3 seconds
+    } catch (error) {
+      console.log(error, 'error');
+      setError(true);
+      setSuccess(false);
+      setLoading(false);
+      setTimeout(() => setError(false), 3000);
+    }
+      
+    }
+  return (
+    <div className="page-layout">
+      <Header />
+      <div className="content-wrapper">
+        <Sidebar />
+        <MainContent />
       </div>
-
-      <div className="blog-section">
-        <div className="blog-text">
-          <h2>1. The Power of AI in Optimizing Ad Spend</h2>
-          <p>One of the most significant challenges in digital marketing is ensuring that every dollar spent on ads is used effectively. Misallocated budgets can lead to wasted resources and lower ROI. AI-driven platforms like LeadMasters use advanced algorithms to analyze vast amounts of data in real time, making it possible to optimize ad spend dynamically.
-AI can determine which ads are performing best, which channels are driving the most engagement, and how much budget should be allocated to each campaign. By continuously learning from the data, AI can make informed adjustments, ensuring that your marketing dollars are spent where they have the highest impact. This precision leads to reduced wastage, lower customer acquisition costs, and ultimately, a higher ROI.
-</p>
-        </div>
-        <div className="blog-image">
-          <img src={image1} alt="Ad Spend Optimization" />
-        </div>
-      </div>
-
-      <div className="blog-section">
-        <div className="blog-text">
-          <h2>2. Targeting the Right Audience with AI</h2>
-          <p>Knowing your audience is crucial for any marketing campaign. However, identifying and reaching the right audience at the right time can be a daunting task. AI takes the guesswork out of this process. By analyzing user behavior, preferences, and interactions across various platforms, AI can create detailed customer profiles and predict which leads are most likely to convert.
-LeadMasters, for instance, uses AI to segment your audience based on demographics, interests, and past interactions. This allows for highly targeted campaigns that speak directly to the needs and desires of your potential customers. By delivering personalized content to the right audience, AI not only increases the chances of conversion but also enhances customer satisfaction, leading to repeat business and a higher lifetime value.
-</p>
-        </div>
-        <div className="blog-image">
-          <img src={image2} alt="Audience Targeting" />
-        </div>
-      </div>
-
-      <div className="blog-section">
-        <div className="blog-text">
-          <h2>3. Automating Lead Generation: The AI Advantage</h2>
-          <p>Manual lead generation is time-consuming and often yields inconsistent results. AI-driven lead generation, on the other hand, automates the process, making it more efficient and scalable. Platforms like LeadMasters can automatically identify potential leads, engage with them through personalized content, and nurture them until they are ready to convert.
-AI can also score leads based on their likelihood to convert, allowing your sales team to focus on high-priority prospects. This not only saves time but also increases the effectiveness of your lead generation efforts. By automating repetitive tasks and streamlining the lead generation process, AI frees up your team to focus on strategy and creativity, further enhancing ROI.
-</p>
-        </div>
-        <div className="blog-image">
-          <img src={image3} alt="Lead Generation Automation" />
-        </div>
-      </div>
-
-      <div className="blog-section">
-        <div className="blog-text">
-          <h2>4. Real-Time Analytics and Continuous Improvement</h2>
-          <p>One of the most significant advantages of AI in digital marketing is its ability to provide real-time analytics. Traditional marketing campaigns often require weeks or even months to gather enough data to make informed decisions. AI, however, can analyze campaign performance as it happens, providing insights that can be acted upon immediately.
-LeadMasters’ AI-driven platform offers detailed analytics dashboards that allow you to track key performance indicators (KPIs) in real time. Whether it's click-through rates, conversion rates, or customer engagement metrics, you can see how your campaigns are performing at any given moment. This real-time feedback loop enables continuous improvement, ensuring that your marketing efforts are always optimized for maximum ROI.
-</p>
-        </div>
-        <div className="blog-image">
-          <img src={image4} alt="Real-Time Analytics" />
-        </div>
-      </div>
-
-      <div className="blog-section">
-        <div className="blog-text">
-          <h2>5. The Future of Digital Marketing: Embracing AI-Driven Strategies</h2>
-          <p>As AI technology continues to evolve, its impact on digital marketing will only grow. Businesses that embrace AI-driven strategies will have a significant competitive advantage, as they can make data-driven decisions faster, target their audience more accurately, and optimize their marketing efforts more effectively.
-LeadMasters is at the forefront of this revolution, offering a comprehensive AI-driven lead generation platform that helps businesses of all sizes maximize their ROI. By leveraging AI to optimize ad spend, target the right audience, and automate lead generation, LeadMasters enables businesses to achieve their marketing goals with greater efficiency and precision.
-</p>
-        </div>
-        <div className="blog-image">
-          <img src={image5} alt="Future of Digital Marketing" />
-        </div>
-      </div>
-
-      <div className="blog-section">
-        <div className="blog-text">
-          <h2>Conclusion</h2>
-          <p>In a world where digital marketing is becoming increasingly complex, AI-driven lead generation offers a powerful solution to maximize ROI. By optimizing ad spend, targeting the right audience, and automating the lead generation process, AI platforms like LeadMasters are transforming the way businesses approach marketing. As more companies embrace AI-driven strategies, those that do will be well-positioned to stay ahead of the competition and achieve long-term success.
-Embrace the future of digital marketing with LeadMasters – where AI meets lead generation to deliver exceptional results.
-
-
-</p>
-        </div>
-      </div>
+      <section className='container-section4' style={{marginTop:'-20vh'}}>
+   
+   <img className='bg-img-sect5 maya' src={backgr}  />
+   <div className="newsletter-container" style={{marginTop:'-70vh',height:'50vh'}}>
+         <div className="newsletter-content">
+           <h1 className='biggest-text91 closs' style={{textAlign:'left',width:'130%'}}>Ready to transform your marketing?</h1>
+           <p>Sign up now or request a demo to experience the power of LeadMasters AI.</p>
+        
+           <button className="cta-button90" onClick={()=>navigate("/signup")}>Get Started Free</button>
+         </div>
+         <div className="newsletter-image101 kira" >
+           <img src={Pguy} alt="Newsletter" />
+         </div>
+       </div>
+         </section>
+         <footer className="footer9" style={{marginTop:'5vh'}}>
+         <div className="footer-section">
+         <div className="navbar-brand">
+           <img src={Icon} alt="Logo" className="logo" />
+           <h4 className='item-9'>LeadMasters.ai</h4>
+           </div>
+           <p className='bora'>Connect and network with other professionals on the platform, share insights, and collaborate on projects.</p>
+         </div>
+         <div className="footer-section">
+           <h3>Quick links</h3>
+           <ul >
+           <li><a className='jumpa' href="/aboutus">About Us</a></li>
+              <li><a className='jumpa' href="/contactus">Contact</a></li>
+              <li><a className='jumpa' href="/blog">Blog</a></li>
+              <li><a className='jumpa' href="#">Terms of Service</a></li>
+              <li><a className='jumpa' href="#">Privacy Policy</a></li>
+           </ul>
+         </div>
+         <div className="footer-section ">
+                       <h3>Contact details</h3>
+                       <div className="contact-item">
+                           <img src={loc} alt="Location Icon" className="contact-icon" />
+                           <div className="contact-details">
+                            
+                               <p>Address: #81/16, Haralukunte, HSR Layout, Bangalore, 560102</p>
+                           </div>
+                       </div>
+                       <div className="contact-item">
+                           <img src={mess} alt="Phone Icon" className="contact-icon" />
+                           <div className="contact-details">
+                              
+                               <p>Tel: +91-8147808161</p>
+                           </div>
+                       </div>
+                       <div className="contact-item">
+                           <img src={call} alt="Clock Icon" className="contact-icon" />
+                           <div className="contact-details">
+                             
+                               <p>Response hours: 2 to 4</p>
+                           </div>
+                       </div>
+                       <div className="contact-item">
+                           <img src={time} alt="Email Icon" className="contact-icon" />
+                           <div className="contact-details">
+                           
+                               <p>Email: support@leadmasters.ai</p>
+                           </div>
+                       </div>
+                   </div>
+         <div style={{display:'flex',flexDirection:'column',width:'25vw'}}>
+   
+         <div className="footer-section3 karuna">
+           <h3>Stay up to date with the latest courses</h3>
+           <form className="subscribe-form2" onSubmit={handleSubmit}>
+             <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
+             <button type="submit">{loading ? <Spin size="small" /> : "Send"}</button>
+           </form>
+           {success && <Alert style={{marginBlock:5}} message="Submitted successfully!" type="success" showIcon />}
+           {error && <Alert style={{marginBlock:5}} message="There was an error sending your message." type="error" showIcon />}
+           <div className="follow-us">
+           <h3>Follow us on</h3>
+           <div className="social-icons">
+             <a href="#"><img src={soc5} alt="Facebook" className='soc-img-sec' /></a>
+             <a href="#"><img src={soc4} alt="Twitter" className='soc-img-sec' /></a>
+             <a href="#"><img src={soc3} alt="LinkedIn" className='soc-img-sec' /></a>
+             <a href="#"><img src={soc2} alt="Instagram" className='soc-img-sec' /></a>
+             <a href="#"><img src={soc1} alt="Instagram" className='soc-img-sec' /></a>
+           </div>
+         </div>
+         </div>
+        
+         </div>
+      
+       </footer>
+       <p className='last-line'>© 2024 | Powered by LeadMaster.AI</p>
     </div>
   );
 };

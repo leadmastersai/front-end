@@ -62,7 +62,7 @@ const Carousel1 = () => {
   const settings = {
     infinite: false,
     speed: 300,
-    slidesToShow: 4.2,
+    slidesToShow: 5.2,
     slidesToScroll: 1.2,
     prevArrow: <CustomPrevArrow />,
     nextArrow: <CustomNextArrow />,
