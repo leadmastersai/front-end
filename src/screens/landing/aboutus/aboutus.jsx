@@ -218,7 +218,7 @@ const [success, setSuccess] = useState(false); // state for showing success mess
       <div className="footer-section">
       <div className="navbar-brand">
         <img src={Icon} alt="Logo" className="logo" />
-        <h4 className='item-9'>LeadMasters.ai</h4>
+        <h4 className='item-9 wht'>LeadMasters.ai</h4>
         </div>
         <p className='bora'>Connect and network with other professionals on the platform, share insights, and collaborate on projects.</p>
       </div>
@@ -266,7 +266,7 @@ const [success, setSuccess] = useState(false); // state for showing success mess
       <div style={{display:'flex',flexDirection:'column',width:'25vw'}}>
 
       <div className="footer-section3 karuna">
-        <h3>Stay up to date with the latest courses</h3>
+        <h3 className='wht'>Stay up to date with the latest courses</h3>
         <form className="subscribe-form2" onSubmit={handleSubmit}>
           <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
           <button type="submit">{loading ? <Spin size="small" /> : "Send"}</button>

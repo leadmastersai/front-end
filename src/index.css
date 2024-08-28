@@ -13,7 +13,12 @@
     font-family: 'MyCustomFont';
     margin: 0 0;
     scroll-behavior: smooth;
+    --swiper-theme-color:#8F00FF;
   
     
     }
+    footer, footer * {
+      font-weight: 100 !important;
+  }
+  
     

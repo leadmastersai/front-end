@@ -87,8 +87,8 @@ const navigate=useNavigate();
   return (
     <div>
       <section className='container-section44'>
-        <h3 className='biggest-text91 closs1'> Key Features & Functionalities</h3>
-        <p className='closs closs1' style={{ width: '50vw', textAlign: 'center', marginBottom: '5vh' }}>
+        <h3 className='biggest-text91 '> Key Features & Functionalities</h3>
+        <p className='closs closs2' style={{ width: '50vw', textAlign: 'center', marginBottom: '5vh' }}>
           LeadMasters AI offers a comprehensive suite of tools designed to optimize your marketing efforts and drive business growth. Explore our powerful features that make lead generation and ad optimization effortless.
         </p>
       </section>
@@ -147,7 +147,7 @@ const navigate=useNavigate();
          <div className="footer-section">
          <div className="navbar-brand">
            <img src={Icon} alt="Logo" className="logo" />
-           <h4 className='item-9'>LeadMasters.ai</h4>
+           <h4 className='item-9 wht'>LeadMasters.ai</h4>
            </div>
            <p className='bora'>Connect and network with other professionals on the platform, share insights, and collaborate on projects.</p>
          </div>
@@ -195,7 +195,7 @@ const navigate=useNavigate();
          <div style={{display:'flex',flexDirection:'column',width:'25vw'}}>
    
          <div className="footer-section3 karuna">
-           <h3>Stay up to date with the latest courses</h3>
+           <h3 className='wht'>Stay up to date with the latest courses</h3>
            <form className="subscribe-form2" onSubmit={handleSubmit}>
              <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
              <button type="submit">{loading ? <Spin size="small" /> : "Send"}</button>

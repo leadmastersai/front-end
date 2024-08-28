@@ -249,7 +249,20 @@ li .ant-menu-item{
   text-decoration: none;
 
 }
-/* Mobile styles */
+.biggest-text912{
+  text-align: center;
+  margin: 0;
+  margin-bottom: 2vh;
+ width: 100%;
+  font-size: 40px;
+  font-weight:500;
+}
+.swiper-slide-next,
+.swiper-slide-prev {
+  transform: translate3d(0px, 0px, -91.8033px) rotateX(0deg) rotateY(0.918033deg) scale(0.9) !important;
+  background-color: white !important;
+}
+
 .menu-toggle {
   display: none;
   font-size: 24px;
@@ -263,6 +276,17 @@ li .ant-menu-item{
     position:relative;
     width: 90vw !important;
   }
+  .biggest-text912 {
+    font-size: 24px;
+    text-align: center;
+    width: 90%;
+  }
+  .closs{
+    width: 100% !important;
+    text-align: center;
+    margin-inline:auto !important 
+  }
+  
   .navbar-menu {
     display: none !important;
     flex-direction: column;
@@ -415,3 +439,4 @@ li .ant-menu-item{
       margin-top: 10px; /* Space above the login button inside the menu */
   }
 }
+

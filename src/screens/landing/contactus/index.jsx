@@ -69,7 +69,7 @@ setTimeout(() => setSuccess(false), 15000); // Hide after 3 seconds
 
     
       <div className="contact-text">
-        <h1 className='biggest-text91' style={{textAlign:'left'}}>Contact Our Friendly Support Team Today</h1>
+        <h1 className='biggest-text91 closs closs1' style={{textAlign:'left'}}>Contact Our Friendly Support Team Today</h1>
         <p style={{marginRight:'10%'}}>Our support team is available Monday to Friday, 9 AM to 6 PM (GMT+4).</p>
       </div>
 
@@ -108,7 +108,7 @@ setTimeout(() => setSuccess(false), 15000); // Hide after 3 seconds
       <img src={cont} alt="Contact Us" />
     </div>
     <div className="footer-section101">
-        <h1 className='biggest-text91 kuma'>For inquiries,
+        <h1 className='biggest-text91 kuma closs closs1'>For inquiries,
         please contact us via</h1>
         <div className="contact-item" style={{marginBlock:5}}>
         <img src={loc} alt="Location Icon" className="contact-icon" />
@@ -156,7 +156,7 @@ setTimeout(() => setSuccess(false), 15000); // Hide after 3 seconds
       <div className="footer-section">
       <div className="navbar-brand">
         <img src={Icon} alt="Logo" className="logo" />
-        <h4 className='item-9'>LeadMasters.ai</h4>
+        <h4 className='item-9 wht'>LeadMasters.ai</h4>
         </div>
         <p className='bora'>Connect and network with other professionals on the platform, share insights, and collaborate on projects.</p>
       </div>
@@ -204,7 +204,7 @@ setTimeout(() => setSuccess(false), 15000); // Hide after 3 seconds
       <div style={{display:'flex',flexDirection:'column',width:'25vw'}}>
 
       <div className="footer-section3 karuna">
-        <h3>Stay up to date with the latest courses</h3>
+        <h3 className='wht'>Stay up to date with the latest courses</h3>
         <form className="subscribe-form2" onSubmit={handleSubmit}>
           <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
           <button type="submit">{loading ? <Spin size="small" /> : "Send"}</button>

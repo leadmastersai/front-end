@@ -1,5 +1,13 @@
 import Pguy from '../../assets/blog/pointingguy.svg';
 import './styles.scss';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import aut1 from '../../assets/landing/aut1.svg';
+import aut2 from '../../assets/landing/aut2.svg';
+import aut3 from '../../assets/landing/aut3.svg';
+import aut4 from '../../assets/landing/aut4.svg';
+import aut5 from '../../assets/landing/aut5.svg';
+import aut6 from '../../assets/landing/aut6.svg';
 import Icon from '../../assets/auth/appIcon.svg'
 import First from '../../assets/landing/first.svg';
 import left from '../../assets/landing/left.svg';
@@ -34,11 +42,23 @@ import loc from '../../assets/landing/Location.svg';
 import time from '../../assets/landing/Message.svg';
 import mess from '../../assets/landing/Calling.svg';
 import call from '../../assets/landing/Time.svg';
+import l1 from '../../assets/landing/l1.svg';
+import l2 from '../../assets/landing/l2.svg';
+import l3 from '../../assets/landing/l3.svg';
+import l4 from '../../assets/landing/l4.svg';
+import l5 from '../../assets/landing/l5.svg';
+import l6 from '../../assets/landing/l6.svg';
 import { Link, useNavigate } from 'react-router-dom';
 import { motion, useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
 import { Alert, Spin } from 'antd';
 import { postService } from '../../../services/postServices';
+import TestimonialSwiper from '../../components/testimonialSwiper';
+import sing1 from '../../assets/landing/sing1.svg' ;
+import sing2 from '../../assets/landing/sing2.svg' ;
+import sing3 from '../../assets/landing/sing3.svg' ;
+
+
 
 
 
@@ -80,6 +100,28 @@ const Landing = () => {
       buttonLink: '#'
     }
   ];
+
+  const features1=[
+    {image:l1},
+    {image:l2},
+    {image:l3},
+    {image:l4},
+    {image:l5},
+    {image:l6},
+  ]
+  const features2=[
+    {image:sing1,text:'1. Sign Up and Connect Your Account With Leadmasters'},
+    {image:sing2,text:'2. Choose and Customize Your Ad Templates'},
+    {image:sing3 ,text:'3. Launch Your Campaign & Track Performance'},
+  ]
+  const autm=[
+    {image:aut1},
+    {image:aut2},
+    {image:aut3},
+    {image:aut4},
+    {image:aut5},
+    {image:aut6},
+  ]
 
   const productRef = useRef(null);
   const featuresRef = useRef(null);
@@ -202,12 +244,44 @@ const Landing = () => {
 
   return (
     <div>
+ <section
+       
+       id="product"
+       className="main-section"
+       style={{ marginTop: '8rem' }}
+     
+     >
+       <h1 className='biggest-text91 closs'>
+         Maximize Your Marketing Potential with AI
+       </h1>
+     <p className='closs'>
+         Automate, Optimize, and Grow with LeadMasters.ai
+       </p>
+       <button
+         className="cta-button8"
+         onClick={() => navigate("/signup")}
+       
+       >
+         Get Started Free
+       </button>
+       <img
+         className='biggest-img'
+         src={First}
+        
+       />
+       <img
+         className='left-img'
+         src={left}
+        
+       />
+       <img
+         className='right-img'
+         src={right}
+        
+       />
+     </section>
  
- <section className='container-section1' style={{marginBlock:'20vh'}} >
-      <img src={sect6} className='features-section6' />
-      <button className="cta-button9" onClick={()=>navigate("/signup")}>Get Started Free</button>
 
-      </section>
 
       {/* Features Section */}
       <section
@@ -217,28 +291,50 @@ const Landing = () => {
         
       >
         <div className="features-content">
-          <h3 className='biggest-text1' >
+          <h3 className='biggest-text91 closs cen' >
             Why LeadMasters.ai?
           </h3>
+          <div className='new-cont'>
+            <div className='l-cont'>
           <img src={slides} className='half-img'  />
+          </div>
+          <div className='l-cont'>
           <img src={analytics} className='anthr-img' />
           <img src={chart1} className='anthr-img1' />
           <img src={social} className='anthr-img2' />
+          </div>
+          </div>
         </div>
       </section>
+  <div>
+    <TestimonialSwiper />
+  </div>
       <section className='container-section1'  >
-      <img src={section1} className='features-section1'/>
+      <h3 className='biggest-text91 closs2 '>Our Powerfull Features</h3>
+      <div className="features-container-cards0">
+        {features1.map((feature, index) => (
+          <div key={index} className="feature-card-img0">
+            <img src={feature.image} alt={`Feature ${index + 1}`} className="feature-image1" />
+          </div>
+        ))}
+      </div>
 
       </section>
-      <section className='container-section2' >
-      <img src={section2} className='features-section2'/>
-      </section>
-      <section className='container-section3' >
-      <img src={section3} className='features-section1' />
+  
+      <section className='container-section3j' >
+      <h3 className='biggest-text91 closs2 '>How It Works</h3>
+      <div className="features-container-cards09">
+        {features2.map((feature, index) => (
+          <div key={index} className="feature-card-img09">
+            <img src={feature.image} alt={`Feature ${index + 1}`} className="feature-image1" />
+            <h4 style={{textAlign:'center'}} className='' >{feature.text}</h4>
+          </div>
+        ))}
+      </div>
       </section>
       <section className='container-section4' >
-      <h3 className='biggest-text91 closs1 ' >Analytics Dashboard</h3>
-<p className='closs closs1' style={{width:'50vw',textAlign:'center',marginBottom:'5vh'}}>Comprehensive insights into your marketing performance with metrics like impressions, engagement rate, and new followers.</p>
+      <h3 className='biggest-text91 closs2 ' >Analytics Dashboard</h3>
+<p className='closs closs2' style={{width:'50vw',textAlign:'center',marginBottom:'5vh'}}>Comprehensive insights into your marketing performance with metrics like impressions, engagement rate, and new followers.</p>
 <div style={{marginInline:'auto'}}>
 <img src={num1} className='img-cont-sect4' />
 <img src={num2} className='img1-cont-sect4' />
@@ -247,25 +343,31 @@ const Landing = () => {
 </div>
       </section>
       <section className='container-section4'>
-  <h3 className='biggest-text91 closs1'>Automation Tools</h3>
-  <p className='closs closs1' style={{ width: '50vw', textAlign: 'center', marginBottom: '5vh' }}>
+  <h3 className='biggest-text91 closs2'>Automation Tools</h3>
+  <p className='closs closs2' style={{ width: '50vw', textAlign: 'center', marginBottom: '5vh' }}>
     Automate your marketing activities with features like scheduled reposts, delay threads, and autopilot for social posts.
   </p>
   <img className='bg-img-sect5' src={backgr} />
-  <img className='cards-img-sect5' src={cards} />
+  <div className="features-container-cards07">
+        {autm.map((feature, index) => (
+          <div key={index} className="feature-card-img07">
+            <img src={feature.image} alt={`Feature ${index + 1}`} className="feature-image1" />
+          </div>
+        ))}
+      </div>
 </section>
 
 <section className='container-section4'>
-  <h3 className='biggest-text91 closs1'>Team Collaboration</h3>
-  <p className='closs closs1' style={{ width: '40vw', textAlign: 'center', marginBottom: '5vh' }}>
+  <h3 className='biggest-text91 closs2'>Team Collaboration</h3>
+  <p className='closs closs2' style={{ width: '40vw', textAlign: 'center', marginBottom: '5vh' }}>
     Invite and manage team members, assign roles, and collaborate on ad campaigns.
   </p>
   <img className='features-section6 mobile-width' src={sect7} />
 </section>
 
 <section className='container-section4'>
-  <h3 className='biggest-text91 closs1 add-m-top'>AI Personalization</h3>
-  <p className='closs closs1'  style={{ width: '40vw', textAlign: 'center', marginBottom: '5vh' }}>
+  <h3 className='biggest-text91 closs2 add-m-top'>AI Personalization</h3>
+  <p className='closs closs2'  style={{ width: '40vw', textAlign: 'center', marginBottom: '5vh' }}>
     Personalize your ads by providing information about yourself and your company to tailor ad suggestions.
   </p>
   <img className='bg-img-sect5 m-top' src={backgr} />
@@ -273,16 +375,25 @@ const Landing = () => {
 </section>
 
 <section className='container-section4' style={{ marginTop: '-20vh' }}>
-  <h3 className='biggest-text91 closs1'>Professional Networking</h3>
-  <p className='closs closs1' style={{ width: '40vw', textAlign: 'center', marginBottom: '5vh' }}>
+  <h3 className='biggest-text91'>Professional Networking</h3>
+  <p className='closs closs2' style={{ width: '40vw', textAlign: 'center', marginBottom: '5vh' }}>
     Connect and network with other professionals on the platform, share insights, and collaborate on projects.
   </p>
   <img className='features-section7 add-m-bottom' src={sect9} />
 </section>
+<section className='container-section4 ' style={{marginBlock:'20vh'}} >
+<h3 className='biggest-text91'>Integrations</h3>
+  <p className='closs closs2' style={{ width: '40vw', textAlign: 'center', marginBottom: '5vh' }}>
+   Seamlessly integrate with platforms like Twitter, LinkedIn, and other social media networks.
+  </p>
+      <img src={sect6} className='features-section6 add-m-bottom' />
+      <button className="cta-button9 cta-m-top" onClick={()=>navigate("/signup")}>Get Started Free</button>
+
+      </section>
 
 <section className='container-section4'>
-  <h3 className='biggest-text91 closs1'>Choose Your Plan</h3>
-  <p className='closs1 closs' style={{ width: '40vw', textAlign: 'center', marginBottom: '5vh' }}>
+  <h3 className='biggest-text91  '>Choose Your Plan</h3>
+  <p className='closs2 closs' style={{ width: '40vw', textAlign: 'center', marginBottom: '5vh' }}>
     Connect and network with other professionals on the platform, share insights, and collaborate on projects.
   </p>
   <div className="pricing-cards">
@@ -318,9 +429,9 @@ const Landing = () => {
          <div className="footer-section">
          <div className="navbar-brand">
            <img src={Icon} alt="Logo" className="logo" />
-           <h4 className='item-9'>LeadMasters.ai</h4>
+           <h4 className='item-9 wht'>LeadMasters.ai</h4>
            </div>
-           <p className='bora'>Connect and network with other professionals on the platform, share insights, and collaborate on projects.</p>
+           <p className='bora wht'>Connect and network with other professionals on the platform, share insights, and collaborate on projects.</p>
          </div>
          <div className="footer-section">
            <h3>Quick links</h3>
@@ -366,7 +477,7 @@ const Landing = () => {
          <div style={{display:'flex',flexDirection:'column',width:'25vw'}}>
    
          <div className="footer-section3 karuna">
-           <h3>Stay up to date with the latest courses</h3>
+           <h3 className='wht' >Stay up to date with the latest courses</h3>
            <form className="subscribe-form2" onSubmit={handleSubmit}>
              <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
              <button type="submit">{loading ? <Spin size="small" /> : "Send"}</button>

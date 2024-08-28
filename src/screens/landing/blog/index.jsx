@@ -37,6 +37,7 @@ const Blog = () => {
   const [error, setError] = useState(false);
   const [cardIndex, setCardIndex] = useState(0); // Trac
   const [currentCard, setCurrentCard] = useState(0);
+  const cardsPerPage = 1; 
   const handleNextPage = () => {
     setCurrentCard((prev) => (prev + 1) % cardData.length);
   };
@@ -58,6 +59,36 @@ const Blog = () => {
     },
     // Add more slides as needed
   ];
+
+  const handlePageClick = (index) => {
+    setCurrentCard(index);
+  };
+
+  const renderPageNumbers = () => {
+    const totalPages = Math.ceil(cardData.length / cardsPerPage);
+    const startPage = Math.max(0, currentCard - 1);
+    const endPage = Math.min(totalPages - 1, currentCard + 1);
+  
+    const pageNumbers = [];
+  
+    for (let i = startPage; i <= endPage; i++) {
+      pageNumbers.push(
+        <span
+          key={i}
+          className={`page ${currentCard === i ? 'active' : ''}`}
+          onClick={() => handlePageClick(i)}
+        >
+          {i + 1}
+        </span>
+      );
+    }
+  
+    if (endPage < totalPages - 1) {
+      pageNumbers.push(<span key="ellipsis">...</span>);
+    }
+  
+    return pageNumbers;
+  };
 
   const CustomPrevArrow = ({ onClick }) => {
     return (
@@ -220,7 +251,7 @@ const handlePrevCards = () => {
         />
         <div className="pagination">
           <span className="page" onClick={handlePrevPage}>Prev</span>
-          <span className="page active">{currentCard + 1}</span>
+          {renderPageNumbers()}
           <span className="page" onClick={handleNextPage}>Next</span>
         </div>
       </div>
@@ -286,7 +317,7 @@ const handlePrevCards = () => {
       <div className="footer-section">
       <div className="navbar-brand">
         <img src={Icon} alt="Logo" className="logo" />
-        <h4 className='item-9'>LeadMasters.ai</h4>
+        <h4 className='item-9 wht'>LeadMasters.ai</h4>
         </div>
         <p className='bora'>Connect and network with other professionals on the platform, share insights, and collaborate on projects.</p>
       </div>
@@ -334,7 +365,7 @@ const handlePrevCards = () => {
       <div style={{display:'flex',flexDirection:'column',width:'25vw'}}>
 
       <div className="footer-section3 karuna">
-        <h3>Stay up to date with the latest courses</h3>
+        <h3 className='wht'>Stay up to date with the latest courses</h3>
         <form className="subscribe-form2" onSubmit={handleSubmit}>
           <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
           <button type="submit">{loading ? <Spin size="small" /> : "Send"}</button>
