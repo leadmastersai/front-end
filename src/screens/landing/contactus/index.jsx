@@ -108,7 +108,7 @@ setTimeout(() => setSuccess(false), 15000); // Hide after 3 seconds
       <img src={cont} alt="Contact Us" />
     </div>
     <div className="footer-section101">
-        <h1 className='biggest-text91 kuma closs closs1'>For inquiries,
+        <h1 className='biggest-text91 kuma closs closs1 cen2'>For inquiries,
         please contact us via</h1>
         <div className="contact-item" style={{marginBlock:5}}>
         <img src={loc} alt="Location Icon" className="contact-icon" />

@@ -124,6 +124,9 @@
     height: auto; /* Maintain aspect ratio */
     z-index: 1;
   }
+  .cen2{
+    text-align: start !important;
+  }
   .whole-cont{
     margin-top: 20vh;
     display: flex;
@@ -479,5 +482,8 @@ text-align: center;
         width: 100% !important;
         text-align: center;
         margin-inline:auto !important 
+      }
+      .cen2{
+        text-align: center !important;
       }
     }
