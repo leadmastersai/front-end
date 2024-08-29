@@ -608,7 +608,7 @@ background: linear-gradient(114.88deg, #151515 31.19%, #652F90 135.45%);
     display: none;
   }
   .follow-us{
-    text-align: start !important;
+    text-align: center !important;
   }
   .content101{
     width: 90% !important;
@@ -620,6 +620,9 @@ background: linear-gradient(114.88deg, #151515 31.19%, #652F90 135.45%);
   }
   .features-section6{
     width: 95%  !important;
+  }
+  .footer-section h3{
+    font-size: 23px !important;
   }
   .profile-img0 {
     margin-left: 0 !important;
@@ -837,6 +840,9 @@ width: 85%;
         width: 200% !important;
         text-align: center;
 
+      }
+      .footer-section3 h3{
+        font-size: 23px !important
       }
       .contact-info-container57{
         display: flex;

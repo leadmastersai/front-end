@@ -91,7 +91,7 @@ const Maximize = () => {
            <img src={Icon} alt="Logo" className="logo" />
            <h4 className='item-9 wht'>LeadMasters.ai</h4>
            </div>
-           <p className='bora'>Connect and network with other professionals on the platform, share insights, and collaborate on projects.</p>
+           <p className='bora wht'>LeadMasters AI: AI-powered lead generation and ad optimization for smarter marketing.</p>
          </div>
          <div className="footer-section">
            <h3>Quick links</h3>
@@ -99,8 +99,9 @@ const Maximize = () => {
            <li><a className='jumpa' href="/aboutus">About Us</a></li>
               <li><a className='jumpa' href="/contactus">Contact</a></li>
               <li><a className='jumpa' href="/blog">Blog</a></li>
-              <li><a className='jumpa' href="#">Terms of Service</a></li>
-              <li><a className='jumpa' href="#">Privacy Policy</a></li>
+              <li><a className='jumpa' href="/terms">Terms of Service</a></li>
+              <li><a className='jumpa' href="/privacy">Privacy Policy</a></li>
+              <li><a className='jumpa' href="/cancellation">Cancellation and Refund Policy</a></li>
            </ul>
          </div>
          <div className="footer-section ">
@@ -137,7 +138,7 @@ const Maximize = () => {
          <div style={{display:'flex',flexDirection:'column',width:'25vw'}}>
    
          <div className="footer-section3 karuna">
-           <h3 className='wht'>Stay up to date with the latest courses</h3>
+           <h3 className='wht' >Subscribe to Our Newsletter</h3>
            <form className="subscribe-form2" onSubmit={handleSubmit}>
              <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
              <button type="submit">{loading ? <Spin size="small" /> : "Send"}</button>

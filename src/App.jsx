@@ -30,6 +30,9 @@ import AdsDrafts from './screens/AdsDrafts';
 import PublishAds from './screens/publishads';
 import Rejected from './screens/rejected';
 import PublishPosts from './screens/publishPosts';
+import Privacy from './screens/legalScreens/Privacy';
+import Terms from './screens/legalScreens/Terms';
+import Cancellation from './screens/legalScreens/Cancellations';
 
 
 
@@ -44,6 +47,9 @@ function App() {
         <Route path="/pricing" element={<Pricing />} />
         <Route path="/aboutus" element={<Aboutus />} />
         <Route path="/blog" element={<Blog />} />
+          <Route path="/privacy" element={<Privacy />} />
+          <Route path="/cancellation" element={<Cancellation />} />
+          <Route path="/terms" element={<Terms />} />
         <Route path="/contactus" element={<ContactUs />} />
         <Route path="/features" element={<Features />} />
         <Route path="/blog/maximize" element={<Maximize />} />
