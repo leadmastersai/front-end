@@ -68,11 +68,9 @@ const Terms = () => {
       </div>
       <div className="privacy-policy-container">
        
-            <p className="last-updated">Last Updated: 02nd Sep 2024</p>
+            <p className="last-updated">Last Updated: 30 aug 2024</p>
             <p>
-                Welcome to LeadMasters AI! These terms and conditions outline the rules and regulations for using our platform.
-                By accessing this website or using our services, you accept these terms in full. Do not continue to use LeadMasters AI 
-                if you do not agree to all the terms and conditions stated on this page.
+            This website is owned and managed by LeadMasters AI Solutions Pvt. Ltd. By accessing and using the www.https://leadmasters.ai web site, (the "Web Site"), you are agreeing to be legally bound by these Terms & Conditions. The terms "you" and "User" refer to anyone who accesses the Web Site.
             </p>
             <h2>1. Definitions</h2>
             <p><strong>1.1 “Platform”</strong> refers to LeadMasters AI, accessible via leadmasters.ai and leadmasters.site.</p>
@@ -300,11 +298,11 @@ const Terms = () => {
            <div className="follow-us">
            <h3>Follow us on</h3>
            <div className="social-icons">
-             <a href="#"><img src={soc5} alt="Facebook" className='soc-img-sec' /></a>
-             <a href="#"><img src={soc4} alt="Twitter" className='soc-img-sec' /></a>
-             <a href="#"><img src={soc3} alt="LinkedIn" className='soc-img-sec' /></a>
-             <a href="#"><img src={soc2} alt="Instagram" className='soc-img-sec' /></a>
-             <a href="#"><img src={soc1} alt="Instagram" className='soc-img-sec' /></a>
+           <a  href="https://x.com/@leadmastersai" target="_blank" rel="noopener noreferrer"><img src={soc5} alt="Facebook" className='soc-img-sec' /></a>
+             <a  href="https://www.linkedin.com/company/lead-masters-ai/" target="_blank" rel="noopener noreferrer"><img src={soc4} alt="Twitter" className='soc-img-sec' /></a>
+             <a  href="https://www.facebook.com/profile.php?id=61564621096389" target="_blank" rel="noopener noreferrer"><img src={soc3} alt="LinkedIn" className='soc-img-sec' /></a>
+             <a  href="https://www.facebook.com/profile.php?id=61564621096389" target="_blank" rel="noopener noreferrer"><img src={soc2} alt="Instagram" className='soc-img-sec' /></a>
+             <a  href="https://youtube.com/@leadmastersai" target="_blank" rel="noopener noreferrer"><img src={soc1} alt="Instagram" className='soc-img-sec' /></a>
            </div>
          </div>
          </div>

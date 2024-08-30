@@ -57,6 +57,7 @@ import TestimonialSwiper from '../../components/testimonialSwiper';
 import sing1 from '../../assets/landing/sing1.svg' ;
 import sing2 from '../../assets/landing/sing2.svg' ;
 import sing3 from '../../assets/landing/sing3.svg' ;
+import ComingSoonModal from '../../modals/comingSoon';
 
 
 
@@ -65,41 +66,48 @@ import sing3 from '../../assets/landing/sing3.svg' ;
 
 
 const Landing = () => {
-  const navigate = useNavigate();
-
-  const [loading,setLoading]=useState(false);
+  const plansRef = useRef(null);
+    const navigate = useNavigate();
+    const [isModalVisible, setIsModalVisible] = useState(false);  const [loading,setLoading]=useState(false);
   const [email,setEmail]=useState('');
   
   const [success, setSuccess] = useState(false); // state for showing success message
     const [error, setError] = useState(false);
+    const showModal = () => {
+      setIsModalVisible(true);
+    };
+  
+    const handleClose = () => {
+      setIsModalVisible(false);
+    };
 
+    const plans = [
+      {
+        name: 'Free Plan',
+        icon: free,
+        price: { amount: '$0', period: '/Per Month', annual: '450' },
+        features: ['AI-Powered Lead Generation', 'Basic Analytics', 'Email Support.'],
+        buttonText: 'Subscribe for Free',
+        buttonLink: '/signup'
+      },
+      {
+        name: 'Pro Plan',
+        icon: pro,
+        price: { amount: '$99', period: '/Per Month', annual: '450' },
+        features: ['All Basic Plan features', 'Multi-Channel Ad Optimization', 'Advanced Analytics & Priority Support'],
+        buttonText: 'Choose your Plan',
+        buttonLink: 'signup'
+      },
+      {
+        name: 'Enterprise Plan',
+        icon: enter,
+        price: {},
+        features: ['All Professional Plan features', 'Custom Integrations', 'Dedicated Account Manager',' Enterprise Support'],
+        buttonText: 'Contact Our Team',
+        buttonLink: 'signup'
+      }
+    ];
 
-  const plans = [
-    {
-      name: 'Free Plan',
-      icon: free,
-      price: { amount: '00', period: '/Per Month', annual: '450' },
-      features: 'Basic features to get started.',
-      buttonText: 'Start Your Free Trial',
-      buttonLink: '#'
-    },
-    {
-      name: 'Pro Plan',
-      icon: pro,
-      price: { amount: '25', period: '/Per Month', annual: '450' },
-      features: 'Advanced tools for growing businesses.',
-      buttonText: 'Compare Plans',
-      buttonLink: '#'
-    },
-    {
-      name: 'Enterprise Plan',
-      icon: enter,
-      price: { amount: '30', period: '/Per Month', annual: '450' },
-      features: 'Comprehensive suite for large teams.',
-      buttonText: 'Compare Plans',
-      buttonLink: '#'
-    }
-  ];
 
   const features1=[
     {image:l1},
@@ -176,26 +184,41 @@ const Landing = () => {
 
 
   
-  const PricingCard = ({ plan, price, features, buttonText, buttonLink ,index}) => {
+  const PricingCard = ({ plan, price, features, buttonText, buttonLink, showModal }) => {
+    const handleClick = () => {
+      if (plan.name === 'Enterprise Plan' || plan.name === 'Pro Plan') {
+        showModal();
+      } else {
+        window.location.href = buttonLink;
+      }
+    };
+  
     return (
-      <motion.div className="pricing-card" variants={imageVariants}>
+      <div className="pricing-card">
         <div className="pricing-header">
-          <motion.img  src={plan.icon} alt={`${plan.name} icon`} className="plan-icon" />
-          <h3 style={{marginLeft:'1vw'}}>{plan.name}</h3>
+          <img src={plan.icon} alt={`${plan.name} icon`} className="plan-icon" />
+          <h3 style={{ marginLeft: '1vw' }}>{plan.name}</h3>
         </div>
+        <span style={{ textAlign: 'left', justifyContent: 'flex-start', marginLeft: '-30vh' }}>Features</span>
+        <ul className="features-list">
+          {features.map((feature, index) => (
+            <li className="small-p-rngs" key={index}>{feature}</li>
+          ))}
+        </ul>
+  
         <div className="pricing-price">
-          <h2>${price.amount}</h2>
+          <h2>{price.amount}</h2>
           <span>{price.period}</span>
         </div>
-        <p className='small-p-rng' >{features}</p>
-        <p className="annual-price"   style={{ opacity: index === 0 ? 0 : 1 }} >● ${price.annual} When Paid Annually</p>
-        <a className="cta-button" onClick={()=>navigate("/signup")}>
+  
+        <p className="small-p-rngs1" style={{ width: 300, marginLeft: '2%' }}>Ideal For: Small businesses looking to get started with AI-driven marketing.</p>
+        <a className="cta-button" onClick={handleClick}>
           {buttonText}
         </a>
-      </motion.div>
+      </div>
     );
   };
-
+  
   const [imagesLoaded, setImagesLoaded] = useState({
     section1: false,
     section2: false,
@@ -396,19 +419,21 @@ const Landing = () => {
   <p className='closs2 closs' style={{ width: '40vw', textAlign: 'center', marginBottom: '5vh' }}>
     Connect and network with other professionals on the platform, share insights, and collaborate on projects.
   </p>
-  <div className="pricing-cards">
-    {plans.map((plan, index) => (
-      <PricingCard
-        key={index}
-        plan={plan}
-        index={index}
-        price={plan.price}
-        features={plan.features}
-        buttonText={plan.buttonText}
-        buttonLink={plan.buttonLink}
-      />
-    ))}
-  </div>
+  <ComingSoonModal isVisible={isModalVisible} onClose={handleClose} />
+  <img className='bg-img-sect5' src={backgr} />
+      <div className="pricing-cards sup-cards">
+        {plans.map((plan, index) => (
+          <PricingCard
+            key={index}
+            plan={plan}
+            price={plan.price}
+            features={plan.features}
+            buttonText={plan.buttonText}
+            showModal={showModal}
+            buttonLink={plan.buttonLink}
+          />
+        ))}
+      </div>
 </section>
 <section className='container-section4' style={{marginTop:'-20v'}}>
    
@@ -488,11 +513,11 @@ const Landing = () => {
            <div className="follow-us">
            <h3>Follow us on</h3>
            <div className="social-icons">
-             <a href="#"><img src={soc5} alt="Facebook" className='soc-img-sec' /></a>
-             <a href="#"><img src={soc4} alt="Twitter" className='soc-img-sec' /></a>
-             <a href="#"><img src={soc3} alt="LinkedIn" className='soc-img-sec' /></a>
-             <a href="#"><img src={soc2} alt="Instagram" className='soc-img-sec' /></a>
-             <a href="#"><img src={soc1} alt="Instagram" className='soc-img-sec' /></a>
+           <a  href="https://x.com/@leadmastersai" target="_blank" rel="noopener noreferrer"><img src={soc5} alt="Facebook" className='soc-img-sec' /></a>
+             <a  href="https://www.linkedin.com/company/lead-masters-ai/" target="_blank" rel="noopener noreferrer"><img src={soc4} alt="Twitter" className='soc-img-sec' /></a>
+             <a  href="https://www.facebook.com/profile.php?id=61564621096389" target="_blank" rel="noopener noreferrer"><img src={soc3} alt="LinkedIn" className='soc-img-sec' /></a>
+             <a  href="https://www.facebook.com/profile.php?id=61564621096389" target="_blank" rel="noopener noreferrer"><img src={soc2} alt="Instagram" className='soc-img-sec' /></a>
+             <a  href="https://youtube.com/@leadmastersai" target="_blank" rel="noopener noreferrer"><img src={soc1} alt="Instagram" className='soc-img-sec' /></a>
            </div>
          </div>
          </div>

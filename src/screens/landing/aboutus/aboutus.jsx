@@ -48,23 +48,24 @@ const [success, setSuccess] = useState(false); // state for showing success mess
     const featuresInView6 = useInView(featuresRef6, { once: false, threshold: 0.1 });
 
     const textVariants = {
-        hidden: { opacity: 0, y: 100, x: -200 },
+        hidden: { opacity: 0, y: 20 },
         visible: {
             opacity: 1,
             y: 0,
-            x: 0,
-            transition: { duration: 2, ease: 'easeOut' },
+            transition: { duration: 3, ease: 'easeOut' },
         },
     };
+    
 
     const imageVariants = {
-        hidden: { scale: 0.5, opacity: 0 },
+        hidden: { opacity: 0, y: 20 },
         visible: {
-            scale: 1,
             opacity: 1,
-            transition: { duration: 2, ease: 'easeOut' },
+            y: 0,
+            transition: { duration: 3, ease: 'easeOut' },
         },
     };
+    
 
     const handlesSubmit=async(e)=>{
         e.preventDefault();
@@ -277,11 +278,11 @@ const [success, setSuccess] = useState(false); // state for showing success mess
            <div className="follow-us">
            <h3>Follow us on</h3>
            <div className="social-icons">
-             <a href="#"><img src={soc5} alt="Facebook" className='soc-img-sec' /></a>
-             <a href="#"><img src={soc4} alt="Twitter" className='soc-img-sec' /></a>
-             <a href="#"><img src={soc3} alt="LinkedIn" className='soc-img-sec' /></a>
-             <a href="#"><img src={soc2} alt="Instagram" className='soc-img-sec' /></a>
-             <a href="#"><img src={soc1} alt="Instagram" className='soc-img-sec' /></a>
+           <a  href="https://x.com/@leadmastersai" target="_blank" rel="noopener noreferrer"><img src={soc5} alt="Facebook" className='soc-img-sec' /></a>
+             <a  href="https://www.linkedin.com/company/lead-masters-ai/" target="_blank" rel="noopener noreferrer"><img src={soc4} alt="Twitter" className='soc-img-sec' /></a>
+             <a  href="https://www.facebook.com/profile.php?id=61564621096389" target="_blank" rel="noopener noreferrer"><img src={soc3} alt="LinkedIn" className='soc-img-sec' /></a>
+             <a  href="https://www.facebook.com/profile.php?id=61564621096389" target="_blank" rel="noopener noreferrer"><img src={soc2} alt="Instagram" className='soc-img-sec' /></a>
+             <a  href="https://youtube.com/@leadmastersai" target="_blank" rel="noopener noreferrer"><img src={soc1} alt="Instagram" className='soc-img-sec' /></a>
            </div>
          </div>
          </div>

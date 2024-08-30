@@ -68,7 +68,7 @@ const Privacy = () => {
       </div>
       <div className="privacy-policy-container">
             <h1>Privacy Policy</h1>
-            <p className="last-updated">Last Updated: Sep 02nd 2024</p>
+            <p className="last-updated">Last Updated: 30 aug 2024</p>
             <p>
                 LeadMasters AI (“We,” “Us,” “Our”) is committed to protecting your privacy. This
                 Privacy Policy outlines how we collect, use, disclose, and safeguard your information
@@ -85,8 +85,8 @@ const Privacy = () => {
             <ul>
                 <li>Contact Information: Name, email address, phone number, and other similar information.</li>
                 <li>Account Information: Username, password, profile picture, and other registration details.</li>
-                <li>Billing Information: Credit card or payment information for purchases or subscriptions.</li>
-            </ul>
+              
+                          </ul>
             <h3>1.2 Non-Personal Information</h3>
             <ul>
                 <li>Usage Data: Information regarding how you interact with the Platform, including your IP address, browser type, device information, referring URLs, and pages accessed.</li>
@@ -253,11 +253,11 @@ const Privacy = () => {
            <div className="follow-us">
            <h3>Follow us on</h3>
            <div className="social-icons">
-             <a href="#"><img src={soc5} alt="Facebook" className='soc-img-sec' /></a>
-             <a href="#"><img src={soc4} alt="Twitter" className='soc-img-sec' /></a>
-             <a href="#"><img src={soc3} alt="LinkedIn" className='soc-img-sec' /></a>
-             <a href="#"><img src={soc2} alt="Instagram" className='soc-img-sec' /></a>
-             <a href="#"><img src={soc1} alt="Instagram" className='soc-img-sec' /></a>
+           <a  href="https://x.com/@leadmastersai" target="_blank" rel="noopener noreferrer"><img src={soc5} alt="Facebook" className='soc-img-sec' /></a>
+             <a  href="https://www.linkedin.com/company/lead-masters-ai/" target="_blank" rel="noopener noreferrer"><img src={soc4} alt="Twitter" className='soc-img-sec' /></a>
+             <a  href="https://www.facebook.com/profile.php?id=61564621096389" target="_blank" rel="noopener noreferrer"><img src={soc3} alt="LinkedIn" className='soc-img-sec' /></a>
+             <a  href="https://www.facebook.com/profile.php?id=61564621096389" target="_blank" rel="noopener noreferrer"><img src={soc2} alt="Instagram" className='soc-img-sec' /></a>
+             <a  href="https://youtube.com/@leadmastersai" target="_blank" rel="noopener noreferrer"><img src={soc1} alt="Instagram" className='soc-img-sec' /></a>
            </div>
          </div>
          </div>

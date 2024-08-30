@@ -68,7 +68,7 @@ const Cancellation = () => {
       </div>
       <div className="privacy-policy-container">
        
-            <p className="last-updated">Last Updated: Sep 02nd 2024</p>
+            <p className="last-updated">Last Updated: 30 aug 2024</p>
             <p>
                 At LeadMasters AI, we strive to ensure customer satisfaction with our services. However, we understand that sometimes situations arise where you may need to cancel a service or request a refund. This Cancellation and Refund Policy outlines the terms and conditions for cancellations and refunds.
             </p>
@@ -216,11 +216,11 @@ const Cancellation = () => {
            <div className="follow-us">
            <h3>Follow us on</h3>
            <div className="social-icons">
-             <a href="#"><img src={soc5} alt="Facebook" className='soc-img-sec' /></a>
-             <a href="#"><img src={soc4} alt="Twitter" className='soc-img-sec' /></a>
-             <a href="#"><img src={soc3} alt="LinkedIn" className='soc-img-sec' /></a>
-             <a href="#"><img src={soc2} alt="Instagram" className='soc-img-sec' /></a>
-             <a href="#"><img src={soc1} alt="Instagram" className='soc-img-sec' /></a>
+           <a  href="https://x.com/@leadmastersai" target="_blank" rel="noopener noreferrer"><img src={soc5} alt="Facebook" className='soc-img-sec' /></a>
+             <a  href="https://www.linkedin.com/company/lead-masters-ai/" target="_blank" rel="noopener noreferrer"><img src={soc4} alt="Twitter" className='soc-img-sec' /></a>
+             <a  href="https://www.facebook.com/profile.php?id=61564621096389" target="_blank" rel="noopener noreferrer"><img src={soc3} alt="LinkedIn" className='soc-img-sec' /></a>
+             <a  href="https://www.facebook.com/profile.php?id=61564621096389" target="_blank" rel="noopener noreferrer"><img src={soc2} alt="Instagram" className='soc-img-sec' /></a>
+             <a  href="https://youtube.com/@leadmastersai" target="_blank" rel="noopener noreferrer"><img src={soc1} alt="Instagram" className='soc-img-sec' /></a>
            </div>
          </div>
          </div>

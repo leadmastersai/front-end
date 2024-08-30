@@ -45,6 +45,32 @@
   align-items: center;
 
     }
+    .content-wrapper{
+      flex-direction: column !important;
+
+    }
+    .sidebar{
+      width: 100% !important;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-inline: 0 !important;
+      justify-content: center;
+      padding-inline: 0 !important;
+    }
+    .toc-container{
+      padding-inline: 5vw !important;
+    }
+    .main-content{
+      width: 100% !important;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-inline: 0 !important;
+      padding-inline: 0 !important;
+
+      justify-content: center;
+    }
   
     .blog-image img {
       max-width: 100%;
