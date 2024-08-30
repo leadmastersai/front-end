@@ -203,14 +203,36 @@ justify-content: center;
   text-align: start !important;
   margin-left: 2vw !important;
  } 
-  .feature-card-img09 {
-    width:23vw;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    
-  }
+ .feature-card-img09 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+
+  border-radius: 8px; /* Optional: Adds rounded corners */
+  background-color: #fff; /* Optional: Sets a background color */
+   /* Optional: Adds a subtle shadow */
+  text-align: center; /* Centers text horizontally */
+  height: 100%; /* Makes sure the card takes full height of the grid cell */
+  box-sizing: border-box;
+}
+
+.feature-image09 {
+  width: 300px; /* Adjust as needed */
+  height: 300px; /* Ensures all images are the same size */
+  object-fit: contain; /* Preserves aspect ratio */
+  margin-bottom: 20px; /* Space between image and text */
+}
+
+.feature-card-img09 h4 {
+  font-size: 1rem; /* Adjust font size as needed */
+  color: #333;
+  width: 300px; /* Text color */
+  line-height: 1.4; /* Improves readability */
+  flex-grow: 1; /* Allows the text to take available space */
+}
+
   .feature-card-img07:nth-child(2),
 .feature-card-img07:nth-child(5) {
     transform: translateY(-7vh); /* Move up by 20px */

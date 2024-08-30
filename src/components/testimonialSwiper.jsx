@@ -54,7 +54,7 @@ const TestimonialSwiper = () => {
             </p>
             <p style={textStyle}>⭐️⭐️⭐️⭐️⭐️ </p>
             <h4 style={authorStyle}>— Michael R.</h4>
-            <p style={companyStyle}>CEO of TechWave</p>
+            <p style={companyStyle}>CEO of TechWaver</p>
           </div>
         </SwiperSlide>
         <SwiperSlide style={slideStyle}>

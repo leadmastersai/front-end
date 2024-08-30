@@ -120,7 +120,7 @@ const Landing = () => {
   const features2=[
     {image:sing1,text:'1. Sign Up and Connect Your Account With Leadmasters'},
     {image:sing2,text:'2. Choose and Customize Your Ad Templates'},
-    {image:sing3 ,text:'3. Launch Your Campaign & Track Performance'},
+    {image:sing3 ,text:'3.  Launch Your Campaign across Google, Meta, LinkedIn and Twitter and Track Performance'},
   ]
   const autm=[
     {image:aut1},
@@ -349,7 +349,7 @@ const Landing = () => {
       <div className="features-container-cards09">
         {features2.map((feature, index) => (
           <div key={index} className="feature-card-img09">
-            <img src={feature.image} alt={`Feature ${index + 1}`} className="feature-image1" />
+            <img src={feature.image} alt={`Feature ${index + 1}`} className="feature-image09" />
             <h4 style={{textAlign:'center'}} className='' >{feature.text}</h4>
           </div>
         ))}
