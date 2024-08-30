@@ -438,5 +438,8 @@ li .ant-menu-item{
       text-align: center; /* Center the login button within the menu */
       margin-top: 10px; /* Space above the login button inside the menu */
   }
+  .max-height{
+    height: 100% !important;
+  }
 }
 

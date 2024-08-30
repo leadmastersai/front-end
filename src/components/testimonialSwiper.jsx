@@ -37,7 +37,7 @@ const TestimonialSwiper = () => {
       >
         <SwiperSlide style={slideStyle}>
           <div style={cardStyle}>
-            <p style={textStyle1}>
+            <p style={textStyle1} className='max-height'>
             LeadMasters AI transformed our marketing strategy! The AI-driven insights helped us target the right audience, optimizing our ad spend significantly. We've seen a tremendous boost in leads and conversions. Highly recommended!
 
             </p>
@@ -48,18 +48,18 @@ const TestimonialSwiper = () => {
         </SwiperSlide>
         <SwiperSlide style={slideStyle}>
           <div style={cardStyle}>
-            <p style={textStyle}>
+            <p style={textStyle} className='max-height'>
             The ease of use and the powerful AI features of LeadMasters AI are unmatched. Our team has been able to streamline our campaigns and get real-time insights, leading to better decision-making and higher ROI.
            
             </p>
             <p style={textStyle}>⭐️⭐️⭐️⭐️⭐️ </p>
             <h4 style={authorStyle}>— Michael R.</h4>
-            <p style={companyStyle}>CEO of TechWaver</p>
+            <p style={companyStyle}>Chief Marketing Officer</p>
           </div>
         </SwiperSlide>
         <SwiperSlide style={slideStyle}>
           <div style={cardStyle}>
-            <p style={textStyle1}>
+            <p style={textStyle1} className='max-height'>
             LeadMasters AI helped us cut through the noise and focus on what really matters. The platform's automation and optimization tools have saved us time and increased our campaign effectiveness.
            
             </p>
@@ -70,7 +70,7 @@ const TestimonialSwiper = () => {
         </SwiperSlide>
         <SwiperSlide style={slideStyle}>
           <div style={cardStyle}>
-            <p style={textStyle1}>
+            <p style={textStyle1} className='max-height'>
             We saw a 30% increase in qualified leads within the first month of using LeadMasters AI. The insights and recommendations are spot-on, making our campaigns more targeted and successful.
            
             </p>
@@ -81,7 +81,7 @@ const TestimonialSwiper = () => {
         </SwiperSlide>
         <SwiperSlide style={slideStyle}>
           <div style={cardStyle}>
-            <p style={textStyle1}>
+            <p style={textStyle1} className='max-height'>
             LeadMasters AI is a must-have for any business looking to scale their digital marketing efforts. The AI tools are intuitive, and the support team is always there to help. We've achieved incredible results!
             </p>
             <p style={textStyle}>⭐️⭐️⭐️⭐️⭐️ </p>
@@ -91,7 +91,7 @@ const TestimonialSwiper = () => {
         </SwiperSlide>
         <SwiperSlide style={slideStyle}>
           <div style={cardStyle}>
-            <p style={textStyle1}>
+            <p style={textStyle1} className='max-height'>
             Thanks to LeadMasters AI, our lead generation process is now more efficient than ever. The platform's ability to analyze data and provide actionable recommendations is a game-changer for our business.
         
             </p>
@@ -148,7 +148,7 @@ const cardStyle = {
   boxShadow: '0 10px 20px rgba(0,0,0,0.1)',
   textAlign: 'center',
   flexDirection:'column',
-  minHeight: '200px',
+  minHeight: '350px',
   maxWidth: '50vw',
   margin: '10px',
 };

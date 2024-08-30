@@ -409,7 +409,7 @@ const Landing = () => {
   <p className='closs closs2' style={{ width: '40vw', textAlign: 'center', marginBottom: '5vh' }}>
    Seamlessly integrate with platforms like Twitter, LinkedIn, and other social media networks.
   </p>
-      <img src={sect6} className='features-section6 add-m-bottom' />
+      <img src={sect6} className='features-section70 add-m-bottom' />
       <button className="cta-button9 cta-m-top" onClick={()=>navigate("/signup")}>Get Started Free</button>
 
       </section>
