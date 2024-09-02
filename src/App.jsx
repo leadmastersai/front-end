@@ -33,6 +33,7 @@ import PublishPosts from './screens/publishPosts';
 import Privacy from './screens/legalScreens/Privacy';
 import Terms from './screens/legalScreens/Terms';
 import Cancellation from './screens/legalScreens/Cancellations';
+import DeleteAccount from './screens/deactivate';
 
 
 
@@ -63,6 +64,7 @@ function App() {
           {/* <Route path="/home" element={<Home />} /> */}
           <Route path="/postidea" element={<PostIdea />} />
           <Route path="/analytics" element={<Analytics />} />
+          <Route path="/data-deletion" element={<DeleteAccount />} />
           <Route path="/automation" element={<Automation />} />
           <Route path="/drafts" element={<Drafts />} />
           <Route path="/adsdrafts" element={<AdsDrafts />} />
