@@ -2,7 +2,7 @@
 
 
 const apiURLs={
-    base_url:"https://leadmasters.ai/",
+    base_url:"https://leadmasters.site/",
     postCreate:"api/posts/create-post",
     getfb:"api/posts/facebook",
     getg:"api/posts/google",
