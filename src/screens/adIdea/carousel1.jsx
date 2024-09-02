@@ -12,20 +12,26 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { useState } from 'react';
 
-const Carousel1 = () => {
-    const [activeIndex, setActiveIndex] = useState(null);
-  const cards = [
-    { logo: Social3, title: 'Google Ads', cent: Cent },
-    { logo: Social4, title: 'Instagram Ads', cent: Cent },
-    { logo: Social2, title: 'LinkedIn Ads', cent: Cent },
-    { logo: Social1, title: 'Twitter Ads', cent: Cent },
-    { logo: Social3, title: 'Google Ads', cent: Cent },
-  ];
+const Carousel1 = ({onPlatformSelect}) => {
+    
 
+  const cards = [
+    { logo: Social3, title: 'Google', cent: Cent },
+    { logo: Social4, title: 'Instagram', cent: Cent },
+    { logo: Social2, title: 'LinkedIn', cent: Cent },
+    { logo: Social1, title: 'Twitter', cent: Cent },
+    { logo: Social3, title: 'Google', cent: Cent },
+  ];
+  const linkedInIndex = cards.findIndex(card => card.title === 'LinkedIn');
+  const [activeIndex, setActiveIndex] = useState(linkedInIndex);
+  
   const Card = ({ logo, title, cent ,index}) => {
     return (
         <div       className={`card ${index === activeIndex ? 'active munjal' : ''}`}
-        onClick={() => setActiveIndex(index)}>
+        onClick={() => {
+          setActiveIndex(index)
+          onPlatformSelect(title); 
+        }}>
         <img src={logo} alt={`${title} logo`} className="card-logo1" />
         <h3 className="card-content1">{title}</h3>
     

@@ -14,6 +14,7 @@ import Carousel1 from '../adIdea/carousel1';
 import stars from '../../assets/getIdea/stars.svg';
 
 const Drafts = () => {
+  const [selectedPlatform, setSelectedPlatform] = useState("LinkedIn");
   const [success, setSuccess] = useState(false); // state for showing success message
   const [error, setError] = useState(false);
 
@@ -21,8 +22,9 @@ const Drafts = () => {
   const [loading, setLoading] = useState(false); // Add loading state
 
   const getDrafts = async () => {
+    const platform=selectedPlatform.toLocaleLowerCase();
     try {
-      const response = await postService.facebookDraft();
+      const response = await postService.facebookDraft(platform);
       console.log(response.data);
       setData(response.data);
     } catch (error) {
@@ -33,7 +35,7 @@ const Drafts = () => {
   useEffect(() => {
 
     getDrafts();
-  }, []);
+  }, [selectedPlatform]);
 
   const handleLinkedin = async (item) => {
     setLoading(true); // Show spinner when starting to publish
@@ -49,6 +51,28 @@ const Drafts = () => {
   };
     try {
       const response = await postService.publishLinkedin(payload);
+      console.log(response.data);
+    } catch (error) {
+      console.log(error, "error");
+    } finally {
+      setLoading(false); // Hide spinner after operation is complete
+    }
+  };
+
+  const handleTwitter = async (item) => {
+    setLoading(true); // Show spinner when starting to publish
+    const hashtagsString = item?.hashtags?.length
+    ? item.hashtags.map(hashtag => `#${hashtag}`).join(' ')
+    : '';
+
+  // Combine content and hashtags
+  const text = `${item?.content} ${hashtagsString}`.trim(); // Trim to remove any extra spaces
+
+  const payload = {
+    text
+  };
+    try {
+      const response = await postService.twitterPost(payload);
       console.log(response.data);
     } catch (error) {
       console.log(error, "error");
@@ -82,6 +106,14 @@ const Drafts = () => {
   };
   
 
+  const handlePlatformSelect = (platform) => {
+    console.log('Selected Platform:', platform);
+    setSelectedPlatform(platform);
+    // You can now use this selectedPlatform for further actions in the parent component
+  };
+
+  console.log(selectedPlatform,"0000000000");
+  
 
   return (
     <div className='main-cont55' style={{}}>
@@ -92,7 +124,7 @@ const Drafts = () => {
     {success && <Alert style={{marginLeft:'40vw'}} message="deleted successfully!" type="success" showIcon />}
     {error && <Alert style={{marginLeft:'40vw'}} message="Something went Wrong." type="error" showIcon />}
     </div>
-    <Carousel1  />
+    <Carousel1 onPlatformSelect={handlePlatformSelect}  />
     {(!data || data.length === 0) && (
   <h2 className='message-for-draft'>You can Select a Template Post from Post Idea or can generate Post Idea !!</h2>
 )}
@@ -133,8 +165,18 @@ const Drafts = () => {
           <div className='bottom-cont44'>
             {/* <img src={like} className='btm-img' />
             <img src={dislike} className='btm-img' style={{ marginLeft: '2%' }} /> */}
-            <img src={post} className='btm-img44' style={{ marginLeft: '2%', marginRight: '2%' }} onClick={() => handleLinkedin(item)}/>
-            <p className='para44' onClick={() => handleLinkedin(item)}>Post now</p>
+            <img src={post} className='btm-img44' style={{ marginLeft: '2%', marginRight: '2%' }} onClick={() =>{
+    if (selectedPlatform === 'Twitter') {
+      handleTwitter(item);
+    } else if (selectedPlatform === 'LinkedIn') {
+      handleLinkedin(item);
+    }}}/>
+            <p className='para44' onClick={() =>{
+    if (selectedPlatform === 'Twitter') {
+      handleTwitter(item);
+    } else if (selectedPlatform === 'LinkedIn') {
+      handleLinkedin(item);
+    }}}>Post now</p>
             <img src={schedule} className='btm-img44' style={{ marginLeft: '3%', marginRight: '2%' }} />
             <p className='para44'>Schedule Now</p>
             <img src={write} className='btm-img44' style={{ marginLeft: '3%', marginRight: '2%' }}   onClick={() => handledelete(item)}  />

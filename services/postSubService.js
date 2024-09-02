@@ -10,6 +10,14 @@ const postsubGet = async () => {
     });
 };
 
-const postSubService={postsubGet}
+const postPlatformCategory = async (platform,category) => {
+    return request({
+        method: 'get',
+        url: `${apiUrls.postCategory}/${platform}/categories/${category}/data`,
+        secure:true
+    });
+};
+
+const postSubService={postsubGet,postPlatformCategory}
 
 export {postSubService};

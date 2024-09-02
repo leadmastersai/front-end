@@ -20,10 +20,10 @@ const saveToDraft=async (payload)=>{
    })
 }
 
-const facebookDraft = async () => {
+const facebookDraft = async (platform) => {
     return request({
         method: 'get',
-        url: `${apiUrls.draftfb}`,
+        url: `${apiUrls.draftfb}/${platform}`,
         secure: true
     });
 };
@@ -35,6 +35,15 @@ const publishLinkedin=async (payload)=>{
      data:payload,
      secure:true
     })
+ }
+
+ const twitterPost=async(payload)=>{
+    return request({
+        method:'post',
+        url:`${apiUrls.twitterPost}`,
+        data:payload,
+        secure:true
+       })
  }
 
  const postContactInfo=async(payload)=>{
@@ -64,7 +73,7 @@ const draftDelete=async(id)=>{
 }
 // Creating an object with the service functions
 const postService = {
-    facebookGet,saveToDraft,facebookDraft,publishLinkedin,getUser,postContactInfo,draftDelete
+    facebookGet,saveToDraft,facebookDraft,publishLinkedin,getUser,postContactInfo,draftDelete,twitterPost
 };
 
 // Exporting postService object for use in other modules

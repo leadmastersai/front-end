@@ -17,6 +17,12 @@ const SocialMediaIntegration = ({ platform, isConnected }) => {
     const linkedinAuthUrl = `https://leadmasters.site/auth/linkedin?state=${encodedState}`;
     window.location.href = linkedinAuthUrl;
     }
+
+    function handleClick1() {
+      
+      const linkedinAuthUrl = `https://leadmasters.site/auth/twitter?token=${token}`;
+      window.location.href = linkedinAuthUrl;
+      }
   return (
     <div style={styles.container}>
       <div style={styles.platformName}>
@@ -37,7 +43,7 @@ const SocialMediaIntegration = ({ platform, isConnected }) => {
         ) : (
           <button 
             style={styles.integrateButton}
-            onClick={handleClick}
+            onClick={platform.icon===twi ? handleClick1 : handleClick}
           >
             Integrate
           </button>
