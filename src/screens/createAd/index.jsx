@@ -88,16 +88,16 @@ console.log(userBasics,"this is user");
       </header>
       <div className="post-content">
       <img src={mail} className='mail-img' />
-        <p>
+        {/* <p>
           Are you struggling to maintain a work-life balance? I will be sharing some practical tips and strategies that have personally helped me navigate through this challenge. Stay tuned!
-        </p>
+        </p> */}
       </div>
-      <div className="action-buttons">
+      {/* <div className="action-buttons">
         <button><img src={expand} className='write-img'/>Make it crisp</button>
         <button><img src={expand} className='write-img' /> Fix spellings</button>
         <button> <img src={expand}  className='write-img'/>Add Emojis</button>
         <button><img src={expand} className='write-img'/>Add Hashtags</button>
-      </div>
+      </div> */}
       <div className="message-input">
         <input type="text" placeholder="Type your message here or pick from the prompts" style={{widows:'80%'}}/>
         <button className="send-button"><img src={send} className='write-img1' /></button>

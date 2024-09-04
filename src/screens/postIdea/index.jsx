@@ -66,7 +66,7 @@ const PostIdea = () => {
       </div>
       <Carousel1 />
       </div>
-      {data?.map((item, index) => (
+      {/* {data?.map((item, index) => (
         <div className='card-cont' key={index} >
           <div className='profile-cont'>
             <img src={profilepic ?profilepic: avtar} className={profilepic ? 'avtar-usr':'avtar'} />
@@ -102,7 +102,7 @@ const PostIdea = () => {
             </div>
           </div>
         </div>
-      ))}
+      ))} */}
     </div>
   )
 }

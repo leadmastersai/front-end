@@ -8,19 +8,25 @@ import schedule from '../../assets/getIdea/schedule.svg';
 import write from '../../assets/getIdea/remove.svg';
 import { useEffect, useState } from 'react';
 import { postService } from '../../../services/postServices';
-import { Alert, Spin } from "antd";
+import { Alert, Button, Modal, Spin } from "antd";
 import { useSelector } from 'react-redux';
 import Carousel1 from '../adIdea/carousel1';
 import stars from '../../assets/getIdea/stars.svg';
+import { useNavigate} from 'react-router-dom';
+
 
 const Drafts = () => {
+  const navigate=useNavigate();
   const [selectedPlatform, setSelectedPlatform] = useState("LinkedIn");
   const [success, setSuccess] = useState(false); // state for showing success message
   const [error, setError] = useState(false);
-
+  const {userBasics}  = useSelector((state) => state.auth);
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false); // Add loading state
-
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [modalMessage, setModalMessage] = useState('');
+  console.log(userBasics,"###################################");
+  
   const getDrafts = async () => {
     const platform=selectedPlatform.toLocaleLowerCase();
     try {
@@ -32,12 +38,26 @@ const Drafts = () => {
     }
   };
 
+  const showLoginModal = (platform) => {
+    setModalMessage(`Login with ${platform} to post.`);
+    setIsModalVisible(true);
+  };
+
   useEffect(() => {
 
     getDrafts();
   }, [selectedPlatform]);
 
+  const handleModalOk = () => {
+    setIsModalVisible(false);
+   navigate("/integrations") // Redirect to the integration screen if needed
+  };
+
   const handleLinkedin = async (item) => {
+    if (!userBasics.isLinkedinConnected) {
+      showLoginModal('LinkedIn');
+      return;
+    }
     setLoading(true); // Show spinner when starting to publish
     const hashtagsString = item?.hashtags?.length
     ? item.hashtags.map(hashtag => `#${hashtag}`).join(' ')
@@ -60,6 +80,10 @@ const Drafts = () => {
   };
 
   const handleTwitter = async (item) => {
+    if (!userBasics.isTwitterLogin) {
+      showLoginModal('Twitter');
+      return;
+    }
     setLoading(true); // Show spinner when starting to publish
     const hashtagsString = item?.hashtags?.length
     ? item.hashtags.map(hashtag => `#${hashtag}`).join(' ')
@@ -186,6 +210,17 @@ const Drafts = () => {
         </div>
       ))}
       </div>
+      <Modal
+        title="Login Required"
+        visible={isModalVisible}
+        onOk={handleModalOk}
+        onCancel={() => setIsModalVisible(false)}
+      >
+        <p>{modalMessage}</p>
+        <Button type="primary" onClick={handleModalOk}>
+          Go to Integration
+        </Button>
+      </Modal>
     </div>
   )
 }

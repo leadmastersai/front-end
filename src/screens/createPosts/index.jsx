@@ -29,6 +29,8 @@ const CreatePosts = () => {
   const handlePlatformSelect = (platform) => {
     console.log('Selected Platform:', platform);
     setSelectedPlatform(platform);
+    setSelectedCategory(null); // Reset selected category when changing platform
+    setData([]); 
     // You can now use this selectedPlatform for further actions in the parent component
   };
   const onClick = ({ key }) => {
@@ -147,10 +149,15 @@ const CreatePosts = () => {
 
   const menu = {
      items: currentItems,
-    onClick,
+     onClick: ({ key }) => {
+      const selectedItem = currentItems.find(item => item.key === key);
+      if (selectedItem) {
+          setSelectedCategory(selectedItem);
+      }
+  },
   };
 
-console.log(selectedPlatform,"==");
+console.log(selectedCategory,"==");
 
 const handleGetCategoryData=async()=>{
   if (!selectedCategory) {
@@ -225,16 +232,16 @@ const handleDraft = async (item) => {
       </header>
       <div className="post-content">
       <img src={mail} className='mail-img' />
-        <p>
+        {/* <p>
           Are you struggling to maintain a work-life balance? I will be sharing some practical tips and strategies that have personally helped me navigate through this challenge. Stay tuned!
-        </p>
+        </p> */}
       </div>
-      <div className="action-buttons">
+      {/* <div className="action-buttons">
         <button><img src={expand} className='write-img'/>Make it crisp</button>
         <button><img src={expand} className='write-img' /> Fix spellings</button>
         <button> <img src={expand}  className='write-img'/>Add Emojis</button>
         <button><img src={expand} className='write-img'/>Add Hashtags</button>
-      </div>
+      </div> */}
       
       <div className="dropdown-container">
         <Dropdown menu={menu} placement="bottomCenter">
@@ -256,7 +263,7 @@ const handleDraft = async (item) => {
     </div>
     
     </div>
-    
+{/*     
     <div className='bottom-cont1' style={{marginBottom:'5vh'}}>
     <img src={post} className='btm-img1' style={{marginLeft:'39%',marginRight:'1%'}}/>
     <p className='para1'>Cross Posting</p>
@@ -268,7 +275,7 @@ const handleDraft = async (item) => {
 <div className='button1' style={{marginLeft:'6%'}}>
   <span>Pickup Slot</span>
 </div>
-        </div>
+        </div> */}
         {data?.map((item, index) => (
         <div className='card-cont' key={index} >
           <div className='profile-cont'>
