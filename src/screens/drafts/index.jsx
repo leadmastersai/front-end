@@ -54,7 +54,7 @@ const Drafts = () => {
   };
 
   const handleLinkedin = async (item) => {
-    if (!userBasics.isLinkedinConnected) {
+    if (!userBasics.isLinkedInConnected) {
       showLoginModal('LinkedIn');
       return;
     }
