@@ -298,7 +298,7 @@ const handleDraft = async (item) => {
               </span>
             ))}
           </div>
-          <div className='small-cont'><span>Learn more</span> <img style={{ width: 12, height: 12, objectFit: 'contain', marginLeft: 5 }} src={down} /></div>
+          {/* <div className='small-cont'><span>Learn more</span> <img style={{ width: 12, height: 12, objectFit: 'contain', marginLeft: 5 }} src={down} /></div> */}
           <div className='bottom-cont'>
             <img src={like} className='btm-img' />
             <img src={dislike} className='btm-img' style={{ marginLeft: '2%' }} />

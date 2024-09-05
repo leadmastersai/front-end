@@ -66,6 +66,8 @@ const PostIdea = () => {
       </div>
       <Carousel1 />
       </div>
+   
+      <h2 style={{fontWeight:'300',margin:'5%',textAlign:'center'}}>Please tell us more about yourself and your business to Get Recommendations here!!</h2>
       {/* {data?.map((item, index) => (
         <div className='card-cont' key={index} >
           <div className='profile-cont'>
