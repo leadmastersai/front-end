@@ -21,7 +21,7 @@ import sub4 from '../../assets/analytics/sub4.svg';
 const Analytics = () => {
   return (
     <div className='containr'>
-    <h2 style={{fontWeight:'400'}}>Analytics</h2>
+    <h3>Performance Overview</h3>
     <div className="profile-card">
       <div className="animated-ball ball-left">
         <img src={ballImage} alt="Ball" className="bal" />

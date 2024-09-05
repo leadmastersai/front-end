@@ -71,9 +71,17 @@ const draftDelete=async(id)=>{
         secure:true
     })
 }
+
+const publishService=async(platform)=>{
+    return request({
+        method:'get',
+        url:`${apiUrls.publishedPosts}/${platform}`,
+        secure:true
+    })
+}
 // Creating an object with the service functions
 const postService = {
-    facebookGet,saveToDraft,facebookDraft,publishLinkedin,getUser,postContactInfo,draftDelete,twitterPost
+    facebookGet,saveToDraft,facebookDraft,publishLinkedin,getUser,postContactInfo,draftDelete,twitterPost,publishService
 };
 
 // Exporting postService object for use in other modules

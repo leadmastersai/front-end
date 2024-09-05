@@ -42,7 +42,7 @@ const items = [
   // },
   {
     key: '10',
-    label: <Link to="/postidea">post Idea</Link>,
+    label: <Link to="/postidea">BrainStorm Ideas</Link>,
     icon: <img src={menu5} className='item-ims' style={{ width: 17, height: 17 }} />,
   },
   {
@@ -56,7 +56,7 @@ const items = [
       },
       {
         key: '2-2',
-        label: <Link to='/published-posts'>Publish Post</Link>,
+        label: <Link to='/published-posts'>Published Posts</Link>,
       },
     
     ],
@@ -64,12 +64,12 @@ const items = [
 
   {
     key: '3',
-    label: <Link to='/home'>Campaign</Link>,
+    label: <Link to='/home'>Marketing Campaigns</Link>,
     icon: <img src={menu6} className='item-ims' style={{ width: 17, height: 17 }} />,
   },
   {
     key: '4',
-    label: <Link to='/automation'>Automation</Link>,
+    label: <Link to='/automation'>Smart Automations</Link>,
     icon: <img src={menu4} className='item-ims' style={{ width: 17, height: 17 }} />,
   },
   // {
@@ -80,11 +80,11 @@ const items = [
   {
     key: '6',
     icon: <img src={menu7} className='item-ims' style={{ width: 17, height: 17 }} />,
-    label: <Link to="/analytics">Analytics</Link>,
+    label: <Link to="/analytics">Performance Overview</Link>,
   },
   {
     key: '7',
-    label: <Link to='/integrations' >Integrations</Link>,
+    label: <Link to='/integrations' >Social Logins</Link>,
     icon: <img src={menu3} className='item-ims' style={{ width: 17, height: 17 }} />,
   },
   // {

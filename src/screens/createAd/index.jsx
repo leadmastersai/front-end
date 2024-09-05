@@ -16,27 +16,8 @@ import { saveUserDetail } from '../../redux/authSlice';
 
 const CreateAd = () => {
   const dispatch=useDispatch();
-  useEffect(() => {
-    const urlParams = new URLSearchParams(window.location.search);
-    const token = urlParams.get('token'); // Changed from encryptedToken to token
+  
 
-    console.log('Received Token:', token); // Log the received token
-
-    if (token) {
-        // Store the token securely
-        localStorage.setItem('oauthToken', token);
-
-        // Remove the token from URL parameters
-        urlParams.delete('token');
-        const newUrl = `${window.location.pathname}?${urlParams.toString()}`;
-        window.history.replaceState({}, document.title, newUrl);
-
-        // Optional: Redirect the user to another page
-
-    } else {
-        console.error('Token is null or undefined');
-    }
-}, []);
 
 
 useEffect(() => {
@@ -61,25 +42,25 @@ getUserDetails()
 },[])
 
 const {userBasics}  = useSelector((state) => state.auth);
-
+const profilepic=userBasics.picture;
 console.log(userBasics,"this is user");
   return (
     <>
     <div className='main-cont' style={{marginInline:'100px'}}>
     <div className='heading'>
-    <h3>Create new Ad </h3>
+    <h3>Ad Builder</h3>
     <img src={stars} className='str'/>
     </div>
     <Carousel1 style={{marginTop:'-5vh'}}/>
     <div className="app-container">
       <header className="header-ad">
         <img
-          src={avtar} 
+      src={profilepic ?profilepic: avtar} 
           alt="Profile"
           className="profile-picture"
         />
         <div className="profile-info1">
-          <h5>Abdullah Khan</h5>
+          <h5>{userBasics?.fullName}</h5>
           <div className='header-ad'>
           <img src={write1} className='write-img' />
           <p >Start typing note</p>

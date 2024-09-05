@@ -15,7 +15,8 @@ const apiURLs={
      getUsers:"api/user",
      postContact:"api/contact",
       postSub:"api/postsub",
-      postCategory:'api/category'
+      postCategory:'api/category',
+      publishedPosts:'api/publish'
 
 }
  export default apiURLs;

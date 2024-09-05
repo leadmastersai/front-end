@@ -61,7 +61,7 @@ const PostIdea = () => {
       )}
          <div >
       <div className='heading'>
-        <h3>Get Post Ideas</h3>
+        <h3>BrainStorm Ideas</h3>
         <img src={stars} className='str' />
       </div>
       <Carousel1 />

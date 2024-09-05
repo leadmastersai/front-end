@@ -37,7 +37,7 @@ const Automation = () => {
   return (
     <div style={{marginLeft: '10vh',marginTop:'5vh'}}>
     <div className='small-cont-s' >
-    <h2 style={{fontWeight:'500',marginRight:5}}>Automation</h2>
+    <h3 style={{marginRight:5}}>Smart Automation</h3>
     <img src={star} />
     </div>
         

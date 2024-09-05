@@ -16,6 +16,8 @@ import { useNavigate} from 'react-router-dom';
 
 
 const Drafts = () => {
+  const [success1,setSuccess1]=useState(false);
+  const [error1, setError1] = useState(false);
   const navigate=useNavigate();
   const [selectedPlatform, setSelectedPlatform] = useState("LinkedIn");
   const [success, setSuccess] = useState(false); // state for showing success message
@@ -53,6 +55,7 @@ const Drafts = () => {
    navigate("/integrations") // Redirect to the integration screen if needed
   };
 
+
   const handleLinkedin = async (item) => {
     if (!userBasics.isLinkedInConnected) {
       showLoginModal('LinkedIn');
@@ -62,23 +65,32 @@ const Drafts = () => {
     const hashtagsString = item?.hashtags?.length
     ? item.hashtags.map(hashtag => `#${hashtag}`).join(' ')
     : '';
-
+  
   // Combine content and hashtags
   const text = `${item?.content} ${hashtagsString}`.trim(); // Trim to remove any extra spaces
-
+  
   const payload = {
     text
   };
     try {
       const response = await postService.publishLinkedin(payload);
       console.log(response.data);
+      if (response.status === 200 || response.status === 201) {
+        setSuccess1(true);
+        setTimeout(() => setSuccess1(false), 3000);
+        setError1(false);
+        setLoading(false);
+      }
     } catch (error) {
+      setError1(true)
+      setSuccess1(false)
+      setTimeout(()=>setError1(false),3000);
       console.log(error, "error");
     } finally {
       setLoading(false); // Hide spinner after operation is complete
     }
   };
-
+  
   const handleTwitter = async (item) => {
     if (!userBasics.isTwitterLogin) {
       showLoginModal('Twitter');
@@ -88,18 +100,27 @@ const Drafts = () => {
     const hashtagsString = item?.hashtags?.length
     ? item.hashtags.map(hashtag => `#${hashtag}`).join(' ')
     : '';
-
+  
   // Combine content and hashtags
   const text = `${item?.content} ${hashtagsString}`.trim(); // Trim to remove any extra spaces
-
+  
   const payload = {
     text
   };
     try {
       const response = await postService.twitterPost(payload);
       console.log(response.data);
+      if (response.status === 200 || response.status === 201) {
+        setSuccess1(true);
+        setTimeout(() => setSuccess1(false), 3000);
+        setError1(false);
+        setLoading(false);
+      }
     } catch (error) {
       console.log(error, "error");
+      setError1(true)
+      setSuccess1(false)
+      setTimeout(()=>setError1(false),3000);
     } finally {
       setLoading(false); // Hide spinner after operation is complete
     }
@@ -141,6 +162,36 @@ const Drafts = () => {
 
   return (
     <div className='main-cont55' style={{}}>
+          {success1 && (
+      <Alert
+        message="Posted successfully"
+        type="success"
+        showIcon
+        style={{
+          position: 'fixed',
+          top: 20,
+          right: 20,
+          zIndex: 1000,
+          width: 'auto',
+          maxWidth: '300px',
+        }}
+      />
+    )}
+    {error1 && (
+      <Alert
+        message="Something went wrong."
+        type="error"
+        showIcon
+        style={{
+          position: 'fixed',
+          top: 20,
+          right: 20,
+          zIndex: 1000,
+          width: 'auto',
+          maxWidth: '300px',
+        }}
+      />
+    )}
        <div style={{marginInline:'50px'}}>
     <div className='heading' >
     <h3>Post Drafts</h3>
@@ -174,7 +225,8 @@ const Drafts = () => {
             </div>
           </div> */}
           {/* <h5>{item?.title}</h5> */}
-          <p className='para23'>{item?.content}</p>
+          <p className='para23'>{item?.content?.replace(/\[|\]/g, '')}</p>
+
           <div className='hashtags88'>
             {item.hashtags?.map((hashtag, idx) => (
               <span key={idx} className='hashtag-span'>

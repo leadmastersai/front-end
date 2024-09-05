@@ -14,16 +14,26 @@ import schedule from '../../assets/getIdea/schedule.svg';
 import expand from '../../assets/createAd/expand.svg';
 import send from '../../assets/createAd/send-one.svg';
 import { useState } from 'react';
-import { Dropdown, message, Space, Spin } from 'antd';
+import { Alert, Button, Dropdown, message, Modal, Space, Spin } from 'antd';
 import { postSubService } from '../../../services/postSubService';
 import { useSelector } from 'react-redux';
 import { postService } from '../../../services/postServices';
+import { useNavigate } from 'react-router-dom';
 
 const CreatePosts = () => {
+  const navigate=useNavigate();
+  const [success1,setSuccess1]=useState(false);
+  const [error1, setError1] = useState(false);
+  const [savedDrafts, setSavedDrafts] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [selectedPlatform, setSelectedPlatform] = useState("LinkedIn");
   const {userBasics}  = useSelector((state) => state.auth);
   const [data, setData] = useState([]);
+  const [success, setSuccess] = useState(false);
+const [error, setError] = useState(false);
+
+const [isModalVisible, setIsModalVisible] = useState(false);
+const [modalMessage, setModalMessage] = useState('');
   const [loading, setLoading] = useState(false);
   const profilepic=userBasics.picture;
   const handlePlatformSelect = (platform) => {
@@ -181,29 +191,182 @@ if(response.status===200){
 }
 
 const handleDraft = async (item) => {
+  if (savedDrafts.includes(item?.content)) {
+    message.warning('This post is already saved to drafts.');
+    return;
+  }
   setLoading(true); // Show spinner when starting to save draft
   const payload = {
-   
     content: item?.content,
     platform: selectedPlatform.toLowerCase(),
-    hashtags:item?.hashtags
+    hashtags: item?.hashtags
   };
-  console.log(payload,"&&&77");
-  
+  console.log(payload, "&&&77");
+
   try {
     const response = await postService.saveToDraft(payload);
     console.log(response.data, "posted");
+    if (response.status === 200 || response.status === 201) {
+      setSuccess(true);
+    setError(false);
+    setSavedDrafts([...savedDrafts, item?.content]); 
+    setLoading(false)
+    setTimeout(() => setSuccess(false), 3000); //
+    }
+
+    } catch (error) {
+      console.log(error, 'error');
+      setError(true);
+      setSuccess(false);
+      setLoading(false);
+      setTimeout(() => setError(false), 3000);
+    }
+};
+
+const showLoginModal = (platform) => {
+  setModalMessage(`Login with ${platform} to post.`);
+  setIsModalVisible(true);
+};
+
+const handleLinkedin = async (item) => {
+  if (!userBasics.isLinkedInConnected) {
+    showLoginModal('LinkedIn');
+    return;
+  }
+  setLoading(true); // Show spinner when starting to publish
+  const hashtagsString = item?.hashtags?.length
+  ? item.hashtags.map(hashtag => `#${hashtag}`).join(' ')
+  : '';
+
+// Combine content and hashtags
+const text = `${item?.content} ${hashtagsString}`.trim(); // Trim to remove any extra spaces
+
+const payload = {
+  text
+};
+  try {
+    const response = await postService.publishLinkedin(payload);
+    console.log(response.data);
+    if (response.status === 200 || response.status === 201) {
+      setSuccess1(true);
+      setTimeout(() => setSuccess1(false), 3000);
+      setError1(false);
+      setLoading(false);
+    }
   } catch (error) {
+    setError1(true)
+    setSuccess1(false)
+    setTimeout(()=>setError1(false),3000);
     console.log(error, "error");
   } finally {
     setLoading(false); // Hide spinner after operation is complete
   }
 };
 
+const handleTwitter = async (item) => {
+  if (!userBasics.isTwitterLogin) {
+    showLoginModal('Twitter');
+    return;
+  }
+  setLoading(true); // Show spinner when starting to publish
+  const hashtagsString = item?.hashtags?.length
+  ? item.hashtags.map(hashtag => `#${hashtag}`).join(' ')
+  : '';
+
+// Combine content and hashtags
+const text = `${item?.content} ${hashtagsString}`.trim(); // Trim to remove any extra spaces
+
+const payload = {
+  text
+};
+  try {
+    const response = await postService.twitterPost(payload);
+    console.log(response.data);
+    if (response.status === 200 || response.status === 201) {
+      setSuccess1(true);
+      setTimeout(() => setSuccess1(false), 3000);
+      setError1(false);
+      setLoading(false);
+    }
+  } catch (error) {
+    console.log(error, "error");
+    setError1(true)
+    setSuccess1(false)
+    setTimeout(()=>setError1(false),3000);
+  } finally {
+    setLoading(false); // Hide spinner after operation is complete
+  }
+};
+
+const handleModalOk = () => {
+  setIsModalVisible(false);
+ navigate("/integrations") // Redirect to the integration screen if needed
+};
+
 
 
   return (
     <>
+     {success && (
+      <Alert
+        message="Saved to draft successfully!"
+        type="success"
+        showIcon
+        style={{
+          position: 'fixed',
+          top: 20,
+          right: 20,
+          zIndex: 1000,
+          width: 'auto',
+          maxWidth: '300px',
+        }}
+      />
+    )}
+    {error && (
+      <Alert
+        message="Something went wrong."
+        type="error"
+        showIcon
+        style={{
+          position: 'fixed',
+          top: 20,
+          right: 20,
+          zIndex: 1000,
+          width: 'auto',
+          maxWidth: '300px',
+        }}
+      />
+    )}
+      {success1 && (
+      <Alert
+        message="Posted successfully"
+        type="success"
+        showIcon
+        style={{
+          position: 'fixed',
+          top: 20,
+          right: 20,
+          zIndex: 1000,
+          width: 'auto',
+          maxWidth: '300px',
+        }}
+      />
+    )}
+    {error1 && (
+      <Alert
+        message="Something went wrong."
+        type="error"
+        showIcon
+        style={{
+          position: 'fixed',
+          top: 20,
+          right: 20,
+          zIndex: 1000,
+          width: 'auto',
+          maxWidth: '300px',
+        }}
+      />
+    )}
     <div className='main-cont' style={{marginInline:'100px'}}>
     {loading && (
         <div className='overlay'>
@@ -211,19 +374,19 @@ const handleDraft = async (item) => {
         </div>
       )}
     <div className='heading'>
-    <h3>Create new Posts </h3>
+    <h3>Post Builder</h3>
     <img src={stars} className='str'/>
     </div>
     <Carousel1 style={{marginTop:'-5vh'}} onPlatformSelect={handlePlatformSelect} />
     <div className="app-container">
       <header className="header-ad">
         <img
-          src={avtar} 
+       src={profilepic ?profilepic: avtar} 
           alt="Profile"
           className="profile-picture"
         />
         <div className="profile-info1">
-          <h5>Abdullah Khan</h5>
+          <h5>{userBasics?.fullName}</h5>
           <div className='header-ad'>
           <img src={write1} className='write-img' />
           <p >Start typing note</p>
@@ -277,7 +440,7 @@ const handleDraft = async (item) => {
 </div>
         </div> */}
         {data?.map((item, index) => (
-        <div className='card-cont' key={index} >
+        <div className='card-cont' style={{marginInline:'auto'}} key={index} >
           <div className='profile-cont'>
             <img src={profilepic ?profilepic: avtar} className={profilepic ? 'avtar-usr':'avtar'} />
             <div className='profile-subcont'>
@@ -290,7 +453,8 @@ const handleDraft = async (item) => {
             </div>
           </div>
           <h5>{item?.title}</h5>
-          <p className='para'>{item?.content}</p>
+          <p className='para'>{item?.content?.replace(/\[|\]/g, '')}</p>
+
           <div className='hashtags'>
             {item.hashtags?.map((hashtag, idx) => (
               <span key={idx} className='hashtag'>
@@ -302,8 +466,18 @@ const handleDraft = async (item) => {
           <div className='bottom-cont'>
             <img src={like} className='btm-img' />
             <img src={dislike} className='btm-img' style={{ marginLeft: '2%' }} />
-            <img src={post} className='btm-img' style={{ marginLeft: '13%', marginRight: '1%' }} />
-            <p className='para1'>Post now</p>
+            <img src={post} className='btm-img' style={{ marginLeft: '13%', marginRight: '1%' }} onClick={() =>{
+    if (selectedPlatform === 'Twitter') {
+      handleTwitter(item);
+    } else if (selectedPlatform === 'LinkedIn') {
+      handleLinkedin(item);
+    }}}/>
+            <p className='para1' onClick={() =>{
+    if (selectedPlatform === 'Twitter') {
+      handleTwitter(item);
+    } else if (selectedPlatform === 'LinkedIn') {
+      handleLinkedin(item);
+    }}}>Post now</p>
             <img src={schedule} className='btm-img' style={{ marginLeft: '6%', marginRight: '1%' }} />
             <p className='para1'>Schedule Now</p>
             <img src={write} className='btm-img' style={{ marginLeft: '6%', marginRight: '1%' }} />
@@ -311,6 +485,17 @@ const handleDraft = async (item) => {
               <span>Save to draft</span>
             </div>
           </div>
+          <Modal
+        title="Login Required"
+        visible={isModalVisible}
+        onOk={handleModalOk}
+        onCancel={() => setIsModalVisible(false)}
+      >
+        <p>{modalMessage}</p>
+        <Button type="primary" onClick={handleModalOk}>
+          Go to Integration
+        </Button>
+      </Modal>
         </div>
       ))}
         </>

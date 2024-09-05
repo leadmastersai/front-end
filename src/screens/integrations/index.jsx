@@ -5,6 +5,7 @@ import stars from '../../assets/getIdea/stars.svg';
 import face from '../../assets/integrations/fb.svg';
 import twi from '../../assets/integrations/tw.svg';
 import link from '../../assets/integrations/ln.svg';
+import google from "../../assets/auth/google.svg";
 import { postService } from '../../../services/postServices';
 import { useDispatch, useSelector } from 'react-redux';
 import { saveUserDetail } from "../../redux/authSlice";
@@ -90,12 +91,17 @@ const {userBasics}  = useSelector((state) => state.auth);
       icon:face,
       isConnected: false,
     },
+    {
+      name:'Google',
+      icon:google,
+      isConnected:false
+    }
   ];
 
   return (
     <div style={{marginTop:'5vh'}}>
          <div className='heading'>
-    <h3>Integrations</h3>
+    <h3>Social Logins</h3>
     <img src={stars} className='str'/>
     </div>
     <div className='inte-cont'>
