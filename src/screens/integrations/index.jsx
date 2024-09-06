@@ -94,7 +94,7 @@ const {userBasics}  = useSelector((state) => state.auth);
     {
       name:'Google',
       icon:google,
-      isConnected:false
+      isConnected:userBasics.isGoogleConnected
     }
   ];
 
