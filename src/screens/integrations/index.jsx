@@ -13,12 +13,10 @@ const SocialMediaIntegration = ({ platform, isConnected }) => {
   const [connected, setConnected] = useState(isConnected);
   const token = localStorage.getItem('oauthToken');
   function handleClick() {
-    const state = {
-      flow: 'postsignup',
-      token: token
-    };
-    const encodedState = encodeURIComponent(JSON.stringify(state));
-    console.log(encodedState, "********************************************");
+    const state =  `postsignup|token=${token}`;
+    const encodedState = encodeURIComponent(state);
+    console.log(encodedState,"********************************************");
+    
     const linkedinAuthUrl = `https://leadmasters.site/auth/linkedin?state=${encodedState}`;
     window.location.href = linkedinAuthUrl;
     }
