@@ -84,7 +84,7 @@ const {userBasics}  = useSelector((state) => state.auth);
     {
       name: 'Twitter X',
       icon: twi,
-      isConnected: false,
+      isConnected: userBasics.isTwitterLogin,
     },
     {
       name: 'Facebook',
