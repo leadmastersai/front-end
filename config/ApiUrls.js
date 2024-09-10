@@ -16,7 +16,10 @@ const apiURLs={
      postContact:"api/contact",
       postSub:"api/postsub",
       postCategory:'api/category',
-      publishedPosts:'api/publish'
+      publishedPosts:'api/publish',
+      schedulePosts:'api/schedule/create',
+      getAllSchedule:'api/schedule/all-posts',
+      deleteSPost:'api/schedule/scheduled-post'
 
 }
  export default apiURLs;

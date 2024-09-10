@@ -87,7 +87,12 @@ const items = [
     label: <Link to='/integrations' >Social Logins</Link>,
     icon: <img src={menu3} className='item-ims' style={{ width: 17, height: 17 }} />,
   },
-  // {
+  //  {{}
+    {
+      key: '8',
+    label: <Link to='/schedule'>Schedule</Link>,
+    icon: <img src={menu4} className='item-ims' style={{ width: 17, height: 17 }} />,
+  }
   //   key: '8',
   //   label: 'Settings',
   //   icon: <img src={menu8} className='item-ims' style={{ width: 17, height: 17 }} />,

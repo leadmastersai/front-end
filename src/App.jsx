@@ -37,6 +37,7 @@ import DeleteAccount from './screens/deactivate';
 import ProtectedRoute from './components/protectedRoute';
 import GuestRoute from './components/guestRoute';
 import Auth from './screens/Auth';
+import Schedule from './screens/schedule';
 
 
 
@@ -78,6 +79,7 @@ function App() {
           <Route path="/adidea" element={<AdIdea />} />
           <Route path="/createposts" element={<CreatePosts />} />
           <Route path="/integrations" element={<Integrations />} />
+          <Route path="/schedule" element={<Schedule />} />
         </Route>
       </Routes>
     </Router>

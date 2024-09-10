@@ -12,13 +12,24 @@ import mail from '../../assets/createAd/email.svg';
 import post from '../../assets/getIdea/post.svg';
 import schedule from '../../assets/getIdea/schedule.svg';
 import expand from '../../assets/createAd/expand.svg';
+import dayjs from 'dayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import send from '../../assets/createAd/send-one.svg';
 import { useState } from 'react';
-import { Alert, Button, Dropdown, message, Modal, Space, Spin } from 'antd';
+import { Alert, Button, Dropdown, message, Modal, Radio, Space, Spin } from 'antd';
 import { postSubService } from '../../../services/postSubService';
 import { useSelector } from 'react-redux';
 import { postService } from '../../../services/postServices';
 import { useNavigate } from 'react-router-dom';
+import { DatePicker} from '@mui/x-date-pickers';
+import { scheduleService } from '../../../services/scheduleService';
+import utc from 'dayjs/plugin/utc';
+import timezone from 'dayjs/plugin/timezone';
+
+dayjs.extend(utc);
+dayjs.extend(timezone);
+
 
 const CreatePosts = () => {
   const navigate=useNavigate();
@@ -31,10 +42,26 @@ const CreatePosts = () => {
   const [data, setData] = useState([]);
   const [success, setSuccess] = useState(false);
 const [error, setError] = useState(false);
+const [isModalSVisible, setIsModalSVisible] = useState(false);
+const [dateValue, setDateValue] = useState(dayjs());
+const [timeValue, setTimeValue] = useState(dayjs());
+const [selectedTimeSlot, setSelectedTimeSlot] = useState('');
+const [selectedCard, setSelectedCard] = useState(null); 
+const handleCardClick = (item) => {
+  setSelectedCard(item); // Set the selected card data
+  setIsModalSVisible(true); // Show the schedule modal
+};
+
+
+const handleCancel = () => {
+  setIsModalSVisible(false);
+};
 
 const [isModalVisible, setIsModalVisible] = useState(false);
 const [modalMessage, setModalMessage] = useState('');
   const [loading, setLoading] = useState(false);
+  const [loading2,setLoading2]=useState(false);
+  const [success3,setSuccess3]=useState(false);
   const profilepic=userBasics.picture;
   const handlePlatformSelect = (platform) => {
     console.log('Selected Platform:', platform);
@@ -42,6 +69,10 @@ const [modalMessage, setModalMessage] = useState('');
     setSelectedCategory(null); // Reset selected category when changing platform
     setData([]); 
     // You can now use this selectedPlatform for further actions in the parent component
+  };
+
+  const handleTimeSlotChange = (e) => {
+    setSelectedTimeSlot(e.target.value);
   };
   const onClick = ({ key }) => {
     // Find the item clicked based on the key
@@ -263,6 +294,8 @@ const payload = {
   }
 };
 
+console.log(dateValue,selectedTimeSlot,"0000000000000000000000000000");
+
 const handleTwitter = async (item) => {
   if (!userBasics.isTwitterLogin) {
     showLoginModal('Twitter');
@@ -303,6 +336,42 @@ const handleModalOk = () => {
  navigate("/integrations") // Redirect to the integration screen if needed
 };
 
+const handleSchedule = async () => {
+  setLoading2(true);
+  const hashtagsString = selectedCard?.hashtags?.length
+    ? selectedCard?.hashtags?.map(hashtag => `#${hashtag}`).join(' ')
+    : '';
+
+  const text = `${selectedCard?.content} ${hashtagsString}`.trim(); 
+  const localDate = dateValue.format('YYYY-MM-DD');
+  const localTime = selectedTimeSlot; 
+  const localDatetime = `${localDate}T${localTime}`; 
+
+  const payload = {
+    platforms: selectedPlatform,
+    content: text,
+    scheduleTime: localDatetime
+  };
+
+  try {
+    const response = await scheduleService.schedulePost(payload);
+    console.log('Scheduling response:', response.data);
+    setLoading2(false)
+    handleCancel(); // Ensure that the modal is hidden and success message is shown
+    setSuccess3(true);
+     
+    setTimeout(() => {
+      setSuccess3(false);
+   // Hide the modal
+    }, 3000);
+  } catch (error) {
+    console.log('Scheduling error:', error);
+  } finally {
+    setLoading2(false);
+  }
+};
+
+
 
 
   return (
@@ -310,6 +379,21 @@ const handleModalOk = () => {
      {success && (
       <Alert
         message="Saved to draft successfully!"
+        type="success"
+        showIcon
+        style={{
+          position: 'fixed',
+          top: 20,
+          right: 20,
+          zIndex: 1000,
+          width: 'auto',
+          maxWidth: '300px',
+        }}
+      />
+    )}
+        {success3 && (
+      <Alert
+        message="Scheduled Successfully"
         type="success"
         showIcon
         style={{
@@ -478,8 +562,8 @@ const handleModalOk = () => {
     } else if (selectedPlatform === 'LinkedIn') {
       handleLinkedin(item);
     }}}>Post now</p>
-            <img src={schedule} className='btm-img' style={{ marginLeft: '6%', marginRight: '1%' }} />
-            <p className='para1'>Schedule Now</p>
+            <img onClick={() => handleCardClick(item)}src={schedule} className='btm-img' style={{ marginLeft: '6%', marginRight: '1%' }} />
+            <p className='para1' onClick={() => handleCardClick(item)}>Schedule Now</p>
             <img src={write} className='btm-img' style={{ marginLeft: '6%', marginRight: '1%' }} />
             <div className='button' style={{ marginLeft: '6%' }} onClick={() => handleDraft(item)}>
               <span>Save to draft</span>
@@ -495,6 +579,39 @@ const handleModalOk = () => {
         <Button type="primary" onClick={handleModalOk}>
           Go to Integration
         </Button>
+      </Modal>
+      <Modal
+        title="Pick Date and Time"
+        visible={isModalSVisible}
+        onCancel={handleCancel}
+        footer={null} // Remove default footer buttons
+      >
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
+          <div style={{ marginBottom: '1em' }}>
+            <DatePicker
+              label="Select Date"
+              value={dateValue}
+              onChange={(newValue) => setDateValue(newValue)}
+              renderInput={(params) => <input {...params} />}
+            />
+          </div>
+          <div>
+            <h3>Select Time Slot:</h3>
+            <Radio.Group onChange={handleTimeSlotChange} value={selectedTimeSlot}>
+              <Radio value="17:00">5 PM</Radio>
+              <Radio value="21:00">9 PM</Radio>
+            </Radio.Group>
+          </div>
+          <div  style={{ marginTop: '1em', textAlign: 'center' }}>
+            <button className='button' style={{ borderStyle:"none" }} onClick={handleSchedule}>
+            {loading2 ? (
+        <Spin size="small" />
+      ) : (
+        'Schedule'
+      )}
+            </button>
+          </div>
+        </LocalizationProvider>
       </Modal>
         </div>
       ))}
