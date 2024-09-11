@@ -52,15 +52,15 @@ const items = [
     children: [
       {
         key: '2-1',
-        label: <Link to='/drafts'>Saved</Link>,
+        label: <Link to='/drafts'><span style={{ marginLeft: '1vw' }}>Saved</span></Link>,
       },
       {
         key: '2-2',
-        label: <Link to='/published-posts'>Published Posts</Link>,
+        label: <Link to='/published-posts'><span style={{ marginLeft: '1vw' }}>Published Posts</span></Link>,
       },
-    
     ],
-  },
+  }
+  ,
 
   {
     key: '3',

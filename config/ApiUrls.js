@@ -19,7 +19,10 @@ const apiURLs={
       publishedPosts:'api/publish',
       schedulePosts:'api/schedule/create',
       getAllSchedule:'api/schedule/all-posts',
-      deleteSPost:'api/schedule/scheduled-post'
+      deleteSPost:'api/schedule/scheduled-post',
+      twitterD:'api/disconnect/logout/twitter',
+      linkedinD:'api/disconnect/logout/linkedin',
+      googleD:'api/disconnect/logout/google'
 
 }
  export default apiURLs;

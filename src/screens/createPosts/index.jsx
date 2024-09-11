@@ -598,8 +598,9 @@ const handleSchedule = async () => {
           <div>
             <h3>Select Time Slot:</h3>
             <Radio.Group onChange={handleTimeSlotChange} value={selectedTimeSlot}>
+           
+              <Radio value="21:00">9 AM</Radio>
               <Radio value="17:00">5 PM</Radio>
-              <Radio value="21:00">9 PM</Radio>
             </Radio.Group>
           </div>
           <div  style={{ marginTop: '1em', textAlign: 'center' }}>

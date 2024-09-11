@@ -9,4 +9,25 @@
     background-color: #1da1f2; /* Twitter's black */
     color: white;
   }
+  .fc-daygrid-event {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 98%; /* Ensure it doesn't overflow the date cell */
+    display: inline-block; /* Ensure the icon and text are on one line */
+    vertical-align: middle;
+  }
+  .iri-s{
+    background: linear-gradient(20deg, #ececfe, #fdeff9);
+  }
+  
+  .fc-daygrid-event > div {
+    display: flex;
+    align-items: center; /* Vertically center the icon and text */
+  }
+  
+  .fc-daygrid-event > div > .fa-twitter, 
+  .fc-daygrid-event > div > .fa-linkedin {
+    margin-right: 5px; /* Add space between icon and text */
+  }
   

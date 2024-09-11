@@ -9,9 +9,18 @@ import google from "../../assets/auth/google.svg";
 import { postService } from '../../../services/postServices';
 import { useDispatch, useSelector } from 'react-redux';
 import { saveUserDetail } from "../../redux/authSlice";
+import { disconnectService } from '../../../services/disconnectService';
+
 const SocialMediaIntegration = ({ platform, isConnected }) => {
+  const dispatch=useDispatch();
   const [connected, setConnected] = useState(isConnected);
   const token = localStorage.getItem('oauthToken');
+  const getUserDetails=async()=>{
+    const response=await postService.getUser();
+    console.log(response.data,"+++");
+   dispatch(saveUserDetail(response.data));
+    
+  }
   function handleClick() {
     const state =  `postsignup|token=${token}`;
     const encodedState = encodeURIComponent(state);
@@ -26,6 +35,27 @@ const SocialMediaIntegration = ({ platform, isConnected }) => {
       const linkedinAuthUrl = `https://leadmasters.site/auth/twitter?token=${token}`;
       window.location.href = linkedinAuthUrl;
       }
+
+      const handleDisconnect = async () => {
+        try {
+          if (platform.name === 'Twitter X') {
+            const response = await disconnectService.twitterDisconnect();
+            console.log(response.data, "Twitter disconnected");
+          } else if (platform.name === 'LinkedIn Profile') {
+            const response = await disconnectService.linkedinDisconnect();
+            console.log(response.data, "LinkedIn disconnected");
+          } else if (platform.name === 'Google') {
+            const response = await disconnectService.googleDisconnect();
+            console.log(response.data, "Google disconnected");
+          }
+          getUserDetails();
+          setConnected(false); // Update the state to show it's disconnected
+        } catch (error) {
+          console.error(`Error disconnecting ${platform.name}:`, error);
+        }
+      };
+
+
   return (
     <div style={styles.container}>
       <div style={styles.platformName}>
@@ -38,7 +68,7 @@ const SocialMediaIntegration = ({ platform, isConnected }) => {
             <span style={styles.connectedText}>Connected</span>
             <button 
               style={styles.disabledButton} 
-              disabled
+              onClick={handleDisconnect}
             >
               Disconnect
             </button>
@@ -161,7 +191,7 @@ const styles = {
     border: 'none',
     padding: '8px 20px',
     borderRadius: '8px',
-    cursor: 'not-allowed',
+   cursor:'pointer',
     fontSize: '16px',
   },
 };

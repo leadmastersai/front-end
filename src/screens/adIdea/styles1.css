@@ -77,16 +77,10 @@ li .ant-menu-item{
 
 .card.active {
   border-radius: 50px; /* Rounded corners */
-  border: 1px solid transparent; /* Transparent border */
-  background: linear-gradient(#F8EFFF,#F8EFFF) padding-box, /* Card background */
-  linear-gradient(90deg, #0000FF 0%, #8F00FF 53.99%, #FF1494 99.98%) border-box;
-            
+  color: white !important;
+   /* Tcransparent border */
+   background: linear-gradient(90deg, #0000FF 0%, #BC66FF 50%, #FF1494 100%);
 
-
-
- /* 
-              Gradient border */
-  background-origin: border-box;
 }
 
 
@@ -105,7 +99,8 @@ li .ant-menu-item{
 
 .card-content1 {
   margin-left: 15px;
-  font-size: 10.5px;
+  font-size: 13px;
+  font-weight: 200;
    
   width: 80px;
 }

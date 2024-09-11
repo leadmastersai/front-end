@@ -6,30 +6,34 @@ import interactionPlugin from "@fullcalendar/interaction";
 import moment from "moment";
 import stars from '../../assets/getIdea/stars.svg';
 import { scheduleService } from '../../../services/scheduleService';
-import { Modal, Button, message } from 'antd';  // Import Ant Design Modal and Button
-
+import { Modal, Button, message } from 'antd';  
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTwitter, faLinkedin } from '@fortawesome/free-brands-svg-icons';
+import './styles.scss';
 function Calendar() {
   const [events, setEvents] = useState([]);
-  const [isModalVisible, setIsModalVisible] = useState(false);  // Modal visibility state
-  const [selectedEvent, setSelectedEvent] = useState(null);  // Store selected event
+  const [isModalVisible, setIsModalVisible] = useState(false);  
+  const [selectedEvent, setSelectedEvent] = useState(null);  
 
   useEffect(() => {
     // Fetch events from the API
     const fetchEvents = async () => {
       try {
         const response = await scheduleService.getScheduledPosts();
-        const fetchedEvents = response?.data?.scheduledPosts?.map(event => ({
-          title: event?.content,  // Title of the event
-          start: moment.utc(event?.scheduleTime).local().toISOString(),  // Start date of the event
-          id: event?._id,  // Store the event ID
+        const fetchedEvents = response?.data?.scheduledPosts
+        ?.filter(event => event?.isPosted === false)  // Filter out events where isPosted is true
+        .map(event => ({
+          title: event?.content,  // Keep title as a string
+          start: moment.utc(event?.scheduleTime).local().toISOString(),  
+          id: event?._id,  
           extendedProps: {  
             content: event?.content,
             platform: event?.platforms,
-            _id: event?._id  // Store the _id in extendedProps
+            _id: event?._id  
           }
         }));
 
-        setEvents(fetchedEvents);  // Set the fetched events into state
+        setEvents(fetchedEvents);  
       } catch (error) {
         console.error("Error fetching events:", error);
       }
@@ -38,33 +42,48 @@ function Calendar() {
     fetchEvents();
   }, []);
 
-  // Function to show the modal when an event is clicked
   const handleEventClick = (clickInfo) => {
-    setSelectedEvent(clickInfo.event.extendedProps);  // Set selected event details
-    setIsModalVisible(true);  // Show the modal
+    setSelectedEvent(clickInfo.event.extendedProps);  
+    setIsModalVisible(true);  
   };
 
-  // Function to close the modal
   const handleCancel = () => {
     setIsModalVisible(false);
-    setSelectedEvent(null);  // Clear selected event
+    setSelectedEvent(null);  
   };
 
-  // Function to handle the delete action
   const handleDelete = async () => {
     try {
-      const response = await scheduleService.deleteSchedulePost(selectedEvent._id);  // Replace with actual delete API
+      const response = await scheduleService.deleteSchedulePost(selectedEvent._id);  
       if (response.status === 200) {
-        // Remove the deleted event from the calendar
         setEvents(events.filter(event => event.id !== selectedEvent._id));
-        message.success('Event deleted successfully');  // Show success message
-        setIsModalVisible(false);  // Close the modal
+        message.success('Event deleted successfully');  
+        setIsModalVisible(false);  
       }
     } catch (error) {
       console.error('Error deleting event:', error);
-      message.error('Failed to delete event');  // Show error message
+      message.error('Failed to delete event');  
     }
   };
+
+  // Custom event rendering function
+  const renderEventContent = (eventInfo) => {
+    let platformIcon = null;
+    const { platform, content } = eventInfo.event.extendedProps;
+  
+    if (platform.includes('Twitter')) {
+      platformIcon = <FontAwesomeIcon icon={faTwitter} color="black" style={{ marginRight: '5px' }} />;
+    } else if (platform.includes('LinkedIn')) {
+      platformIcon = <FontAwesomeIcon icon={faLinkedin} color="blue" style={{ marginRight: '5px' }} />;
+    }
+  
+    return (
+      <div style={{ display: 'flex', alignItems: 'center',backgroundColor:'purple' }} className="iri-s">
+        {platformIcon} <span>{content}</span>
+      </div>
+    );
+  };
+  
 
   return (
     <div style={{ zIndex: -1 }}>
@@ -81,17 +100,17 @@ function Calendar() {
             center: "title",
             end: "dayGridMonth,timeGridWeek,timeGridDay",
           }}
-          events={events}  // Pass the fetched events here
+          events={events}  
           height={"70vh"}
           slotDuration="00:15:00"
           timeZone="UTC"
           displayEventTime={false}
           eventBackgroundColor="#378006"
-          eventClick={handleEventClick}  // Handle event click
+          eventClick={handleEventClick}  
+          eventContent={renderEventContent}  // Custom event rendering
         />
       </div>
 
-      {/* Ant Design Modal for showing event details */}
       <Modal 
         title="Event Details" 
         visible={isModalVisible} 
@@ -104,7 +123,7 @@ function Calendar() {
             key="delete" 
             type="primary" 
             danger 
-            onClick={handleDelete}  // Handle delete action
+            onClick={handleDelete}  
           >
             Delete
           </Button>,

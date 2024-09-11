@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from 'react';
+import arrow from '../../assets/published/arrow.svg';
+import live from '../../assets/published/live.svg';
 import '../publishads/styles.scss';
 import Carousel1 from '../adIdea/carousel1';
 import stars from '../../assets/getIdea/stars.svg';
 import { postService } from '../../../services/postServices';
 import './styles.scss';
+import { Spin } from 'antd';
 const PublishPosts = () => {
+  const [loading,setLoading]=useState(true);
   const [data, setData] = useState([]);
   const [selectedPlatform, setSelectedPlatform] = useState("LinkedIn");
   const calculateTimeLeft = () => {
@@ -41,13 +45,16 @@ const PublishPosts = () => {
   });
 
   const getDrafts = async () => {
+   
     const platform=selectedPlatform.toLocaleLowerCase();
     try {
       const response = await postService.publishService(platform);
       console.log(response.data);
       setData(response.data);
+      setLoading(false);
     } catch (error) {
       console.log(error, "error");
+      setLoading(false);
     }
   };
 
@@ -58,6 +65,11 @@ const PublishPosts = () => {
 
   return (
     <div >
+        {loading && (
+        <div className='overlay'>
+          <Spin size="large" />
+        </div>
+      )}
       <div className='main-cont55' style={{}}>
        <div style={{marginInline:'50px'}}>
     <div className='heading' >
@@ -66,11 +78,14 @@ const PublishPosts = () => {
 
     </div>
     <Carousel1  onPlatformSelect={handlePlatformSelect}  />
-{!data && (<h2 style={{fontWeight:'300',margin:'5%'}}>No Live Social Media Post from your Account Yet !!</h2>)}
+
+
+{!loading && (!data || data.length === 0) && (<h2 style={{fontWeight:'300',margin:'5%'}}>No Live Social Media Post from your Account Yet !!</h2>)}
     </div>
     <div className='card-containr'>
     {data?.map((item, index) => (
-        <div className='card-cont3'  key={index} >
+        <div className='card-cont13'  key={index} >
+          <img className='img-live' src={live} />
           {/* <div className='profile-cont'>
             <img src={avtar} className='avtar' />
             <div className='profile-subcont'>
@@ -82,9 +97,13 @@ const PublishPosts = () => {
               </p>
             </div>
           </div> */}
-          {/* <h5>{item?.title}</h5> */}
-          <p className='para23'>{item?.content?.replace(/\[|\]/g, '')}</p>
-
+          {/* <h5>{i
+          <tem?.title}</h5> */}
+          <p className='para231'>{item?.content?.replace(/\[|\]/g, '')}</p>
+<div className='sm-c'>
+<span>View Analytics</span>
+<img style={{marginInline:'1vw'}} src={arrow} />
+</div>
         </div>
       ))}
       </div>
