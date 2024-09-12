@@ -6,12 +6,13 @@ import linkedin from "../../assets/auth/linkedin.svg";
 import Icon from "../../assets/auth/appIcon.svg";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import face from '../../assets/integrations/fb.svg';
 import LoginModal from "../../modals/loginModal.jsx";
 
 const Signup = () => {
   const navigate = useNavigate(); 
   const [isModalVisible, setIsModalVisible] = useState(false);
-
+  
   const showModal = () => {
     setIsModalVisible(true);
   };
@@ -32,6 +33,11 @@ const Signup = () => {
   function handleClick1() {
     const flow = "presignup";
     window.location.href = `https://leadmasters.site/auth/linkedin?flow=${flow}`;
+}
+
+function handleClick2() {
+ 
+  window.location.href = `https://leadmasters.site/auth/facebook`;
 }
 
   return (
@@ -60,9 +66,14 @@ const Signup = () => {
               <img src={google} className="btn-icon"/>
               <div className="btn-text">Sign In with Google</div>
             </div>
+         
             <div className="btns" onClick={handleClick1}>
               <img src={linkedin} className="btn-icon"/>
               <div className="btn-text">Sign in with Linked In</div>
+            </div>
+            <div className="btns" onClick={handleClick2} >
+              <img src={face} className="btn-icon"/>
+              <div className="btn-text">Sign In with Facebook</div>
             </div>
             <div className="btns" onClick={showModal}>
               <img src={email} className="btn-icon"/>

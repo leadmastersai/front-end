@@ -206,10 +206,12 @@ const handleGetCategoryData=async()=>{
     message.warning('Please select a category before proceeding.');
     return; // Exit the function early
   }
+    // If the selectedPlatform is Facebook, change it to Twitter
+    const platformToSend = selectedPlatform === "Facebook" ? "Twitter" : selectedPlatform;
   const cate=selectedCategory?.value
 setLoading(true);
   try{
-    const response=await postSubService.postPlatformCategory(selectedPlatform,cate);
+    const response=await postSubService.postPlatformCategory(platformToSend,cate);
     console.log(response.data,",,,,,,,,,,,,,,,,,,,,,,");
     setData(response.data)
 if(response.status===200){
@@ -258,6 +260,12 @@ const showLoginModal = (platform) => {
   setModalMessage(`Login with ${platform} to post.`);
   setIsModalVisible(true);
 };
+
+const handleFacebook = async (item) => {
+  
+    showLoginModal('Facebook');
+    return;
+  }
 
 const handleLinkedin = async (item) => {
   if (!userBasics.isLinkedInConnected) {
@@ -561,6 +569,8 @@ const handleSchedule = async () => {
       handleTwitter(item);
     } else if (selectedPlatform === 'LinkedIn') {
       handleLinkedin(item);
+    } else if (selectedPlatform === 'Facebook') {
+      handleFacebook(item);
     }}}>Post now</p>
             <img onClick={() => handleCardClick(item)}src={schedule} className='btm-img' style={{ marginLeft: '6%', marginRight: '1%' }} />
             <p className='para1' onClick={() => handleCardClick(item)}>Schedule Now</p>

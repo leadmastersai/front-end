@@ -1,6 +1,7 @@
 
 import Slider from 'react-slick';
 import './styles1.css';
+import face from '../../assets/integrations/fb.svg';
 import Social1 from '../../assets/carousel/social1.svg';
 import Cent from '../../assets/carousel/cent.svg';
 import Social2 from '../../assets/carousel/social2.svg';
@@ -16,7 +17,7 @@ const Carousel1 = ({onPlatformSelect}) => {
     
 
   const cards = [
-    { logo: Social3, title: 'Google', cent: Cent },
+    { logo: face, title: 'Facebook', cent: Cent },
     { logo: Social4, title: 'Instagram', cent: Cent },
     { logo: Social2, title: 'LinkedIn', cent: Cent },
     { logo: Social1, title: 'Twitter', cent: Cent },

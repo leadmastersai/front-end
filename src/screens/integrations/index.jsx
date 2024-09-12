@@ -36,6 +36,13 @@ const SocialMediaIntegration = ({ platform, isConnected }) => {
       window.location.href = linkedinAuthUrl;
       }
 
+      
+function handleClick2() {
+ 
+  window.location.href = `https://leadmasters.site/auth/facebook`;
+}
+
+
       const handleDisconnect = async () => {
         try {
           if (platform.name === 'Twitter X') {
@@ -76,7 +83,15 @@ const SocialMediaIntegration = ({ platform, isConnected }) => {
         ) : (
           <button 
             style={styles.integrateButton}
-            onClick={platform.icon===twi ? handleClick1 : handleClick}
+            onClick={() => {
+              if (platform.icon === twi) {
+                handleClick1(); // Handle Twitter icon click
+              } else if (platform.icon === face) {
+                handleClick2(); // Handle Facebook icon click
+              } else {
+                handleClick(); // Handle other icons
+              }
+            }}
           >
             Integrate
           </button>
