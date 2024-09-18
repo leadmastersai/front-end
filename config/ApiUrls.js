@@ -22,7 +22,8 @@ const apiURLs={
       deleteSPost:'api/schedule/scheduled-post',
       twitterD:'api/disconnect/logout/twitter',
       linkedinD:'api/disconnect/logout/linkedin',
-      googleD:'api/disconnect/logout/google'
+      googleD:'api/disconnect/logout/google',
+      generateAiPost:'ai/generate-post'
 
 }
  export default apiURLs;

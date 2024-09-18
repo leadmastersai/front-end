@@ -17,7 +17,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import send from '../../assets/createAd/send-one.svg';
 import { useState } from 'react';
-import { Alert, Button, Dropdown, message, Modal, Radio, Space, Spin } from 'antd';
+import { Alert, Button, Dropdown, message, Modal, Radio, Space, Spin,Skeleton } from 'antd';
 import { postSubService } from '../../../services/postSubService';
 import { useSelector } from 'react-redux';
 import { postService } from '../../../services/postServices';
@@ -26,6 +26,7 @@ import { DatePicker} from '@mui/x-date-pickers';
 import { scheduleService } from '../../../services/scheduleService';
 import utc from 'dayjs/plugin/utc';
 import timezone from 'dayjs/plugin/timezone';
+import { AIService } from '../../../services/AiService';
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
@@ -34,6 +35,7 @@ dayjs.extend(timezone);
 const CreatePosts = () => {
   const navigate=useNavigate();
   const [success1,setSuccess1]=useState(false);
+  const [topic,setTopic]=useState('');
   const [error1, setError1] = useState(false);
   const [savedDrafts, setSavedDrafts] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(null);
@@ -59,6 +61,7 @@ const handleCancel = () => {
 
 const [isModalVisible, setIsModalVisible] = useState(false);
 const [modalMessage, setModalMessage] = useState('');
+  const [loading4, setLoading4] = useState(false);
   const [loading, setLoading] = useState(false);
   const [loading2,setLoading2]=useState(false);
   const [success3,setSuccess3]=useState(false);
@@ -186,12 +189,65 @@ const [modalMessage, setModalMessage] = useState('');
 
   ];
 
-  const currentItems = selectedPlatform === "LinkedIn" ? items1 : items;
+  const items2 = [
+    {
+      label: 'Investors',
+      value: 'Investors',
+      key: '1',
+    },
+    {
+      label: 'Homeowners',
+      value: 'Homeowners',
+      key: '2',
+    },
+    {
+      label: 'Students',
+      value: 'Students',
+      key: '3',
+    },
+    {
+      label: 'Tech Enthusiasts',
+      value: 'TechEnthusiasts',
+      key: '4',
+    },
+    {
+      label: 'Retail Customers',
+      value: 'RetailCustomers',
+      key: '5',
+    },
+    {
+      label: 'Defense Contractors',
+      value: 'DefenseContractors',
+      key: '6',
+    },
+    {
+      label: 'Farmers',
+      value: 'Farmers',
+      key: '7',
+    },
+    {
+      label: 'Legal Professionals',
+      value: 'LegalProfessionals',
+      key: '8',
+    },
+    {
+      label: 'Healthcare Providers',
+      value: 'HealthcareProviders',
+      key: '9',
+    },
+    {
+      label: 'Energy Consumers',
+      value: 'EnergyConsumers',
+      key: '10',
+    }
+  ];
+  
+  // const currentItems = selectedPlatform === "LinkedIn" ? items1 : items;
 
   const menu = {
-     items: currentItems,
+     items: items2,
      onClick: ({ key }) => {
-      const selectedItem = currentItems.find(item => item.key === key);
+      const selectedItem = items2.find(item => item.key === key);
       if (selectedItem) {
           setSelectedCategory(selectedItem);
       }
@@ -200,39 +256,59 @@ const [modalMessage, setModalMessage] = useState('');
 
 console.log(selectedCategory,"==");
 
-const handleGetCategoryData=async()=>{
-  if (!selectedCategory) {
-    // Show a warning message if category is not selected
-    message.warning('Please select a category before proceeding.');
-    return; // Exit the function early
+// const handleGetCategoryData=async()=>{
+//   if (!selectedCategory) {
+//     // Show a warning message if category is not selected
+//     message.warning('Please select a category before proceeding.');
+//     return; // Exit the function early
+//   }
+//     // If the selectedPlatform is Facebook, change it to Twitter
+//     const platformToSend = selectedPlatform === "Facebook" ? "Twitter" : selectedPlatform;
+//   const cate=selectedCategory?.value
+// setLoading(true);
+//   try{
+//     const response=await postSubService.postPlatformCategory(platformToSend,cate);
+//     console.log(response.data,",,,,,,,,,,,,,,,,,,,,,,");
+//     setData(response.data)
+// if(response.status===200){
+//   setLoading(false)
+// }
+//   }catch(error){
+//     console.log(error,"error");
+//     setLoading(false)
+//   }
+// }
+
+const getAiData=async()=>{
+  setData("");
+  setLoading4(true)
+  const payload={
+platform:selectedPlatform,
+topic:topic,
+audience:selectedCategory || "",
+tone:"professional"
   }
-    // If the selectedPlatform is Facebook, change it to Twitter
-    const platformToSend = selectedPlatform === "Facebook" ? "Twitter" : selectedPlatform;
-  const cate=selectedCategory?.value
-setLoading(true);
-  try{
-    const response=await postSubService.postPlatformCategory(platformToSend,cate);
-    console.log(response.data,",,,,,,,,,,,,,,,,,,,,,,");
-    setData(response.data)
-if(response.status===200){
-  setLoading(false)
-}
-  }catch(error){
+  try {
+const response=await AIService.generateAiPosts(payload);
+console.log(response.data.generated_post,"io");
+setData(response.data.generated_post);
+setLoading4(false);
+  } catch (error){
     console.log(error,"error");
-    setLoading(false)
+    setLoading4(false);
   }
 }
 
 const handleDraft = async (item) => {
-  if (savedDrafts.includes(item?.content)) {
-    message.warning('This post is already saved to drafts.');
-    return;
-  }
+  // if (savedDrafts.includes(item?.content)) {
+  //   message.warning('This post is already saved to drafts.');
+  //   return;
+  // }
   setLoading(true); // Show spinner when starting to save draft
   const payload = {
-    content: item?.content,
+    content: item,
     platform: selectedPlatform.toLowerCase(),
-    hashtags: item?.hashtags
+    // hashtags: item?.hashtags
   };
   console.log(payload, "&&&77");
 
@@ -242,7 +318,7 @@ const handleDraft = async (item) => {
     if (response.status === 200 || response.status === 201) {
       setSuccess(true);
     setError(false);
-    setSavedDrafts([...savedDrafts, item?.content]); 
+    // setSavedDrafts([...savedDrafts, item?.content]); 
     setLoading(false)
     setTimeout(() => setSuccess(false), 3000); //
     }
@@ -273,12 +349,12 @@ const handleLinkedin = async (item) => {
     return;
   }
   setLoading(true); // Show spinner when starting to publish
-  const hashtagsString = item?.hashtags?.length
-  ? item.hashtags.map(hashtag => `#${hashtag}`).join(' ')
-  : '';
+  // const hashtagsString = item?.hashtags?.length
+  // ? item.hashtags.map(hashtag => `#${hashtag}`).join(' ')
+  // : '';
 
 // Combine content and hashtags
-const text = `${item?.content} ${hashtagsString}`.trim(); // Trim to remove any extra spaces
+const text = item // Trim to remove any extra spaces
 
 const payload = {
   text
@@ -310,12 +386,12 @@ const handleTwitter = async (item) => {
     return;
   }
   setLoading(true); // Show spinner when starting to publish
-  const hashtagsString = item?.hashtags?.length
-  ? item.hashtags.map(hashtag => `#${hashtag}`).join(' ')
-  : '';
+  // const hashtagsString = item?.hashtags?.length
+  // ? item.hashtags.map(hashtag => `#${hashtag}`).join(' ')
+  // : '';
 
 // Combine content and hashtags
-const text = `${item?.content} ${hashtagsString}`.trim(); // Trim to remove any extra spaces
+const text = item; // Trim to remove any extra spaces
 
 const payload = {
   text
@@ -346,11 +422,11 @@ const handleModalOk = () => {
 
 const handleSchedule = async () => {
   setLoading2(true);
-  const hashtagsString = selectedCard?.hashtags?.length
-    ? selectedCard?.hashtags?.map(hashtag => `#${hashtag}`).join(' ')
-    : '';
+  // const hashtagsString = selectedCard?.hashtags?.length
+  //   ? selectedCard?.hashtags?.map(hashtag => `#${hashtag}`).join(' ')
+  //   : '';
 
-  const text = `${selectedCard?.content} ${hashtagsString}`.trim(); 
+  const text = data;
   const localDate = dateValue.format('YYYY-MM-DD');
   const localTime = selectedTimeSlot; 
   const localDatetime = `${localDate}T${localTime}`; 
@@ -379,7 +455,97 @@ const handleSchedule = async () => {
   }
 };
 
+const CardComponent = ({data, userBasics, profilepic, selectedPlatform, handleTwitter, handleLinkedin, handleFacebook, handleCardClick, handleDraft, isModalVisible, handleModalOk, modalMessage, setIsModalVisible, isModalSVisible, handleCancel, dateValue, setDateValue, handleTimeSlotChange, selectedTimeSlot, handleSchedule, loading, loading2}) => {
+  
+ 
 
+  return (
+    <div className='card-cont' style={{ marginInline: 'auto' }}>
+      <div className='profile-cont'>
+        <img src={profilepic ? profilepic : avtar} className={profilepic ? 'avtar-usr' : 'avtar'} />
+        <div className='profile-subcont'>
+          <h4 className='name'>
+            {userBasics?.fullName}
+          </h4>
+          <p className='email'>
+            {userBasics?.email}
+          </p>
+        </div>
+      </div>
+      <p className='para'>{data}</p>
+      <div className='bottom-cont'>
+        <img src={like} className='btm-img' />
+        <img src={dislike} className='btm-img' style={{ marginLeft: '2%' }} />
+        <img src={post} className='btm-img' style={{ marginLeft: '13%', marginRight: '1%' }} onClick={() => {
+          if (selectedPlatform === 'Twitter') {
+            handleTwitter(data);
+          } else if (selectedPlatform === 'LinkedIn') {
+            handleLinkedin(data);
+          }
+        }} />
+        <p className='para1' onClick={() => {
+          if (selectedPlatform === 'Twitter') {
+            handleTwitter(data);
+          } else if (selectedPlatform === 'LinkedIn') {
+            handleLinkedin(data);
+          } else if (selectedPlatform === 'Facebook') {
+            handleFacebook(data);
+          }
+        }}>Post now</p>
+        <img onClick={() => handleCardClick(data)} src={schedule} className='btm-img' style={{ marginLeft: '6%', marginRight: '1%' }} />
+        <p className='para1' onClick={() => handleCardClick(data)}>Schedule Now</p>
+        <img src={write} className='btm-img' style={{ marginLeft: '6%', marginRight: '1%' }} />
+        <div className='button' style={{ marginLeft: '6%' }} onClick={() => handleDraft(data)}>
+          <span>Save to draft</span>
+        </div>
+      </div>
+      <Modal
+        title="Login Required"
+        visible={isModalVisible}
+        onOk={handleModalOk}
+        onCancel={() => setIsModalVisible(false)}
+      >
+        <p>{modalMessage}</p>
+        <Button type="primary" onClick={handleModalOk}>
+          Go to Integration
+        </Button>
+      </Modal>
+      <Modal
+        title="Pick Date and Time"
+        visible={isModalSVisible}
+        onCancel={handleCancel}
+        footer={null}
+      >
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
+          <div style={{ marginBottom: '1em' }}>
+            <DatePicker
+              label="Select Date"
+              value={dateValue}
+              onChange={(newValue) => setDateValue(newValue)}
+              renderInput={(params) => <input {...params} />}
+            />
+          </div>
+          <div>
+            <h3>Select Time Slot:</h3>
+            <Radio.Group onChange={handleTimeSlotChange} value={selectedTimeSlot}>
+              <Radio value="21:00">9 AM</Radio>
+              <Radio value="17:00">5 PM</Radio>
+            </Radio.Group>
+          </div>
+          <div style={{ marginTop: '1em', textAlign: 'center' }}>
+            <button className='button' style={{ borderStyle: "none" }} onClick={handleSchedule}>
+              {loading2 ? (
+                <Spin size="small" />
+              ) : (
+                'Schedule'
+              )}
+            </button>
+          </div>
+        </LocalizationProvider>
+      </Modal>
+    </div>
+  );
+};
 
 
   return (
@@ -501,15 +667,15 @@ const handleSchedule = async () => {
       <div className="dropdown-container">
         <Dropdown menu={menu} placement="bottomCenter">
           <Space className="dropdown-trigger">
-            <span>{selectedCategory ? `Selected: ${selectedCategory?.label}` : 'Select a category'}</span>
+            <span>{selectedCategory ? `Selected: ${selectedCategory?.label}` : 'Select Audience'}</span>
             <DownOutlined />
           </Space>
         </Dropdown>
       </div>
     
       <div className="message-input">
-        <input type="text" placeholder="Type your message here or pick from the prompts" style={{widows:'80%'}}/>
-        <button className="send-button" onClick={handleGetCategoryData}><img src={send} className='write-img1' /></button>
+        <input value={topic} onChange={(e)=>setTopic(e.target.value)} type="text" placeholder="Type your message here or pick from the prompts" style={{widows:'80%'}}/>
+        <button className="send-button" onClick={getAiData}><img src={send} className='write-img1' /></button>
       </div>
       <div className="prompt-buttons">
         <button>Provide me a post idea for Instagram</button>
@@ -531,101 +697,38 @@ const handleSchedule = async () => {
   <span>Pickup Slot</span>
 </div>
         </div> */}
-        {data?.map((item, index) => (
-        <div className='card-cont' style={{marginInline:'auto'}} key={index} >
-          <div className='profile-cont'>
-            <img src={profilepic ?profilepic: avtar} className={profilepic ? 'avtar-usr':'avtar'} />
-            <div className='profile-subcont'>
-              <h4 className='name'>
-                {userBasics?.fullName}
-              </h4>
-              <p className='email'>
-{userBasics?.email}
-              </p>
-            </div>
-          </div>
-          <h5>{item?.title}</h5>
-          <p className='para'>{item?.content?.replace(/\[|\]/g, '')}</p>
 
-          <div className='hashtags'>
-            {item.hashtags?.map((hashtag, idx) => (
-              <span key={idx} className='hashtag'>
-                {hashtag}
-              </span>
-            ))}
-          </div>
-          {/* <div className='small-cont'><span>Learn more</span> <img style={{ width: 12, height: 12, objectFit: 'contain', marginLeft: 5 }} src={down} /></div> */}
-          <div className='bottom-cont'>
-            <img src={like} className='btm-img' />
-            <img src={dislike} className='btm-img' style={{ marginLeft: '2%' }} />
-            <img src={post} className='btm-img' style={{ marginLeft: '13%', marginRight: '1%' }} onClick={() =>{
-    if (selectedPlatform === 'Twitter') {
-      handleTwitter(item);
-    } else if (selectedPlatform === 'LinkedIn') {
-      handleLinkedin(item);
-    }}}/>
-            <p className='para1' onClick={() =>{
-    if (selectedPlatform === 'Twitter') {
-      handleTwitter(item);
-    } else if (selectedPlatform === 'LinkedIn') {
-      handleLinkedin(item);
-    } else if (selectedPlatform === 'Facebook') {
-      handleFacebook(item);
-    }}}>Post now</p>
-            <img onClick={() => handleCardClick(item)}src={schedule} className='btm-img' style={{ marginLeft: '6%', marginRight: '1%' }} />
-            <p className='para1' onClick={() => handleCardClick(item)}>Schedule Now</p>
-            <img src={write} className='btm-img' style={{ marginLeft: '6%', marginRight: '1%' }} />
-            <div className='button' style={{ marginLeft: '6%' }} onClick={() => handleDraft(item)}>
-              <span>Save to draft</span>
-            </div>
-          </div>
-          <Modal
-        title="Login Required"
-        visible={isModalVisible}
-        onOk={handleModalOk}
-        onCancel={() => setIsModalVisible(false)}
-      >
-        <p>{modalMessage}</p>
-        <Button type="primary" onClick={handleModalOk}>
-          Go to Integration
-        </Button>
-      </Modal>
-      <Modal
-        title="Pick Date and Time"
-        visible={isModalSVisible}
-        onCancel={handleCancel}
-        footer={null} // Remove default footer buttons
-      >
-        <LocalizationProvider dateAdapter={AdapterDayjs}>
-          <div style={{ marginBottom: '1em' }}>
-            <DatePicker
-              label="Select Date"
-              value={dateValue}
-              onChange={(newValue) => setDateValue(newValue)}
-              renderInput={(params) => <input {...params} />}
-            />
-          </div>
-          <div>
-            <h3>Select Time Slot:</h3>
-            <Radio.Group onChange={handleTimeSlotChange} value={selectedTimeSlot}>
-           
-              <Radio value="21:00">9 AM</Radio>
-              <Radio value="17:00">5 PM</Radio>
-            </Radio.Group>
-          </div>
-          <div  style={{ marginTop: '1em', textAlign: 'center' }}>
-            <button className='button' style={{ borderStyle:"none" }} onClick={handleSchedule}>
-            {loading2 ? (
-        <Spin size="small" />
-      ) : (
-        'Schedule'
-      )}
-            </button>
-          </div>
-        </LocalizationProvider>
-      </Modal>
-        </div>
-      ))}
+{data && Object.keys(data).length > 0 && (
+  <CardComponent
+    data={data} 
+    userBasics={userBasics}
+    profilepic={profilepic}
+    selectedPlatform={selectedPlatform}
+    handleTwitter={handleTwitter}
+    handleLinkedin={handleLinkedin}
+    handleFacebook={handleFacebook}
+    handleCardClick={handleCardClick}
+    handleDraft={handleDraft}
+    isModalVisible={isModalVisible}
+    handleModalOk={handleModalOk}
+    modalMessage={modalMessage}
+    setIsModalVisible={setIsModalVisible}
+    isModalSVisible={isModalSVisible}
+    handleCancel={handleCancel}
+    dateValue={dateValue}
+    setDateValue={setDateValue}
+    handleTimeSlotChange={handleTimeSlotChange}
+    selectedTimeSlot={selectedTimeSlot}
+    handleSchedule={handleSchedule}
+    loading={loading}
+    loading2={loading2}
+  />
+)}
+ {loading4 &&
+    ( <Skeleton active style={{width:'60%',marginLeft:'10%',marginInline:'auto'}} /> )
+  }
+
+    
         </>
     
   )

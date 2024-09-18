@@ -60,11 +60,11 @@ const handleTimeSlotChange = (e) => {
 
 const handleSchedule = async () => {
   setLoading2(true);
-  const hashtagsString = selectedCard?.hashtags?.length
-    ? selectedCard?.hashtags?.map(hashtag => `#${hashtag}`).join(' ')
-    : '';
+  // const hashtagsString = selectedCard?.hashtags?.length
+  //   ? selectedCard?.hashtags?.map(hashtag => `#${hashtag}`).join(' ')
+  //   : '';
 
-  const text = `${selectedCard?.content} ${hashtagsString}`.trim(); 
+  const text = selectedCard?.content; 
   const localDate = dateValue.format('YYYY-MM-DD');
   const localTime = selectedTimeSlot; 
   const localDatetime = `${localDate}T${localTime}`; 
@@ -130,12 +130,12 @@ const handleSchedule = async () => {
       return;
     }
     setLoading(true); // Show spinner when starting to publish
-    const hashtagsString = item?.hashtags?.length
-    ? item.hashtags.map(hashtag => `#${hashtag}`).join(' ')
-    : '';
+    // const hashtagsString = item?.hashtags?.length
+    // ? item.hashtags.map(hashtag => `#${hashtag}`).join(' ')
+    // : '';
   
   // Combine content and hashtags
-  const text = `${item?.content} ${hashtagsString}`.trim(); // Trim to remove any extra spaces
+  const text = item?.content // Trim to remove any extra spaces
   
   const payload = {
     text
@@ -165,12 +165,12 @@ const handleSchedule = async () => {
       return;
     }
     setLoading(true); // Show spinner when starting to publish
-    const hashtagsString = item?.hashtags?.length
-    ? item.hashtags.map(hashtag => `#${hashtag}`).join(' ')
-    : '';
+    // const hashtagsString = item?.hashtags?.length
+    // ? item.hashtags.map(hashtag => `#${hashtag}`).join(' ')
+    // : '';
   
   // Combine content and hashtags
-  const text = `${item?.content} ${hashtagsString}`.trim(); // Trim to remove any extra spaces
+  const text = item?.content // Trim to remove any extra spaces
   
   const payload = {
     text

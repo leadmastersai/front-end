@@ -20,8 +20,9 @@ const LoginModal = ({ isVisible, onClose }) => {
       // Get the token from the response
       const { token } = response.data;
 
-      // Redirect to the /auth page with the token in the query string
       navigate(`/auth?token=${token}`);
+      // Redirect to the /auth page with the token in the query string
+      
 
       // Close modal on success
       setLoading(false);
