@@ -27,12 +27,14 @@ import { scheduleService } from '../../../services/scheduleService';
 import utc from 'dayjs/plugin/utc';
 import timezone from 'dayjs/plugin/timezone';
 import { AIService } from '../../../services/AiService';
+import ImageUpload from './imageUpload';
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
 
 
 const CreatePosts = () => {
+  const [uploadedImageUrl, setUploadedImageUrl] = useState('');
   const navigate=useNavigate();
   const [success1,setSuccess1]=useState(false);
   const [topic,setTopic]=useState('');
@@ -57,6 +59,11 @@ const handleCardClick = (item) => {
 
 const handleCancel = () => {
   setIsModalSVisible(false);
+};
+
+const handleImageUpload = (url) => {
+  setUploadedImageUrl(url);
+  console.log('Image URL received in Parent:', url);
 };
 
 const [isModalVisible, setIsModalVisible] = useState(false);
@@ -415,6 +422,42 @@ const payload = {
   }
 };
 
+const handleInstagram = async (item) => {
+  if (!userBasics.isInstagramLogin) {
+    showLoginModal('Intagram');
+    return;
+  }
+  setLoading(true); // Show spinner when starting to publish
+  // const hashtagsString = item?.hashtags?.length
+  // ? item.hashtags.map(hashtag => `#${hashtag}`).join(' ')
+  // : '';
+
+// Combine content and hashtags
+const text = item; // Trim to remove any extra spaces
+
+const payload = {
+  caption:text,
+  imgLink:uploadedImageUrl
+};
+  try {
+    const response = await postService.instagramPost(payload);
+    console.log(response.data);
+    if (response.status === 200 || response.status === 201) {
+      setSuccess1(true);
+      setTimeout(() => setSuccess1(false), 3000);
+      setError1(false);
+      setLoading(false);
+    }
+  } catch (error) {
+    console.log(error, "error");
+    setError1(true)
+    setSuccess1(false)
+    setTimeout(()=>setError1(false),3000);
+  } finally {
+    setLoading(false); // Hide spinner after operation is complete
+  }
+};
+
 const handleModalOk = () => {
   setIsModalVisible(false);
  navigate("/integrations") // Redirect to the integration screen if needed
@@ -455,7 +498,7 @@ const handleSchedule = async () => {
   }
 };
 
-const CardComponent = ({data, userBasics, profilepic, selectedPlatform, handleTwitter, handleLinkedin, handleFacebook, handleCardClick, handleDraft, isModalVisible, handleModalOk, modalMessage, setIsModalVisible, isModalSVisible, handleCancel, dateValue, setDateValue, handleTimeSlotChange, selectedTimeSlot, handleSchedule, loading, loading2}) => {
+const CardComponent = ({data, userBasics, profilepic, selectedPlatform,handleInstagram, handleTwitter, handleLinkedin, handleFacebook, handleCardClick, handleDraft, isModalVisible, handleModalOk, modalMessage, setIsModalVisible, isModalSVisible, handleCancel, dateValue, setDateValue, handleTimeSlotChange, selectedTimeSlot, handleSchedule, loading, loading2}) => {
   
  
 
@@ -472,6 +515,13 @@ const CardComponent = ({data, userBasics, profilepic, selectedPlatform, handleTw
           </p>
         </div>
       </div>
+      {uploadedImageUrl && (
+        <div>
+     
+          <img src={uploadedImageUrl} alt="Uploaded in Parent" style={{ width: '300px',height:'200px',objectFit:'contain' }} />
+        </div>
+      )}
+
       <p className='para'>{data}</p>
       <div className='bottom-cont'>
         <img src={like} className='btm-img' />
@@ -481,6 +531,8 @@ const CardComponent = ({data, userBasics, profilepic, selectedPlatform, handleTw
             handleTwitter(data);
           } else if (selectedPlatform === 'LinkedIn') {
             handleLinkedin(data);
+          } else if (selectedPlatform === 'Instagram'){
+            handleInstagram(data);
           }
         }} />
         <p className='para1' onClick={() => {
@@ -490,6 +542,8 @@ const CardComponent = ({data, userBasics, profilepic, selectedPlatform, handleTw
             handleLinkedin(data);
           } else if (selectedPlatform === 'Facebook') {
             handleFacebook(data);
+          } else if (selectedPlatform === 'Instagram'){
+            handleInstagram(data)
           }
         }}>Post now</p>
         <img onClick={() => handleCardClick(data)} src={schedule} className='btm-img' style={{ marginLeft: '6%', marginRight: '1%' }} />
@@ -656,6 +710,9 @@ const CardComponent = ({data, userBasics, profilepic, selectedPlatform, handleTw
         {/* <p>
           Are you struggling to maintain a work-life balance? I will be sharing some practical tips and strategies that have personally helped me navigate through this challenge. Stay tuned!
         </p> */}
+        {selectedPlatform==='Instagram' && (
+          <ImageUpload onImageUpload={handleImageUpload} />
+        )}
       </div>
       {/* <div className="action-buttons">
         <button><img src={expand} className='write-img'/>Make it crisp</button>
@@ -705,6 +762,7 @@ const CardComponent = ({data, userBasics, profilepic, selectedPlatform, handleTw
     profilepic={profilepic}
     selectedPlatform={selectedPlatform}
     handleTwitter={handleTwitter}
+    handleInstagram={handleInstagram}
     handleLinkedin={handleLinkedin}
     handleFacebook={handleFacebook}
     handleCardClick={handleCardClick}
@@ -722,6 +780,7 @@ const CardComponent = ({data, userBasics, profilepic, selectedPlatform, handleTw
     handleSchedule={handleSchedule}
     loading={loading}
     loading2={loading2}
+    uploadedImageUrl={uploadedImageUrl}
   />
 )}
  {loading4 &&

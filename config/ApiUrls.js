@@ -12,6 +12,7 @@ const apiURLs={
      draftfb:"api/draft",
      publishlinkedin:"api/linkedin/linkedin/post",
      twitterPost:"api/twitter/create",
+     instagramPost:"api/instagram/create",
      getUsers:"api/user",
      postContact:"api/contact",
       postSub:"api/postsub",
@@ -23,7 +24,8 @@ const apiURLs={
       twitterD:'api/disconnect/logout/twitter',
       linkedinD:'api/disconnect/logout/linkedin',
       googleD:'api/disconnect/logout/google',
-      generateAiPost:'ai/generate-post'
+      generateAiPost:'ai/generate-post',
+      uploadImage:'auth/upload'
 
 }
  export default apiURLs;

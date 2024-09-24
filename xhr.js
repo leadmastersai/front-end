@@ -10,10 +10,10 @@ export default async function request(httpOptions) {
  httpOptions.url = apiURLs.base_url + httpOptions.url;
 
     httpOptions.headers = {
-        'Content-Type': "application/json",
+        'Content-Type': httpOptions.files ? 'multipart/form-data' : "application/json",
         Accept: 'application/json',
         // 'Accept-Encoding': 'gzip',
-        // ...httpOptions.headers
+     ...httpOptions.headers
     };
     //  if (httpOptions.secure) httpOptions.headers.Authorization = `bearer ${token}`
  if (httpOptions.secure) httpOptions.headers.Authorization = `Bearer ${token}`
@@ -24,8 +24,11 @@ export default async function request(httpOptions) {
             // window.location.replace('/')
         }
     }
-
+    console.log(httpOptions,"ggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg");
     return axios(httpOptions)
+
+
+    
         .then(response => response)
         .catch(error => {
             handleRequestErrors(error.response)

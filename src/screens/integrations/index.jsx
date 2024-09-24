@@ -42,6 +42,11 @@ function handleClick2() {
   window.location.href = `https://leadmasters.site/auth/facebook`;
 }
 
+function handleClick3() {
+      
+  const linkedinAuthUrl = `https://leadmasters.site/auth/instagram?token=${token}`;
+  window.location.href = linkedinAuthUrl;
+  }
 
       const handleDisconnect = async () => {
         try {
@@ -88,6 +93,8 @@ function handleClick2() {
                 handleClick1(); // Handle Twitter icon click
               } else if (platform.icon === face) {
                 handleClick2(); // Handle Facebook icon click
+              } else if (platform.icon === insta) {
+                handleClick3(); 
               } else {
                 handleClick(); // Handle other icons
               }
@@ -124,9 +131,9 @@ const {userBasics}  = useSelector((state) => state.auth);
       isConnected: userBasics.isLinkedInConnected,
     },
     {
-      name: 'Instagram Profile',
+      name: 'Instagram',
       icon: insta,
-      isConnected: false,
+      isConnected: userBasics.isInstagramLogin,
     },
     {
       name: 'Twitter X',

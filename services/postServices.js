@@ -46,6 +46,15 @@ const publishLinkedin=async (payload)=>{
        })
  }
 
+ const instagramPost=async(payload)=>{
+    return request({
+        method:'post',
+        url:`${apiUrls.instagramPost}`,
+        data:payload,
+        secure:true
+    })
+ }
+
  const postContactInfo=async(payload)=>{
     return request({
         method:'post',
@@ -81,7 +90,7 @@ const publishService=async(platform)=>{
 }
 // Creating an object with the service functions
 const postService = {
-    facebookGet,saveToDraft,facebookDraft,publishLinkedin,getUser,postContactInfo,draftDelete,twitterPost,publishService
+    facebookGet,saveToDraft,facebookDraft,publishLinkedin,getUser,postContactInfo,draftDelete,twitterPost,publishService,instagramPost
 };
 
 // Exporting postService object for use in other modules
