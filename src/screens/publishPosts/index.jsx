@@ -99,6 +99,12 @@ const PublishPosts = () => {
           </div> */}
           {/* <h5>{i
           <tem?.title}</h5> */}
+        {item?.imgLink && (
+        <div>
+     
+          <img src={item.imgLink} alt="Uploaded in Parent" style={{ width: '300px',height:'200px',objectFit:'contain' }} />
+        </div>
+      )}
           <p className='para231'>{item?.content?.replace(/\[|\]/g, '')}</p>
 <div className='sm-c'>
 <span>View Analytics</span>

@@ -317,6 +317,10 @@ const handleDraft = async (item) => {
     platform: selectedPlatform.toLowerCase(),
     // hashtags: item?.hashtags
   };
+
+  if(selectedPlatform==='Instagram'){
+    payload.imgLink=uploadedImageUrl;
+  }
   console.log(payload, "&&&77");
 
   try {

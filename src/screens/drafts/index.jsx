@@ -158,6 +158,42 @@ const handleSchedule = async () => {
       setLoading(false); // Hide spinner after operation is complete
     }
   };
+
+  const handleInstagram = async (item) => {
+    if (!userBasics.isInstagramLogin) {
+      showLoginModal('Instagram');
+      return;
+    }
+    setLoading(true); // Show spinner when starting to publish
+    // const hashtagsString = item?.hashtags?.length
+    // ? item.hashtags.map(hashtag => `#${hashtag}`).join(' ')
+    // : '';
+  
+  // Combine content and hashtags
+  const text = item?.content // Trim to remove any extra spaces
+  
+  const payload = {
+    caption:text,
+    imgLink:item?.imgLink
+  };
+    try {
+      const response = await postService.instagramPost(payload);
+      console.log(response.data);
+      if (response.status === 200 || response.status === 201) {
+        setSuccess1(true);
+        setTimeout(() => setSuccess1(false), 3000);
+        setError1(false);
+        setLoading(false);
+      }
+    } catch (error) {
+      setError1(true)
+      setSuccess1(false)
+      setTimeout(()=>setError1(false),3000);
+      console.log(error, "error");
+    } finally {
+      setLoading(false); // Hide spinner after operation is complete
+    }
+  };
   
   const handleTwitter = async (item) => {
     if (!userBasics.isTwitterLogin) {
@@ -312,6 +348,12 @@ const handleSchedule = async () => {
             </div>
           </div> */}
           {/* <h5>{item?.title}</h5> */}
+          {item?.imgLink && (
+        <div>
+     
+          <img src={item?.imgLink} alt="Uploaded in Parent" style={{ width: '300px',height:'200px',objectFit:'contain' }} />
+        </div>
+      )}
           <p className='para23'>{item?.content?.replace(/\[|\]/g, '')}</p>
 
           <div className='hashtags88'>
@@ -333,12 +375,17 @@ const handleSchedule = async () => {
       handleTwitter(item);
     } else if (selectedPlatform === 'LinkedIn') {
       handleLinkedin(item);
+    }else if (selectedPlatform === 'Instagram') {
+      handleInstagram(item);
+    
     }}}/>
             <p className='para44' onClick={() =>{
     if (selectedPlatform === 'Twitter') {
       handleTwitter(item);
     } else if (selectedPlatform === 'LinkedIn') {
       handleLinkedin(item);
+    }else if (selectedPlatform === 'Instagram') {
+      handleInstagram(item);
     }}}>Post now</p>
             <img src={schedule} className='btm-img44' style={{ marginLeft: '3%', marginRight: '2%' }} onClick={() => handleCardClick(item)}/>
             <p className='para44' onClick={() => handleCardClick(item)}>Schedule Now</p>

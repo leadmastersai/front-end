@@ -48,24 +48,32 @@ function handleClick3() {
   window.location.href = linkedinAuthUrl;
   }
 
-      const handleDisconnect = async () => {
-        try {
-          if (platform.name === 'Twitter X') {
-            const response = await disconnectService.twitterDisconnect();
-            console.log(response.data, "Twitter disconnected");
-          } else if (platform.name === 'LinkedIn Profile') {
-            const response = await disconnectService.linkedinDisconnect();
-            console.log(response.data, "LinkedIn disconnected");
-          } else if (platform.name === 'Google') {
-            const response = await disconnectService.googleDisconnect();
-            console.log(response.data, "Google disconnected");
-          }
-          getUserDetails();
-          setConnected(false); // Update the state to show it's disconnected
-        } catch (error) {
-          console.error(`Error disconnecting ${platform.name}:`, error);
-        }
-      };
+  const handleDisconnect = async () => {
+    try {
+      let response;
+  
+      if (platform.name === 'Twitter X') {
+        response = await disconnectService.twitterDisconnect();
+        console.log(response.data, "Twitter disconnected");
+      } else if (platform.name === 'LinkedIn Profile') {
+        response = await disconnectService.linkedinDisconnect();
+        console.log(response.data, "LinkedIn disconnected");
+      } else if (platform.name === 'Google') {
+        response = await disconnectService.googleDisconnect();
+        console.log(response.data, "Google disconnected");
+      } else if (platform.name === 'Instagram') {
+        response = await disconnectService.instagramDisconnect();
+        console.log(response.data, "Instagram disconnected");
+      }
+  
+      getUserDetails();  // Fetch user details after disconnection
+      setConnected(false);  // Update local state to show it's disconnected
+  
+    } catch (error) {
+      console.error(`Error disconnecting ${platform.name}:`, error);
+    }
+  };
+  
 
 
   return (

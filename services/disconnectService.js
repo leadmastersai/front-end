@@ -26,8 +26,16 @@ const googleDisconnect = async () => {
     });
 };
 
+const instagramDisconnect = async () => {
+    return request({
+        method: 'post',
+        url: `${apiUrls.instagramD}`,
+        secure: true
+    });
+};
+
 const disconnectService={
-twitterDisconnect,googleDisconnect,linkedinDisconnect
+twitterDisconnect,googleDisconnect,linkedinDisconnect,instagramDisconnect
 }
 
 export {disconnectService}

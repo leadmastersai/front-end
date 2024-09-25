@@ -24,6 +24,7 @@ const apiURLs={
       twitterD:'api/disconnect/logout/twitter',
       linkedinD:'api/disconnect/logout/linkedin',
       googleD:'api/disconnect/logout/google',
+      instagramD:'api/disconnect/logout/instagram',
       generateAiPost:'ai/generate-post',
       uploadImage:'auth/upload'
 
