@@ -426,6 +426,41 @@ const payload = {
   }
 };
 
+const handleThreads = async (item) => {
+  if (!userBasics.isThreadsLogin) {
+    showLoginModal('Threads');
+    return;
+  }
+  setLoading(true); // Show spinner when starting to publish
+  // const hashtagsString = item?.hashtags?.length
+  // ? item.hashtags.map(hashtag => `#${hashtag}`).join(' ')
+  // : '';
+
+// Combine content and hashtags
+const text = item; // Trim to remove any extra spaces
+
+const payload = {
+  text
+};
+  try {
+    const response = await postService.threadsPost(payload);
+    console.log(response.data);
+    if (response.status === 200 || response.status === 201) {
+      setSuccess1(true);
+      setTimeout(() => setSuccess1(false), 3000);
+      setError1(false);
+      setLoading(false);
+    }
+  } catch (error) {
+    console.log(error, "error");
+    setError1(true)
+    setSuccess1(false)
+    setTimeout(()=>setError1(false),3000);
+  } finally {
+    setLoading(false); // Hide spinner after operation is complete
+  }
+};
+
 const handleInstagram = async (item) => {
   if (!userBasics.isInstagramLogin) {
     showLoginModal('Intagram');
@@ -537,6 +572,8 @@ const CardComponent = ({data, userBasics, profilepic, selectedPlatform,handleIns
             handleLinkedin(data);
           } else if (selectedPlatform === 'Instagram'){
             handleInstagram(data);
+          } else if (selectedPlatform === 'Threads'){
+            handleThreads(data);
           }
         }} />
         <p className='para1' onClick={() => {
@@ -548,6 +585,8 @@ const CardComponent = ({data, userBasics, profilepic, selectedPlatform,handleIns
             handleFacebook(data);
           } else if (selectedPlatform === 'Instagram'){
             handleInstagram(data)
+          }else if (selectedPlatform === 'Threads'){
+            handleThreads(data);
           }
         }}>Post now</p>
         <img onClick={() => handleCardClick(data)} src={schedule} className='btm-img' style={{ marginLeft: '6%', marginRight: '1%' }} />

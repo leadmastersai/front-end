@@ -13,6 +13,7 @@ const apiURLs={
      publishlinkedin:"api/linkedin/linkedin/post",
      twitterPost:"api/twitter/create",
      instagramPost:"api/instagram/create",
+     threadsPost:"api/threads/create",
      getUsers:"api/user",
      postContact:"api/contact",
       postSub:"api/postsub",
@@ -25,6 +26,7 @@ const apiURLs={
       linkedinD:'api/disconnect/logout/linkedin',
       googleD:'api/disconnect/logout/google',
       instagramD:'api/disconnect/logout/instagram',
+      threadsD:'api/disconnect/logout/threads',
       generateAiPost:'ai/generate-post',
       uploadImage:'auth/upload'
 

@@ -12,7 +12,7 @@ import leftArrow from '../../assets/carousel/left.svg';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { useState } from 'react';
-
+import th from '../../assets/integrations/threads.svg';
 const Carousel1 = ({onPlatformSelect}) => {
     
 
@@ -22,6 +22,8 @@ const Carousel1 = ({onPlatformSelect}) => {
     { logo: Social2, title: 'LinkedIn', cent: Cent },
     { logo: Social1, title: 'Twitter', cent: Cent },
     { logo: Social3, title: 'Google', cent: Cent },
+    { logo: th, title: 'Threads', cent: Cent },
+    
   ];
   const linkedInIndex = cards.findIndex(card => card.title === 'LinkedIn');
   const [activeIndex, setActiveIndex] = useState(linkedInIndex);

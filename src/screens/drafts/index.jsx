@@ -194,6 +194,41 @@ const handleSchedule = async () => {
       setLoading(false); // Hide spinner after operation is complete
     }
   };
+
+  const handleThreads = async (item) => {
+    if (!userBasics.isThreadsLogin) {
+      showLoginModal('Threads');
+      return;
+    }
+    setLoading(true); // Show spinner when starting to publish
+    // const hashtagsString = item?.hashtags?.length
+    // ? item.hashtags.map(hashtag => `#${hashtag}`).join(' ')
+    // : '';
+  
+  // Combine content and hashtags
+  const text = item; // Trim to remove any extra spaces
+  
+  const payload = {
+    text
+  };
+    try {
+      const response = await postService.threadsPost(payload);
+      console.log(response.data);
+      if (response.status === 200 || response.status === 201) {
+        setSuccess1(true);
+        setTimeout(() => setSuccess1(false), 3000);
+        setError1(false);
+        setLoading(false);
+      }
+    } catch (error) {
+      console.log(error, "error");
+      setError1(true)
+      setSuccess1(false)
+      setTimeout(()=>setError1(false),3000);
+    } finally {
+      setLoading(false); // Hide spinner after operation is complete
+    }
+  };
   
   const handleTwitter = async (item) => {
     if (!userBasics.isTwitterLogin) {
@@ -377,7 +412,8 @@ const handleSchedule = async () => {
       handleLinkedin(item);
     }else if (selectedPlatform === 'Instagram') {
       handleInstagram(item);
-    
+    }else if (selectedPlatform === 'Threads') {
+      handleThreads(item);
     }}}/>
             <p className='para44' onClick={() =>{
     if (selectedPlatform === 'Twitter') {
@@ -386,6 +422,9 @@ const handleSchedule = async () => {
       handleLinkedin(item);
     }else if (selectedPlatform === 'Instagram') {
       handleInstagram(item);
+    }else if (selectedPlatform === 'Threads') {
+      handleThreads(item);
+      
     }}}>Post now</p>
             <img src={schedule} className='btm-img44' style={{ marginLeft: '3%', marginRight: '2%' }} onClick={() => handleCardClick(item)}/>
             <p className='para44' onClick={() => handleCardClick(item)}>Schedule Now</p>

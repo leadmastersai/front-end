@@ -10,6 +10,7 @@ import { postService } from '../../../services/postServices';
 import { useDispatch, useSelector } from 'react-redux';
 import { saveUserDetail } from "../../redux/authSlice";
 import { disconnectService } from '../../../services/disconnectService';
+import th from '../../assets/integrations/threads.svg';
 
 const SocialMediaIntegration = ({ platform, isConnected }) => {
   const dispatch=useDispatch();
@@ -48,6 +49,13 @@ function handleClick3() {
   window.location.href = linkedinAuthUrl;
   }
 
+  function handleClick4() {
+      
+    const linkedinAuthUrl = `https://leadmasters.site/auth/threads?token=${token}`;
+    window.location.href = linkedinAuthUrl;
+    }
+  
+
   const handleDisconnect = async () => {
     try {
       let response;
@@ -64,6 +72,9 @@ function handleClick3() {
       } else if (platform.name === 'Instagram') {
         response = await disconnectService.instagramDisconnect();
         console.log(response.data, "Instagram disconnected");
+      } else if (platform.name === 'Threads') {
+        response = await disconnectService.threadsDisconnect();
+        console.log(response.data, "Threads disconnected");
       }
   
       getUserDetails();  // Fetch user details after disconnection
@@ -103,6 +114,8 @@ function handleClick3() {
                 handleClick2(); // Handle Facebook icon click
               } else if (platform.icon === insta) {
                 handleClick3(); 
+              } else if (platform.icon === th) {
+                handleClick4(); 
               } else {
                 handleClick(); // Handle other icons
               }
@@ -157,6 +170,11 @@ const {userBasics}  = useSelector((state) => state.auth);
       name:'Google',
       icon:google,
       isConnected:userBasics.isGoogleConnected
+    },
+    {
+      name:'Threads',
+      icon:th,
+      isConnected:userBasics.isThreadsLogin
     }
   ];
 
