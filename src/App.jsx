@@ -38,12 +38,14 @@ import ProtectedRoute from './components/protectedRoute';
 import GuestRoute from './components/guestRoute';
 import Auth from './screens/Auth';
 import Schedule from './screens/schedule';
+import { PlatformProvider } from './constants/activePlatform';
 
 
 
 
 function App() {
   return (
+    <PlatformProvider>
     <Router>
       <Routes>
       <Route path="/signup" element={<GuestRoute><Signup /></GuestRoute>} />
@@ -83,6 +85,7 @@ function App() {
         </Route>
       </Routes>
     </Router>
+    </PlatformProvider>
   );
 }
 

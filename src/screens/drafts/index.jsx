@@ -206,12 +206,15 @@ const handleSchedule = async () => {
     // : '';
   
   // Combine content and hashtags
-  const text = item; // Trim to remove any extra spaces
+  const text = item?.content; // Trim to remove any extra spaces
   
   const payload = {
-    text
+    text:text
   };
+  
+  
     try {
+      console.log(payload,"vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv");
       const response = await postService.threadsPost(payload);
       console.log(response.data);
       if (response.status === 200 || response.status === 201) {
@@ -369,7 +372,9 @@ const handleSchedule = async () => {
         </div>
       )}
       <div className='card-containr'>
-      {data?.map((item, index) => (
+      {data?.slice() // Create a shallow copy to avoid mutating the original array
+    .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)) // Sort by createdAt from latest to oldest
+.map((item, index) => (
         <div className='card-cont3'  key={index} >
           {/* <div className='profile-cont'>
             <img src={avtar} className='avtar' />

@@ -83,7 +83,9 @@ const PublishPosts = () => {
 {!loading && (!data || data.length === 0) && (<h2 style={{fontWeight:'300',margin:'5%'}}>No Live Social Media Post from your Account Yet !!</h2>)}
     </div>
     <div className='card-containr'>
-    {data?.map((item, index) => (
+    {data?.slice() // Create a shallow copy to avoid mutating the original array
+    .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)) // Sort by createdAt from latest to oldest
+.map((item, index) => (
         <div className='card-cont13'  key={index} >
           <img className='img-live' src={live} />
           {/* <div className='profile-cont'>

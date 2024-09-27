@@ -13,8 +13,9 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { useState } from 'react';
 import th from '../../assets/integrations/threads.svg';
+import { usePlatform } from '../../constants/activePlatform';
 const Carousel1 = ({onPlatformSelect}) => {
-    
+  const { activePlatform, setActivePlatform } = usePlatform(); 
 
   const cards = [
     { logo: face, title: 'Facebook', cent: Cent },
@@ -26,13 +27,14 @@ const Carousel1 = ({onPlatformSelect}) => {
     
   ];
   const linkedInIndex = cards.findIndex(card => card.title === 'LinkedIn');
-  const [activeIndex, setActiveIndex] = useState(linkedInIndex);
+  const activeIndex = cards.findIndex(card => card.title === activePlatform);
+
   
   const Card = ({ logo, title, cent ,index}) => {
     return (
         <div       className={`card ${index === activeIndex ? 'active munjal' : ''}`}
         onClick={() => {
-          setActiveIndex(index)
+          setActivePlatform(title)
           onPlatformSelect(title); 
         }}>
         <img src={logo} alt={`${title} logo`} className="card-logo1" />
