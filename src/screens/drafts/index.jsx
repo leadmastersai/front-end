@@ -20,6 +20,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DatePicker} from '@mui/x-date-pickers';
 import { scheduleService } from '../../../services/scheduleService';
+import { usePlatform } from '../../constants/activePlatform';
 dayjs.extend(utc);
 dayjs.extend(timezone);
 
@@ -27,10 +28,10 @@ const Drafts = () => {
   const [loading2,setLoading2]=useState(false);
   const [success3,setSuccess3]=useState(false);
   const [success1,setSuccess1]=useState(false);
-  
+  const { activePlatform, setActivePlatform } = usePlatform(); 
   const [error1, setError1] = useState(false);
   const navigate=useNavigate();
-  const [selectedPlatform, setSelectedPlatform] = useState("LinkedIn");
+  const [selectedPlatform, setSelectedPlatform] = useState(activePlatform || '');
   const [success, setSuccess] = useState(false); // state for showing success message
   const [error, setError] = useState(false);
   const {userBasics}  = useSelector((state) => state.auth);
@@ -391,7 +392,7 @@ const handleSchedule = async () => {
           {item?.imgLink && (
         <div>
      
-          <img src={item?.imgLink} alt="Uploaded in Parent" style={{ width: '300px',height:'200px',objectFit:'contain' }} />
+          <img src={item?.imgLink} alt="Uploaded in Parent" style={{ width: '150px',height:'150px',objectFit:'contain' }} />
         </div>
       )}
           <p className='para23'>{item?.content?.replace(/\[|\]/g, '')}</p>

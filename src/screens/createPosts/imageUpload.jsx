@@ -1,64 +1,121 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React, { useEffect, useState, useRef } from 'react';
 import { ImageService } from '../../../services/uploadService';
-const ImageUpload = ({onImageUpload}) => {
+import Up from '../../assets/createAd/up.svg';
+import delt from '../../assets/createAd/delt.svg';
+
+const ImageUpload = ({ onImageUpload }) => {
   const [file, setFile] = useState(null);
   const [loading, setLoading] = useState(false);
   const [imageUrl, setImageUrl] = useState(null);
   const [error, setError] = useState('');
+  
+  // Create a reference to the input element
+  const fileInputRef = useRef(null);
 
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
-    console.log(selectedFile,'this is file'); // Log to see file details
     setFile(selectedFile);
   };
 
   useEffect(() => {
-    // Only run if file is selected
     if (file) {
-      const handleSubmit = async () => {
+      const uploadImage = async () => {
         setLoading(true);
         setError('');
 
         const formData = new FormData();
         formData.append('image', file);
-        console.log(formData, 'Form data is being sent');
 
         try {
           const response = await ImageService.uploadImage(formData);
-          setImageUrl(response.data.imageUrl); // URL from 
+          setImageUrl(response.data.imageUrl);
           onImageUpload(response.data.imageUrl);
         } catch (err) {
           setError('Failed to upload image');
-          console.error(err);
         } finally {
           setLoading(false);
         }
       };
 
-      handleSubmit(); // Call the handleSubmit function
+      uploadImage();
     }
-  }, [file]); // Trigger
+  }, [file]);  // Remove imageUrl from dependencies
+
+  const handleDeleteImage = () => {
+    setFile(null);
+    setImageUrl(null);
+    onImageUpload(null);
+    
+    // Clear the input value so that the same file can be selected again
+    if (fileInputRef.current) {
+      fileInputRef.current.value = ''; 
+    }
+  };
 
   return (
     <div>
       <h2>Upload Image</h2>
-      <form >
-        <input type="file" onChange={handleFileChange} />
-        {/* <button type="submit" disabled={loading}>
-          {loading ? 'Uploading...' : 'Upload'}
-        </button> */}
-      </form>
-
+      <div style={styles.dropArea}>
+        <input
+          type="file"
+          style={styles.input}
+          ref={fileInputRef} // Attach the reference to the input element
+          onChange={handleFileChange}
+        />
+        <img src={Up} style={{ marginRight: '.5vw' }} alt="Upload Icon" />
+        <p style={styles.text}>Drop items here or <span>Browse files</span></p>
+      </div>
+      {loading && <p>Uploading...</p>}
       {error && <p style={{ color: 'red' }}>{error}</p>}
       {imageUrl && (
-        <div>
-         
+        <div style={{ marginTop: '2vh' }}>
           <img src={imageUrl} alt="Uploaded" style={{ width: '300px' }} />
+          <img
+            src={delt}
+            alt="Delete"
+            style={styles.deleteButton}
+            onClick={handleDeleteImage}
+          />
         </div>
       )}
     </div>
   );
+};
+
+const styles = {
+  dropArea: {
+    border: '2px dashed #ccc',
+    position: 'relative',
+    width: '100%',
+    paddingInline: '2vw',
+    paddingBlock: '.5vh',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: '10px',
+    backgroundColor: '#f9f9f9',
+    cursor: 'pointer',
+    transition: 'background-color 0.3s ease',
+  },
+  deleteButton: {
+    cursor: 'pointer',
+  },
+  input: {
+    position: 'absolute',
+    width: '100%',
+    height: '100%',
+    opacity: 0,
+    cursor: 'pointer',
+  },
+  text: {
+    fontSize: '12px',
+    color: '#888',
+  },
+  browseText: {
+    color: '#1890ff',
+    fontWeight: 'bold',
+    cursor: 'pointer',
+  },
 };
 
 export default ImageUpload;

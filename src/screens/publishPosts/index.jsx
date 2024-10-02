@@ -7,10 +7,12 @@ import stars from '../../assets/getIdea/stars.svg';
 import { postService } from '../../../services/postServices';
 import './styles.scss';
 import { Spin } from 'antd';
+import { usePlatform } from '../../constants/activePlatform';
 const PublishPosts = () => {
+  const { activePlatform, setActivePlatform } = usePlatform(); 
   const [loading,setLoading]=useState(true);
   const [data, setData] = useState([]);
-  const [selectedPlatform, setSelectedPlatform] = useState("LinkedIn");
+  const [selectedPlatform, setSelectedPlatform] = useState(activePlatform || "");
   const calculateTimeLeft = () => {
     const difference = +new Date("2025-02-20") - +new Date();
     let timeLeft = {};
@@ -104,7 +106,7 @@ const PublishPosts = () => {
         {item?.imgLink && (
         <div>
      
-          <img src={item.imgLink} alt="Uploaded in Parent" style={{ width: '300px',height:'200px',objectFit:'contain' }} />
+          <img src={item.imgLink} alt="Uploaded in Parent" style={{ width: '150px',height:'150px',objectFit:'contain' }} />
         </div>
       )}
           <p className='para231'>{item?.content?.replace(/\[|\]/g, '')}</p>

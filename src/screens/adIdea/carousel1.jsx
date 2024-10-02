@@ -29,6 +29,8 @@ const Carousel1 = ({onPlatformSelect}) => {
   const linkedInIndex = cards.findIndex(card => card.title === 'LinkedIn');
   const activeIndex = cards.findIndex(card => card.title === activePlatform);
 
+  console.log(activePlatform,"XXXXXXXXXXXXXXXXX");
+  
   
   const Card = ({ logo, title, cent ,index}) => {
     return (

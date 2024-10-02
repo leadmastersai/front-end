@@ -28,12 +28,17 @@ import utc from 'dayjs/plugin/utc';
 import timezone from 'dayjs/plugin/timezone';
 import { AIService } from '../../../services/AiService';
 import ImageUpload from './imageUpload';
+import { usePlatform } from '../../constants/activePlatform';
+import { useRef } from 'react';
+import { useEffect } from 'react';
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
 
 
 const CreatePosts = () => {
+  const skeletonRef = useRef(null);
+  const { activePlatform, setActivePlatform } = usePlatform(); 
   const [uploadedImageUrl, setUploadedImageUrl] = useState('');
   const navigate=useNavigate();
   const [success1,setSuccess1]=useState(false);
@@ -41,7 +46,7 @@ const CreatePosts = () => {
   const [error1, setError1] = useState(false);
   const [savedDrafts, setSavedDrafts] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(null);
-  const [selectedPlatform, setSelectedPlatform] = useState("LinkedIn");
+  const [selectedPlatform, setSelectedPlatform] = useState(activePlatform || "");
   const {userBasics}  = useSelector((state) => state.auth);
   const [data, setData] = useState([]);
   const [success, setSuccess] = useState(false);
@@ -66,12 +71,15 @@ const handleImageUpload = (url) => {
   console.log('Image URL received in Parent:', url);
 };
 
+
+
 const [isModalVisible, setIsModalVisible] = useState(false);
 const [modalMessage, setModalMessage] = useState('');
   const [loading4, setLoading4] = useState(false);
   const [loading, setLoading] = useState(false);
   const [loading2,setLoading2]=useState(false);
   const [success3,setSuccess3]=useState(false);
+
   const profilepic=userBasics.picture;
   const handlePlatformSelect = (platform) => {
     console.log('Selected Platform:', platform);
@@ -80,6 +88,12 @@ const [modalMessage, setModalMessage] = useState('');
     setData([]); 
     // You can now use this selectedPlatform for further actions in the parent component
   };
+
+  useEffect(() => {
+    if (loading4 && skeletonRef.current) {
+      skeletonRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }, [loading4]);
 
   const handleTimeSlotChange = (e) => {
     setSelectedTimeSlot(e.target.value);
@@ -542,14 +556,14 @@ const CardComponent = ({data, userBasics, profilepic, selectedPlatform,handleIns
  
 
   return (
-    <div className='card-cont' style={{ marginInline: 'auto' }}>
+    <div className='c88' style={{ marginInline: 'auto' }}>
       <div className='profile-cont'>
         <img src={profilepic ? profilepic : avtar} className={profilepic ? 'avtar-usr' : 'avtar'} />
         <div className='profile-subcont'>
-          <h4 className='name'>
+          <h4 className='name' style={{color:'white'}}>
             {userBasics?.fullName}
           </h4>
-          <p className='email'>
+          <p className='email' style={{color:'white'}}>
             {userBasics?.email}
           </p>
         </div>
@@ -557,11 +571,11 @@ const CardComponent = ({data, userBasics, profilepic, selectedPlatform,handleIns
       {uploadedImageUrl && (
         <div>
      
-          <img src={uploadedImageUrl} alt="Uploaded in Parent" style={{ width: '300px',height:'200px',objectFit:'contain' }} />
+          <img src={uploadedImageUrl} alt="Uploaded in Parent" style={{ width: '150px',height:'150px',objectFit:'contain' }} />
         </div>
       )}
 
-      <p className='para'>{data}</p>
+      <p className='para88'>{data}</p>
       <div className='bottom-cont'>
         <img src={like} className='btm-img' />
         <img src={dislike} className='btm-img' style={{ marginLeft: '2%' }} />
@@ -743,8 +757,8 @@ const CardComponent = ({data, userBasics, profilepic, selectedPlatform,handleIns
         <div className="profile-info1">
           <h5>{userBasics?.fullName}</h5>
           <div className='header-ad'>
-          <img src={write1} className='write-img' />
-          <p >Start typing note</p>
+        
+        
           </div>
         </div>
       </header>
@@ -768,7 +782,7 @@ const CardComponent = ({data, userBasics, profilepic, selectedPlatform,handleIns
         <Dropdown menu={menu} placement="bottomCenter">
           <Space className="dropdown-trigger">
             <span>{selectedCategory ? `Selected: ${selectedCategory?.label}` : 'Select Audience'}</span>
-            <DownOutlined />
+            <DownOutlined style={{marginLeft:'7vw'}} />
           </Space>
         </Dropdown>
       </div>
@@ -827,7 +841,7 @@ const CardComponent = ({data, userBasics, profilepic, selectedPlatform,handleIns
   />
 )}
  {loading4 &&
-    ( <Skeleton active style={{width:'60%',marginLeft:'10%',marginInline:'auto'}} /> )
+    ( <div ref={skeletonRef} > <Skeleton  active style={{width:'60%',marginLeft:'10%',marginInline:'auto'}} /></div> )
   }
 
     

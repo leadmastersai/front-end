@@ -5,6 +5,7 @@ import stars from '../../assets/getIdea/stars.svg';
 import face from '../../assets/integrations/fb.svg';
 import twi from '../../assets/integrations/tw.svg';
 import link from '../../assets/integrations/ln.svg';
+import tick from '../../assets/integrations/tick.svg';
 import google from "../../assets/auth/google.svg";
 import { postService } from '../../../services/postServices';
 import { useDispatch, useSelector } from 'react-redux';
@@ -12,7 +13,7 @@ import { saveUserDetail } from "../../redux/authSlice";
 import { disconnectService } from '../../../services/disconnectService';
 import th from '../../assets/integrations/threads.svg';
 
-const SocialMediaIntegration = ({ platform, isConnected }) => {
+const SocialMediaIntegration = ({ platform, isConnected ,fullName}) => {
   const dispatch=useDispatch();
   const [connected, setConnected] = useState(isConnected);
   const token = localStorage.getItem('oauthToken');
@@ -92,6 +93,12 @@ function handleClick3() {
       <div style={styles.platformName}>
         <img src={platform.icon} alt={`${platform.name} icon`} style={styles.icon} />
         <span>{platform.name}</span>
+        {platform.name === 'Instagram' && connected && (
+       <>
+       <span style={styles.fullNameText}>{fullName}</span>
+       <img src={tick} alt="connected" style={{width:'12px',marginTop:'15px',objectFit:'contain'}} />
+     </>
+        )}
       </div>
       <div style={styles.actions}>
         {isConnected ? (
@@ -189,7 +196,8 @@ const {userBasics}  = useSelector((state) => state.auth);
         <SocialMediaIntegration 
           key={index} 
           platform={platform} 
-          isConnected={platform.isConnected} 
+          isConnected={platform.isConnected}
+           fullName={userBasics.fullName}
         />
       ))}
     </div>
@@ -213,6 +221,12 @@ const styles = {
     width: '24px',
     height: '24px',
     marginRight: '10px',
+  },
+  fullNameText: {
+    marginLeft: '8px',
+    marginTop:'15px',
+    fontSize: '12px',
+    color: 'gray',
   },
   actions: {
     display: 'flex',
