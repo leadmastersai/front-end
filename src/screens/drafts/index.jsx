@@ -196,6 +196,42 @@ const handleSchedule = async () => {
     }
   };
 
+  const handleFacebook = async (item) => {
+    if (!userBasics.isFacebookLogin) {
+      showLoginModal('Facebook');
+      return;
+    }
+    setLoading(true); // Show spinner when starting to publish
+    // const hashtagsString = item?.hashtags?.length
+    // ? item.hashtags.map(hashtag => `#${hashtag}`).join(' ')
+    // : '';
+  
+  // Combine content and hashtags
+  const text = item?.content // Trim to remove any extra spaces
+  
+  const payload = {
+    text:text,
+    imgUrl:item?.imgLink
+  };
+    try {
+      const response = await postService.facebookPost(payload);
+      console.log(response.data);
+      if (response.status === 200 || response.status === 201) {
+        setSuccess1(true);
+        setTimeout(() => setSuccess1(false), 3000);
+        setError1(false);
+        setLoading(false);
+      }
+    } catch (error) {
+      setError1(true)
+      setSuccess1(false)
+      setTimeout(()=>setError1(false),3000);
+      console.log(error, "error");
+    } finally {
+      setLoading(false); // Hide spinner after operation is complete
+    }
+  };
+
   const handleThreads = async (item) => {
     if (!userBasics.isThreadsLogin) {
       showLoginModal('Threads');
@@ -420,6 +456,8 @@ const handleSchedule = async () => {
       handleInstagram(item);
     }else if (selectedPlatform === 'Threads') {
       handleThreads(item);
+    }else if (selectedPlatform === 'Facebook') {
+      handleFacebook(item);
     }}}/>
             <p className='para44' onClick={() =>{
     if (selectedPlatform === 'Twitter') {
@@ -430,6 +468,8 @@ const handleSchedule = async () => {
       handleInstagram(item);
     }else if (selectedPlatform === 'Threads') {
       handleThreads(item);
+    }else if (selectedPlatform === 'Facebook') {
+      handleFacebook(item);
       
     }}}>Post now</p>
             <img src={schedule} className='btm-img44' style={{ marginLeft: '3%', marginRight: '2%' }} onClick={() => handleCardClick(item)}/>

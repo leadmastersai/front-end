@@ -332,7 +332,7 @@ const handleDraft = async (item) => {
     // hashtags: item?.hashtags
   };
 
-  if(selectedPlatform==='Instagram'){
+  if(selectedPlatform==='Instagram' || selectedPlatform==='Facebook'){
     payload.imgLink=uploadedImageUrl;
   }
   console.log(payload, "&&&77");
@@ -362,11 +362,7 @@ const showLoginModal = (platform) => {
   setIsModalVisible(true);
 };
 
-const handleFacebook = async (item) => {
-  
-    showLoginModal('Facebook');
-    return;
-  }
+
 
 const handleLinkedin = async (item) => {
   if (!userBasics.isLinkedInConnected) {
@@ -511,6 +507,42 @@ const payload = {
   }
 };
 
+const handleFacebook = async (item) => {
+  if (!userBasics.isFacebookLogin) {
+    showLoginModal('Facebook');
+    return;
+  }
+  setLoading(true); // Show spinner when starting to publish
+  // const hashtagsString = item?.hashtags?.length
+  // ? item.hashtags.map(hashtag => `#${hashtag}`).join(' ')
+  // : '';
+
+// Combine content and hashtags
+const text = item; // Trim to remove any extra spaces
+
+const payload = {
+  text:text,
+  imgUrl:uploadedImageUrl
+};
+  try {
+    const response = await postService.facebookPost(payload);
+    console.log(response.data);
+    if (response.status === 200 || response.status === 201) {
+      setSuccess1(true);
+      setTimeout(() => setSuccess1(false), 3000);
+      setError1(false);
+      setLoading(false);
+    }
+  } catch (error) {
+    console.log(error, "error");
+    setError1(true)
+    setSuccess1(false)
+    setTimeout(()=>setError1(false),3000);
+  } finally {
+    setLoading(false); // Hide spinner after operation is complete
+  }
+};
+
 const handleModalOk = () => {
   setIsModalVisible(false);
  navigate("/integrations") // Redirect to the integration screen if needed
@@ -588,6 +620,8 @@ const CardComponent = ({data, userBasics, profilepic, selectedPlatform,handleIns
             handleInstagram(data);
           } else if (selectedPlatform === 'Threads'){
             handleThreads(data);
+          } else if (selectedPlatform === 'Facebook'){
+
           }
         }} />
         <p className='para1' onClick={() => {
@@ -767,9 +801,10 @@ const CardComponent = ({data, userBasics, profilepic, selectedPlatform,handleIns
         {/* <p>
           Are you struggling to maintain a work-life balance? I will be sharing some practical tips and strategies that have personally helped me navigate through this challenge. Stay tuned!
         </p> */}
-        {selectedPlatform==='Instagram' && (
-          <ImageUpload onImageUpload={handleImageUpload} />
-        )}
+   {(selectedPlatform === 'Instagram' || selectedPlatform === 'Facebook') && (
+  <ImageUpload onImageUpload={handleImageUpload} />
+)}
+
       </div>
       {/* <div className="action-buttons">
         <button><img src={expand} className='write-img'/>Make it crisp</button>

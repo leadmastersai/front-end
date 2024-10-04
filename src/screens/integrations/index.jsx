@@ -39,10 +39,7 @@ const SocialMediaIntegration = ({ platform, isConnected ,fullName}) => {
       }
 
       
-function handleClick2() {
- 
-  window.location.href = `https://leadmasters.site/auth/facebook`;
-}
+
 
 function handleClick3() {
       
@@ -55,6 +52,12 @@ function handleClick3() {
     const linkedinAuthUrl = `https://leadmasters.site/auth/threads?token=${token}`;
     window.location.href = linkedinAuthUrl;
     }
+
+    function handleClick2() {
+      
+      const linkedinAuthUrl = `https://leadmasters.site/auth/facebook?token=${token}`;
+      window.location.href = linkedinAuthUrl;
+      }
   
 
   const handleDisconnect = async () => {
@@ -76,6 +79,9 @@ function handleClick3() {
       } else if (platform.name === 'Threads') {
         response = await disconnectService.threadsDisconnect();
         console.log(response.data, "Threads disconnected");
+      }else if (platform.name === 'Facebook') {
+        response = await disconnectService.facebookDisconnect();
+        console.log(response.data, "Instagram disconnected");
       }
   
       getUserDetails();  // Fetch user details after disconnection
@@ -171,7 +177,7 @@ const {userBasics}  = useSelector((state) => state.auth);
     {
       name: 'Facebook',
       icon:face,
-      isConnected: false,
+      isConnected: userBasics.isFacebookLogin,
     },
     {
       name:'Google',

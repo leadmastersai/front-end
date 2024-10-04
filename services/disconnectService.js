@@ -42,8 +42,16 @@ const threadsDisconnect = async () => {
     });
 };
 
+const facebookDisconnect = async () => {
+    return request({
+        method: 'post',
+        url: `${apiUrls.facebookD}`,
+        secure: true
+    });
+};
+
 const disconnectService={
-twitterDisconnect,googleDisconnect,linkedinDisconnect,instagramDisconnect,threadsDisconnect
+twitterDisconnect,googleDisconnect,linkedinDisconnect,instagramDisconnect,threadsDisconnect,facebookDisconnect
 }
 
 export {disconnectService}
