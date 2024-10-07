@@ -39,6 +39,8 @@ import GuestRoute from './components/guestRoute';
 import Auth from './screens/Auth';
 import Schedule from './screens/schedule';
 import { PlatformProvider } from './constants/activePlatform';
+import Privacy2 from './screens/legalScreens/Privacy2';
+import Terms2 from './screens/legalScreens/Terms2';
 
 
 
@@ -69,6 +71,8 @@ function App() {
         </Route>
         <Route element={<ProtectedRoute><Layout /></ProtectedRoute>}>
           <Route path="/home" element={<CreateAd />} />
+          <Route path="/privacy-policy" element={<Privacy2 />} />
+          <Route path="/terms-conditions" element={<Terms2 />} />
           <Route path="/postidea" element={<PostIdea />} />
           <Route path="/analytics" element={<Analytics />} />
           <Route path="/data-deletion" element={<DeleteAccount />} />

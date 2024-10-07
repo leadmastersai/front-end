@@ -16,7 +16,7 @@ import call from '../../assets/landing/Time.svg';
 import { useNavigate } from 'react-router-dom';
 import { postService } from '../../../services/postServices';
 import { Alert, Spin } from 'antd';
-const Terms = () => {
+const Terms2 = () => {
     const [loading,setLoading]=useState(false);
     const [email,setEmail]=useState('');
     
@@ -56,7 +56,7 @@ const Terms = () => {
       
     const navigate=useNavigate();
   return (
-    <div>
+    <div style={{width:'80%',marginLeft:150,marginTop:-100}}>
   <div className="container-section99">
     <h1 className="biggest-text91 closs closs1">Terms of Service</h1>
 </div>
@@ -160,99 +160,9 @@ const Terms = () => {
     <p>Phone: +91 8179212829</p>
 </div>
 
-      <section className='container-section4' style={{marginTop:'-20v'}}>
    
-   <img className='bg-img-sect5 maya' src={backgr}  />
-   <div className="newsletter-container" style={{marginTop:'-70vh',height:'50vh'}}>
-         <div className="newsletter-content">
-           <h1 className='biggest-text91 closs' style={{textAlign:'left',width:'130%'}}>Ready to transform your marketing?</h1>
-           <p>Sign up now or request a demo to experience the power of LeadMasters AI.</p>
-        
-           <button className="cta-button90" onClick={()=>navigate("/signup")}>Get Started Free</button>
-         </div>
-         <div className="newsletter-image101 kira" >
-           <img src={Pguy} alt="Newsletter" />
-         </div>
-       </div>
-         </section>
-         <footer className="footer9" style={{marginTop:'5vh'}}>
-         <div className="footer-section">
-         <div className="navbar-brand">
-           <img src={Icon} alt="Logo" className="logo" />
-           <h4 className='item-9 wht'>LeadMasters.ai</h4>
-           </div>
-           <p className='bora wht'>LeadMasters AI: AI-powered lead generation and ad optimization for smarter marketing.</p>
-         </div>
-         <div className="footer-section">
-           <h3>Quick links</h3>
-           <ul >
-           <li><a className='jumpa' href="/aboutus">About Us</a></li>
-              <li><a className='jumpa' href="/contactus">Contact</a></li>
-              <li><a className='jumpa' href="/blog">Blog</a></li>
-              <li><a className='jumpa' href="/terms">Terms of Service</a></li>
-              <li><a className='jumpa' href="/privacy">Privacy Policy</a></li>
-              <li><a className='jumpa' href="/cancellation">Cancellation and Refund Policy</a></li>
-           </ul>
-         </div>
-         <div className="footer-section ">
-                       <h3>Contact details</h3>
-                       <div className="contact-item">
-                           <img src={loc} alt="Location Icon" className="contact-icon" />
-                           <div className="contact-details">
-                            
-                               <p>Address: #81/16, Haralukunte, HSR Layout, Bangalore, 560102</p>
-                           </div>
-                       </div>
-                       <div className="contact-item">
-                           <img src={mess} alt="Phone Icon" className="contact-icon" />
-                           <div className="contact-details">
-                              
-                               <p>Tel: +91-8147808161</p>
-                           </div>
-                       </div>
-                       <div className="contact-item">
-                           <img src={call} alt="Clock Icon" className="contact-icon" />
-                           <div className="contact-details">
-                             
-                               <p>Response hours: 2 to 4</p>
-                           </div>
-                       </div>
-                       <div className="contact-item">
-                           <img src={time} alt="Email Icon" className="contact-icon" />
-                           <div className="contact-details">
-                           
-                               <p>Email: support@leadmasters.ai</p>
-                           </div>
-                       </div>
-                   </div>
-         <div style={{display:'flex',flexDirection:'column',width:'25vw'}}>
-   
-         <div className="footer-section3 karuna">
-           <h3 className='wht' >Subscribe to Our Newsletter</h3>
-           <form className="subscribe-form2" onSubmit={handleSubmit}>
-             <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
-             <button type="submit">{loading ? <Spin size="small" /> : "Send"}</button>
-           </form>
-           {success && <Alert style={{marginBlock:5}} message="Submitted successfully!" type="success" showIcon />}
-           {error && <Alert style={{marginBlock:5}} message="There was an error sending your message." type="error" showIcon />}
-           <div className="follow-us">
-           <h3>Follow us on</h3>
-           <div className="social-icons">
-           <a  href="https://x.com/@leadmastersai" target="_blank" rel="noopener noreferrer"><img src={soc5} alt="Facebook" className='soc-img-sec' /></a>
-             <a  href="https://www.linkedin.com/company/lead-masters-ai/" target="_blank" rel="noopener noreferrer"><img src={soc4} alt="Twitter" className='soc-img-sec' /></a>
-             <a  href="https://www.facebook.com/profile.php?id=61564621096389" target="_blank" rel="noopener noreferrer"><img src={soc3} alt="LinkedIn" className='soc-img-sec' /></a>
-             <a  href="https://www.facebook.com/profile.php?id=61564621096389" target="_blank" rel="noopener noreferrer"><img src={soc2} alt="Instagram" className='soc-img-sec' /></a>
-             <a  href="https://youtube.com/@leadmastersai" target="_blank" rel="noopener noreferrer"><img src={soc1} alt="Instagram" className='soc-img-sec' /></a>
-           </div>
-         </div>
-         </div>
-        
-         </div>
-      
-       </footer>
-       <p className='last-line'>© 2024 | Powered by LeadMaster.AI</p>
     </div>
   )
 }
 
-export default Terms
+export default Terms2
