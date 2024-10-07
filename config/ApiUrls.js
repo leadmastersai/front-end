@@ -4,6 +4,7 @@
 const apiURLs={
     base_url:"https://leadmasters.site/",
     postCreate:"api/posts/create-post",
+    getPages:"auth/facebookpages",
     getfb:"api/posts/facebook",
     getg:"api/posts/google",
     getin:"api/posts/instagram",

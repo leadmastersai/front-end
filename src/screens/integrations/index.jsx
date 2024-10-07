@@ -13,7 +13,7 @@ import { saveUserDetail } from "../../redux/authSlice";
 import { disconnectService } from '../../../services/disconnectService';
 import th from '../../assets/integrations/threads.svg';
 
-const SocialMediaIntegration = ({ platform, isConnected ,fullName}) => {
+const SocialMediaIntegration = ({ platform, isConnected ,instaName,fbEmail,linkedinEmail,twName,threadsName}) => {
   const dispatch=useDispatch();
   const [connected, setConnected] = useState(isConnected);
   const token = localStorage.getItem('oauthToken');
@@ -91,6 +91,23 @@ function handleClick3() {
       console.error(`Error disconnecting ${platform.name}:`, error);
     }
   };
+
+  const renderPlatformDetail = () => {
+    switch (platform.name) {
+      case 'Facebook':
+        return <span style={styles.fullNameText}>{fbEmail}</span>;
+      case 'Instagram':
+        return <span style={styles.fullNameText}>{instaName}</span>;
+      case 'Twitter X':
+        return <span style={styles.fullNameText}>{twName}</span>;
+      case 'Threads':
+        return <span style={styles.fullNameText}>{threadsName}</span>;
+        case 'LinkedIn Profile':
+          return <span style={styles.fullNameText}>{linkedinEmail}</span>;
+      default:
+        return null;
+    }
+  };
   
 
 
@@ -99,11 +116,11 @@ function handleClick3() {
       <div style={styles.platformName}>
         <img src={platform.icon} alt={`${platform.name} icon`} style={styles.icon} />
         <span>{platform.name}</span>
-        {platform.name === 'Instagram' && connected && (
-       <>
-       <span style={styles.fullNameText}>{fullName}</span>
-       <img src={tick} alt="connected" style={{width:'12px',marginTop:'15px',objectFit:'contain'}} />
-     </>
+        {connected && (
+          <>
+            {renderPlatformDetail()}
+            <img src={tick} alt="connected" style={{ width: '12px', marginTop: '15px', objectFit: 'contain' }} />
+          </>
         )}
       </div>
       <div style={styles.actions}>
@@ -203,7 +220,12 @@ const {userBasics}  = useSelector((state) => state.auth);
           key={index} 
           platform={platform} 
           isConnected={platform.isConnected}
-           fullName={userBasics.fullName}
+           instaName={userBasics.instagramName}
+           fbEmail={userBasics.facebookEmail}
+           linkedinEmail={userBasics.linkedinEmail}
+           twName={userBasics.twitterName}
+           threadsName={userBasics.threadsName}
+
         />
       ))}
     </div>

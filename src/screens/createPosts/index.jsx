@@ -55,7 +55,15 @@ const [isModalSVisible, setIsModalSVisible] = useState(false);
 const [dateValue, setDateValue] = useState(dayjs());
 const [timeValue, setTimeValue] = useState(dayjs());
 const [selectedTimeSlot, setSelectedTimeSlot] = useState('');
-const [selectedCard, setSelectedCard] = useState(null); 
+const [selectedCard, setSelectedCard] = useState(null);
+const [isModalVisible, setIsModalVisible] = useState(false);
+const [modalMessage, setModalMessage] = useState('');
+  const [loading4, setLoading4] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [loading2,setLoading2]=useState(false);
+  const [success3,setSuccess3]=useState(false);
+  const [selectedPage,setSelectedPage]=useState('');
+  const [pages,setPages]=useState([]);
 const handleCardClick = (item) => {
   setSelectedCard(item); // Set the selected card data
   setIsModalSVisible(true); // Show the schedule modal
@@ -73,12 +81,7 @@ const handleImageUpload = (url) => {
 
 
 
-const [isModalVisible, setIsModalVisible] = useState(false);
-const [modalMessage, setModalMessage] = useState('');
-  const [loading4, setLoading4] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [loading2,setLoading2]=useState(false);
-  const [success3,setSuccess3]=useState(false);
+
 
   const profilepic=userBasics.picture;
   const handlePlatformSelect = (platform) => {
@@ -94,6 +97,28 @@ const [modalMessage, setModalMessage] = useState('');
       skeletonRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   }, [loading4]);
+
+  useEffect(()=>{
+
+    const getFbPages=async()=>{
+      try{
+        const response=await postService.pagesService();
+        console.log(response.data,"xxx");
+        setPages(response.data.facebookPages)
+        
+      }catch(error){
+        console.log(error,"error");
+        
+      }
+      
+    }
+
+    getFbPages();
+
+  },[])
+
+  console.log(pages,"qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq");
+  
 
   const handleTimeSlotChange = (e) => {
     setSelectedTimeSlot(e.target.value);
@@ -275,7 +300,24 @@ const [modalMessage, setModalMessage] = useState('');
   },
   };
 
-console.log(selectedCategory,"==");
+
+  const menuItems = pages.map((page) => ({
+    label: page.pageName,  // This is what will be displayed in the dropdown
+    key: page.pageId,      // Use pageId as the unique key
+  }));
+
+  // Define the menu object for Ant Design Dropdown
+  const menu2 = {
+    items: menuItems,
+    onClick: ({ key }) => {
+      // Find the selected page using the key (pageId)
+      const selectedP = pages.find(item => item.pageId === key);
+      if (selectedP) {
+        setSelectedPage(selectedP);
+      }
+    },
+  };
+console.log(selectedPage,"ooooooooooooooo");
 
 // const handleGetCategoryData=async()=>{
 //   if (!selectedCategory) {
@@ -522,7 +564,8 @@ const text = item; // Trim to remove any extra spaces
 
 const payload = {
   text:text,
-  imgUrl:uploadedImageUrl
+  imgUrl:uploadedImageUrl,
+  pageId:selectedPage.pageId || pages[0].pageId
 };
   try {
     const response = await postService.facebookPost(payload);
@@ -820,6 +863,15 @@ const CardComponent = ({data, userBasics, profilepic, selectedPlatform,handleIns
             <DownOutlined style={{marginLeft:'7vw'}} />
           </Space>
         </Dropdown>
+{selectedPlatform ==="Facebook" && (
+       <Dropdown menu={menu2} placement="bottomCenter">
+       <Space className="dropdown-trigger">
+         <span>{selectedPage ? `Selected: ${selectedPage?.pageName}` : 'Select Page'}</span>
+         <DownOutlined style={{marginLeft:'7vw'}} />
+       </Space>
+     </Dropdown>
+)}
+ 
       </div>
     
       <div className="message-input">

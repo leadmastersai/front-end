@@ -8,7 +8,7 @@ import schedule from '../../assets/getIdea/schedule.svg';
 import write from '../../assets/getIdea/remove.svg';
 import { useEffect, useState } from 'react';
 import { postService } from '../../../services/postServices';
-import { Alert, Button, Modal, Radio, Spin } from "antd";
+import { Alert, Button, Dropdown, Modal, Radio, Space, Spin } from "antd";
 import { useSelector } from 'react-redux';
 import Carousel1 from '../adIdea/carousel1';
 import stars from '../../assets/getIdea/stars.svg';
@@ -21,6 +21,7 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DatePicker} from '@mui/x-date-pickers';
 import { scheduleService } from '../../../services/scheduleService';
 import { usePlatform } from '../../constants/activePlatform';
+import { DownOutlined } from '@ant-design/icons';
 dayjs.extend(utc);
 dayjs.extend(timezone);
 
@@ -43,7 +44,9 @@ const Drafts = () => {
 const [dateValue, setDateValue] = useState(dayjs());
 const [timeValue, setTimeValue] = useState(dayjs());
 const [selectedTimeSlot, setSelectedTimeSlot] = useState('');
-const [selectedCard, setSelectedCard] = useState(null); 
+const [selectedCard, setSelectedCard] = useState(null);
+const [selectedPage,setSelectedPage]=useState('');
+const [pages,setPages]=useState([]); 
 
 const handleCardClick = (item) => {
   setSelectedCard(item); // Set the selected card data
@@ -160,6 +163,28 @@ const handleSchedule = async () => {
     }
   };
 
+
+  useEffect(()=>{
+
+    const getFbPages=async()=>{
+      try{
+        const response=await postService.pagesService();
+        console.log(response.data,"xxx");
+        setPages(response.data.facebookPages)
+        
+      }catch(error){
+        console.log(error,"error");
+        
+      }
+      
+    }
+
+    getFbPages();
+
+  },[])
+
+  console.log(pages,"qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq");
+
   const handleInstagram = async (item) => {
     if (!userBasics.isInstagramLogin) {
       showLoginModal('Instagram');
@@ -211,7 +236,8 @@ const handleSchedule = async () => {
   
   const payload = {
     text:text,
-    imgUrl:item?.imgLink
+    imgUrl:item?.imgLink,
+    pageId:selectedPage.pageId || pages[0].pageId
   };
     try {
       const response = await postService.facebookPost(payload);
@@ -340,6 +366,23 @@ const handleSchedule = async () => {
 
   
   
+  const menuItems = pages.map((page) => ({
+    label: page.pageName,  // This is what will be displayed in the dropdown
+    key: page.pageId,      // Use pageId as the unique key
+  }));
+
+  // Define the menu object for Ant Design Dropdown
+  const menu2 = {
+    items: menuItems,
+    onClick: ({ key }) => {
+      // Find the selected page using the key (pageId)
+      const selectedP = pages.find(item => item.pageId === key);
+      if (selectedP) {
+        setSelectedPage(selectedP);
+      }
+    },
+  };
+console.log(selectedPage,"ooooooooooooooo");
 
   return (
     <div className='main-cont55' style={{}}>
@@ -431,6 +474,14 @@ const handleSchedule = async () => {
           <img src={item?.imgLink} alt="Uploaded in Parent" style={{ width: '150px',height:'150px',objectFit:'contain' }} />
         </div>
       )}
+      {selectedPlatform ==="Facebook" && (
+       <Dropdown menu={menu2} placement="bottomCenter">
+       <Space className="dropdown-trigger">
+         <span>{selectedPage ? `Selected: ${selectedPage?.pageName}` : 'Select Page'}</span>
+         <DownOutlined style={{marginLeft:'7vw'}} />
+       </Space>
+     </Dropdown>
+)}
           <p className='para23'>{item?.content?.replace(/\[|\]/g, '')}</p>
 
           <div className='hashtags88'>
