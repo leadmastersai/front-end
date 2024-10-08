@@ -72,7 +72,7 @@ function App() {
         <Route element={<ProtectedRoute><Layout /></ProtectedRoute>}>
           <Route path="/home" element={<CreateAd />} />
           <Route path="/privacy-policy" element={<Privacy2 />} />
-          <Route path="/terms-conditions" element={<Terms2 />} />
+          <Route path="/terms-and-conditions" element={<Terms2 />} />
           <Route path="/postidea" element={<PostIdea />} />
           <Route path="/analytics" element={<Analytics />} />
           <Route path="/data-deletion" element={<DeleteAccount />} />

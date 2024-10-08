@@ -13,7 +13,7 @@ import { saveUserDetail } from "../../redux/authSlice";
 import { disconnectService } from '../../../services/disconnectService';
 import th from '../../assets/integrations/threads.svg';
 
-const SocialMediaIntegration = ({ platform, isConnected ,instaName,fbEmail,linkedinEmail,twName,threadsName}) => {
+const SocialMediaIntegration = ({ platform, isConnected ,instaName,fbEmail,linkedinEmail,twName,threadsName,email}) => {
   const dispatch=useDispatch();
   const [connected, setConnected] = useState(isConnected);
   const token = localStorage.getItem('oauthToken');
@@ -23,6 +23,12 @@ const SocialMediaIntegration = ({ platform, isConnected ,instaName,fbEmail,linke
    dispatch(saveUserDetail(response.data));
     
   }
+
+  useEffect(() => {
+    if (connected) {
+      getUserDetails();  // Fetch user details when the platform becomes connected
+    }
+  }, [connected]);
   function handleClick() {
     const state =  `postsignup|token=${token}`;
     const encodedState = encodeURIComponent(state);
@@ -40,6 +46,11 @@ const SocialMediaIntegration = ({ platform, isConnected ,instaName,fbEmail,linke
 
       
 
+      function handleClick5() {
+      
+        const linkedinAuthUrl = `https://leadmasters.site/auth/google?token=${token}`;
+        window.location.href = linkedinAuthUrl;
+        }
 
 function handleClick3() {
       
@@ -104,6 +115,8 @@ function handleClick3() {
         return <span style={styles.fullNameText}>{threadsName}</span>;
         case 'LinkedIn Profile':
           return <span style={styles.fullNameText}>{linkedinEmail}</span>;
+          case 'Google':
+            return <span style={styles.fullNameText}>{email}</span>;
       default:
         return null;
     }
@@ -146,8 +159,10 @@ function handleClick3() {
                 handleClick3(); 
               } else if (platform.icon === th) {
                 handleClick4(); 
-              } else {
+              } else if(platform.icon === link){
                 handleClick(); // Handle other icons
+              } else {
+                handleClick5();
               }
             }}
           >
@@ -225,6 +240,7 @@ const {userBasics}  = useSelector((state) => state.auth);
            linkedinEmail={userBasics.linkedinEmail}
            twName={userBasics.twitterName}
            threadsName={userBasics.threadsName}
+           email={userBasics.email}
 
         />
       ))}
