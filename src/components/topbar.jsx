@@ -7,11 +7,22 @@ const Topbar = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const [menuOpen, setMenuOpen] = useState(false);
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     // Scroll to top whenever location changes
     useEffect(() => {
         window.scrollTo(0, 0);
     }, [location]);
+
+    // Check if oauthToken is present in localStorage
+    useEffect(() => {
+        const token = localStorage.getItem('oauthToken');
+        if (token) {
+            setIsLoggedIn(true);
+        } else {
+            setIsLoggedIn(false);
+        }
+    }, []);
 
     // Function to check if the current path matches the link path
     const isActive = (path) => location.pathname === path;
@@ -23,15 +34,15 @@ const Topbar = () => {
                 <h2 style={{ fontWeight: '300' }}>LeadMasters.ai</h2>
             </Link>
             <div>
-            <button 
-                className="menu-toggle" 
-                onClick={() => setMenuOpen(prevState => !prevState)}
-                aria-expanded={menuOpen}
-                aria-controls="navbar-menu"
-                style={{ display: 'block !important', zIndex: '2000', position: 'relative' }}  // Add ID to your <ul> to link the button with the menu
-            >
-                {menuOpen ? '✖' : '☰'}
-            </button>
+                <button 
+                    className="menu-toggle" 
+                    onClick={() => setMenuOpen(prevState => !prevState)}
+                    aria-expanded={menuOpen}
+                    aria-controls="navbar-menu"
+                    style={{ display: 'block !important', zIndex: '2000', position: 'relative' }}  // Add ID to your <ul> to link the button with the menu
+                >
+                    {menuOpen ? '✖' : '☰'}
+                </button>
             </div>
             <ul id="navbar-menu" className={`navbar-menu ${menuOpen ? 'open' : ''}`}>
                 <li className={isActive('/') ? 'active' : ''}>
@@ -53,15 +64,31 @@ const Topbar = () => {
                     <Link to="/contactus" onClick={() => setMenuOpen(false)}>Contact Us</Link>
                 </li>
 
-                {/* Add the Login button inside the navbar-menu for small screens */}
+                {/* Add the conditional button inside the navbar-menu for small screens */}
                 <li className="navbar-actions-mobile">
-                    <button onClick={() => { navigate('/signup'); setMenuOpen(false); }} className="signup-btn">Login</button>
+                    {isLoggedIn ? (
+                        <button onClick={() => { navigate('/dashboard'); setMenuOpen(false); }} className="proceed-btn">
+                            ➡ Proceed to Dashboard
+                        </button>
+                    ) : (
+                        <button onClick={() => { navigate('/signup'); setMenuOpen(false); }} className="signup-btn">
+                            Login
+                        </button>
+                    )}
                 </li>
             </ul>
 
-            {/* Keep the Login button outside the navbar-menu for larger screens */}
+            {/* Keep the conditional button outside the navbar-menu for larger screens */}
             <div className="navbar-actions">
-                <button onClick={() => navigate('/signup')} className="signup-btn">Login</button>
+                {isLoggedIn ? (
+                    <button onClick={() => navigate('/home')} className="signup-btn">
+                        ➡ Proceed to Dashboard
+                    </button>
+                ) : (
+                    <button onClick={() => navigate('/signup')} className="signup-btn">
+                        Login
+                    </button>
+                )}
             </div>
         </nav>
     );

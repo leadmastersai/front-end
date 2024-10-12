@@ -57,9 +57,9 @@ function App() {
           <Route path="/pricing" element={<Pricing />} />
           <Route path="/aboutus" element={<Aboutus />} />
           <Route path="/blog" element={<Blog />} />
-          <Route path="/privacy-policy" element={<Privacy />} />
+          <Route path="/privacy" element={<Privacy />} />
           <Route path="/cancellation" element={<Cancellation />} />
-          <Route path="/terms-and-conditions" element={<Terms />} />
+          <Route path="/terms" element={<Terms />} />
           <Route path="/contactus" element={<ContactUs />} />
           <Route path="/features" element={<Features />} />
           <Route path="/blog/maximize" element={<Maximize />} />
@@ -71,7 +71,8 @@ function App() {
         </Route>
         <Route element={<ProtectedRoute><Layout /></ProtectedRoute>}>
           <Route path="/home" element={<CreateAd />} />
-
+          <Route path="/privacy-policy" element={<Privacy2 />} />
+          <Route path="/terms-and-conditions" element={<Terms2 />} />
           <Route path="/postidea" element={<PostIdea />} />
           <Route path="/analytics" element={<Analytics />} />
           <Route path="/data-deletion" element={<DeleteAccount />} />
