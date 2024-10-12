@@ -13,116 +13,87 @@ import { saveUserDetail } from "../../redux/authSlice";
 import { disconnectService } from '../../../services/disconnectService';
 import th from '../../assets/integrations/threads.svg';
 
-const SocialMediaIntegration = ({ platform, isConnected ,instaName,fbEmail,linkedinEmail,twName,threadsName,email}) => {
-  const dispatch=useDispatch();
+const SocialMediaIntegration = ({ platform, isConnected }) => {
+  const dispatch = useDispatch();
+  const { userBasics } = useSelector((state) => state.auth);
   const [connected, setConnected] = useState(isConnected);
+
   const token = localStorage.getItem('oauthToken');
-  const getUserDetails=async()=>{
-    const response=await postService.getUser();
-    console.log(response.data,"+++");
-   dispatch(saveUserDetail(response.data));
-    
+
+  const getUserDetails = async () => {
+    const response = await postService.getUser();
+    console.log(response.data, "+++");
+    dispatch(saveUserDetail(response.data));
   }
+
+  useEffect(() => {
+    // Update the connected state based on userBasics
+    setConnected(isConnected);
+  }, [isConnected]);
 
   useEffect(() => {
     if (connected) {
       getUserDetails();  // Fetch user details when the platform becomes connected
     }
-  }, [connected]);
-  function handleClick() {
-    const state =  `postsignup|token=${token}`;
-    const encodedState = encodeURIComponent(state);
-    console.log(encodedState,"********************************************");
-    
-    const linkedinAuthUrl = `https://leadmasters.site/auth/linkedin?state=${encodedState}`;
-    window.location.href = linkedinAuthUrl;
-    }
+  }, [connected, dispatch]);
 
-    function handleClick1() {
-      
-      const linkedinAuthUrl = `https://leadmasters.site/auth/twitter?token=${token}`;
-      window.location.href = linkedinAuthUrl;
-      }
-
-      
-
-      function handleClick5() {
-      
-        const linkedinAuthUrl = `https://leadmasters.site/auth/google?token=${token}`;
-        window.location.href = linkedinAuthUrl;
-        }
-
-function handleClick3() {
-      
-  const linkedinAuthUrl = `https://leadmasters.site/auth/instagram?token=${token}`;
-  window.location.href = linkedinAuthUrl;
-  }
-
-  function handleClick4() {
-      
-    const linkedinAuthUrl = `https://leadmasters.site/auth/threads?token=${token}`;
-    window.location.href = linkedinAuthUrl;
-    }
-
-    function handleClick2() {
-      
-      const linkedinAuthUrl = `https://leadmasters.site/auth/facebook?token=${token}`;
-      window.location.href = linkedinAuthUrl;
-      }
-  
+  // Define the OAuth click handlers
+  const handleOAuthClick = (platformName) => {
+    const urls = {
+      'LinkedIn Profile': `https://leadmasters.site/auth/linkedin?state=postsignup|token=${token}`,
+      'Twitter X': `https://leadmasters.site/auth/twitter?token=${token}`,
+      'Google': `https://leadmasters.site/auth/google?token=${token}`,
+      'Instagram': `https://leadmasters.site/auth/instagram?token=${token}`,
+      'Threads': `https://leadmasters.site/auth/threads?token=${token}`,
+      'Facebook': `https://leadmasters.site/auth/facebook?token=${token}`,
+    };
+    window.location.href = urls[platformName];
+  };
 
   const handleDisconnect = async () => {
     try {
       let response;
-  
-      if (platform.name === 'Twitter X') {
-        response = await disconnectService.twitterDisconnect();
-        console.log(response.data, "Twitter disconnected");
-      } else if (platform.name === 'LinkedIn Profile') {
-        response = await disconnectService.linkedinDisconnect();
-        console.log(response.data, "LinkedIn disconnected");
-      } else if (platform.name === 'Google') {
-        response = await disconnectService.googleDisconnect();
-        console.log(response.data, "Google disconnected");
-      } else if (platform.name === 'Instagram') {
-        response = await disconnectService.instagramDisconnect();
-        console.log(response.data, "Instagram disconnected");
-      } else if (platform.name === 'Threads') {
-        response = await disconnectService.threadsDisconnect();
-        console.log(response.data, "Threads disconnected");
-      }else if (platform.name === 'Facebook') {
-        response = await disconnectService.facebookDisconnect();
-        console.log(response.data, "Instagram disconnected");
+      switch (platform.name) {
+        case 'Twitter X':
+          response = await disconnectService.twitterDisconnect();
+          break;
+        case 'LinkedIn Profile':
+          response = await disconnectService.linkedinDisconnect();
+          break;
+        case 'Google':
+          response = await disconnectService.googleDisconnect();
+          break;
+        case 'Instagram':
+          response = await disconnectService.instagramDisconnect();
+          break;
+        case 'Threads':
+          response = await disconnectService.threadsDisconnect();
+          break;
+        case 'Facebook':
+          response = await disconnectService.facebookDisconnect();
+          break;
+        default:
+          break;
       }
-  
-      getUserDetails();  // Fetch user details after disconnection
+      console.log(response.data, `${platform.name} disconnected`);
+      await getUserDetails();  // Fetch updated user details after disconnection
       setConnected(false);  // Update local state to show it's disconnected
-  
     } catch (error) {
       console.error(`Error disconnecting ${platform.name}:`, error);
     }
   };
 
   const renderPlatformDetail = () => {
-    switch (platform.name) {
-      case 'Facebook':
-        return <span style={styles.fullNameText}>{fbEmail}</span>;
-      case 'Instagram':
-        return <span style={styles.fullNameText}>{instaName}</span>;
-      case 'Twitter X':
-        return <span style={styles.fullNameText}>{twName}</span>;
-      case 'Threads':
-        return <span style={styles.fullNameText}>{threadsName}</span>;
-        case 'LinkedIn Profile':
-          return <span style={styles.fullNameText}>{linkedinEmail}</span>;
-          case 'Google':
-            return <span style={styles.fullNameText}>{email}</span>;
-      default:
-        return null;
-    }
+    const emailsAndNames = {
+      'Facebook': userBasics.facebookEmail,
+      'Instagram': userBasics.instagramName,
+      'Twitter X': userBasics.twitterName,
+      'Threads': userBasics.threadsName,
+      'LinkedIn Profile': userBasics.linkedinEmail,
+      'Google': userBasics.email,
+    };
+    return <span style={styles.fullNameText}>{emailsAndNames[platform.name]}</span>;
   };
-  
-
 
   return (
     <div style={styles.container}>
@@ -140,31 +111,17 @@ function handleClick3() {
         {isConnected ? (
           <>
             <span style={styles.connectedText}>Connected</span>
-            <button 
-              style={styles.disabledButton} 
+            <button
+              style={styles.disabledButton}
               onClick={handleDisconnect}
             >
               Disconnect
             </button>
           </>
         ) : (
-          <button 
+          <button
             style={styles.integrateButton}
-            onClick={() => {
-              if (platform.icon === twi) {
-                handleClick1(); // Handle Twitter icon click
-              } else if (platform.icon === face) {
-                handleClick2(); // Handle Facebook icon click
-              } else if (platform.icon === insta) {
-                handleClick3(); 
-              } else if (platform.icon === th) {
-                handleClick4(); 
-              } else if(platform.icon === link){
-                handleClick(); // Handle other icons
-              } else {
-                handleClick5();
-              }
-            }}
+            onClick={() => handleOAuthClick(platform.name)}
           >
             Integrate
           </button>
@@ -175,26 +132,23 @@ function handleClick3() {
 };
 
 const Integrations = () => {
-  const dispatch=useDispatch();
-  const token = localStorage.getItem('oauthToken');
-const {userBasics}  = useSelector((state) => state.auth);
-  
+  const dispatch = useDispatch();
+  const { userBasics } = useSelector((state) => state.auth);
 
-  useEffect(()=>{
-    const getUserDetails=async()=>{
-      const response=await postService.getUser();
-      console.log(response.data,"+++");
-     dispatch(saveUserDetail(response.data));
-      
-    }
-    getUserDetails()
-    },[]);
+  useEffect(() => {
+    const fetchUserDetails = async () => {
+      const response = await postService.getUser();
+      dispatch(saveUserDetail(response.data));
+    };
+    fetchUserDetails();
+  }, [dispatch]);
 
   const platforms = [
+    
     {
-      name: 'LinkedIn Profile',
-      icon: link,
-      isConnected: userBasics.isLinkedInConnected,
+      name: 'Facebook',
+      icon: face,
+      isConnected: userBasics.isFacebookLogin,
     },
     {
       name: 'Instagram',
@@ -202,49 +156,44 @@ const {userBasics}  = useSelector((state) => state.auth);
       isConnected: userBasics.isInstagramLogin,
     },
     {
+      name: 'Threads',
+      icon: th,
+      isConnected: userBasics.isThreadsLogin,
+    },
+    {
       name: 'Twitter X',
       icon: twi,
       isConnected: userBasics.isTwitterLogin,
     },
+    
     {
-      name: 'Facebook',
-      icon:face,
-      isConnected: userBasics.isFacebookLogin,
+      name: 'Google',
+      icon: google,
+      isConnected: userBasics.isGoogleConnected,
     },
+    
     {
-      name:'Google',
-      icon:google,
-      isConnected:userBasics.isGoogleConnected
+      name: 'LinkedIn Profile',
+      icon: link,
+      isConnected: userBasics.isLinkedInConnected,
     },
-    {
-      name:'Threads',
-      icon:th,
-      isConnected:userBasics.isThreadsLogin
-    }
   ];
 
   return (
-    <div style={{marginTop:'5vh'}}>
-         <div className='heading'>
-    <h3>Social Logins</h3>
-    <img src={stars} className='str'/>
-    </div>
-    <div className='inte-cont'>
-      {platforms.map((platform, index) => (
-        <SocialMediaIntegration 
-          key={index} 
-          platform={platform} 
-          isConnected={platform.isConnected}
-           instaName={userBasics.instagramName}
-           fbEmail={userBasics.facebookEmail}
-           linkedinEmail={userBasics.linkedinEmail}
-           twName={userBasics.twitterName}
-           threadsName={userBasics.threadsName}
-           email={userBasics.email}
-
-        />
-      ))}
-    </div>
+    <div style={{ marginTop: '5vh' }}>
+      <div className='heading'>
+        <h3>Social Logins</h3>
+        <img src={stars} className='str' />
+      </div>
+      <div className='inte-cont'>
+        {platforms.map((platform, index) => (
+          <SocialMediaIntegration
+            key={index}
+            platform={platform}
+            isConnected={platform.isConnected}
+          />
+        ))}
+      </div>
     </div>
   );
 };
@@ -268,7 +217,7 @@ const styles = {
   },
   fullNameText: {
     marginLeft: '8px',
-    marginTop:'15px',
+    marginTop: '15px',
     fontSize: '12px',
     color: 'gray',
   },
@@ -297,7 +246,7 @@ const styles = {
     border: 'none',
     padding: '8px 20px',
     borderRadius: '8px',
-   cursor:'pointer',
+    cursor: 'pointer',
     fontSize: '16px',
   },
 };

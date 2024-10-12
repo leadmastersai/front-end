@@ -81,7 +81,7 @@ const Topbar = () => {
             {/* Keep the conditional button outside the navbar-menu for larger screens */}
             <div className="navbar-actions">
                 {isLoggedIn ? (
-                    <button onClick={() => navigate('/home')} className="signup-btn">
+                    <button onClick={() => navigate('/home')} className="signup-btn" style={{width:200}}>
                         ➡ Proceed to Dashboard
                     </button>
                 ) : (
