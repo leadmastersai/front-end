@@ -99,8 +99,8 @@ const Maximize = () => {
            <li><a className='jumpa' href="/aboutus">About Us</a></li>
               <li><a className='jumpa' href="/contactus">Contact</a></li>
               <li><a className='jumpa' href="/blog">Blog</a></li>
-              <li><a className='jumpa' href="/terms">Terms of Service</a></li>
-              <li><a className='jumpa' href="/privacy">Privacy Policy</a></li>
+              <li><a className='jumpa' href="/terms-and-conditions">Terms of Service</a></li>
+              <li><a className='jumpa' href="/privacy-policy">Privacy Policy</a></li>
               <li><a className='jumpa' href="/cancellation">Cancellation and Refund Policy</a></li>
            </ul>
          </div>

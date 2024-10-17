@@ -66,6 +66,11 @@ const Terms = () => {
 </div>
 <div className="privacy-policy-container">
     <p className="last-updated">Effective Date: Oct 02nd, 2024</p>
+    <p>
+      LeadMasters AI Solutions Private Limited ("we," "us," or "our") operates the website leadmasters.ai and the associated services, including our mobile application (collectively referred to as the "LeadMasters AI App"). This Privacy Policy outlines how LeadMasters AI Solutions Private Limited collects, uses, and safeguards your personal data when you use our services.
+</p><p>
+We are committed to ensuring that your privacy is protected in accordance with applicable international data protection laws, including the General Data Protection Regulation (GDPR), California Consumer Privacy Act (CCPA), and other relevant standards. This Privacy Policy explains how we collect, use, disclose, and protect your personal information when using our services, including integrations with Meta platforms (Facebook, Instagram, Threads, WhatsApp), LinkedIn, X (formerly Twitter), Google Ads, and YouTube.
+      </p>
     <h2>1. Definitions</h2>
     <p><strong>1.1 "Platform"</strong> refers to LeadMasters AI, accessible via leadmasters.ai and leadmasters.site.</p>
     <p><strong>1.2 "We," "Us," or "Our"</strong> refers to LeadMasters AI, its affiliates, and subsidiaries.</p>
@@ -189,8 +194,8 @@ const Terms = () => {
            <li><a className='jumpa' href="/aboutus">About Us</a></li>
               <li><a className='jumpa' href="/contactus">Contact</a></li>
               <li><a className='jumpa' href="/blog">Blog</a></li>
-              <li><a className='jumpa' href="/terms">Terms of Service</a></li>
-              <li><a className='jumpa' href="/privacy">Privacy Policy</a></li>
+              <li><a className='jumpa' href="/terms-and-policy">Terms of Service</a></li>
+              <li><a className='jumpa' href="/privacy-policy">Privacy Policy</a></li>
               <li><a className='jumpa' href="/cancellation">Cancellation and Refund Policy</a></li>
            </ul>
          </div>
