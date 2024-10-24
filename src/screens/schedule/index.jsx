@@ -8,7 +8,7 @@ import stars from '../../assets/getIdea/stars.svg';
 import { scheduleService } from '../../../services/scheduleService';
 import { Modal, Button, message } from 'antd';  
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTwitter, faLinkedin } from '@fortawesome/free-brands-svg-icons';
+import { faTwitter, faLinkedin ,faFacebook,faThreads,faInstagram} from '@fortawesome/free-brands-svg-icons';
 import './styles.scss';
 function Calendar() {
   const [events, setEvents] = useState([]);
@@ -29,7 +29,8 @@ function Calendar() {
           extendedProps: {  
             content: event?.content,
             platform: event?.platforms,
-            _id: event?._id  
+            _id: event?._id,
+             imgUrl:event?.imgLink
           }
         }));
 
@@ -75,6 +76,12 @@ function Calendar() {
       platformIcon = <FontAwesomeIcon icon={faTwitter} color="black" style={{ marginRight: '5px' }} />;
     } else if (platform.includes('LinkedIn')) {
       platformIcon = <FontAwesomeIcon icon={faLinkedin} color="blue" style={{ marginRight: '5px' }} />;
+    }else if (platform.includes('Facebook')) {
+      platformIcon = <FontAwesomeIcon icon={faFacebook} color="blue" style={{ marginRight: '5px' }} />;
+    } else if (platform.includes('Instagram')) {
+      platformIcon = <FontAwesomeIcon icon={faInstagram} color="pink" style={{ marginRight: '5px' }} />;
+    }else if (platform.includes('Threads')) {
+      platformIcon = <FontAwesomeIcon icon={faThreads} color="black" style={{ marginRight: '5px' }} />;
     }
   
     return (
@@ -133,7 +140,15 @@ function Calendar() {
           <div>
             <p><strong>Content:</strong> {selectedEvent.content}</p>
             <p><strong>Platform:</strong> {selectedEvent.platform}</p>
+            {(selectedEvent.platform.includes('Facebook') || selectedEvent.platform.includes('Instagram')) && (
+        <img 
+          src={selectedEvent.imgUrl} 
+          alt="Uploaded in Parent"
+          style={{ width: "150px", height: "150px", objectFit: "contain" }} 
+        />
+      )}
           </div>
+
         )}
       </Modal>
     </div>
