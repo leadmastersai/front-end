@@ -608,11 +608,14 @@ const CreatePosts = () => {
       platforms: selectedPlatform,
       content: text,
       scheduleTime: localDatetime,
-      pageId: selectedPage.pageId || pages[0].pageId
+      
     };
 
     if (selectedPlatform === "Facebook" || selectedPlatform === "Instagram") {
       payload.imgLink = uploadedImageUrl;
+    }
+    if(selectedPlatform ==="Facebook"){
+      payload.pageId=selectedPage.pageId || pages[0].pageId
     }
 
     try {
