@@ -608,6 +608,7 @@ const CreatePosts = () => {
       platforms: selectedPlatform,
       content: text,
       scheduleTime: localDatetime,
+      pageId: selectedPage.pageId || pages[0].pageId
     };
 
     if (selectedPlatform === "Facebook" || selectedPlatform === "Instagram") {
